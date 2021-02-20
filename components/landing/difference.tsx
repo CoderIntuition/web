@@ -97,9 +97,8 @@ const Difference = () => {
         </TextColumn>
       </TwoColumn>
       <DecoratorBlob1
-        src="/svg-decorator-blob-2.svg"
+        src="/images/svg-decorator-blob-1.svg"
         alt="Decorator blob"
-        layout="fill"
       />
     </Container>
   );

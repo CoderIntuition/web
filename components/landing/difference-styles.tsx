@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import tw from "twin.macro";
-import {PrimaryButton as PrimaryButtonBase, SectionHeading, Subheading as SubheadingBase} from "./landing-styles";
-import Image from "next/image";
+import {SectionHeading, Subheading as SubheadingBase} from "./landing-styles";
 
 export const Container = tw.div`relative`;
 
@@ -49,9 +48,4 @@ export const FeatureHeading = tw.div`ml-3 font-bold text-xl`;
 
 export const FeatureDescription = tw.div`mt-4 font-medium text-center md:text-left text-secondary-100 leading-loose`;
 
-export const PrimaryButton = styled(PrimaryButtonBase)((props) => [
-  tw`mt-12 text-base font-medium inline-block py-4 px-16 mx-auto md:mx-0`,
-  props.buttonRounded && tw`rounded-full`,
-]);
-
-export const DecoratorBlob1 = tw(Image)`pointer-events-none opacity-5 absolute left-0 bottom-0 h-64 w-64 transform -translate-x-2/3 -z-10`;
+export const DecoratorBlob1 = tw.img`pointer-events-none opacity-5 absolute right-0 bottom-0 h-64 w-64 transform translate-x-2/3 translate-y-2/3 -z-10`;

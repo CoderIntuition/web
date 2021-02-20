@@ -27,4 +27,4 @@ export const IllustrationContainer = tw.div`flex justify-center lg:justify-end i
 
 export const StyledImage = tw(Image)`min-w-0 w-full max-w-2xl xl:max-w-3xl`;
 
-export const DecoratorBlob1 = tw(Image)`pointer-events-none opacity-5 absolute left-0 bottom-0 h-64 w-64 transform -translate-x-2/3 -z-10`;
+export const DecoratorBlob1 = tw.img`pointer-events-none opacity-5 absolute left-0 bottom-0 h-64 w-64 transform -translate-x-2/3 translate-y-12 -z-10`;

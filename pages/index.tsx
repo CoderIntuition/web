@@ -14,7 +14,7 @@ const HomePage: FC = () => {
     return <div>Loading</div>;
   }
 
-  const Head: FC = () => {
+  const head = () => {
     return (
       <Head>
         <title>CoderIntuition</title>
@@ -30,7 +30,7 @@ const HomePage: FC = () => {
 
   return (
     <>
-      {Head}
+      {head()}
       <Home/>
     </>
   )

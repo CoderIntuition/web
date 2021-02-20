@@ -51,8 +51,6 @@ const Hero = () => {
       <DecoratorBlob1
         src="/images/svg-decorator-blob-1.svg"
         alt="Decorator blob"
-        width="100px"
-        height="100px"
       />
     </OuterContainer>
   );

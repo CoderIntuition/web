@@ -75,9 +75,9 @@ const Testimonials = () => {
               alt="Testimonials graphic"
               width="800px"
               height="800px"
-              imageBorder={false}
-              imageShadow={false}
-              imageRounded={true}
+              imageborder={0}
+              imageshadow={0}
+              imagerounded={1}
             />
           </ImageColumn>
           <TextColumn textOnLeft={false}>
@@ -127,10 +127,8 @@ const Testimonials = () => {
         </Row>
       </ContentWithPaddingXl>
       <DecoratorBlob
-        src="/images/svg-decorator-blob-6"
+        src="/images/svg-decorator-blob-2.svg"
         alt="Decorator blob"
-        width="50px"
-        height="50px"
       />
     </Container>
   );

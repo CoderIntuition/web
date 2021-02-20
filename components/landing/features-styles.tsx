@@ -47,4 +47,5 @@ export const Card = styled.div`
   }
 `;
 
-export const DecoratorBlob = tw(Image)`pointer-events-none absolute right-0 bottom-0 w-64 opacity-25 transform translate-x-32 translate-y-48`;
+export const DecoratorBlob1 = tw.img`pointer-events-none absolute right-0 top-0 w-64 opacity-25 transform translate-x-40 -translate-y-4`;
+export const DecoratorBlob2 = tw.img`pointer-events-none absolute left-0 bottom-0 w-64 opacity-25 transform -translate-x-40 translate-y-24`;

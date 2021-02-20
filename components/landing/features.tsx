@@ -5,7 +5,8 @@ import {
   Card,
   Column,
   Container,
-  DecoratorBlob,
+  DecoratorBlob1,
+  DecoratorBlob2,
   Description,
   FeatureIconContainer,
   Heading,
@@ -80,7 +81,13 @@ const Features = () => {
           </Column>
         ))}
       </ThreeColumnContainer>
-      <DecoratorBlob
+      <DecoratorBlob1
+        src="/images/svg-decorator-blob-2.svg"
+        alt="Decorator blob"
+        width="100px"
+        height="100px"
+      />
+      <DecoratorBlob2
         src="/images/svg-decorator-blob-3.svg"
         alt="Decorator blob"
         width="100px"

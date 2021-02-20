@@ -20,9 +20,9 @@ export const TextColumn = styled(Column)((props) => [
 ]);
 
 export const Image = styled(NextImage)((props) => [
-  props.imageRounded && tw`rounded`,
-  props.imageBorder && tw`border`,
-  props.imageShadow && tw`shadow`,
+  props.imagerounded && tw`rounded`,
+  props.imageborder && tw`border`,
+  props.imageshadow && tw`shadow`,
 ]);
 
 export const CompanyImage = styled.img(tw`w-24 block my-0 mx-auto md:inline md:my-0 md:mx-0`);
@@ -78,4 +78,4 @@ export const ControlButton = styled.button`
   }
 `;
 
-export const DecoratorBlob = tw(NextImage)`pointer-events-none absolute right-0 bottom-0 w-64 opacity-25 transform translate-x-32 translate-y-96`;
+export const DecoratorBlob = tw.img`pointer-events-none absolute left-0 bottom-0 w-64 opacity-25 transform -translate-x-32 translate-y-32`;
