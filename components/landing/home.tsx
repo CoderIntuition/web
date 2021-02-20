@@ -9,10 +9,10 @@ const Home: FC = () => {
   return (
     <>
       <AnimationRevealPage>
-        <Hero />
-        <Features />
-        <Difference />
-        <Testimonials />
+        <Hero/>
+        <Features/>
+        <Difference/>
+        <Testimonials/>
       </AnimationRevealPage>
       {/*<Footer />*/}
     </>

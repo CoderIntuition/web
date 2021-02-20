@@ -36,10 +36,10 @@ const Testimonials = () => {
     </>
   );
   const description =
-    "Check out what those who landed software engineering jobs have to say.";
+    "Check out what those who landed software jobs have to say.";
   const testimonials = [
     {
-      profileImageSrc: "/michelle.png",
+      profileImageSrc: "/images/michelle.png",
       heading: "I actually understand the intuition now!",
       quote:
         "I used to attempt the problems on Leetcode, but after getting stuck I would always just read the solution. " +
@@ -48,10 +48,10 @@ const Testimonials = () => {
         "helped me ace my interview with Airbnb!!",
       customerName: "Michelle L.",
       customerTitle: "Software Engineering Intern",
-      companyImageSrc: "/airbnb.png",
+      companyImageSrc: "/images/airbnb.png",
     },
     {
-      profileImageSrc: "/rohan.png",
+      profileImageSrc: "/images/rohan.png",
       heading: "Helped build my problem-solving skillset!",
       quote:
         "CoderIntuition really helped me develop my problem-solving skill set for interview problems. " +
@@ -61,7 +61,7 @@ const Testimonials = () => {
         "videos. I'm now a Software Engineer at Google thanks to the help of CoderIntuition!",
       customerName: "Rohan G.",
       customerTitle: "Software Engineer",
-      companyImageSrc: "/google.png",
+      companyImageSrc: "/images/google.png",
     },
   ];
 
@@ -71,9 +71,10 @@ const Testimonials = () => {
         <Row>
           <ImageColumn>
             <Image
-              src="/testimonials.svg"
+              src="/images/testimonials.svg"
               alt="Testimonials graphic"
-              layout="fill"
+              width="800px"
+              height="800px"
               imageBorder={false}
               imageShadow={false}
               imageRounded={true}
@@ -92,15 +93,21 @@ const Testimonials = () => {
                     <CustomerInfo>
                       <CustomerProfilePicture
                         src={testimonial.profileImageSrc}
-                        alt={testimonial.customerName}
-                        layout="fill"
+                        alt={testimonial.customerName + "'s profile picture"}
+                        width="100px"
+                        height="100px"
                       />
                       <CustomerTextInfo>
                         <CustomerName>{testimonial.customerName}</CustomerName>
                         <CustomerTitle>
                           {testimonial.customerTitle}
                         </CustomerTitle>
-                        <CompanyImage src={testimonial.companyImageSrc}/>
+                        <CompanyImage
+                          src={testimonial.companyImageSrc}
+                          alt={"Company logo"}
+                          width="100px"
+                          height="100px"
+                        />
                       </CustomerTextInfo>
                     </CustomerInfo>
                     <Controls>
@@ -122,7 +129,8 @@ const Testimonials = () => {
       <DecoratorBlob
         src="/images/svg-decorator-blob-6"
         alt="Decorator blob"
-        layout="fill"
+        width="50px"
+        height="50px"
       />
     </Container>
   );

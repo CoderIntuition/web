@@ -19,7 +19,7 @@ import {
 const Hero = () => {
   return (
     <OuterContainer>
-      <MiddleContainer style={{height: "calc(100vh - 80px)"}}>
+      <MiddleContainer style={{height: "calc(100vh)"}}>
         <InnerContainer>
           <TwoColumn>
             <LeftColumn>
@@ -38,9 +38,10 @@ const Hero = () => {
             <RightColumn>
               <IllustrationContainer>
                 <StyledImage
-                  src="/landing.svg"
+                  src="/images/landing.svg"
                   alt="Landing page illustration"
-                  layout="fill"
+                  width="800px"
+                  height="800px"
                 />
               </IllustrationContainer>
             </RightColumn>
@@ -48,9 +49,10 @@ const Hero = () => {
         </InnerContainer>
       </MiddleContainer>
       <DecoratorBlob1
-        src="/svg-decorator-blob-1.svg"
+        src="/images/svg-decorator-blob-1.svg"
         alt="Decorator blob"
-        layout="fill"
+        width="100px"
+        height="100px"
       />
     </OuterContainer>
   );

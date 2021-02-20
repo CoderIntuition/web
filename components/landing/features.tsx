@@ -81,9 +81,10 @@ const Features = () => {
         ))}
       </ThreeColumnContainer>
       <DecoratorBlob
-        src="/svg-decorator-blob-3.svg"
+        src="/images/svg-decorator-blob-3.svg"
         alt="Decorator blob"
-        layout="fill"
+        width="100px"
+        height="100px"
       />
     </Container>
   );

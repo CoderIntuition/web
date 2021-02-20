@@ -65,9 +65,10 @@ const Difference = () => {
       <TwoColumn>
         <ImageColumn>
           <Image
-            src="/difference.svg"
+            src="/images/difference.svg"
             alt="CoderIntuition's difference"
-            layout="fill"
+            width="800px"
+            height="800px"
           />
         </ImageColumn>
         <TextColumn textOnLeft={true}>
