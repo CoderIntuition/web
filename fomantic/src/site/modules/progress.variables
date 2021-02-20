@@ -1,0 +1,6 @@
+/*******************************
+    User Variable Overrides
+*******************************/
+
+@labelFontWeight: 500;
+@labelOffset: 7px !important;

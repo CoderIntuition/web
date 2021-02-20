@@ -1,0 +1,7 @@
+/*******************************
+    User Variable Overrides
+*******************************/
+@titlePadding: 15px !important;
+@styledBorderRadius: 0.6rem;
+@styledTitleColor: rgba(0, 0, 0, 0.87) !important;
+@styledTitleFontWeight: normal;

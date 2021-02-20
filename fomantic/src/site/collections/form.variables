@@ -1,0 +1,12 @@
+/*******************************
+    User Variable Overrides
+*******************************/
+
+@inputColor: #5A6778 !important;
+@inputPlaceholderColor: #a0aec0 !important;
+@inputBorderRadius: 0.5rem !important;
+@textAreaPadding: 10px !important;
+@textAreaBorder: 1px solid rgb(232, 237, 242) !important;
+@textAreaFocusBorderColor: #4d69e9 !important;
+@textAreaFocusBackground: rgb(253, 253, 253) !important;
+@textAreaFocusColor: #4d5866 !important;

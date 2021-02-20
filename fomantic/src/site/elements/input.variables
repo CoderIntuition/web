@@ -1,0 +1,12 @@
+/*******************************
+    User Variable Overrides
+*******************************/
+
+@borderRadius: 0.5rem !important;
+@border: 1px solid rgb(232, 237, 242) !important;
+@inputColor: #5A6778 !important;
+@focusBorderColor: #4d69e9 !important;
+@focusBackground: rgb(253, 253, 253) !important;
+@focusColor: #4d5866 !important;
+@iconOpacity: 1;
+@placeholderColor: #a0aec0 !important;

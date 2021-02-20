@@ -1,0 +1,5 @@
+/*******************************
+    User Variable Overrides
+*******************************/
+@borderRadius: 10px !important;
+@raisedBoxShadow: 0 0 10px rgba(0, 0, 0, 0.05);
