@@ -1,9 +1,8 @@
 import React, { FC, useEffect } from "react";
 import Head from "next/head";
-import Home from "components/landing/home/home";
-import Navbar from "../components/common/navbar/navbar";
+import Faq from "components/landing/faq/faq";
 
-const HomePage: FC = () => {
+const FaqPage: FC = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -11,13 +10,13 @@ const HomePage: FC = () => {
   const head = () => {
     return (
       <Head>
-        <title>CoderIntuition</title>
+        <title>FAQ</title>
         <meta
           charSet="utf-8"
           name="description"
           content="Don't just memorize solutions, learn the actual intuition required to solve interview problems."
         />
-        <link rel="canonical" href="https://www.coderintuition.com" />
+        <link rel="canonical" href="https://www.coderintuition.com/faq" />
       </Head>
     );
   };
@@ -25,11 +24,9 @@ const HomePage: FC = () => {
   return (
     <>
       {head()}
-      <Navbar>
-        <Home />
-      </Navbar>
+      <Faq />
     </>
   );
 };
 
-export default HomePage;
+export default FaqPage;

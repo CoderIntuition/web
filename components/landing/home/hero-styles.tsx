@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import tw from "twin.macro";
 import Image from "next/image";
-import {PrimaryButton as PrimaryButtonBase} from "./landing-styles";
+import {PrimaryButton as PrimaryButtonBase} from "../landing-styles";
 
 export const OuterContainer = tw.div`relative`;
 

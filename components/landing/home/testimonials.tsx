@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import "slick-carousel/slick/slick.css";
 import {ArrowLeft, ArrowRight} from "react-feather";
-import {Container, ContentWithPaddingXl, HighlightedText,} from "./landing-styles";
+import {Container, ContentWithPaddingXl, HighlightedText,} from "../landing-styles";
 import {
   CompanyImage,
   ControlButton,

@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import {HighlightedText} from "./landing-styles";
+import {HighlightedText} from "../landing-styles";
 import {
   DecoratorBlob1,
   Heading,

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import tw from "twin.macro";
-import {SectionHeading, Subheading as SubheadingBase} from "./landing-styles";
+import {SectionHeading, Subheading as SubheadingBase} from "../landing-styles";
 
 export const Container = tw.div`relative`;
 

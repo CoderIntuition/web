@@ -1,6 +1,6 @@
 import React from "react";
 import {BookOpen, Code, EyeOff, Globe, Info, List} from "react-feather";
-import {HighlightedText} from "./landing-styles";
+import {HighlightedText} from "../landing-styles";
 import {
   Card,
   Column,

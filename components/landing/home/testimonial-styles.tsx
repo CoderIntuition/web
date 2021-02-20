@@ -2,7 +2,7 @@ import styled from "styled-components";
 import tw from "twin.macro";
 import NextImage from "next/image";
 import Slider from "react-slick";
-import {SectionHeading, Subheading as SubheadingBase,} from "./landing-styles";
+import {SectionHeading, Subheading as SubheadingBase,} from "../landing-styles";
 
 export const Row = tw.div`flex flex-col md:flex-row justify-between items-center`;
 
