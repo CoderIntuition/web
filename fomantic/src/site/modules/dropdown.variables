@@ -1,0 +1,8 @@
+/*******************************
+    User Variable Overrides
+*******************************/
+@menuBorder: none;
+@menuBoxShadow: 0px 1px 2px #00000020;
+@pointingArrowBoxShadow: none;
+@pointingMenuBorderRadius: 12px !important;
+@itemHeight: 35px !important;

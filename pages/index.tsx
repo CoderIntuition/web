@@ -1,18 +1,12 @@
-import React, {FC, useEffect, useState} from "react";
+import React, { FC, useEffect } from "react";
 import Head from "next/head";
-import Home from "components/landing/home";
+import Home from "components/landing/home/home";
+import Navbar from "../components/common/navbar/Navbar";
 
 const HomePage: FC = () => {
-  const [loading, setLoading] = useState<boolean>(true);
-
   useEffect(() => {
     window.scrollTo(0, 0);
-    setLoading(false);
   }, []);
-
-  if (loading) {
-    return <div>Loading</div>;
-  }
 
   const head = () => {
     return (
@@ -23,17 +17,19 @@ const HomePage: FC = () => {
           name="description"
           content="Don't just memorize solutions, learn the actual intuition required to solve interview problems."
         />
-        <link rel="canonical" href="https://www.coderintuition.com"/>
+        <link rel="canonical" href="https://www.coderintuition.com" />
       </Head>
     );
-  }
+  };
 
   return (
     <>
       {head()}
-      <Home/>
+      <Navbar>
+        <Home />
+      </Navbar>
     </>
-  )
-}
+  );
+};
 
 export default HomePage;

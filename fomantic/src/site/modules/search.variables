@@ -1,0 +1,7 @@
+/*******************************
+         Site Overrides
+*******************************/
+
+@categoryBackground: #4d69e90a;
+@resultsBorder: none;
+@categoryNameColor: #595f6bcc;

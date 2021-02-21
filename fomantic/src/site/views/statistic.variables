@@ -1,0 +1,8 @@
+/*******************************
+    User Variable Overrides
+*******************************/
+
+@valueColor: #1a202c;
+@valueFontWeight: 600;
+@labelTextTransform: none;
+@labelFontWeight: 500;

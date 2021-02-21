@@ -1,0 +1,18 @@
+/*******************************
+    User Variable Overrides
+*******************************/
+@subMenuTextColor: #595f6b;
+@subMenuHoveredTextColor: #4d69e9;
+@subMenuActiveTextColor: #4d69e9;
+@subMenuActiveFontWeight: 500;
+
+@tabularBackground: rgba(0, 0, 0, 0.01);
+@tabularTextColor: #1a202c;
+@tabularActiveColor: #4d69e9;
+@tabularHoveredTextColor: #4d69e9;
+@tabularBorderColor: rgba(0, 0, 0, 0.08);
+@tabularVerticalPadding: 15px;
+
+@arrowBorder: none;
+@secondaryItemBorderRadius: 12px;
+@borderRadius: 10px;
