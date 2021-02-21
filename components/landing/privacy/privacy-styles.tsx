@@ -1,6 +1,6 @@
 import tw from "twin.macro";
 import styled from "styled-components";
-import { SectionHeading } from "components/common/misc/Headings";
+import { SectionHeading } from "../landing-styles";
 
 export const HeadingRow = tw.div`flex`;
 
