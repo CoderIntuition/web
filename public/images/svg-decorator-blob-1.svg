@@ -1,12 +1,12 @@
-<?xml version="1.0" standalone="no"?>
-<svg
-  width="600"
-  height="600"
-  viewBox="0 0 600 600"
-  xmlns="http://www.w3.org/2000/svg"
->
-  <g transform="translate(300,300)">
-    <path d="M176.2,-106.9C208.7,-45.5,201.8,33.5,165.8,99.4C129.9,165.3,65,218.2,-9.2,223.5C-83.4,228.8,-166.9,186.7,-201.6,121.4C-236.4,56.2,-222.6,-32.2,-180.9,-98.9C-139.1,-165.7,-69.6,-210.8,1.2,-211.5C71.9,-212.2,143.8,-168.3,176.2,-106.9Z" fill="#6415ff" />
-  </g>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 25.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 600 600" style="enable-background:new 0 0 600 600;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#6415FF;}
+</style>
+<g transform="translate(300,300)">
+	<path class="st0" d="M176.2-106.9c32.5,61.4,25.6,140.4-10.4,206.3C129.9,165.3,65,218.2-9.2,223.5s-157.7-36.8-192.4-102.1
+		c-34.8-65.2-21-153.6,20.7-220.3c41.8-66.8,111.3-111.9,182.1-112.6C71.9-212.2,143.8-168.3,176.2-106.9z"/>
+</g>
 </svg>
-  
