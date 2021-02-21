@@ -9,14 +9,6 @@ export const UsernameSpan = styled.span`
   }
 `;
 
-export const NavbarDiv = styled.div`
-  &&& {
-    overflow: hidden;
-    position: relative;
-    min-height: 100vh;
-  }
-`;
-
 export const NavbarMenu = styled(Menu)`
   &&& {
     background-color: ${(props) => props.bgcolor};
@@ -93,13 +85,13 @@ export const StyledLink = styled(Link)`
   }
 `;
 
-export const StyledSignUpButton = styled(Button)`
+export const SignUpButton = styled(Button)`
   &&& {
     color: #f7fafc;
     border-radius: 9999px;
     width: 108px;
     padding: 14px 0 !important;
-    font-size: 15px;
     transition-duration: 300ms;
     letter-spacing: 0.025em;
+  }
 `;

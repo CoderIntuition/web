@@ -1,20 +1,20 @@
 import React, { Component } from "react";
 import { NextRouter, withRouter } from "next/router";
-import { Dropdown, Icon } from "semantic-ui-react";
+import { Button, Dropdown, Icon } from "semantic-ui-react";
 import { isMod } from "common/auth-service";
 import { constants } from "common/constants";
 import { showSuccessToast, withGlobalContext } from "common/utils";
 import {
-  NavbarDiv,
   NavbarMenu,
   StyledDropdown,
   StyledLink,
   StyledLogo,
   StyledMenuItem,
   StyledNavContainer,
-  StyledSignUpButton,
+  SignUpButton,
   UsernameSpan,
 } from "./navbar-styles";
+import styles from "./Navbar.module.css";
 
 interface NavbarProps {
   router: NextRouter;
@@ -67,7 +67,7 @@ class Navbar extends Component<NavbarProps, {}> {
     );
 
     return (
-      <NavbarDiv>
+      <div className={styles.navbarWrapper}>
         {this.props.router &&
           !/\/login/.test(this.props.router.pathname) &&
           !/\/signup/.test(this.props.router.pathname) && (
@@ -138,16 +138,16 @@ class Navbar extends Component<NavbarProps, {}> {
                     <StyledLink onClick={() => this.handleLogin()} href="/login">
                       Log In
                     </StyledLink>
-                    <StyledSignUpButton primary onClick={() => this.handleSignUp()}>
+                    <SignUpButton primary onClick={() => this.handleSignUp()}>
                       Sign Up
-                    </StyledSignUpButton>
+                    </SignUpButton>
                   </StyledMenuItem>
                 )}
               </StyledNavContainer>
             </NavbarMenu>
           )}
         {this.props.children}
-      </NavbarDiv>
+      </div>
     );
   }
 }
