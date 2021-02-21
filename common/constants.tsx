@@ -1,14 +1,8 @@
 const dev = process.env.NODE_ENV === "development";
 
-const API_BASE_URL = dev
-  ? "http://localhost:8080"
-  : "https://api.coderintuition.com";
-const WEB_BASE_URL = dev
-  ? "http://localhost:8000"
-  : "https://coderintuition.com";
-const WEBSOCKET_BASE_URL = dev
-  ? "ws://localhost:8080"
-  : "wss://api.coderintuition.com";
+const API_BASE_URL = dev ? "http://localhost:8080" : "https://api.coderintuition.com";
+const WEB_BASE_URL = dev ? "http://localhost:8000" : "https://coderintuition.com";
+const WEBSOCKET_BASE_URL = dev ? "ws://localhost:8080" : "wss://api.coderintuition.com";
 // uncomment the three below and comment three above to force production
 // const API_BASE_URL = "https://api.coderintuition.com";
 // const WEB_BASE_URL = "https://coderintuition.com";
@@ -54,27 +48,15 @@ export const constants = {
   STRIPE_PUBLISHABLE_KEY: STRIPE_PUBLISHABLE_KEY,
   SUCCESS_URL: WEB_BASE_URL,
   CANCEL_URL: WEB_BASE_URL + "/plus",
-  MONTHLY_PRICE_ID: dev
-    ? "price_1IEO1RDemtyf6AFoJnVdWZji"
-    : "price_1IEO1RDemtyf6AFoJnVdWZji",
-  YEARLY_PRICE_ID: dev
-    ? "price_1IEW9nDemtyf6AFoSj3gK34S"
-    : "price_1IEW9nDemtyf6AFoSj3gK34S",
+  MONTHLY_PRICE_ID: dev ? "price_1IEO1RDemtyf6AFoJnVdWZji" : "price_1IEO1RDemtyf6AFoJnVdWZji",
+  YEARLY_PRICE_ID: dev ? "price_1IEW9nDemtyf6AFoSj3gK34S" : "price_1IEW9nDemtyf6AFoSj3gK34S",
   // auth stuff
   LAST_URL: "lastUrl",
   ACCESS_TOKEN: "accessToken",
-  OAUTH2_REDIRECT_URI: WEB_BASE_URL + "/oauth2/redirect"
+  OAUTH2_REDIRECT_URI: WEB_BASE_URL + "/oauth2/redirect",
 };
 
-export const GOOGLE_AUTH_URL =
-  API_BASE_URL +
-  "/oauth2/authorize/google?redirect_uri=" +
-  constants.OAUTH2_REDIRECT_URI;
+export const GOOGLE_AUTH_URL = API_BASE_URL + "/oauth2/authorize/google?redirect_uri=" + constants.OAUTH2_REDIRECT_URI;
 export const FACEBOOK_AUTH_URL =
-  API_BASE_URL +
-  "/oauth2/authorize/facebook?redirect_uri=" +
-  constants.OAUTH2_REDIRECT_URI;
-export const GITHUB_AUTH_URL =
-  API_BASE_URL +
-  "/oauth2/authorize/github?redirect_uri=" +
-  constants.OAUTH2_REDIRECT_URI;
+  API_BASE_URL + "/oauth2/authorize/facebook?redirect_uri=" + constants.OAUTH2_REDIRECT_URI;
+export const GITHUB_AUTH_URL = API_BASE_URL + "/oauth2/authorize/github?redirect_uri=" + constants.OAUTH2_REDIRECT_URI;

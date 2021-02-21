@@ -1,13 +1,6 @@
 import styled from "styled-components";
 import Link from "components/common/helpers/link";
-import Image from "next/image";
 import { Button, Container, Dropdown, Menu, MenuItem } from "semantic-ui-react";
-
-export const UsernameSpan = styled.span`
-  &&& {
-    font-weight: 500;
-  }
-`;
 
 export const NavbarMenu = styled(Menu)`
   &&& {
@@ -17,31 +10,18 @@ export const NavbarMenu = styled(Menu)`
   }
 `;
 
-export const StyledMenuItem = styled(MenuItem)`
-  &&& {
-    margin: 0 !important;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-  }
-`;
-
-export const StyledDropdown = styled(Dropdown)`
-  &&& {
-    padding: 10px 25px !important;
-  }
-`;
-
-export const StyledNavContainer = styled(Container)`
-  &&& {
-    width: 100% !important;
+export const NavContainer = styled(Container)`
+  &&&&& {
+    width: 100%;
     padding-left: 7%;
     padding-right: 7%;
   }
 `;
 
-export const StyledLogo = styled(Image)`
-  &&& {
-    height: 36px;
+export const StyledMenuItem = styled(MenuItem)`
+  &&&& {
+    margin: 0;
+    padding-inline: 0;
   }
 `;
 
@@ -85,12 +65,19 @@ export const StyledLink = styled(Link)`
   }
 `;
 
+export const StyledDropdown = styled(Dropdown)`
+  &&&& {
+    padding: 10px 25px;
+    margin: 0;
+  }
+`;
+
 export const SignUpButton = styled(Button)`
-  &&& {
+  &&&&& {
     color: #f7fafc;
     border-radius: 9999px;
     width: 108px;
-    padding: 14px 0 !important;
+    padding: 14px 0;
     transition-duration: 300ms;
     letter-spacing: 0.025em;
   }
