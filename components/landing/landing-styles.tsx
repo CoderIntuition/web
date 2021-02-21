@@ -1,9 +1,10 @@
 /** @jsxImportSource @emotion/react */
 import tw from "twin.macro";
+import cntl from "cntl";
 
 export const HighlightedText = tw.span`text-primary-500`;
 
-export const PrimaryButton = tw.button`px-8 py-3 font-bold rounded bg-primary-500 text-gray-100 hocus:bg-primary-700 hocus:text-gray-200 focus:shadow-outline focus:outline-none transition duration-300`;
+export const PrimaryButton = cntl`px-8 py-3 font-bold rounded bg-primary-500 text-gray-100 hocus:bg-primary-700 hocus:text-gray-200 focus:shadow-outline focus:outline-none transition duration-300`;
 
 export const SectionHeading = tw.h1`text-3xl md:text-5xl font-bold tracking-wide text-center`;
 export const Subheading = tw.h1`text-lg md:text-2xl font-bold text-primary-500`;
