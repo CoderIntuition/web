@@ -6,22 +6,20 @@ import { getName, showSuccessToast } from "./utils";
 export const GlobalContext = React.createContext({
   authenticated: false,
   currentUser: null,
-  loadCurrentUser: (_type) => {
-  },
-  logout: () => {
-  }
+  loadCurrentUser: (_type) => {},
+  logout: () => {},
 });
 
 class GlobalContextProvider extends React.Component {
   state = {
     authenticated: false,
     currentUser: null,
-    loading: true
+    loading: true,
   };
 
   loadCurrentUser = (type) => {
     this.setState({
-      loading: true
+      loading: true,
     });
 
     getCurrentUser()
@@ -29,20 +27,21 @@ class GlobalContextProvider extends React.Component {
         this.setState({
           currentUser: response,
           authenticated: true,
-          loading: false
+          loading: false,
         });
         if (type === "LOGIN") {
           showSuccessToast("Success", "Welcome back, " + getName(response.name) + "!");
         } else if (type === "SIGNUP") {
           showSuccessToast(
-            "Success", "Welcome to CoderIntuition, " + getName(response.name) + "! Go try some problems 🚀"
+            "Success",
+            "Welcome to CoderIntuition, " + getName(response.name) + "! Go try some problems 🚀"
           );
         }
       })
       .catch((_err) => {
         localStorage.removeItem(constants.ACCESS_TOKEN);
         this.setState({
-          loading: false
+          loading: false,
         });
       });
   };
@@ -51,7 +50,7 @@ class GlobalContextProvider extends React.Component {
     localStorage.removeItem(constants.ACCESS_TOKEN);
     this.setState({
       authenticated: false,
-      currentUser: null
+      currentUser: null,
     });
   };
 
@@ -69,7 +68,7 @@ class GlobalContextProvider extends React.Component {
           authenticated: this.state.authenticated,
           currentUser: this.state.currentUser,
           loadCurrentUser: this.loadCurrentUser,
-          logout: this.logout
+          logout: this.logout,
         }}
       >
         {this.props.children}

@@ -2,14 +2,11 @@ import { constants } from "common/constants";
 
 const request = (options) => {
   const headers = new Headers({
-    "Content-Type": "application/json"
+    "Content-Type": "application/json",
   });
 
   if (localStorage.getItem(constants.ACCESS_TOKEN)) {
-    headers.append(
-      "Authorization",
-      "Bearer " + localStorage.getItem(constants.ACCESS_TOKEN)
-    );
+    headers.append("Authorization", "Bearer " + localStorage.getItem(constants.ACCESS_TOKEN));
   }
 
   const defaults = { headers: headers };
@@ -36,7 +33,7 @@ export function getCurrentUser() {
 
   return request({
     url: constants.API_BASE_URL + "/user/me",
-    method: "GET"
+    method: "GET",
   });
 }
 
@@ -44,7 +41,7 @@ export function login(loginRequest) {
   return request({
     url: constants.API_BASE_URL + "/auth/login",
     method: "POST",
-    body: JSON.stringify(loginRequest)
+    body: JSON.stringify(loginRequest),
   });
 }
 
@@ -52,7 +49,7 @@ export function signup(signupRequest) {
   return request({
     url: constants.API_BASE_URL + "/auth/signup",
     method: "POST",
-    body: JSON.stringify(signupRequest)
+    body: JSON.stringify(signupRequest),
   });
 }
 
