@@ -8,12 +8,12 @@ import Testimonials from "./testimonials";
 const Home: FC = () => {
   return (
     <>
-      <AnimationRevealPage>
+      {/*<AnimationRevealPage>*/}
         <Hero/>
         <Features/>
         <Difference/>
         <Testimonials/>
-      </AnimationRevealPage>
+      {/*</AnimationRevealPage>*/}
       {/*<Footer />*/}
     </>
   )

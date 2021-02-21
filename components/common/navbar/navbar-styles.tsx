@@ -4,7 +4,8 @@ import { Button, Container, Dropdown, Menu, MenuItem } from "semantic-ui-react";
 
 export const NavbarMenu = styled(Menu)`
   &&& {
-    background-color: ${(props) => props.bgcolor};
+  background: rgb(77,105,233);
+  background: linear-gradient(90deg, rgba(77,105,233,1) 0%, rgba(123,97,220,1) 59%, rgba(151,90,205,1) 100%);
     height: ${(props) => props.height}px;
     margin: 0;
   }
