@@ -1,13 +1,21 @@
-import React, { Component } from "react";
-import { NextRouter, withRouter } from "next/router";
-import { Dropdown, Icon, Menu } from "semantic-ui-react";
-import { constants } from "common/constants";
-import { showSuccessToast, withGlobalContext } from "common/utils";
-import { NavbarMenu, NavContainer, SignUpButton, StyledDropdown, StyledLink, StyledMenuItem } from "./navbar-styles";
-import styles from "./Navbar.module.css";
-import { isMod } from "../../../common/auth-service";
+import React, { Component, FC } from "react";
+import { NextRouter, useRouter, withRouter } from "next/router";
 import Image from "next/image";
 import { Breakpoint } from "react-socks";
+import { Dropdown, Icon, Menu } from "semantic-ui-react";
+import { isMod } from "../../../common/auth-service";
+import { showSuccessToast, withGlobalContext } from "common/utils";
+import { constants } from "common/constants";
+import styles from "./Navbar.module.css";
+import {
+  DefaultNavbarMenu,
+  HomeNavbarMenu,
+  NavContainer,
+  SignUpButton,
+  StyledDropdown,
+  StyledLink,
+  StyledMenuItem,
+} from "./navbar-styles";
 
 interface NavbarProps {
   router: NextRouter;
@@ -16,6 +24,24 @@ interface NavbarProps {
   loadCurrentUser: () => {};
   logout: () => {};
 }
+
+const NavbarMenu: FC = (props) => {
+  const router = useRouter();
+
+  if (router.pathname === "/") {
+    return <HomeNavbarMenu secondary>{props.children}</HomeNavbarMenu>;
+  }
+
+  return (
+    <DefaultNavbarMenu
+      secondary
+      height={/^\/problem\//.test(router.pathname) ? 60 : 80}
+      bgcolor={/^\/problem\//.test(router.pathname) ? "#ffffff" : "#f8f8fc"}
+    >
+      {props.children}
+    </DefaultNavbarMenu>
+  );
+};
 
 class Navbar extends Component<NavbarProps, {}> {
   handleDropdownClick(value) {
@@ -61,82 +87,79 @@ class Navbar extends Component<NavbarProps, {}> {
     );
 
     const desktopNavbar = (
-      <NavbarMenu
-        secondary
-        height={!/^\/problem\//.test(this.props.router.pathname) ? 80 : 60}
-        bgcolor={!/^\/problem\//.test(this.props.router.pathname) ? "#f8f8fc" : "#ffffff"}
-      >
-        <NavContainer>
-          <StyledMenuItem position="left">
-            <Image
-              src="/images/logoname.svg"
-              alt="CoderIntuition logo"
-              width="200px"
-              height="36px"
-              onClick={() => this.props.router.push("/")}
-            />
-          </StyledMenuItem>
-          <StyledMenuItem>
-            <StyledLink href="/" active={this.onPaths(/(^\/|\/home)$/)}>
-              Home
-            </StyledLink>
-            <StyledLink href="/problems" active={this.onPaths(/^\/(?:problem|learning-path|reading)/)}>
-              Learn
-            </StyledLink>
-            <StyledLink href="/plus" active={this.onPaths(/\/plus/)}>
-              Intuition+
-            </StyledLink>
-            <StyledLink href="/blog" active={this.onPaths(/\/blog/)}>
-              Blog
-            </StyledLink>
-          </StyledMenuItem>
-          {this.props.authenticated ? (
-            <StyledMenuItem position="right">
-              <StyledDropdown item pointing="top right" trigger={trigger}>
-                <Dropdown.Menu>
-                  <Dropdown.Item
-                    value="profile"
-                    text="Profile"
-                    icon="user"
-                    onClick={() => this.handleDropdownClick("profile")}
-                  />
-                  <Dropdown.Item
-                    value="settings"
-                    text="Settings"
-                    icon="settings"
-                    onClick={() => this.handleDropdownClick("settings")}
-                  />
-                  {isMod(this.props.currentUser.roles) && (
-                    <Dropdown.Item
-                      value="admin"
-                      text="Admin Panel"
-                      icon="key"
-                      onClick={() => this.handleDropdownClick("admin")}
-                    />
-                  )}
-                  <Dropdown.Item
-                    value="signOut"
-                    text="Sign Out"
-                    icon="sign out"
-                    onClick={() => this.handleDropdownClick("signOut")}
-                  />
-                </Dropdown.Menu>
-              </StyledDropdown>
+      <>
+        <NavbarMenu>
+          <NavContainer>
+            <StyledMenuItem position="left">
+              <Image
+                src="/images/logoname.svg"
+                alt="CoderIntuition logo"
+                width="200px"
+                height="36px"
+                onClick={() => this.props.router.push("/")}
+              />
             </StyledMenuItem>
-          ) : (
-            <StyledMenuItem position="right">
-              <StyledLink onClick={() => this.handleLogin()} href="/login">
-                Log In
+            <StyledMenuItem>
+              <StyledLink href="/" active={this.onPaths(/(^\/|\/home)$/)}>
+                Home
               </StyledLink>
-              <SignUpButton primary onClick={() => this.handleSignUp()}>
-                Sign Up
-              </SignUpButton>
+              <StyledLink href="/problems" active={this.onPaths(/^\/(?:problem|learning-path|reading)/)}>
+                Learn
+              </StyledLink>
+              <StyledLink href="/plus" active={this.onPaths(/\/plus/)}>
+                Intuition+
+              </StyledLink>
+              <StyledLink href="/blog" active={this.onPaths(/\/blog/)}>
+                Blog
+              </StyledLink>
             </StyledMenuItem>
-          )}
-        </NavContainer>
-      </NavbarMenu>
+            {this.props.authenticated ? (
+              <StyledMenuItem position="right">
+                <StyledDropdown item pointing="top right" trigger={trigger}>
+                  <Dropdown.Menu>
+                    <Dropdown.Item
+                      value="profile"
+                      text="Profile"
+                      icon="user"
+                      onClick={() => this.handleDropdownClick("profile")}
+                    />
+                    <Dropdown.Item
+                      value="settings"
+                      text="Settings"
+                      icon="settings"
+                      onClick={() => this.handleDropdownClick("settings")}
+                    />
+                    {isMod(this.props.currentUser.roles) && (
+                      <Dropdown.Item
+                        value="admin"
+                        text="Admin Panel"
+                        icon="key"
+                        onClick={() => this.handleDropdownClick("admin")}
+                      />
+                    )}
+                    <Dropdown.Item
+                      value="signOut"
+                      text="Sign Out"
+                      icon="sign out"
+                      onClick={() => this.handleDropdownClick("signOut")}
+                    />
+                  </Dropdown.Menu>
+                </StyledDropdown>
+              </StyledMenuItem>
+            ) : (
+              <StyledMenuItem position="right">
+                <StyledLink onClick={() => this.handleLogin()} href="/login">
+                  Log In
+                </StyledLink>
+                <SignUpButton primary onClick={() => this.handleSignUp()}>
+                  Sign Up
+                </SignUpButton>
+              </StyledMenuItem>
+            )}
+          </NavContainer>
+        </NavbarMenu>
+      </>
     );
-
     return (
       <>
         <div className={styles.navbarWrapper}>

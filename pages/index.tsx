@@ -2,6 +2,7 @@ import React, { FC, useEffect } from "react";
 import Head from "next/head";
 import Home from "components/landing/home/home";
 import Navbar from "../components/common/navbar/Navbar";
+import Footer from "../components/common/footer/footer";
 
 const HomePage: FC = () => {
   useEffect(() => {
@@ -27,6 +28,7 @@ const HomePage: FC = () => {
       {head()}
       <Navbar>
         <Home />
+        <Footer/>
       </Navbar>
     </>
   );

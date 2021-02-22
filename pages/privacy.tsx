@@ -1,6 +1,7 @@
 import React, { FC, useEffect } from "react";
 import Head from "next/head";
-import Home from "components/landing/home/home";
+import Privacy from "../components/landing/privacy/privacy";
+import Navbar from "../components/common/navbar/Navbar";
 
 const PrivacyPage: FC = () => {
   useEffect(() => {
@@ -24,7 +25,9 @@ const PrivacyPage: FC = () => {
   return (
     <>
       {head()}
-      <Home />
+      <Navbar>
+        <Privacy />
+      </Navbar>
     </>
   );
 };

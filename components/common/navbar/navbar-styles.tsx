@@ -2,10 +2,21 @@ import styled from "styled-components";
 import Link from "components/common/helpers/link";
 import { Button, Container, Dropdown, Menu, MenuItem } from "semantic-ui-react";
 
-export const NavbarMenu = styled(Menu)`
+export const HomeNavbarMenu = styled(Menu)`
   &&& {
-  background: rgb(77,105,233);
-  background: linear-gradient(90deg, rgba(77,105,233,1) 0%, rgba(123,97,220,1) 59%, rgba(151,90,205,1) 100%);
+    position: absolute;
+    width: 100%;
+    background: transparent;
+    z-index: 1;
+    height: 80px;
+    margin: 0;
+  }
+`;
+
+
+export const DefaultNavbarMenu = styled(Menu)`
+  &&& {
+    background-color: ${(props) => props.bgcolor};
     height: ${(props) => props.height}px;
     margin: 0;
   }
