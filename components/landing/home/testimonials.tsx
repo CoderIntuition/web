@@ -1,11 +1,14 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
+import Image from "next/image";
 import "slick-carousel/slick/slick.css";
-import {ArrowLeft, ArrowRight} from "react-feather";
-import {Container, ContentWithPaddingXl, HighlightedText,} from "../landing-styles";
+import { ArrowLeft, ArrowRight } from "react-feather";
+import { Container, ContentWithPaddingXl, HighlightedText } from "../landing-styles";
 import {
   CompanyImage,
   ControlButton,
+  ControlButtonIcon,
   Controls,
+  ControlsDivider,
   CustomerInfo,
   CustomerInfoAndControlsContainer,
   CustomerName,
@@ -15,7 +18,6 @@ import {
   DecoratorBlob,
   Description,
   Heading,
-  Image,
   ImageColumn,
   Quote,
   Row,
@@ -23,6 +25,7 @@ import {
   Testimonial,
   TestimonialHeading,
   TestimonialSlider,
+  TestimonialSliderStyles,
   TextColumn,
 } from "./testimonial-styles";
 
@@ -32,11 +35,10 @@ const Testimonials = () => {
   const subheading = "TESTIMONIALS";
   const heading = (
     <>
-      Interviewees <HighlightedText>Love</HighlightedText> Us.
+      Interviewees <span className={HighlightedText}>Love</span> Us.
     </>
   );
-  const description =
-    "Check out what those who landed software jobs have to say.";
+  const description = "Check out what those who landed software jobs have to say.";
   const testimonials = [
     {
       profileImageSrc: "/images/michelle.png",
@@ -66,71 +68,60 @@ const Testimonials = () => {
   ];
 
   return (
-    <Container>
-      <ContentWithPaddingXl>
-        <Row>
-          <ImageColumn>
-            <Image
-              src="/images/testimonials.svg"
-              alt="Testimonials graphic"
-              width="800px"
-              height="800px"
-              imageborder={0}
-              imageshadow={0}
-              imagerounded={1}
-            />
-          </ImageColumn>
-          <TextColumn textOnLeft={false}>
-            <Subheading>{subheading}</Subheading>
-            <Heading>{heading}</Heading>
-            <Description>{description}</Description>
-            <TestimonialSlider arrows={false} ref={setSliderRef}>
+    <div className={Container}>
+      <div className={ContentWithPaddingXl}>
+        <div className={Row}>
+          <div className={ImageColumn}>
+            <Image src="/images/testimonials.svg" alt="Testimonials graphic" width="470px" height="470px" />
+          </div>
+          <div className={TextColumn}>
+            <h1 className={Subheading}>{subheading}</h1>
+            <h2 className={Heading}>{heading}</h2>
+            <p className={Description}>{description}</p>
+            <TestimonialSlider className={TestimonialSliderStyles} arrows={false} ref={setSliderRef}>
               {testimonials.map((testimonial, index) => (
-                <Testimonial key={index}>
-                  <TestimonialHeading>{testimonial.heading}</TestimonialHeading>
-                  <Quote>{testimonial.quote}</Quote>
-                  <CustomerInfoAndControlsContainer>
-                    <CustomerInfo>
-                      <CustomerProfilePicture
+                <div className={Testimonial} key={index}>
+                  <div className={TestimonialHeading}>{testimonial.heading}</div>
+                  <blockquote className={Quote}>{testimonial.quote}</blockquote>
+                  <div className={CustomerInfoAndControlsContainer}>
+                    <div className={CustomerInfo}>
+                      <Image
+                        className={CustomerProfilePicture}
                         src={testimonial.profileImageSrc}
                         alt={testimonial.customerName + "'s profile picture"}
                         width="100px"
                         height="100px"
                       />
-                      <CustomerTextInfo>
-                        <CustomerName>{testimonial.customerName}</CustomerName>
-                        <CustomerTitle>
-                          {testimonial.customerTitle}
-                        </CustomerTitle>
-                        <CompanyImage
+                      <div className={CustomerTextInfo}>
+                        <span className={CustomerName}>{testimonial.customerName}</span>
+                        <p className={CustomerTitle}>{testimonial.customerTitle}</p>
+                        <Image
+                          className={CompanyImage}
                           src={testimonial.companyImageSrc}
                           alt={"Company logo"}
                           width="100px"
-                          height="100px"
+                          height="30px"
                         />
-                      </CustomerTextInfo>
-                    </CustomerInfo>
-                    <Controls>
-                      <ControlButton onClick={sliderRef?.slickPrev}>
-                        <ArrowLeft/>
-                      </ControlButton>
-                      <div className="divider"/>
-                      <ControlButton onClick={sliderRef?.slickNext}>
-                        <ArrowRight/>
-                      </ControlButton>
-                    </Controls>
-                  </CustomerInfoAndControlsContainer>
-                </Testimonial>
+                      </div>
+                    </div>
+                    <div className={Controls}>
+                      <button className={ControlButton} onClick={sliderRef?.slickPrev}>
+                        <ArrowLeft className={ControlButtonIcon} />
+                      </button>
+                      <div className={ControlsDivider} />
+                      <button className={ControlButton} onClick={sliderRef?.slickNext}>
+                        <ArrowRight className={ControlButtonIcon} />
+                      </button>
+                    </div>
+                  </div>
+                </div>
               ))}
             </TestimonialSlider>
-          </TextColumn>
-        </Row>
-      </ContentWithPaddingXl>
-      <DecoratorBlob
-        src="/images/svg-decorator-blob-2.svg"
-        alt="Decorator blob"
-      />
-    </Container>
+          </div>
+        </div>
+      </div>
+      <img className={DecoratorBlob} src="/images/svg-decorator-blob-5.svg" alt="Decorator blob" />
+    </div>
   );
 };
 

@@ -92,7 +92,7 @@ class Navbar extends Component<NavbarProps, {}> {
           <NavContainer>
             <StyledMenuItem position="left">
               <Image
-                src="/images/logoname.svg"
+                src="/images/logoname-white.svg"
                 alt="CoderIntuition logo"
                 width="200px"
                 height="36px"
@@ -100,16 +100,16 @@ class Navbar extends Component<NavbarProps, {}> {
               />
             </StyledMenuItem>
             <StyledMenuItem>
-              <StyledLink href="/" active={this.onPaths(/(^\/|\/home)$/)}>
+              <StyledLink href="/" active={1}>
                 Home
               </StyledLink>
-              <StyledLink href="/problems" active={this.onPaths(/^\/(?:problem|learning-path|reading)/)}>
+              <StyledLink href="/problems" active={0}>
                 Learn
               </StyledLink>
-              <StyledLink href="/plus" active={this.onPaths(/\/plus/)}>
+              <StyledLink href="/plus" active={0}>
                 Intuition+
               </StyledLink>
-              <StyledLink href="/blog" active={this.onPaths(/\/blog/)}>
+              <StyledLink href="/blog" active={0}>
                 Blog
               </StyledLink>
             </StyledMenuItem>
