@@ -1,6 +1,7 @@
 import React, { FC, useEffect } from "react";
 import Head from "next/head";
-import Home from "components/landing/home/home";
+import Plus from "components/landing/plus/plus";
+import Navbar from "../components/common/navbar/Navbar";
 
 const PlusPage: FC = () => {
   useEffect(() => {
@@ -24,7 +25,9 @@ const PlusPage: FC = () => {
   return (
     <>
       {head()}
-      <Home />
+      <Navbar>
+        <Plus />
+      </Navbar>
     </>
   );
 };

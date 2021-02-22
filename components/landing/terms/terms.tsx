@@ -5,7 +5,7 @@ import Footer from "components/common/footer/footer";
 import { Heading, HeadingRow, Text } from "./terms-styles";
 import { Loader } from "semantic-ui-react";
 
-const TermsComponent = () => {
+const Terms = () => {
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
@@ -261,4 +261,4 @@ const TermsComponent = () => {
   );
 };
 
-export default TermsComponent;
+export default Terms;

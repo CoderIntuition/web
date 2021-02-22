@@ -20,7 +20,7 @@ import {
 const Hero = () => {
   return (
     <OuterContainer>
-      <div className={MiddleContainer} style={{ height: "50vh" }}>
+      <div className={MiddleContainer} style={{ height: "60vh" }}>
         <div className={InnerContainer} style={{ marginTop: 200 }}>
           <div className={TwoColumn}>
             <div className={LeftColumn}>
@@ -29,8 +29,8 @@ const Hero = () => {
                 Interactively
               </h1>
               <p className={Paragraph}>
-                Don't just memorize the solutions, learn the actual intuition required to solve the problems
-                step-by-step on our interactive platform.
+                Don't just keep memorizing solutions! Learn the actual intuition required to solve interview
+                problems.
               </p>
               <Link href="/problems">
                 <button className={PrimaryButton} style={{ backgroundColor: "#fff", color: "#4d69e9" }}>

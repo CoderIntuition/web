@@ -1,6 +1,7 @@
 import React, { FC, useEffect } from "react";
 import Head from "next/head";
-import Home from "components/landing/home/home";
+import Terms from "../components/landing/terms/terms";
+import Navbar from "../components/common/navbar/Navbar";
 
 const TermsPage: FC = () => {
   useEffect(() => {
@@ -24,7 +25,9 @@ const TermsPage: FC = () => {
   return (
     <>
       {head()}
-      <Home />
+      <Navbar>
+        <Terms />
+      </Navbar>
     </>
   );
 };
