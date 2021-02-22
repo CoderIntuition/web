@@ -1,4 +1,4 @@
-import React, {FC} from "react";
+import React, { FC } from "react";
 import AnimationRevealPage from "components/common/helpers/animation-reveal-page";
 import Hero from "./hero";
 import Difference from "./difference";
@@ -9,14 +9,14 @@ const Home: FC = () => {
   return (
     <>
       {/*<AnimationRevealPage>*/}
-        <Hero/>
-        <Features/>
-        <Difference/>
-        <Testimonials/>
+      <Hero />
+      {/*<Features />*/}
+      {/*<Difference/>*/}
+      {/*<Testimonials/>*/}
       {/*</AnimationRevealPage>*/}
       {/*<Footer />*/}
     </>
-  )
-}
+  );
+};
 
 export default Home;

@@ -1,6 +1,6 @@
 import React from "react";
-import {BookOpen, Code, EyeOff, Globe, Info, List} from "react-feather";
-import {HighlightedText} from "../landing-styles";
+import { BookOpen, Code, EyeOff, Globe, Info, List } from "react-feather";
+import { HighlightedText } from "../landing-styles";
 import {
   Card,
   Column,
@@ -20,42 +20,40 @@ const Features = () => {
     {
       imageSrc: List,
       title: "100+ Problems",
-      description:
-        "Our problems teach you intuition that you can repeatably apply to other problems.",
+      description: "Our problems teach you intuition that you can repeatably apply to other problems.",
     },
     {
       imageSrc: Info,
       title: "Interactive Intuition",
-      description:
-        "Our hints, quizzes, and concise explanations build your intuition while you code.",
+      description: "Our hints, quizzes, and concise explanations build your intuition while you code.",
     },
     {
       imageSrc: EyeOff,
       title: "Hidden Solutions",
-      description:
-        "We have solutions, but they are hidden until you actually try the problem with our tips.",
+      description: "We have solutions, but they are hidden until you actually try the problem with our tips.",
     },
     {
       imageSrc: BookOpen,
       title: "Learning Paths",
-      description:
-        "We have standard learning paths for beginners to follow to build stronger intuition.",
+      description: "We have standard learning paths for beginners to follow to build stronger intuition.",
     },
     {
       imageSrc: Globe,
       title: "Multiple Languages",
-      description:
-        "Although we recommend Python for speed, we support a variety of other languages.",
+      description: "Although we recommend Python for speed, we support a variety of other languages.",
     },
     {
       imageSrc: Code,
       title: "Code Execution",
-      description:
-        "Learn with hands-on experience. Run and test your code directly on our website.",
+      description: "Learn with hands-on experience. Run and test your code directly on our website.",
     },
   ];
   const subheading = "FEATURES";
-  const heading = <>Designed for Maximum <HighlightedText>Intuition.</HighlightedText></>;
+  const heading = (
+    <>
+      Designed for Maximum <HighlightedText>Intuition.</HighlightedText>
+    </>
+  );
   const description = "This is what we have to offer you.";
 
   return (
@@ -64,13 +62,13 @@ const Features = () => {
         <Subheading>{subheading}</Subheading>
         <Heading>{heading}</Heading>
         <Description>{description}</Description>
-        <VerticalSpacer/>
+        <VerticalSpacer />
         {cards.map((card, i) => (
           <Column key={i}>
             <Card>
               <span className="imageContainer">
                 <FeatureIconContainer>
-                  <card.imageSrc/>
+                  <card.imageSrc />
                 </FeatureIconContainer>
               </span>
               <span className="textContainer">
@@ -81,18 +79,8 @@ const Features = () => {
           </Column>
         ))}
       </ThreeColumnContainer>
-      <DecoratorBlob1
-        src="/images/svg-decorator-blob-2.svg"
-        alt="Decorator blob"
-        width="100px"
-        height="100px"
-      />
-      <DecoratorBlob2
-        src="/images/svg-decorator-blob-3.svg"
-        alt="Decorator blob"
-        width="100px"
-        height="100px"
-      />
+      <DecoratorBlob1 src="/images/svg-decorator-blob-2.svg" alt="Decorator blob" width="100px" height="100px" />
+      <DecoratorBlob2 src="/images/svg-decorator-blob-3.svg" alt="Decorator blob" width="100px" height="100px" />
     </Container>
   );
 };

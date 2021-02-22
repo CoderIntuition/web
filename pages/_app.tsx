@@ -1,6 +1,6 @@
 import React from "react";
 import { AppProps } from "next/app";
-import "tailwindcss/dist/base.min.css";
+import "../styles/tailwind.css";
 import "fomantic/dist/semantic.css";
 import { BreakpointProvider } from "react-socks";
 
