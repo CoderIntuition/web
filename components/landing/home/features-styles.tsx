@@ -29,4 +29,4 @@ export const CardTitle = cntl`mt-4 tracking-wide font-semibold text-2xl leading-
 
 export const CardDescription = cntl`mt-1 sm:mt-4 font-normal text-base text-secondary-100 leading-loose`;
 
-export const DecoratorBlob = cntl`pointer-events-none absolute left-0 bottom-0 w-64 opacity-25 transform -translate-x-40 translate-y-24`;
+export const DecoratorBlob = cntl`pointer-events-none absolute left-0 bottom-0 w-48 sm:w-64 opacity-25 transform -translate-x-32 sm:-translate-x-40 translate-y-24`;

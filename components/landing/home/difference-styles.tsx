@@ -1,6 +1,6 @@
 import cntl from "cntl";
 
-export const TwoColumn = cntl`flex flex-col md:flex-row justify-between max-w-screen-xl mx-auto py-20 items-center`;
+export const TwoColumn = cntl`flex flex-col md:flex-row justify-between max-w-screen-xl sm:mx-16 mx-24 py-12 items-center`;
 
 export const ImageColumn = cntl`w-full max-w-md mx-auto md:max-w-none md:mx-0 md:w-5/12 flex-shrink-0 relative`;
 
@@ -28,4 +28,4 @@ export const FeatureHeading = cntl`ml-3 font-semibold text-xl`;
 
 export const FeatureDescription = cntl`mt-4 text-center md:text-left text-secondary-100 leading-loose`;
 
-export const DecoratorBlob = cntl`pointer-events-none opacity-15 absolute right-0 bottom-0 h-64 w-64 transform translate-x-48 translate-y-32 -z-10`;
+export const DecoratorBlob = cntl`pointer-events-none opacity-15 absolute right-0 bottom-0 w-40 sm:w-64 transform translate-x-32 sm:translate-x-48 translate-y-32 -z-10`;

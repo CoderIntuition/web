@@ -37,12 +37,10 @@ const Hero = () => {
             </div>
             <div className={RightColumn}>
               <div className={IllustrationContainer}>
-                <Image
+                <img
                   className={StyledImage}
                   src="/images/landing.svg"
                   alt="Landing page illustration"
-                  width="800px"
-                  height="800px"
                 />
               </div>
             </div>

@@ -57,4 +57,4 @@ export const ControlButton = cntl`mx-3 p-4 rounded-full transition duration-300 
 
 export const ControlButtonIcon = cntl`w-4 h-4 stroke-3`;
 
-export const DecoratorBlob = cntl`pointer-events-none absolute left-0 bottom-0 w-64 opacity-15 transform -translate-x-32 translate-y-32`;
+export const DecoratorBlob = cntl`pointer-events-none absolute left-0 bottom-0 w-56 sm:w-64 opacity-15 transform -translate-x-32 translate-y-32`;

@@ -11,7 +11,7 @@ export const PrimaryButton = cntl`px-8 py-3 font-bold rounded bg-primary-500 tex
 export const SectionHeading = tw.h1`text-3xl md:text-5xl font-bold tracking-wide text-center`;
 export const Subheading = tw.h1`text-lg md:text-2xl font-bold text-primary-500`;
 
-export const ContentWithPaddingXl = cntl`max-w-screen-xl mx-auto py-20 lg:py-24`;
+export const ContentWithPaddingXl = cntl`max-w-screen-xl mx-auto py-20 px-4 md:px-16 lg:py-24`;
 export const ContentWithPaddingLg = cntl`max-w-screen-lg mx-auto py-4 lg:py-10`;
 export const ContentWithVerticalPadding = tw.div`py-20 lg:py-24`;
 export const ContentXl = tw.div`max-w-screen-xl mx-auto`;
