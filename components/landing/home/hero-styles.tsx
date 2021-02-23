@@ -15,7 +15,7 @@ export const InnerContainer = cntl`relative text-white md:pb-32 md:mt-16 xl:mt-0
 
 export const TwoColumn = cntl`flex flex-col lg:flex-row lg:items-center max-w-screen-xl mx-auto px-16 xl:px-4 py-0 md:py-24`;
 
-export const LeftColumn = cntl`relative lg:w-5/12 text-center max-w-lg mt-24 sm:mt-64 md:mt-96 lg:mt-24 mx-auto lg:max-w-none lg:text-left`;
+export const LeftColumn = cntl`relative lg:w-5/12 text-center max-w-lg mt-32 sm:mt-48 md:mt-96 lg:mt-16 mx-auto lg:max-w-none lg:text-left`;
 
 export const RightColumn = cntl`relative mb-16 lg:mb-0 flex-1 flex flex-col justify-center lg:self-end`;
 
