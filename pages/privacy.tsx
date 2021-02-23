@@ -1,7 +1,7 @@
 import React, { FC, useEffect } from "react";
 import Head from "next/head";
 import Privacy from "../components/landing/privacy/privacy";
-import Navbar from "../components/common/navbar/Navbar";
+import Navbar from "../components/common/home-navbar/HomeNavbar";
 
 const PrivacyPage: FC = () => {
   useEffect(() => {

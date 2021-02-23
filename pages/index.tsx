@@ -1,7 +1,7 @@
 import React, { FC, useEffect } from "react";
 import Head from "next/head";
 import Home from "components/landing/home/home";
-import Navbar from "../components/common/navbar/Navbar";
+import Navbar from "../components/common/home-navbar/HomeNavbar";
 import Footer from "../components/common/footer/footer";
 
 const HomePage: FC = () => {

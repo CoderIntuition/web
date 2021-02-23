@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Link from "components/common/helpers/link";
-import { Button, Container, Dropdown, Menu, MenuItem } from "semantic-ui-react";
+import { Button, Container, Dropdown, Icon, Menu, MenuItem } from "semantic-ui-react";
 
 export const HomeNavbarMenu = styled(Menu)`
   &&& {
@@ -55,16 +55,16 @@ export const StyledLink = styled(Link)`
     }
 
     ${({ active }) =>
-            active &&
-            `
+      active &&
+      `
       color: #ffffff;
       &::after {
         width: 100%;
         background: #ffffff;
       }
     `} ${({ active }) =>
-            !active &&
-            `
+      !active &&
+      `
       &:hover {
         color: #ffffff;
       }
@@ -92,5 +92,28 @@ export const SignUpButton = styled(Button)`
     padding: 14px 0;
     transition-duration: 300ms;
     letter-spacing: 0.025em;
+  }
+`;
+
+// For mobile
+
+export const MobileDropDown = styled(Dropdown)`
+  &&&&& {
+    color: #ffffff;
+    &:hover {
+      color: #ffffff;
+    }
+    i.icon {
+      margin: 0;
+      &:hover {
+        color: #ffffff;
+      }
+    }
+  }
+`;
+
+export const MobileDropDownMenu = styled(Dropdown.Menu)`
+  &&& {
+    width: 180px;
   }
 `;
