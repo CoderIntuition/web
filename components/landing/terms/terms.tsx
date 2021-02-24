@@ -27,7 +27,7 @@ const Terms = () => {
         <div className={Container}>
           <div className={ContentWithPaddingXl}>
             <div className={HeadingRow}>
-              <span className={Heading}>Terms of Service</span>
+              <h1 className={Heading}>Terms of Service</h1>
             </div>
             <div className={Text}>
               <p className={TextP}>Last updated: April 21, 2020</p>

@@ -27,9 +27,9 @@ function AnimatedSlideInComponent({ direction = "left", children }) {
   const x = { target: "0%" };
 
   if (direction === "right") {
-    x.initial = "10%"
+    x.initial = "10%";
   } else {
-    x.initial = "-10%"
+    x.initial = "-10%";
   }
 
   return (
@@ -50,9 +50,11 @@ function AnimatedSlideInComponent({ direction = "left", children }) {
 }
 
 const AnimationRevealPage = (props) => (
-  <StyledDiv className="App">
-    <AnimationReveal {...props} />
-  </StyledDiv>
+  <div className="App">
+    <div className={StyledDiv}>
+      <AnimationReveal {...props} />
+    </div>
+  </div>
 );
 
 export default AnimationRevealPage;
