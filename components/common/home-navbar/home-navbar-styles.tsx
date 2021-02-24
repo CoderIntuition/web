@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Link from "components/common/helpers/link";
-import { Button, Container, Dropdown, Icon, Menu, MenuItem } from "semantic-ui-react";
+import { Button, Container, Dropdown, Menu, MenuItem } from "semantic-ui-react";
 
 export const HomeNavbarMenu = styled(Menu)`
   &&& {
@@ -24,6 +24,7 @@ export const DefaultNavbarMenu = styled(Menu)`
 export const NavContainer = styled(Container)`
   &&&&& {
     width: 100%;
+    max-width: 1440px;
     padding-left: 7%;
     padding-right: 7%;
   }
@@ -115,5 +116,13 @@ export const MobileDropDown = styled(Dropdown)`
 export const MobileDropDownMenu = styled(Dropdown.Menu)`
   &&& {
     width: 180px;
+  }
+`;
+
+export const StyledMobileLink = styled(Link)`
+  &&& {
+    color: #000000;
+    display: inline-block;
+    width: 100%;
   }
 `;

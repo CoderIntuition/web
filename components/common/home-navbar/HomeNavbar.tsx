@@ -1,7 +1,6 @@
 import React, { Component, FC } from "react";
 import { NextRouter, useRouter, withRouter } from "next/router";
 import Image from "next/image";
-import { Breakpoint } from "react-socks";
 import { Dropdown, Icon } from "semantic-ui-react";
 import { isMod } from "../../../common/auth-service";
 import { showSuccessToast, withGlobalContext } from "common/utils";
@@ -17,6 +16,7 @@ import {
   StyledDropdown,
   StyledLink,
   StyledMenuItem,
+  StyledMobileLink,
 } from "./home-navbar-styles";
 
 interface HomeNavbarProps {
@@ -173,13 +173,56 @@ class HomeNavbar extends Component<HomeNavbarProps, {}> {
         <StyledMenuItem position="right">
           <MobileDropDown item icon="bars" pointing="top right">
             <MobileDropDownMenu>
-              <Dropdown.Item>Home</Dropdown.Item>
-              <Dropdown.Item>Learn</Dropdown.Item>
-              <Dropdown.Item>Intuition+</Dropdown.Item>
-              <Dropdown.Item>Blog</Dropdown.Item>
+              <Dropdown.Item>
+                <StyledMobileLink href="/" active={1}>
+                  Home
+                </StyledMobileLink>
+              </Dropdown.Item>
+              <Dropdown.Item>
+                <StyledMobileLink href="/problems" active={0}>
+                  Learn
+                </StyledMobileLink>
+              </Dropdown.Item>
+              <Dropdown.Item>
+                <StyledMobileLink href="/plus" active={0}>
+                  Intuition+
+                </StyledMobileLink>
+              </Dropdown.Item>
+              <Dropdown.Item>
+                <StyledMobileLink href="/blog" active={0}>
+                  Blog
+                </StyledMobileLink>
+              </Dropdown.Item>
               <Dropdown.Divider />
               {this.props.authenticated ? (
-                <div>hello</div>
+                <>
+                  <Dropdown.Item
+                    value="profile"
+                    text="Profile"
+                    icon="user"
+                    onClick={() => this.handleDropdownClick("profile")}
+                  />
+                  <Dropdown.Item
+                    value="settings"
+                    text="Settings"
+                    icon="settings"
+                    onClick={() => this.handleDropdownClick("settings")}
+                  />
+                  {isMod(this.props.currentUser.roles) && (
+                    <Dropdown.Item
+                      value="admin"
+                      text="Admin Panel"
+                      icon="key"
+                      onClick={() => this.handleDropdownClick("admin")}
+                    />
+                  )}
+                  <Dropdown.Item
+                    value="signOut"
+                    text="Sign Out"
+                    icon="sign out"
+                    onClick={() => this.handleDropdownClick("signOut")}
+                  />
+                </>
               ) : (
                 <>
                   <Dropdown.Item>Log In</Dropdown.Item>
@@ -200,12 +243,8 @@ class HomeNavbar extends Component<HomeNavbarProps, {}> {
             <>
               <NavbarMenu>
                 <NavContainer>
-                  <Breakpoint large up style={{ display: "contents" }}>
-                    {desktopNavbar}
-                  </Breakpoint>
-                  <Breakpoint medium down style={{ display: "contents" }}>
-                    {mobileNavbar}
-                  </Breakpoint>
+                  <div className="xs:hidden lg:contents">{desktopNavbar}</div>
+                  <div className="contents lg:hidden">{mobileNavbar}</div>
                 </NavContainer>
               </NavbarMenu>
             </>
