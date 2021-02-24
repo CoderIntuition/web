@@ -1,6 +1,3 @@
-import tw from "twin.macro";
-import styled from "styled-components";
-import { SectionHeading } from "../landing-styles";
 import cntl from "cntl";
 
 export const HeadingRow = cntl`flex`;
@@ -15,6 +12,6 @@ export const TextH1 = cntl`text-3xl font-semibold mt-10`;
 
 export const TextH2 = cntl`text-2xl font-semibold mt-8`;
 
-export const TextUl = cntl`list-disc list-inside`;
+export const TextUl = cntl`list-disc ml-6 list-outside`;
 
 export const TextLi = cntl`ml-2 mb-3`;
