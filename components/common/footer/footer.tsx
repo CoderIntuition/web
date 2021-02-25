@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import Link from "next/link";
 import {
   FooterWrapper,
@@ -11,7 +11,7 @@ import {
 } from "./footer-styles";
 import { GridColumn, MenuItem } from "semantic-ui-react";
 
-const Footer = () => {
+const Footer: FC = () => {
   return (
     <FooterWrapper>
       <StyledContainer>
@@ -28,7 +28,7 @@ const Footer = () => {
             <StyledFooterLink href="/terms">Terms of Service</StyledFooterLink>
           </MenuItem>
         </StyledMenu>
-        <StyledGrid columns={3}>
+        <StyledGrid columns={3} centered>
           <GridColumn width={5} verticalAlign={"middle"} textAlign={"left"}>
             <Link href="/">
               <StyledLogo src="/images/logoname-white.svg" alt="CoderIntuition logo" width="100px" height="25px" />

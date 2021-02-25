@@ -9,13 +9,12 @@ import AnimationRevealPage from "components/common/helpers/animation-reveal-page
 import Emoji from "components/common/emoji/emoji";
 import Footer from "components/common/footer/footer";
 import {
-  DecoratorBlob1,
+  DecoratorBlob,
   Heading,
   IllustrationContainer,
   InnerContainer,
   LeftColumn,
   MiddleContainer,
-  OuterContainer,
   Paragraph,
   PrimaryButton,
   RightColumn,
@@ -65,35 +64,40 @@ const Success: FC = () => {
   return (
     <>
       <AnimationRevealPage>
-        <OuterContainer style={{ marginTop: -50 }}>
-          <MiddleContainer>
-            <InnerContainer>
-              <TwoColumn>
-                <LeftColumn>
-                  <Heading>
+        <div style={{ marginTop: -50 }}>
+          <div className={MiddleContainer}>
+            <div className={InnerContainer}>
+              <div className={TwoColumn}>
+                <div className={LeftColumn}>
+                  <h1 className={Heading}>
                     Thanks for subscribing to Intuition+ <Emoji symbol="🎉" />
-                  </Heading>
-                  <Paragraph>Hey {name}, you made the right choice to invest in yourself.</Paragraph>
-                  <Paragraph>
+                  </h1>
+                  <p className={Paragraph}>Hey {name}, you made the right choice to invest in yourself.</p>
+                  <p className={Paragraph}>
                     You're now one step closer to acing those coding interviews and landing your dream job!
-                  </Paragraph>
-                  <Paragraph>Make sure to start your exclusive Intuition+ learning path experience!</Paragraph>
+                  </p>
+                  <p className={Paragraph}>Make sure to start your exclusive Intuition+ learning path experience!</p>
                   <Link href="/problems">
-                    <PrimaryButton>Intuition+ Learning Path</PrimaryButton>
+                    <button className={PrimaryButton}>Intuition+ Learning Path</button>
                   </Link>
-                </LeftColumn>
-                <RightColumn>
-                  <IllustrationContainer>
-                    <StyledImage src="/images/success.svg" alt="Success graphic" width="800px" height="800px" />
-                  </IllustrationContainer>
-                </RightColumn>
-              </TwoColumn>
-            </InnerContainer>
-          </MiddleContainer>
-          <DecoratorBlob1 src="/images/svg-decorator-blob-1.svg" alt="Decorator blob" />
-        </OuterContainer>
+                </div>
+                <div className={RightColumn}>
+                  <div className={IllustrationContainer}>
+                    <img
+                      className={StyledImage}
+                      src="/images/success.svg"
+                      alt="Success graphic"
+                      width="800px"
+                      height="800px"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <img className={DecoratorBlob} src="/images/svg-decorator-blob-1.svg" alt="Decorator blob" />
+        </div>
       </AnimationRevealPage>
-      <Footer />
     </>
   );
 };

@@ -1,13 +1,10 @@
 import styled from "styled-components";
 import { Button, Container, Dropdown, Menu, MenuItem } from "semantic-ui-react";
 
-export const HomeNavbarMenu = styled(Menu)`
+export const NavbarMenu = styled(Menu)`
   &&& {
-    position: absolute;
-    width: 100%;
-    background: transparent;
-    z-index: 1;
-    height: 80px;
+    background-color: ${(props) => props.bgcolor};
+    height: ${(props) => props.height}px;
     margin: 0;
   }
 `;
@@ -32,6 +29,9 @@ export const LogoLink = styled.a`
   &&& {
     padding: 2px 10px;
     border-radius: 10px;
+    &:hover {
+      background-color: #f0f1f2;
+    }
   }
 `;
 
@@ -39,7 +39,7 @@ export const StyledLink = styled.a`
   &&& {
     font-weight: 500;
     font-size: 15px;
-    color: #ffffff;
+    color: #243e63;
     margin: 0 22px;
     transition-duration: 300ms;
 
@@ -54,21 +54,21 @@ export const StyledLink = styled.a`
     }
 
     &:hover {
-      color: #ffffff;
+      color: #4d69e9;
     }
 
     &:hover::after {
       width: 100%;
-      background: #ffffff;
+      background: #4d69e9;
     }
 
     ${({ active }) =>
       active &&
       `
-      color: #ffffff;
+      color: #4d69e9;
       &::after {
         width: 100%;
-        background: #ffffff;
+        background: #4d69e9;
       }
     `}
   }
@@ -83,8 +83,6 @@ export const StyledDropdown = styled(Dropdown)`
 
 export const SignUpButton = styled(Button)`
   &&&&& {
-    color: #4d69e9;
-    background-color: #ffffffd0;
     border-radius: 9999px;
     width: 108px;
     padding: 12px 0;
@@ -97,17 +95,17 @@ export const SignUpButton = styled(Button)`
 
 export const MobileDropDown = styled(Dropdown)`
   &&&&& {
-    color: #ffffff;
+    color: #4d69e9;
 
     &:hover {
-      color: #ffffff;
+      color: #4d69e9;
     }
 
     i.icon {
       margin: 0;
 
       &:hover {
-        color: #ffffff;
+        color: #4d69e9;
       }
     }
   }
@@ -121,7 +119,7 @@ export const MobileDropDownMenu = styled(Dropdown.Menu)`
 
 export const StyledMobileLink = styled.a`
   &&& {
-    color: #000000;
+    color: #243e63;
     display: inline-block;
     width: 100%;
   }

@@ -1,22 +1,21 @@
-import React, { Component, FC } from "react";
-import { NextRouter, useRouter, withRouter } from "next/router";
+import React, { Component } from "react";
+import { NextRouter, withRouter } from "next/router";
 import Link from "next/link";
 import Image from "next/image";
 import { Dropdown, Icon } from "semantic-ui-react";
 import { isMod } from "../../../common/auth-service";
 import { showSuccessToast, withGlobalContext } from "common/utils";
 import { constants } from "common/constants";
-import styles from "./HomeNavbar.module.css";
+import styles from "./home-navbar.module.css";
 import {
-  DefaultNavbarMenu,
   HomeNavbarMenu,
+  LogoLink,
   MobileDropDown,
   MobileDropDownMenu,
   NavContainer,
   SignUpButton,
   StyledDropdown,
   StyledLink,
-  StyledLogo,
   StyledMenuItem,
   StyledMobileLink,
 } from "./home-navbar-styles";
@@ -28,24 +27,6 @@ interface HomeNavbarProps {
   loadCurrentUser: () => {};
   logout: () => {};
 }
-
-const NavbarMenu: FC = (props) => {
-  const router = useRouter();
-
-  if (router.pathname === "/") {
-    return <HomeNavbarMenu secondary>{props.children}</HomeNavbarMenu>;
-  }
-
-  return (
-    <DefaultNavbarMenu
-      secondary
-      height={/^\/problem\//.test(router.pathname) ? 60 : 80}
-      bgcolor={/^\/problem\//.test(router.pathname) ? "#ffffff" : "#f8f8fc"}
-    >
-      {props.children}
-    </DefaultNavbarMenu>
-  );
-};
 
 class HomeNavbar extends Component<HomeNavbarProps, {}> {
   handleDropdownClick(value) {
@@ -76,10 +57,6 @@ class HomeNavbar extends Component<HomeNavbarProps, {}> {
     this.props.router.push("/signup");
   }
 
-  onPaths(paths) {
-    return this.props.router && paths.test(this.props.router.pathname) ? 1 : 0;
-  }
-
   render() {
     const trigger = this.props.authenticated ? (
       <>
@@ -94,9 +71,9 @@ class HomeNavbar extends Component<HomeNavbarProps, {}> {
       <>
         <StyledMenuItem position="left">
           <Link href="/" passHref>
-            <a>
+            <LogoLink>
               <Image src="/images/logoname-white.svg" alt="CoderIntuition logo" width="200px" height="36px" />
-            </a>
+            </LogoLink>
           </Link>
         </StyledMenuItem>
         <StyledMenuItem>
@@ -234,21 +211,12 @@ class HomeNavbar extends Component<HomeNavbarProps, {}> {
     );
 
     return (
-      <div className={styles.navbarWrapper}>
-        {this.props.router &&
-          !/\/login/.test(this.props.router.pathname) &&
-          !/\/signup/.test(this.props.router.pathname) && (
-            <>
-              <NavbarMenu>
-                <NavContainer>
-                  <div className="hidden lg:contents">{desktopNavbar}</div>
-                  <div className="contents lg:hidden">{mobileNavbar}</div>
-                </NavContainer>
-              </NavbarMenu>
-            </>
-          )}
-        {this.props.children}
-      </div>
+      <HomeNavbarMenu secondary>
+        <NavContainer>
+          <div className="hidden lg:contents">{desktopNavbar}</div>
+          <div className="contents lg:hidden">{mobileNavbar}</div>
+        </NavContainer>
+      </HomeNavbarMenu>
     );
   }
 }

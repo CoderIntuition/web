@@ -1,27 +1,16 @@
 import styled from "styled-components";
 import { Button } from "semantic-ui-react";
 
-export const BodyWrapper = styled.div`
-  &&& {
-    width: 100%;
-    min-height: 100vh;
-    padding-left: 60px;
-    padding-right: 60px;
-  }
+export const FlexContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 `;
 
-export const BodyWrapper1280 = styled.div`
-  &&& {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 1280px;
-    height: 100%;
-    min-height: 720px;
-    padding-left: 60px;
-    padding-right: 60px;
-  }
-`;
+export const FlexContent = styled.div`
+  flex: 1;
+`
+
 export const GreenButton = styled(Button)`
   &&& {
     color: #ffffff;

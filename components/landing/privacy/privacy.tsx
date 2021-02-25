@@ -366,7 +366,6 @@ const Privacy = () => {
           </div>
         </div>
       </AnimationRevealPage>
-      <Footer />
     </>
   );
 };

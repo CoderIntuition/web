@@ -1,12 +1,9 @@
-import React, { FC, useEffect } from "react";
+import React, { FC } from "react";
 import Head from "next/head";
 import Faq from "components/landing/faq/faq";
+import PageWrapper from "../components/common/page-wrapper/page-wrapper";
 
 const FaqPage: FC = () => {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   const head = () => {
     return (
       <Head>
@@ -24,7 +21,9 @@ const FaqPage: FC = () => {
   return (
     <>
       {head()}
-      <Faq />
+      <PageWrapper>
+        <Faq />
+      </PageWrapper>
     </>
   );
 };

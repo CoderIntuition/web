@@ -1,7 +1,7 @@
 /*******************************
     User Variable Overrides
 *******************************/
-@hoverBackgroundColor: #393FD5 !important;
+@hoverBackgroundColor: #393FD5;
 @borderRadius: 0.6rem;
 @basicGroupBorder: 1px solid rgb(237, 242, 247);
 @basicHoverBackground: #00000006;

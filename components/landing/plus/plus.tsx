@@ -183,7 +183,6 @@ const Plus = (props) => {
           </div>
         )}
       </AnimationRevealPage>
-      <Footer />
     </>
   );
 };

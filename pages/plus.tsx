@@ -1,13 +1,9 @@
-import React, { FC, useEffect } from "react";
+import React, { FC } from "react";
 import Head from "next/head";
 import Plus from "components/landing/plus/plus";
-import Navbar from "../components/common/home-navbar/HomeNavbar";
+import PageWrapper from "../components/common/page-wrapper/page-wrapper";
 
 const PlusPage: FC = () => {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   const head = () => {
     return (
       <Head>
@@ -25,9 +21,9 @@ const PlusPage: FC = () => {
   return (
     <>
       {head()}
-      <Navbar>
+      <PageWrapper>
         <Plus />
-      </Navbar>
+      </PageWrapper>
     </>
   );
 };
