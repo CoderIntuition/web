@@ -1,16 +1,18 @@
 import React, { FC, PropsWithChildren } from "react";
-import Navbar from "../home-navbar/home-navbar";
-import { FlexContainer, FlexContent } from "../../../common/global-styles";
-import Footer from "../footer/footer";
+import Navbar from "components/common/navbar/navbar";
+import HomeNavbar from "components/common/home-navbar/home-navbar";
+import { FlexContainer, FlexContent } from "common/global-styles";
+import Footer from "components/common/footer/footer";
 
-interface PageWrapperPropTypes extends PropsWithChildren<any> {
+interface PageWrapperProps extends PropsWithChildren<any> {
+  homeNavbar?: boolean;
   hideFooter?: boolean;
 }
 
-const PageWrapper: FC = (props: PageWrapperPropTypes) => {
+const PageWrapper: FC<PageWrapperProps> = (props: PageWrapperProps) => {
   return (
     <FlexContainer>
-      <Navbar />
+      {props.homeNavbar ? <HomeNavbar /> : <Navbar />}
       <FlexContent>{props.children}</FlexContent>
       {!props.hideFooter && <Footer />}
     </FlexContainer>

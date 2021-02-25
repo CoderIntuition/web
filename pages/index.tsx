@@ -21,7 +21,7 @@ const HomePage: FC = () => {
   return (
     <>
       {head()}
-      <PageWrapper>
+      <PageWrapper homeNavbar>
         <Home />
       </PageWrapper>
     </>
