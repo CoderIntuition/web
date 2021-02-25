@@ -25,8 +25,8 @@ export const Paragraph = cntl`lg:my-4 text-md sm:text-lg lg:text-xl xl:text-2xl`
 
 export const PrimaryButton = cntl`px-24 py-4 font-medium rounded mt-8 rounded-full tracking-wide text-lg text-center`;
 
-export const IllustrationContainer = cntl`flex justify-center lg:justify-end items-center`;
+export const IllustrationContainer = cntl`flex justify-center mt-16 lg:justify-end items-center`;
 
-export const StyledImage = cntl`min-w-0 w-full invisible lg:visible max-w-2xl xl:max-w-3xl`;
+export const StyledImage = cntl`min-w-0 w-full invisible lg:visible max-w-4xl xl:max-w-3xl`;
 
 export const DecoratorBlob = cntl`pointer-events-none opacity-10 absolute right-0 bottom-0 h-24 w-24 sm:h-48 sm:w-48 lg:h-64 lg:w-64 transform translate-x-16 sm:translate-x-32 lg:translate-x-40 translate-y-4 sm:translate-y-6 md:translate-y-8 z-10`;
