@@ -1,5 +1,6 @@
 import React, { Component, FC } from "react";
 import { NextRouter, useRouter, withRouter } from "next/router";
+import Link from "next/link";
 import Image from "next/image";
 import { Dropdown, Icon } from "semantic-ui-react";
 import { isMod } from "../../../common/auth-service";
@@ -15,6 +16,7 @@ import {
   SignUpButton,
   StyledDropdown,
   StyledLink,
+  StyledLogo,
   StyledMenuItem,
   StyledMobileLink,
 } from "./home-navbar-styles";
@@ -91,27 +93,25 @@ class HomeNavbar extends Component<HomeNavbarProps, {}> {
     const desktopNavbar = (
       <>
         <StyledMenuItem position="left">
-          <Image
-            src="/images/logoname-white.svg"
-            alt="CoderIntuition logo"
-            width="200px"
-            height="36px"
-            onClick={() => this.props.router.push("/")}
-          />
+          <Link href="/" passHref>
+            <a>
+              <Image src="/images/logoname-white.svg" alt="CoderIntuition logo" width="200px" height="36px" />
+            </a>
+          </Link>
         </StyledMenuItem>
         <StyledMenuItem>
-          <StyledLink href="/" active={1}>
-            Home
-          </StyledLink>
-          <StyledLink href="/problems" active={0}>
-            Learn
-          </StyledLink>
-          <StyledLink href="/plus" active={0}>
-            Intuition+
-          </StyledLink>
-          <StyledLink href="/blog" active={0}>
-            Blog
-          </StyledLink>
+          <Link href="/" passHref>
+            <StyledLink active={1}>Home</StyledLink>
+          </Link>
+          <Link href="/problems" passHref>
+            <StyledLink active={0}>Learn</StyledLink>
+          </Link>
+          <Link href="/plus" passHref>
+            <StyledLink active={0}>Intuition+</StyledLink>
+          </Link>
+          <Link href="/blog" passHref>
+            <StyledLink active={0}>Blog</StyledLink>
+          </Link>
         </StyledMenuItem>
         {this.props.authenticated ? (
           <StyledMenuItem position="right">
@@ -148,9 +148,9 @@ class HomeNavbar extends Component<HomeNavbarProps, {}> {
           </StyledMenuItem>
         ) : (
           <StyledMenuItem position="right">
-            <StyledLink onClick={() => this.handleLogin()} href="/login">
-              Log In
-            </StyledLink>
+            <Link href="/login" passHref>
+              <StyledLink onClick={() => this.handleLogin()}>Log In</StyledLink>
+            </Link>
             <SignUpButton primary onClick={() => this.handleSignUp()}>
               Sign Up
             </SignUpButton>
@@ -162,36 +162,34 @@ class HomeNavbar extends Component<HomeNavbarProps, {}> {
     const mobileNavbar = (
       <>
         <StyledMenuItem position="left">
-          <Image
-            src="/images/logoname-white.svg"
-            alt="CoderIntuition logo"
-            width="200px"
-            height="36px"
-            onClick={() => this.props.router.push("/")}
-          />
+          <Link href="/" passHref>
+            <a>
+              <Image src="/images/logoname-white.svg" alt="CoderIntuition logo" width="200px" height="36px" />
+            </a>
+          </Link>
         </StyledMenuItem>
         <StyledMenuItem position="right">
           <MobileDropDown item icon="bars" pointing="top right">
             <MobileDropDownMenu>
               <Dropdown.Item>
-                <StyledMobileLink href="/" active={1}>
-                  Home
-                </StyledMobileLink>
+                <Link href="/" passHref>
+                  <StyledMobileLink active={1}>Home</StyledMobileLink>
+                </Link>
               </Dropdown.Item>
               <Dropdown.Item>
-                <StyledMobileLink href="/problems" active={0}>
-                  Learn
-                </StyledMobileLink>
+                <Link href="/problems" passHref>
+                  <StyledMobileLink active={0}>Learn</StyledMobileLink>
+                </Link>
               </Dropdown.Item>
               <Dropdown.Item>
-                <StyledMobileLink href="/plus" active={0}>
-                  Intuition+
-                </StyledMobileLink>
+                <Link href="/plus" passHref>
+                  <StyledMobileLink active={0}>Intuition+</StyledMobileLink>
+                </Link>
               </Dropdown.Item>
               <Dropdown.Item>
-                <StyledMobileLink href="/blog" active={0}>
-                  Blog
-                </StyledMobileLink>
+                <Link href="/blog" passHref>
+                  <StyledMobileLink active={0}>Blog</StyledMobileLink>
+                </Link>
               </Dropdown.Item>
               <Dropdown.Divider />
               {this.props.authenticated ? (
@@ -243,7 +241,7 @@ class HomeNavbar extends Component<HomeNavbarProps, {}> {
             <>
               <NavbarMenu>
                 <NavContainer>
-                  <div className="xs:hidden lg:contents">{desktopNavbar}</div>
+                  <div className="hidden lg:contents">{desktopNavbar}</div>
                   <div className="contents lg:hidden">{mobileNavbar}</div>
                 </NavContainer>
               </NavbarMenu>

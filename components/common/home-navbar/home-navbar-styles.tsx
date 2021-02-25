@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Link from "components/common/helpers/link";
+import Image from "next/image";
 import { Button, Container, Dropdown, Menu, MenuItem } from "semantic-ui-react";
 
 export const HomeNavbarMenu = styled(Menu)`
@@ -30,6 +30,12 @@ export const NavContainer = styled(Container)`
   }
 `;
 
+export const StyledLogo = styled(Image)`
+  &&& {
+    cursor: pointer;
+  }
+`;
+
 export const StyledMenuItem = styled(MenuItem)`
   &&&& {
     margin: 0;
@@ -37,7 +43,7 @@ export const StyledMenuItem = styled(MenuItem)`
   }
 `;
 
-export const StyledLink = styled(Link)`
+export const StyledLink = styled.a`
   &&& {
     font-weight: 500;
     font-size: 15px;
@@ -56,16 +62,16 @@ export const StyledLink = styled(Link)`
     }
 
     ${({ active }) =>
-      active &&
-      `
+            active &&
+            `
       color: #ffffff;
       &::after {
         width: 100%;
         background: #ffffff;
       }
     `} ${({ active }) =>
-      !active &&
-      `
+            !active &&
+            `
       &:hover {
         color: #ffffff;
       }
@@ -101,11 +107,14 @@ export const SignUpButton = styled(Button)`
 export const MobileDropDown = styled(Dropdown)`
   &&&&& {
     color: #ffffff;
+
     &:hover {
       color: #ffffff;
     }
+
     i.icon {
       margin: 0;
+
       &:hover {
         color: #ffffff;
       }
@@ -119,7 +128,7 @@ export const MobileDropDownMenu = styled(Dropdown.Menu)`
   }
 `;
 
-export const StyledMobileLink = styled(Link)`
+export const StyledMobileLink = styled.a`
   &&& {
     color: #000000;
     display: inline-block;

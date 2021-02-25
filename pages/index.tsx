@@ -28,7 +28,7 @@ const HomePage: FC = () => {
       {head()}
       <Navbar>
         <Home />
-        {/*<Footer/>*/}
+        <Footer/>
       </Navbar>
     </>
   );
