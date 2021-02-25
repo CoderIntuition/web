@@ -8,4 +8,4 @@ export const ContentWithPaddingXl = cntl`max-w-screen-xl mx-auto py-20 px-4 md:p
 
 export const ContentWithPaddingLg = cntl`max-w-screen-lg mx-auto py-4 lg:py-10`;
 
-export const StyledDiv = cntl`font-display min-h-screen text-secondary-500 p-8 overflow-hidden`;
+export const StyledDiv = cntl`font-display text-secondary-500 p-8 overflow-hidden`;

@@ -1,13 +1,9 @@
-import React, { FC, useEffect } from "react";
+import React, { FC } from "react";
 import Head from "next/head";
 import Privacy from "../components/landing/privacy/privacy";
-import Navbar from "../components/common/home-navbar/HomeNavbar";
+import PageWrapper from "../components/common/page-wrapper/page-wrapper";
 
 const PrivacyPage: FC = () => {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   const head = () => {
     return (
       <Head>
@@ -25,9 +21,9 @@ const PrivacyPage: FC = () => {
   return (
     <>
       {head()}
-      <Navbar>
+      <PageWrapper>
         <Privacy />
-      </Navbar>
+      </PageWrapper>
     </>
   );
 };

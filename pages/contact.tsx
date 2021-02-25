@@ -1,12 +1,9 @@
-import React, { FC, useEffect } from "react";
+import React, { FC } from "react";
 import Head from "next/head";
 import Contact from "components/landing/contact/contact";
+import PageWrapper from "../components/common/page-wrapper/page-wrapper";
 
 const ContactPage: FC = () => {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   const head = () => {
     return (
       <Head>
@@ -24,7 +21,9 @@ const ContactPage: FC = () => {
   return (
     <>
       {head()}
-      <Contact />
+      <PageWrapper>
+        <Contact />
+      </PageWrapper>
     </>
   );
 };

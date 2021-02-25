@@ -5,8 +5,6 @@ import { Container, Grid, Menu } from "semantic-ui-react";
 
 export const FooterWrapper = styled.div`
   &&& {
-    position: sticky;
-    bottom: 0;
     width: 100%;
     height: 300px;
     background: #4d69e9;
@@ -18,8 +16,6 @@ export const StyledContainer = styled(Container)`
   &&& {
     display: flex;
     justify-content: center;
-    padding-top: 90px;
-    height: 100%;
   }
 `;
 
@@ -67,8 +63,6 @@ export const StyledFooterLink = styled(Link)`
 
 export const StyledGrid = styled(Grid)`
   &&& {
-    position: absolute;
-    bottom: 90px;
     width: inherit;
     font-size: 14px;
     color: #eaedfc;

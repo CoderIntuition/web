@@ -16,7 +16,6 @@ import {
   SignUpButton,
   StyledDropdown,
   StyledLink,
-  StyledLogo,
   StyledMenuItem,
   StyledMobileLink,
 } from "./home-navbar-styles";
@@ -234,7 +233,7 @@ class HomeNavbar extends Component<HomeNavbarProps, {}> {
     );
 
     return (
-      <div className={styles.navbarWrapper}>
+      <>
         {this.props.router &&
           !/\/login/.test(this.props.router.pathname) &&
           !/\/signup/.test(this.props.router.pathname) && (
@@ -247,8 +246,7 @@ class HomeNavbar extends Component<HomeNavbarProps, {}> {
               </NavbarMenu>
             </>
           )}
-        {this.props.children}
-      </div>
+      </>
     );
   }
 }
