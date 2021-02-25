@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Link from "components/common/helpers/link";
+import Image from "next/image";
 import { Button, Container, Dropdown, Menu, MenuItem } from "semantic-ui-react";
 
 export const HomeNavbarMenu = styled(Menu)`
@@ -13,7 +13,6 @@ export const HomeNavbarMenu = styled(Menu)`
   }
 `;
 
-
 export const DefaultNavbarMenu = styled(Menu)`
   &&& {
     background-color: ${(props) => props.bgcolor};
@@ -25,8 +24,15 @@ export const DefaultNavbarMenu = styled(Menu)`
 export const NavContainer = styled(Container)`
   &&&&& {
     width: 100%;
+    max-width: 1440px;
     padding-left: 7%;
     padding-right: 7%;
+  }
+`;
+
+export const StyledLogo = styled(Image)`
+  &&& {
+    cursor: pointer;
   }
 `;
 
@@ -37,11 +43,11 @@ export const StyledMenuItem = styled(MenuItem)`
   }
 `;
 
-export const StyledLink = styled(Link)`
+export const StyledLink = styled.a`
   &&& {
-    font-weight: 600; // Semi bold
+    font-weight: 500;
     font-size: 15px;
-    color: #243e63;
+    color: #ffffff;
     margin: 0 22px;
     transition-duration: 300ms;
 
@@ -56,22 +62,22 @@ export const StyledLink = styled(Link)`
     }
 
     ${({ active }) =>
-      active &&
-      `
-      color: #4d69e9;
+            active &&
+            `
+      color: #ffffff;
       &::after {
         width: 100%;
-        background: #4d69e9;
+        background: #ffffff;
       }
     `} ${({ active }) =>
-      !active &&
-      `
+            !active &&
+            `
       &:hover {
-        color: #4d69e9;
+        color: #ffffff;
       }
       &:hover::after {
         width: 100%;
-        background: #4d69e9;
+        background: #ffffff;
       }
     `}
   }
@@ -86,11 +92,46 @@ export const StyledDropdown = styled(Dropdown)`
 
 export const SignUpButton = styled(Button)`
   &&&&& {
-    color: #f7fafc;
+    color: #ffffff;
+    background-color: #ffffff30;
     border-radius: 9999px;
     width: 108px;
     padding: 14px 0;
     transition-duration: 300ms;
     letter-spacing: 0.025em;
+  }
+`;
+
+// For mobile
+
+export const MobileDropDown = styled(Dropdown)`
+  &&&&& {
+    color: #ffffff;
+
+    &:hover {
+      color: #ffffff;
+    }
+
+    i.icon {
+      margin: 0;
+
+      &:hover {
+        color: #ffffff;
+      }
+    }
+  }
+`;
+
+export const MobileDropDownMenu = styled(Dropdown.Menu)`
+  &&& {
+    width: 180px;
+  }
+`;
+
+export const StyledMobileLink = styled.a`
+  &&& {
+    color: #000000;
+    display: inline-block;
+    width: 100%;
   }
 `;

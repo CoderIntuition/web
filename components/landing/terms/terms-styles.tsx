@@ -1,36 +1,17 @@
-import tw from "twin.macro";
-import styled from "styled-components";
-import { SectionHeading } from "../landing-styles";
+import cntl from "cntl";
 
-export const HeadingRow = tw.div`flex`;
+export const HeadingRow = cntl`flex`;
 
-export const Heading = tw(SectionHeading)`text-gray-900 mb-10`;
+export const Heading = cntl`text-3xl md:text-5xl font-semibold tracking-wide text-center text-gray-900 mb-10`;
 
-export const Text = styled.div`
-  ${tw`text-lg  text-gray-800`}
-  p {
-    ${tw`mt-2 leading-loose`}
-  }
+export const Text = cntl`text-lg text-gray-800`;
 
-  h1 {
-    ${tw`text-3xl font-bold mt-10`}
-  }
+export const TextP = cntl`mt-2 leading-loose`;
 
-  h2 {
-    ${tw`text-2xl font-bold mt-8`}
-  }
+export const TextH1 = cntl`text-3xl font-semibold mt-10`;
 
-  h3 {
-    ${tw`text-xl font-bold mt-6`}
-  }
+export const TextH2 = cntl`text-2xl font-semibold mt-8`;
 
-  ul {
-    ${tw`list-disc list-inside`}
-    li {
-      ${tw`ml-2 mb-3`}
-      p {
-        ${tw`mt-0 inline leading-normal`}
-      }
-    }
-  }
-`;
+export const TextUl = cntl`list-disc ml-6 list-outside`;
+
+export const TextLi = cntl`ml-2 mb-3`;

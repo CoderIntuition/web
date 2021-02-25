@@ -15,7 +15,6 @@ import {
   InnerContainer,
   LeftColumn,
   MiddleContainer,
-  OuterContainer,
   Paragraph,
   PrimaryButton,
   RightColumn,
@@ -30,13 +29,21 @@ import {
   Heading,
   Plan,
   PlanAction,
+  PlanDuration,
   PlanDurationSwitcher,
   PlanFeatures,
+  PlanFeaturesSpan,
+  PlanFreeName,
   PlanHeader,
+  PlanMainFeature,
+  PlanPlusName,
+  PlanPrice,
   PlansContainer,
+  PlanSlash,
   StyledButton,
   Subheading,
   SwitchButton,
+  SwitchButtonActive,
 } from "./plus-styles";
 
 const Plus = (props) => {
@@ -78,75 +85,83 @@ const Plus = (props) => {
     <>
       <AnimationRevealPage>
         {props.authenticated && isPlus(props.currentUser.roles) ? (
-          <OuterContainer style={{ marginTop: -50 }}>
-            <MiddleContainer>
-              <InnerContainer>
-                <TwoColumn>
-                  <LeftColumn>
-                    <Heading2>
+          <div className={Container}>
+            <div className={MiddleContainer}>
+              <div className={InnerContainer}>
+                <div className={TwoColumn}>
+                  <div className={LeftColumn}>
+                    <span className={Heading2}>
                       Thanks for subscribing to Intuition+ <Emoji symbol="🎉" />
-                    </Heading2>
-                    <Paragraph>
+                    </span>
+                    <span className={Paragraph}>
                       Hey {props.currentUser.name.split(" ")[0]}, you made the right choice to invest in yourself.
-                    </Paragraph>
-                    <Paragraph>
+                    </span>
+                    <span className={Paragraph}>
                       To get the most out of your subscription, try our exclusive Intuition+ learning path!
-                    </Paragraph>
+                    </span>
                     <Link href="/problems">
-                      <PrimaryButton>Intuition+ Learning Path</PrimaryButton>
+                      <button className={PrimaryButton}>Intuition+ Learning Path</button>
                     </Link>
-                  </LeftColumn>
-                  <RightColumn>
-                    <IllustrationContainer>
-                      <StyledImage src="/images/success.svg" alt="Success graphic" width="800px" height="800px" />
-                    </IllustrationContainer>
-                  </RightColumn>
-                </TwoColumn>
-              </InnerContainer>
-            </MiddleContainer>
-            <DecoratorBlob1 src="svg-decorator-blob-6.svg" alt="Decorator blob" />
-          </OuterContainer>
+                  </div>
+                  <div className={RightColumn}>
+                    <div className={IllustrationContainer}>
+                      <img className={StyledImage} src="/images/success.svg" alt="Success graphic" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <img className={DecoratorBlob1} src="/images/svg-decorator-blob-6.svg" alt="Decorator blob" />
+          </div>
         ) : (
-          <Container>
-            <ContentWithPaddingLg>
-              <HeaderContainer>
-                <Subheading>Pricing</Subheading>
-                <Heading>
-                  Maximize Your <HighlightedText>Intuition</HighlightedText>
-                </Heading>
-                <Description>Intuition+ gives you full access to the CoderIntuition platform.</Description>
-                <PlanDurationSwitcher>
+          <div className={Container}>
+            <div className={ContentWithPaddingLg}>
+              <div className={HeaderContainer}>
+                <h1 className={Subheading}>Pricing</h1>
+                <h2 className={Heading}>
+                  Maximize Your <span className={HighlightedText}>Intuition</span>
+                </h2>
+                <p className={Description}>Intuition+ gives you full access to the CoderIntuition platform.</p>
+                <div className={PlanDurationSwitcher}>
                   {planDurations.map((planDuration, index) => (
-                    <SwitchButton
-                      active={activeDurationIndex === index}
-                      key={index}
-                      onClick={() => setActiveDurationIndex(index)}
-                    >
-                      {planDuration.switcherText}
-                    </SwitchButton>
+                    <>
+                      {activeDurationIndex == index ? (
+                        <button
+                          className={SwitchButtonActive}
+                          key={index}
+                          onClick={() => setActiveDurationIndex(index)}
+                        >
+                          {planDuration.switcherText}
+                        </button>
+                      ) : (
+                        <button className={SwitchButton} key={index} onClick={() => setActiveDurationIndex(index)}>
+                          {planDuration.switcherText}
+                        </button>
+                      )}
+                    </>
                   ))}
-                </PlanDurationSwitcher>
-              </HeaderContainer>
-              <PlansContainer>
+                </div>
+              </div>
+              <div className={PlansContainer}>
                 {plans.map((plan, index) => (
-                  <Plan key={index} featured={plan.featured}>
-                    <PlanHeader>
-                      <span className="priceAndDuration">
-                        <span className="price">{plan.durationPrices[activeDurationIndex]}</span>
-                        <span className="slash"> / </span>
-                        <span className="duration">{planDurations[activeDurationIndex].text}</span>
-                      </span>
-                      <span className="name">{plan.name}</span>
-                      <span className="mainFeature">{plan.mainFeature}</span>
-                    </PlanHeader>
-                    <PlanFeatures>
+                  <div className={Plan} key={index}>
+                    <div className={PlanHeader}>
+                      <div>
+                        <span className={PlanPrice}>{plan.durationPrices[activeDurationIndex]}</span>
+                        <span className={PlanSlash}> / </span>
+                        <span className={PlanDuration}>{planDurations[activeDurationIndex].text}</span>
+                      </div>
+                      <span className={index === 0 ? PlanFreeName : PlanPlusName}>{plan.name}</span>
+                      <span className={PlanMainFeature}>{plan.mainFeature}</span>
+                    </div>
+                    <div className={PlanFeatures}>
                       {plan.features.map((feature, index) => (
-                        <span key={index} className="feature">
+                        <span key={index} className={PlanFeaturesSpan}>
                           {feature}
                         </span>
                       ))}
-                    </PlanFeatures>
-                    <PlanAction>
+                    </div>
+                    <div className={PlanAction}>
                       {index == 0 ? (
                         <Link href="/signup">
                           <StyledButton primary disabled={props.authenticated}>
@@ -158,14 +173,14 @@ const Plus = (props) => {
                           priceId={activeDurationIndex === 0 ? constants.MONTHLY_PRICE_ID : constants.YEARLY_PRICE_ID}
                         />
                       )}
-                    </PlanAction>
-                  </Plan>
+                    </div>
+                  </div>
                 ))}
-              </PlansContainer>
-            </ContentWithPaddingLg>
-            <DecoratorBlob1 src="svg-decorator-blob-6.svg" alt="Decorator blob" />
-            <DecoratorBlob2 src="svg-decorator-blob-1.svg" alt="Decorator blob" />
-          </Container>
+              </div>
+            </div>
+            <img className={DecoratorBlob1} src="/images/svg-decorator-blob-1.svg" alt="Decorator blob" />
+            <img className={DecoratorBlob2} src="/images/svg-decorator-blob-6.svg" alt="Decorator blob" />
+          </div>
         )}
       </AnimationRevealPage>
       <Footer />

@@ -3,12 +3,16 @@ import { BookOpen, Code, EyeOff, Globe, Info, List } from "react-feather";
 import { HighlightedText } from "../landing-styles";
 import {
   Card,
+  CardDescription,
+  CardFeatureIconContainer,
+  CardImageContainer,
+  CardImageContainerImage,
+  CardTextContainer,
+  CardTitle,
   Column,
   Container,
-  DecoratorBlob1,
-  DecoratorBlob2,
+  DecoratorBlob,
   Description,
-  FeatureIconContainer,
   Heading,
   Subheading,
   ThreeColumnContainer,
@@ -30,7 +34,7 @@ const Features = () => {
     {
       imageSrc: EyeOff,
       title: "Hidden Solutions",
-      description: "We have solutions, but they are hidden until you actually try the problem with our tips.",
+      description: "We have solutions, but they're hidden until you actually try the problem with our tips.",
     },
     {
       imageSrc: BookOpen,
@@ -51,37 +55,36 @@ const Features = () => {
   const subheading = "FEATURES";
   const heading = (
     <>
-      Designed for Maximum <HighlightedText>Intuition.</HighlightedText>
+      Designed for Maximum <span className={HighlightedText}>Intuition.</span>
     </>
   );
   const description = "This is what we have to offer you.";
 
   return (
-    <Container>
-      <ThreeColumnContainer>
-        <Subheading>{subheading}</Subheading>
-        <Heading>{heading}</Heading>
-        <Description>{description}</Description>
-        <VerticalSpacer />
+    <div className={Container}>
+      <div className={ThreeColumnContainer}>
+        <h1 className={Subheading}>{subheading}</h1>
+        <h2 className={Heading}>{heading}</h2>
+        <p className={Description}>{description}</p>
+        <div className={VerticalSpacer} />
         {cards.map((card, i) => (
-          <Column key={i}>
-            <Card>
-              <span className="imageContainer">
-                <FeatureIconContainer>
-                  <card.imageSrc />
-                </FeatureIconContainer>
+          <div className={Column} key={i}>
+            <div className={Card}>
+              <span className={CardImageContainer}>
+                <div className={CardFeatureIconContainer}>
+                  <card.imageSrc className={CardImageContainerImage} />
+                </div>
               </span>
-              <span className="textContainer">
-                <span className="title">{card.title || "Fully Secure"}</span>
-                <p className="description">{card.description}</p>
+              <span className={CardTextContainer}>
+                <span className={CardTitle}>{card.title || "Fully Secure"}</span>
+                <p className={CardDescription}>{card.description}</p>
               </span>
-            </Card>
-          </Column>
+            </div>
+          </div>
         ))}
-      </ThreeColumnContainer>
-      <DecoratorBlob1 src="/images/svg-decorator-blob-2.svg" alt="Decorator blob" width="100px" height="100px" />
-      <DecoratorBlob2 src="/images/svg-decorator-blob-3.svg" alt="Decorator blob" width="100px" height="100px" />
-    </Container>
+      </div>
+      <img className={DecoratorBlob} src="/images/svg-decorator-blob-3.svg" alt="Decorator blob" />
+    </div>
   );
 };
 

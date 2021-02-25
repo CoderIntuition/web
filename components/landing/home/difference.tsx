@@ -1,16 +1,15 @@
 import React from "react";
-import tw from "twin.macro";
 import Image from "next/image";
-import {Info, Zap} from "react-feather";
-import {HighlightedText} from "../landing-styles";
+import { Info, Zap } from "react-feather";
+import { Container, HighlightedText } from "../landing-styles";
 import {
-  Container,
-  DecoratorBlob1,
+  DecoratorBlob,
   Description,
   Feature,
   FeatureDescription,
   FeatureHeading,
   FeatureHeadingContainer,
+  FeatureIcon,
   FeatureIconContainer,
   Features,
   Heading,
@@ -25,11 +24,10 @@ const Difference = () => {
   const subheading = "DIFFERENCE";
   const heading = (
     <>
-      What Sets Us <HighlightedText>Apart</HighlightedText>
+      What Sets Us <span className={HighlightedText}>Apart</span>
     </>
   );
-  const description =
-    "Unlike other interview preparation websites, we believe in two core values:";
+  const description = "Unlike other interview preparation websites, we believe in two core values:";
 
   const values = [
     {
@@ -37,70 +35,53 @@ const Difference = () => {
       title: "Intuition",
       description: (
         <>
-          <HighlightedText>Don't memorize solutions!</HighlightedText>
-          <br/>
-          Instead, let us help you understand intuition that can be repeatably
-          applied in interview settings.
+          <span className={HighlightedText}>Don't memorize solutions!</span>
+          <br />
+          Instead, let us help you understand intuition that can be repeatably applied in interview settings.
         </>
       ),
-      iconContainerCss: tw`bg-teal-300 text-teal-800`,
     },
     {
       Icon: Zap,
       title: "Efficiency",
       description: (
         <>
-          <HighlightedText>Your time matters!</HighlightedText>
-          <br/>
-          Don't watch 45-minute solution videos. Instead, learn by experience
-          with our hints, interactive quizzes, and concise explanations.
+          <span className={HighlightedText}>Your time matters!</span>
+          <br />
+          Don't watch 45-minute solution videos. Instead, learn by experience with our hints, interactive quizzes, and
+          concise explanations.
         </>
       ),
-      iconContainerCss: tw`bg-red-300 text-red-800`,
     },
   ];
 
   return (
-    <Container>
-      <TwoColumn>
-        <ImageColumn>
-          <Image
-            src="/images/difference.svg"
-            alt="CoderIntuition's difference"
-            width="800px"
-            height="800px"
-          />
-        </ImageColumn>
-        <TextColumn textOnLeft={true}>
-          <TextContent>
-            <Subheading>{subheading}</Subheading>
-            <Heading>{heading}</Heading>
-            <Description>{description}</Description>
-            <Features>
+    <div className={Container}>
+      <div className={TwoColumn}>
+        <div className={ImageColumn}>
+          <Image src="/images/difference.svg" alt="CoderIntuition's difference" width="800px" height="800px" />
+        </div>
+        <div className={TextColumn}>
+          <div className={TextContent}>
+            <h1 className={Subheading}>{subheading}</h1>
+            <h2 className={Heading}>{heading}</h2>
+            <p className={Description}>{description}</p>
+            <div className={Features}>
               {values.map((value, index) => (
-                <Feature key={index}>
-                  <FeatureHeadingContainer>
-                    <FeatureIconContainer
-                      iconFilled={true}
-                      iconRoundedFull={true}
-                      css={value.iconContainerCss}
-                    >
-                      {<value.Icon/>}
-                    </FeatureIconContainer>
-                    <FeatureHeading>{value.title}</FeatureHeading>
-                  </FeatureHeadingContainer>
-                  <FeatureDescription>{value.description}</FeatureDescription>
-                </Feature>
+                <div className={Feature} key={index}>
+                  <div className={FeatureHeadingContainer}>
+                    <div className={FeatureIconContainer}>{<value.Icon className={FeatureIcon} />}</div>
+                    <span className={FeatureHeading}>{value.title}</span>
+                  </div>
+                  <span className={FeatureDescription}>{value.description}</span>
+                </div>
               ))}
-            </Features>
-          </TextContent>
-        </TextColumn>
-      </TwoColumn>
-      <DecoratorBlob1
-        src="/images/svg-decorator-blob-1.svg"
-        alt="Decorator blob"
-      />
-    </Container>
+            </div>
+          </div>
+        </div>
+      </div>
+      <img className={DecoratorBlob} src="/images/svg-decorator-blob-4.svg" alt="Decorator blob" />
+    </div>
   );
 };
 

@@ -10,7 +10,6 @@ import {
   Description,
   FAQ,
   FAQSContainer,
-  HeaderContent,
   Heading,
   Question,
   QuestionText,
@@ -47,7 +46,7 @@ const Faq = () => {
     {
       question: "How do I use CoderIntuition?",
       answer:
-        "We recommend for you to follow one of our structured learning paths to gain the most necessary intuition. " +
+        "We recommend following one of our structured learning paths to gain the most necessary intuition. " +
         "When attempting problems, you should follow the prompts that the intuition steps give. The intuition steps " +
         "will guide you towards understanding the intuition of the problem and how it can be repeatably applied to " +
         "other problems. It will also ask quizzes as you code to reinforce your understanding.",
@@ -76,25 +75,25 @@ const Faq = () => {
 
   return (
     <AnimationRevealPage>
-      <Container>
-        <ContentWithPaddingXl>
-          <Column>
-            <HeaderContent>
-              <Subheading>FAQ</Subheading>
-              <Heading>Have Questions?</Heading>
-              <Description>We have the answers to most of them here.</Description>
-            </HeaderContent>
-            <FAQSContainer>
+      <div className={Container}>
+        <div className={ContentWithPaddingXl}>
+          <div className={Column}>
+            <div>
+              <h1 className={Subheading}>FAQ</h1>
+              <h2 className={Heading}>Have Questions?</h2>
+              <p className={Description}>We have the answers to most of them here.</p>
+            </div>
+            <dl className={FAQSContainer}>
               {faqs.map((faq, index) => (
-                <FAQ
+                <div
                   key={index}
                   onClick={() => {
                     toggleQuestion(index);
                   }}
-                  className="group"
+                  className={FAQ}
                 >
-                  <Question>
-                    <QuestionText>{faq.question}</QuestionText>
+                  <dt className={Question}>
+                    <span className={QuestionText}>{faq.question}</span>
                     <QuestionToggleIcon
                       variants={{
                         collapsed: { rotate: 0 },
@@ -106,9 +105,10 @@ const Faq = () => {
                         duration: 0.02,
                         ease: [0.04, 0.62, 0.23, 0.98],
                       }}
-                    />
-                    <ChevronDown />
-                  </Question>
+                    >
+                      <ChevronDown />
+                    </QuestionToggleIcon>
+                  </dt>
                   <Answer
                     variants={{
                       open: { opacity: 1, height: "auto", marginTop: "16px" },
@@ -123,14 +123,14 @@ const Faq = () => {
                   >
                     {faq.answer}
                   </Answer>
-                </FAQ>
+                </div>
               ))}
-            </FAQSContainer>
-          </Column>
-        </ContentWithPaddingXl>
-        <DecoratorBlob1 src="/images/svg-decorator-blob-3.svg" alt="Decorator blob" />
-        <DecoratorBlob2 src="/images/svg-decorator-blob-1.svg" alt="Decorator blob" />
-      </Container>
+            </dl>
+          </div>
+        </div>
+        <img className={DecoratorBlob1} src="/images/svg-decorator-blob-3.svg" alt="Decorator blob" />
+        <img className={DecoratorBlob2} src="/images/svg-decorator-blob-1.svg" alt="Decorator blob" />
+      </div>
     </AnimationRevealPage>
   );
 };

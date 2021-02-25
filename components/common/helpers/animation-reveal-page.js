@@ -1,9 +1,9 @@
 import React from "react";
-import {motion} from "framer-motion";
-import {useInView} from 'react-intersection-observer';
-import {StyledDiv} from "components/landing/landing-styles";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import { StyledDiv } from "components/landing/landing-styles";
 
-function AnimationReveal({disabled, children}) {
+function AnimationReveal({ disabled, children }) {
   if (disabled) {
     return <>{children}</>;
   }
@@ -13,10 +13,7 @@ function AnimationReveal({disabled, children}) {
   const directions = ["left", "right"];
   const childrenWithAnimation = children.map((child, i) => {
     return (
-      <AnimatedSlideInComponent
-        key={i}
-        direction={directions[i % directions.length]}
-      >
+      <AnimatedSlideInComponent key={i} direction={directions[i % directions.length]}>
         {child}
       </AnimatedSlideInComponent>
     );
@@ -24,28 +21,27 @@ function AnimationReveal({disabled, children}) {
   return <>{childrenWithAnimation}</>;
 }
 
-function AnimatedSlideInComponent({
-                                    direction = "left",
-                                    offset = 30,
-                                    children,
-                                  }) {
-  const [ref, inView] = useInView({rootMargin: "-100px"});
+function AnimatedSlideInComponent({ direction = "left", children }) {
+  const [ref, inView] = useInView({ rootMargin: "-100px" });
 
-  const x = {target: "0%"};
+  const x = { target: "0%" };
 
-  if (direction === "left") x.initial = "-10%";
-  else x.initial = "10%";
+  if (direction === "right") {
+    x.initial = "10%";
+  } else {
+    x.initial = "-10%";
+  }
 
   return (
     <motion.section
-      initial={{x: x.initial}}
+      initial={{ x: x.initial }}
       animate={{
         x: inView && x.target,
         transitionEnd: {
           x: inView && 0,
         },
       }}
-      transition={{type: "spring", damping: 60}}
+      transition={{ type: "spring", damping: 60 }}
       ref={ref}
     >
       {children}
@@ -54,9 +50,11 @@ function AnimatedSlideInComponent({
 }
 
 const AnimationRevealPage = (props) => (
-  <StyledDiv className="App">
-    <AnimationReveal {...props} />
-  </StyledDiv>
+  <div className="App">
+    <div className={StyledDiv}>
+      <AnimationReveal {...props} />
+    </div>
+  </div>
 );
 
 export default AnimationRevealPage;

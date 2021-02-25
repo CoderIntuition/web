@@ -8,13 +8,12 @@ import Testimonials from "./testimonials";
 const Home: FC = () => {
   return (
     <>
-      {/*<AnimationRevealPage>*/}
       <Hero />
-      {/*<Features />*/}
-      {/*<Difference/>*/}
-      {/*<Testimonials/>*/}
-      {/*</AnimationRevealPage>*/}
-      {/*<Footer />*/}
+      <AnimationRevealPage>
+        <Features />
+        <Difference/>
+        <Testimonials/>
+      </AnimationRevealPage>
     </>
   );
 };

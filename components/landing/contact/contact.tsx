@@ -1,19 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import Image from "next/image";
 import axios from "axios";
+import { Button } from "semantic-ui-react";
 import AnimationRevealPage from "components/common/helpers/animation-reveal-page";
 import { showErrorToast, showSuccessToast } from "common/utils";
-import { Button, Loader } from "semantic-ui-react";
 import { constants } from "common/constants";
+import { Container } from "../landing-styles";
 import {
-  Container,
   Description,
   Form,
   Heading,
-  Image,
   ImageColumn,
-  StyledInput,
-  StyledTextarea,
+  Input,
   Subheading,
+  TextArea,
   TextColumn,
   TextContent,
   TwoColumn,
@@ -59,26 +59,30 @@ class ContactForm extends React.Component<any, any> {
 
   render() {
     return (
-      <Form>
-        <StyledInput
+      <form className={Form}>
+        <input
+          className={Input}
           type="email"
           name="email"
           placeholder="Email"
           onChange={(e) => this.setState({ email: e.target.value })}
         />
-        <StyledInput
+        <input
+          className={Input}
           type="text"
           name="name"
           placeholder="Name"
           onChange={(e) => this.setState({ name: e.target.value })}
         />
-        <StyledInput
+        <input
+          className={Input}
           type="text"
           name="subject"
           placeholder="Subject"
           onChange={(e) => this.setState({ subject: e.target.value })}
         />
-        <StyledTextarea
+        <textarea
+          className={TextArea}
           name="message"
           placeholder="Your Message"
           onChange={(e) => this.setState({ message: e.target.value })}
@@ -92,47 +96,32 @@ class ContactForm extends React.Component<any, any> {
         >
           Send
         </Button>
-      </Form>
+      </form>
     );
   }
 }
 
 const Contact = () => {
-  const [loading, setLoading] = useState<boolean>(true);
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-    setLoading(false);
-  }, []);
-
-  if (loading) {
-    return (
-      <Loader active inverted size="large">
-        Loading
-      </Loader>
-    );
-  }
-
   return (
     <AnimationRevealPage>
-      <Container>
-        <TwoColumn>
-          <ImageColumn>
-            <Image imageSrc="/images/contact.svg" alt="Contact us graphic" width="800px" height="800px" />
-          </ImageColumn>
-          <TextColumn textOnLeft={true}>
-            <TextContent>
-              <Subheading>Contact Us</Subheading>
-              <Heading>Feel free to get in touch</Heading>
-              <Description>
+      <div className={Container}>
+        <div className={TwoColumn}>
+          <div className={ImageColumn}>
+            <Image src="/images/contact.svg" alt="Contact us graphic" width="800px" height="800px" />
+          </div>
+          <div className={TextColumn}>
+            <div className={TextContent}>
+              <h1 className={Subheading}>Contact Us</h1>
+              <h2 className={Heading}>Feel free to get in touch</h2>
+              <p className={Description}>
                 If you have any questions or discovered any issues with our website, please fill this form and our
                 customer support team will get back to you within 24 hours!
-              </Description>
+              </p>
               <ContactForm />
-            </TextContent>
-          </TextColumn>
-        </TwoColumn>
-      </Container>
+            </div>
+          </div>
+        </div>
+      </div>
     </AnimationRevealPage>
   );
 };
