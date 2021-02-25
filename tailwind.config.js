@@ -4,6 +4,8 @@ module.exports = {
   separator: ":",
   theme: {
     screens: {
+      xss: "360px",
+      xs: "480px",
       sm: "640px",
       md: "768px",
       lg: "1024px",
@@ -224,14 +226,10 @@ module.exports = {
     boxShadow: {
       xs: "0 0 0 1px rgba(0, 0, 0, 0.05)",
       sm: "0 1px 2px 0 rgba(0, 0, 0, 0.05)",
-      DEFAULT:
-        "0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)",
-      md:
-        "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
-      lg:
-        "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)",
-      xl:
-        "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
+      DEFAULT: "0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)",
+      md: "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
+      lg: "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)",
+      xl: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
       "2xl": "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
       inner: "inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)",
       outline: "0 0 0 3px rgba(66, 153, 225, 0.5)",
@@ -284,14 +282,7 @@ module.exports = {
         '"Noto Color Emoji"',
       ],
       serif: ["Georgia", "Cambria", '"Times New Roman"', "Times", "serif"],
-      mono: [
-        "Menlo",
-        "Monaco",
-        "Consolas",
-        '"Liberation Mono"',
-        '"Courier New"',
-        "monospace",
-      ],
+      mono: ["Menlo", "Monaco", "Consolas", '"Liberation Mono"', '"Courier New"', "monospace"],
     },
     fontSize: {
       xs: "0.75rem",
@@ -379,7 +370,7 @@ module.exports = {
       disc: "disc",
       decimal: "decimal",
     },
-    margin: (theme, {negative}) => ({
+    margin: (theme, { negative }) => ({
       auto: "auto",
       ...theme("spacing"),
       ...negative(theme("spacing")),
@@ -388,7 +379,7 @@ module.exports = {
       full: "100%",
       screen: "100vh",
     },
-    maxWidth: (theme, {breakpoints}) => ({
+    maxWidth: (theme, { breakpoints }) => ({
       none: "none",
       xs: "20rem",
       sm: "24rem",
@@ -644,7 +635,7 @@ module.exports = {
       90: "90deg",
       180: "180deg",
     },
-    translate: (theme, {negative}) => ({
+    translate: (theme, { negative }) => ({
       ...theme("spacing"),
       ...negative(theme("spacing")),
       "-full": "-100%",
@@ -666,8 +657,7 @@ module.exports = {
     transitionProperty: {
       none: "none",
       all: "all",
-      DEFAULT:
-        "background-color, border-color, color, fill, stroke, opacity, box-shadow, transform",
+      DEFAULT: "background-color, border-color, color, fill, stroke, opacity, box-shadow, transform",
       colors: "background-color, border-color, color, fill, stroke",
       opacity: "opacity",
       shadow: "box-shadow",
@@ -782,8 +772,5 @@ module.exports = {
   },
   corePlugins: {},
   plugins: [],
-  purge: [
-    './pages/**/*.tsx',
-    './components/**/*.tsx'
-  ],
+  purge: ["./pages/**/*.tsx", "./components/**/*.tsx"],
 };

@@ -1,6 +1,5 @@
 import React from "react";
 import Link from "next/link";
-import Image from "next/image";
 import {
   DecoratorBlob,
   Heading,
@@ -19,7 +18,7 @@ import {
 const Hero = () => {
   return (
     <OuterContainer>
-      <div className={MiddleContainer} style={{ }}>
+      <div className={MiddleContainer}>
         <div className={InnerContainer} style={{ marginTop: 250 }}>
           <div className={TwoColumn}>
             <div className={LeftColumn}>
@@ -30,18 +29,14 @@ const Hero = () => {
                 Don't just keep memorizing solutions! Learn the actual intuition required to solve interview problems.
               </p>
               <Link href="/problems">
-                <button className={PrimaryButton} style={{backgroundColor: "#ffffffd0", color: "#635bff"}}>
+                <button className={PrimaryButton} style={{ backgroundColor: "#ffffffd0", color: "#635bff" }}>
                   Get Started
                 </button>
               </Link>
             </div>
             <div className={RightColumn}>
               <div className={IllustrationContainer}>
-                <img
-                  className={StyledImage}
-                  src="/images/landing.svg"
-                  alt="Landing page illustration"
-                />
+                <img className={StyledImage} src="/images/landing.svg" alt="Landing page illustration" />
               </div>
             </div>
           </div>
