@@ -6,7 +6,7 @@ import { Dropdown, Icon } from "semantic-ui-react";
 import { isMod } from "../../../common/auth-service";
 import { showSuccessToast, withGlobalContext } from "common/utils";
 import { constants } from "common/constants";
-import styles from "./home-navbar.module.css";
+import styles from "./HomeNavbar.module.css";
 import {
   HomeNavbarMenu,
   LogoLink,
