@@ -1,13 +1,9 @@
-import React, { FC, useEffect } from "react";
+import React, { FC } from "react";
 import Head from "next/head";
 import Overview from "../../components/problems/overview";
 import PageWrapper from "../../components/common/page-wrapper/page-wrapper";
 
 const OverviewPage: FC = () => {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   const head = () => {
     return (
       <Head>

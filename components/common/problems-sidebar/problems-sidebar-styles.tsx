@@ -1,28 +1,39 @@
 import styled from "styled-components";
 import { Menu } from "semantic-ui-react";
 
-export const SidebarProblemsMenu = styled(Menu)`
+export const FlexWrapper = styled.div`
+  display: flex;
+  background-color: #fcfcff;
+  padding: 30px 30px 50px 30px;
+`;
+
+export const SidebarContainer = styled.div`
+  flex: 0 0 250px;
+`
+
+export const SidebarMenu = styled(Menu)`
   &&& {
-    position: absolute;
-    margin-top: 30px;
-    width: 260px;
-    border-radius: 10px;
+    width: 100%;
     padding: 5px;
+    border-radius: 10px;
     border: none;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
   }
 `;
 
+export const Spacer = styled.div`
+  flex: 0 0 30px;
+`
+
 export const ContentDiv = styled.div`
   &&& {
-    margin-left: 290px;
-    padding: 40px;
+    flex: 1;
   }
 `;
 
 export const StyledMenuHeader = styled(Menu.Header)`
   &&& {
-    font-size: 1.3em !important;
+    font-size: 1.2em !important;
     color: #1a202c !important;
   }
 `;
