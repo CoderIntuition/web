@@ -8,7 +8,7 @@ const OverviewPage: FC = () => {
     return (
       <Head>
         <title>Problems Overview</title>
-        <meta charSet="utf-8" name="description" content="CoderIntuition Problems Overview" />
+        <meta charSet="utf-8" name="description" content="Overview of the problems that CoderIntuition has to offer." />
         <link rel="canonical" href="https://www.coderintuition.com/problems" />
       </Head>
     );

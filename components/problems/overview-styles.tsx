@@ -1,20 +1,23 @@
 import styled from "styled-components";
-import { Grid, Image, Input } from "semantic-ui-react";
+import { Grid, Image } from "semantic-ui-react";
+
+export const TitleSection = styled.div`
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  padding: 10px 15px;
+  margin-bottom: 15px;
+`;
 
 export const StyledGrid = styled(Grid)`
   &&& {
-    margin-bottom: 50px;
+    margin: 0;
   }
 `;
 
 export const StyledImage = styled(Image)`
   &&& {
     padding: 10px;
-  }
-`;
-
-export const StyledInput = styled(Input)`
-  &&& {
-    width: 400px;
   }
 `;
