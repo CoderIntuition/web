@@ -59,3 +59,57 @@ export const StyledGrid = styled(Grid)`
     bottom: 60px;
   }
 `;
+
+// For mobile
+
+export const MobileContainer = styled(Container)`
+  &&& {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+  }
+`;
+
+export const MobileMenu = styled(Menu)`
+  &&& {
+    margin: 0;
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    > * {
+      margin-block: 15px;
+    }
+  }
+`;
+
+export const MobileLink = styled.a`
+  &&& {
+    font-size: 14px;
+    font-weight: 500;
+    color: #243e63;
+    margin: 10px 0;
+    transition-duration: 300ms;
+
+    &::after {
+      content: "";
+      display: block;
+      margin: auto;
+      height: 2px;
+      width: 0;
+      background: transparent;
+      transition: width 500ms ease;
+    }
+
+    &:hover {
+      color: #567095;
+    }
+
+    &:hover::after {
+      width: 100%;
+      background: #567095;
+    }
+  }
+`;

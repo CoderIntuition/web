@@ -1,14 +1,22 @@
 import React, { FC } from "react";
 import Link from "next/link";
-import { StyledContainer, StyledFooterLink, StyledGrid, StyledMenu } from "./footer-styles";
+import {
+  MobileContainer,
+  MobileLink,
+  MobileMenu,
+  StyledContainer,
+  StyledFooterLink,
+  StyledGrid,
+  StyledMenu,
+} from "./footer-styles";
 import styles from "./Footer.module.css";
 import { GridColumn } from "semantic-ui-react";
 import Image from "next/image";
 
 const Footer: FC = () => {
-  return (
+  const desktopFooter = (
     <div className={styles.footerWrapper}>
-      <StyledContainer>
+      <StyledContainer className="md:flex">
         <StyledMenu secondary>
           <Link href="/" passHref>
             <StyledFooterLink>About Us</StyledFooterLink>
@@ -47,6 +55,43 @@ const Footer: FC = () => {
         </StyledGrid>
       </StyledContainer>
     </div>
+  );
+
+  const mobileFooter = (
+    <div className={styles.mobileFooterWrapper}>
+      <MobileContainer className="md:flex">
+        <MobileMenu secondary>
+          <Link href="/" passHref>
+            <a>
+              <Image src="/images/logoname.svg" alt="CoderIntuition logo" width="200px" height="36px" />
+            </a>
+          </Link>
+          <Link href="/" passHref>
+            <MobileLink>About Us</MobileLink>
+          </Link>
+          <Link href="/faq" passHref>
+            <MobileLink>FAQ</MobileLink>
+          </Link>
+          <Link href="/contact" passHref>
+            <MobileLink>Contact Us</MobileLink>
+          </Link>
+          <Link href="/privacy" passHref>
+            <MobileLink href="/privacy">Privacy Policy</MobileLink>
+          </Link>
+          <Link href="/terms" passHref>
+            <MobileLink href="/terms">Terms of Service</MobileLink>
+          </Link>
+          <p>&#169; {new Date().getFullYear()} CoderIntuition. All rights reserved.</p>
+        </MobileMenu>
+      </MobileContainer>
+    </div>
+  );
+
+  return (
+    <>
+      <div className="hidden sm:contents">{desktopFooter}</div>
+      <div className="contents sm:hidden">{mobileFooter}</div>
+    </>
   );
 };
 
