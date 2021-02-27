@@ -1,13 +1,22 @@
 import React from "react";
 import { NextRouter, withRouter } from "next/router";
 import axios from "axios";
-import { Button, Grid, Header, Icon, Input, Loader, Message, Pagination, Search, Table } from "semantic-ui-react";
+import { Button, Grid, Icon, Loader, Message, Pagination, Search, Table } from "semantic-ui-react";
 import ProblemsSidebar from "components/common/problems-sidebar/problems-sidebar";
 import { constants } from "common/constants";
-import NotFound from "components/common/404/404";
 import { capitalize, withGlobalContext } from "common/utils";
 import _ from "lodash";
-import { StyledGrid, TitleSection } from "./overview-styles";
+import {
+  GrayBackground,
+  Heading,
+  HeadingSection,
+  SearchInput,
+  StyledGrid,
+  Subheading,
+  TitleSection,
+  TitleSpacer,
+} from "./overview-styles";
+import { NotFoundWrapper } from "./problems-styles";
 
 const categories = {
   arrays: "Arrays",
@@ -97,8 +106,7 @@ class Problems extends React.Component<ProblemsProps, ProblemsState> {
 
     if (category !== prevProps.router.query.category) {
       window.scrollTo(0, 0);
-      console.log(category, prevProps.router.query.category);
-      if (categories[category as string] === null) {
+      if (category && !categories[category as string]) {
         this.setState({
           notFound: true,
         });
@@ -115,7 +123,7 @@ class Problems extends React.Component<ProblemsProps, ProblemsState> {
   componentDidMount() {
     const { category } = this.props.router.query;
 
-    if (categories[category as string] === null) {
+    if (category && !categories[category as string]) {
       this.setState({
         notFound: true,
       });
@@ -160,119 +168,109 @@ class Problems extends React.Component<ProblemsProps, ProblemsState> {
     const category = router.query.category as string;
 
     if (this.state.notFound) {
-      return <NotFound />;
-    }
-
-    if (_.isEmpty(this.state.problems)) {
       return (
-        <div
-          style={{
-            width: 400,
-            margin: "0 auto",
-            marginTop: 10,
-            padding: 30,
-            textAlign: "center",
-          }}
-        >
+        <NotFoundWrapper>
           <Message error>Error: Category not found.</Message>
           <Button primary onClick={() => router.back()}>
             Back
           </Button>
-        </div>
+        </NotFoundWrapper>
       );
     }
 
     return (
-      <>
-        <ProblemsSidebar active={category ? category : ""}>
-          <TitleSection>
-            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-              <Header as="h2" style={{ margin: 0 }}>
-                Overview
-              </Header>
-              <div style={{ width: 50 }} />
-              <Search
-                category
-                loading={this.state.searching}
-                value={this.state.searchValue}
-                onResultSelect={(e, { result }) => this.props.router.push("/problem/" + result.urlName)}
-                onSearchChange={
-                  _.debounce(this.handleSearchChange, 500, {
-                    leading: true,
-                  }) as any
-                }
-                results={this.state.searchResults}
-                input={<Input placeholder="Search for a problem" />}
-              />
-            </div>
-          </TitleSection>
-          <StyledGrid>
-            {this.state.loading ? (
-              <Loader active inverted size="large">
-                Loading
-              </Loader>
-            ) : (
-              <Grid.Row>
-                <Table padded selectable style={{ marginBottom: 70, minWidth: 600 }}>
-                  <Table.Header>
-                    <Table.Row>
-                      <Table.HeaderCell colSpan="4" verticalAlign="middle">
-                      </Table.HeaderCell>
-                    </Table.Row>
-                    <Table.Row>
-                      <Table.HeaderCell className="second" width={1} style={{ paddingLeft: 30 }}>
-                        ID
-                      </Table.HeaderCell>
-                      <Table.HeaderCell className="second" width={10}>
-                        Name
-                      </Table.HeaderCell>
-                      <Table.HeaderCell className="second" width={3}>
-                        Category
-                      </Table.HeaderCell>
-                      <Table.HeaderCell className="second" width={2}>
-                        Difficulty
-                      </Table.HeaderCell>
-                    </Table.Row>
-                  </Table.Header>
-
-                  <Table.Body>
-                    {(this.state.problems as any[]).map((problem, i) => (
-                      <Table.Row key={i} onClick={() => router.push("/problem/" + problem.urlName)}>
-                        <Table.Cell style={{ paddingLeft: 30 }}>{problem.id}</Table.Cell>
-                        <Table.Cell>{problem.name}</Table.Cell>
-                        <Table.Cell>{capitalize(problem.category)}</Table.Cell>
-                        <Table.Cell>{capitalize(problem.difficulty)}</Table.Cell>
-                      </Table.Row>
-                    ))}
-                    <Table.Row disabled>
-                      <Table.Cell />
-                      <Table.Cell />
-                      <Table.Cell />
-                      <Table.Cell />
-                    </Table.Row>
-                  </Table.Body>
-                </Table>
-                <Pagination
-                  defaultActivePage={1}
-                  ellipsisItem={null}
-                  firstItem={null}
-                  lastItem={null}
-                  prevItem={{
-                    content: <Icon name="angle left" />,
-                    icon: true,
-                  }}
-                  nextItem={{
-                    content: <Icon name="angle right" />,
-                    icon: true,
-                  }}
-                  totalPages={this.state.totalPages}
-                  onPageChange={this.handlePageChange}
+      <GrayBackground>
+        <div>
+          <ProblemsSidebar active={category ? category : ""}>
+            <>
+              <TitleSection>
+                <HeadingSection>
+                  <Subheading>CATEGORY</Subheading>
+                  <Heading>{categories[category]}</Heading>
+                </HeadingSection>
+                <TitleSpacer />
+                <Search
+                  category
+                  loading={this.state.searching}
+                  value={this.state.searchValue}
+                  onResultSelect={(e, { result }) => this.props.router.push("/problem/" + result.urlName)}
+                  onSearchChange={
+                    _.debounce(this.handleSearchChange, 500, {
+                      leading: true,
+                    }) as any
+                  }
+                  results={this.state.searchResults}
+                  input={<SearchInput placeholder="Search for a problem" />}
                 />
-              </Grid.Row>
-            )}
-          </StyledGrid>
-        </ProblemsSidebar>
-      </>
+              </TitleSection>
+              <StyledGrid>
+                {this.state.loading ? (
+                  <Loader active inverted size="large">
+                    Loading
+                  </Loader>
+                ) : (
+                  <Grid.Row>
+                    <Table padded selectable style={{ marginBottom: 70, minWidth: 600, marginRight: 10 }}>
+                      <Table.Header>
+                        <Table.Row>
+                          <Table.HeaderCell colSpan="4" verticalAlign="middle"></Table.HeaderCell>
+                        </Table.Row>
+                        <Table.Row>
+                          <Table.HeaderCell className="second" width={1} style={{ paddingLeft: 30 }}>
+                            ID
+                          </Table.HeaderCell>
+                          <Table.HeaderCell className="second" width={10}>
+                            Name
+                          </Table.HeaderCell>
+                          <Table.HeaderCell className="second" width={3}>
+                            Category
+                          </Table.HeaderCell>
+                          <Table.HeaderCell className="second" width={2}>
+                            Difficulty
+                          </Table.HeaderCell>
+                        </Table.Row>
+                      </Table.Header>
+
+                      <Table.Body>
+                        {(this.state.problems as any[]).map((problem, i) => (
+                          <Table.Row key={i} onClick={() => router.push("/problem/" + problem.urlName)}>
+                            <Table.Cell style={{ paddingLeft: 30 }}>{problem.id}</Table.Cell>
+                            <Table.Cell>{problem.name}</Table.Cell>
+                            <Table.Cell>{capitalize(problem.category)}</Table.Cell>
+                            <Table.Cell>{capitalize(problem.difficulty)}</Table.Cell>
+                          </Table.Row>
+                        ))}
+                        <Table.Row disabled>
+                          <Table.Cell />
+                          <Table.Cell />
+                          <Table.Cell />
+                          <Table.Cell />
+                        </Table.Row>
+                      </Table.Body>
+                    </Table>
+                    <Pagination
+                      defaultActivePage={1}
+                      ellipsisItem={null}
+                      firstItem={null}
+                      lastItem={null}
+                      prevItem={{
+                        content: <Icon name="angle left" />,
+                        icon: true,
+                      }}
+                      nextItem={{
+                        content: <Icon name="angle right" />,
+                        icon: true,
+                      }}
+                      totalPages={this.state.totalPages}
+                      onPageChange={this.handlePageChange}
+                    />
+                  </Grid.Row>
+                )}
+              </StyledGrid>
+            </>
+          </ProblemsSidebar>
+        </div>
+      </GrayBackground>
     );
   }
 }
