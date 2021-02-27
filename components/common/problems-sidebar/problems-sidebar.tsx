@@ -10,6 +10,7 @@ import {
   StyledMenuHeader,
   StyledMenuItem,
 } from "./problems-sidebar-styles";
+import AnimationRevealPage from "../helpers/animation-reveal-page";
 
 class ProblemsSidebar extends Component<{ active: string }, {}> {
   render() {
@@ -27,7 +28,6 @@ class ProblemsSidebar extends Component<{ active: string }, {}> {
                 </Link>
               </Menu.Menu>
             </Menu.Item>
-
             <Menu.Item>
               <StyledMenuHeader>Learning Paths</StyledMenuHeader>
               <Menu.Menu>
@@ -103,7 +103,7 @@ class ProblemsSidebar extends Component<{ active: string }, {}> {
         </SidebarContainer>
         <Spacer />
         <ContentDiv>
-          {this.props.children}
+          <AnimationRevealPage right>{this.props.children}</AnimationRevealPage>
         </ContentDiv>
       </FlexWrapper>
     );

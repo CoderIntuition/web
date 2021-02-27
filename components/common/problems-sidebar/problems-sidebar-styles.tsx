@@ -3,7 +3,6 @@ import { Menu } from "semantic-ui-react";
 
 export const FlexWrapper = styled.div`
   display: flex;
-  background-color: #fcfcff;
   padding: 30px 30px 50px 30px;
 `;
 
@@ -22,7 +21,7 @@ export const SidebarMenu = styled(Menu)`
 `;
 
 export const Spacer = styled.div`
-  flex: 0 0 30px;
+  flex: 0 0 35px;
 `
 
 export const ContentDiv = styled.div`
