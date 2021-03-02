@@ -44,7 +44,7 @@ class ProblemsSidebar extends Component<{ active: string }, {}> {
               </Menu.Menu>
             </Menu.Item>
             <Menu.Item>
-              <StyledMenuHeader>Categories</StyledMenuHeader>
+              <StyledMenuHeader>Problems</StyledMenuHeader>
               <Menu.Menu>
                 <Link href="/problems/arrays">
                   <a>

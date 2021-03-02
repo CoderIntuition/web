@@ -21,7 +21,7 @@ export const SidebarMenu = styled(Menu)`
 `;
 
 export const Spacer = styled.div`
-  flex: 0 0 35px;
+  flex: 0 0 30px;
 `
 
 export const ContentDiv = styled.div`

@@ -13,6 +13,9 @@
 @tabularBorderColor: rgba(0, 0, 0, 0.08);
 @tabularVerticalPadding: 15px;
 
+@paginationActiveBackground: #fcfcff;
+@paginationActiveTextColor: #4d69e9;
+
 @arrowBorder: none;
 @secondaryItemBorderRadius: 12px;
 @borderRadius: 10px;

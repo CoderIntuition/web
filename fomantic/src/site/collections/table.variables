@@ -1,15 +1,13 @@
 /*******************************
     User Variable Overrides
 *******************************/
-@borderRadius: 10px !important;
 @border: none;
-@boxShadow: 0px 0px 10px rgba(0, 0, 0, 0.05) !important;
-@rowBorder: 0.01px solid rgba(0, 0, 0, 0.05) !important;
+@rowBorder: none;
 @color: #595f6b !important;
 @headerColor: #595f6b !important;
 @headerBackground: #ffffff;
-@headerSecondBackground: #4d69e910;
-@selectableBackground: #4d69e90a;
+@headerSecondBackground: linear-gradient(180deg, rgba(255,255,255,1) 40%, rgba(249,249,253,1) 100%);
+@stripedBackground: #fcfcff;
 @selectableTextColor: #4d69e9;
 @footerBackground: #ffffff;
 @headerBorder: none;

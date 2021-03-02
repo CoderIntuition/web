@@ -1,22 +1,13 @@
 import React from "react";
 import { NextRouter, withRouter } from "next/router";
 import axios from "axios";
-import { Button, Grid, Icon, Loader, Message, Pagination, Search, Table } from "semantic-ui-react";
+import { Button, Grid, Icon, Loader, Message, Pagination, Radio, Search, Segment, Table } from "semantic-ui-react";
 import ProblemsSidebar from "components/common/problems-sidebar/problems-sidebar";
 import { constants } from "common/constants";
 import { capitalize, withGlobalContext } from "common/utils";
 import _ from "lodash";
-import {
-  GrayBackground,
-  Heading,
-  HeadingSection,
-  SearchInput,
-  StyledGrid,
-  Subheading,
-  TitleSection,
-  TitleSpacer,
-} from "./overview-styles";
-import { NotFoundWrapper } from "./problems-styles";
+import { GrayBackground, Heading, HeadingSection, SearchInput, StyledGrid, Subheading } from "./overview-styles";
+import { BottomRow, FirstRow, NotFoundWrapper, RadioLabel, SecondRow } from "./problems-styles";
 
 const categories = {
   arrays: "Arrays",
@@ -178,98 +169,107 @@ class Problems extends React.Component<ProblemsProps, ProblemsState> {
       );
     }
 
+    if (this.state.loading) {
+      return (
+        <Loader active inverted size="large">
+          Loading
+        </Loader>
+      );
+    }
+
     return (
       <GrayBackground>
-        <div>
-          <ProblemsSidebar active={category ? category : ""}>
-            <>
-              <TitleSection>
-                <HeadingSection>
-                  <Subheading>CATEGORY</Subheading>
-                  <Heading>{categories[category]}</Heading>
-                </HeadingSection>
-                <TitleSpacer />
-                <Search
-                  category
-                  loading={this.state.searching}
-                  value={this.state.searchValue}
-                  onResultSelect={(e, { result }) => this.props.router.push("/problem/" + result.urlName)}
-                  onSearchChange={
-                    _.debounce(this.handleSearchChange, 500, {
-                      leading: true,
-                    }) as any
-                  }
-                  results={this.state.searchResults}
-                  input={<SearchInput placeholder="Search for a problem" />}
-                />
-              </TitleSection>
+        <ProblemsSidebar active={category ? category : ""}>
+          <>
+            <HeadingSection>
+              <Subheading>CATEGORY</Subheading>
+              <Heading>{categories[category]}</Heading>
+            </HeadingSection>
+            <Segment raised style={{ padding: 0, margin: 10 }}>
               <StyledGrid>
-                {this.state.loading ? (
-                  <Loader active inverted size="large">
-                    Loading
-                  </Loader>
-                ) : (
-                  <Grid.Row>
-                    <Table padded selectable style={{ marginBottom: 70, minWidth: 600, marginRight: 10 }}>
-                      <Table.Header>
-                        <Table.Row>
-                          <Table.HeaderCell colSpan="4" verticalAlign="middle"></Table.HeaderCell>
-                        </Table.Row>
-                        <Table.Row>
-                          <Table.HeaderCell className="second" width={1} style={{ paddingLeft: 30 }}>
-                            ID
-                          </Table.HeaderCell>
-                          <Table.HeaderCell className="second" width={10}>
-                            Name
-                          </Table.HeaderCell>
-                          <Table.HeaderCell className="second" width={3}>
-                            Category
-                          </Table.HeaderCell>
-                          <Table.HeaderCell className="second" width={2}>
-                            Difficulty
-                          </Table.HeaderCell>
-                        </Table.Row>
-                      </Table.Header>
-
-                      <Table.Body>
-                        {(this.state.problems as any[]).map((problem, i) => (
-                          <Table.Row key={i} onClick={() => router.push("/problem/" + problem.urlName)}>
-                            <Table.Cell style={{ paddingLeft: 30 }}>{problem.id}</Table.Cell>
-                            <Table.Cell>{problem.name}</Table.Cell>
-                            <Table.Cell>{capitalize(problem.category)}</Table.Cell>
-                            <Table.Cell>{capitalize(problem.difficulty)}</Table.Cell>
-                          </Table.Row>
-                        ))}
-                        <Table.Row disabled>
-                          <Table.Cell />
-                          <Table.Cell />
-                          <Table.Cell />
-                          <Table.Cell />
-                        </Table.Row>
-                      </Table.Body>
-                    </Table>
-                    <Pagination
-                      defaultActivePage={1}
-                      ellipsisItem={null}
-                      firstItem={null}
-                      lastItem={null}
-                      prevItem={{
-                        content: <Icon name="angle left" />,
-                        icon: true,
-                      }}
-                      nextItem={{
-                        content: <Icon name="angle right" />,
-                        icon: true,
-                      }}
-                      totalPages={this.state.totalPages}
-                      onPageChange={this.handlePageChange}
+                <FirstRow>
+                  <Grid.Column floated="left" verticalAlign="middle" width={8}>
+                    <span style={{ fontSize: 16, fontWeight: 500 }}>
+                      You have <b>12</b> un-attempted problems
+                    </span>
+                  </Grid.Column>
+                  <Grid.Column floated="right" width={8}>
+                    <Search
+                      category
+                      loading={this.state.searching}
+                      value={this.state.searchValue}
+                      onResultSelect={(e, { result }) => this.props.router.push("/problem/" + result.urlName)}
+                      onSearchChange={
+                        _.debounce(this.handleSearchChange, 500, {
+                          leading: true,
+                        }) as any
+                      }
+                      results={this.state.searchResults}
+                      input={<SearchInput placeholder="Search for a problem" style={{ float: "right" }} />}
                     />
-                  </Grid.Row>
-                )}
+                  </Grid.Column>
+                </FirstRow>
+                <SecondRow>
+                  <Grid.Column verticalAlign="middle">
+                    <div
+                      style={{
+                        display: "flex",
+                        alignContent: "center",
+                      }}
+                    >
+                      <Radio toggle />
+                      <RadioLabel>See your completed problems</RadioLabel>
+                    </div>
+                  </Grid.Column>
+                </SecondRow>
+                <Grid.Row>
+                  <Table striped padded selectable style={{ width: "100%", margin: 0 }}>
+                    <Table.Header>
+                      <Table.Row>
+                        <Table.HeaderCell className="second" width={10} style={{ paddingLeft: 30 }}>
+                          Name
+                        </Table.HeaderCell>
+                        <Table.HeaderCell className="second" width={3}>
+                          Category
+                        </Table.HeaderCell>
+                        <Table.HeaderCell className="second" width={2}>
+                          Difficulty
+                        </Table.HeaderCell>
+                      </Table.Row>
+                    </Table.Header>
+                    <Table.Body>
+                      {(this.state.problems as any[]).map((problem, i) => (
+                        <Table.Row key={i} onClick={() => router.push("/problem/" + problem.urlName)}>
+                          <Table.Cell style={{ paddingLeft: 30 }}>{problem.name}</Table.Cell>
+                          <Table.Cell>{capitalize(problem.category)}</Table.Cell>
+                          <Table.Cell>{capitalize(problem.difficulty)}</Table.Cell>
+                        </Table.Row>
+                      ))}
+                    </Table.Body>
+                  </Table>
+                </Grid.Row>
+                <BottomRow centered>
+                  <Pagination
+                    defaultActivePage={1}
+                    ellipsisItem={null}
+                    firstItem={null}
+                    lastItem={null}
+                    prevItem={{
+                      content: <Icon name="angle left" />,
+                      icon: true,
+                    }}
+                    nextItem={{
+                      content: <Icon name="angle right" />,
+                      icon: true,
+                    }}
+                    totalPages={this.state.totalPages}
+                    onPageChange={this.handlePageChange}
+                  />
+                </BottomRow>
               </StyledGrid>
-            </>
-          </ProblemsSidebar>
-        </div>
+            </Segment>
+          </>
+        </ProblemsSidebar>
       </GrayBackground>
     );
   }

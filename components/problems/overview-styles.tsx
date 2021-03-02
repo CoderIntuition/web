@@ -5,21 +5,11 @@ export const GrayBackground = styled.div`
   background-color: #fcfcfe;
 `;
 
-export const TitleSection = styled.div`
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  margin-bottom: 20px;
-`;
-
 export const HeadingSection = styled.div`
   display: flex;
   flex-direction: column;
-`
-
-export const TitleSpacer = styled.div`
-  width: 50px;
-`
+  margin: 10px;
+`;
 
 export const Subheading = styled.h2`
   color: #4d69e9;
@@ -39,11 +29,11 @@ export const Heading = styled.h1`
 export const SearchInput = styled(Input)`
   width: 20vw;
   min-width: 200px;
-  margin-right: 10px;
+  border-radius: 999px;
 `
 
 export const StyledGrid = styled(Grid)`
   &&& {
-    margin: 0;
+    margin: 10px;
   }
 `;
