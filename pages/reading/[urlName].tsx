@@ -1,12 +1,12 @@
 import React, { FC, useEffect, useState } from "react";
 import Head from "next/head";
-import _ from 'lodash';
+import _ from "lodash";
 import PageWrapper from "components/common/page-wrapper/page-wrapper";
-import Problems from "components/learn/problems";
 import { useRouter } from "next/router";
 import { Loader } from "semantic-ui-react";
+import Reading from "../../components/reading/reading";
 
-const OverviewPage: FC = () => {
+const ReadingPage: FC = () => {
   const router = useRouter();
   const [loading, setLoading] = useState(true);
 
@@ -19,9 +19,9 @@ const OverviewPage: FC = () => {
   const head = () => {
     return (
       <Head>
-        <title>Problems: {router.query.category}</title>
-        <meta charSet="utf-8" name="description" content={"Problems under the " + router.query.category + " category."} />
-        <link rel="canonical" href="https://www.coderintuition.com/problems" />
+        <title>{router.query.urlName}</title>
+        <meta charSet="utf-8" name="description" content={"Reading"} />
+        <link rel="canonical" href={"https://www.coderintuition.com/reading/" + router.query.urlName} />
       </Head>
     );
   };
@@ -36,11 +36,11 @@ const OverviewPage: FC = () => {
         ) : (
           <>
             {head()}
-            <Problems />
+            <Reading />
           </>
         )}
       </PageWrapper>
     </>
   );
 };
-export default OverviewPage;
+export default ReadingPage;

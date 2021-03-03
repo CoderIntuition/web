@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import Head from "next/head";
-import Overview from "../../components/problems/overview";
+import Overview from "../../components/learn/overview";
 import PageWrapper from "../../components/common/page-wrapper/page-wrapper";
 
 const OverviewPage: FC = () => {

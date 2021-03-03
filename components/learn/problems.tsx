@@ -57,10 +57,10 @@ interface ProblemsState {
   notFound: boolean;
   page: number;
   totalPages: number;
-  problems: SimpleProblem[] | [];
+  problems: SimpleProblem[];
   searching: boolean;
   searchValue: string;
-  searchResults: SimpleProblem[] | [];
+  searchResults: SimpleProblem[];
 }
 
 class Problems extends React.Component<ProblemsProps, ProblemsState> {

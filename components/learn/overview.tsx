@@ -2,17 +2,7 @@ import React from "react";
 import { NextRouter, withRouter } from "next/router";
 import Image from "next/image";
 import axios from "axios";
-import _ from "lodash";
 import { Card, CardGroup, Grid, Loader } from "semantic-ui-react";
-// import array from "assets/graphics/array.svg";
-// import string from "assets/graphics/string.svg";
-// import linkedList from "assets/graphics/linkedlist.svg";
-// import stack from "assets/graphics/stack.svg";
-// import queue from "assets/graphics/queue.svg";
-// import tree from "assets/graphics/tree.svg";
-// import graph from "assets/graphics/graph.svg";
-// import backtracking from "assets/graphics/backtracking.svg";
-// import dp from "assets/graphics/dp.svg";
 import ProblemsSidebar from "components/common/problems-sidebar/problems-sidebar";
 import { constants } from "common/constants";
 import { GrayBackground, Heading, HeadingSection, StyledGrid, Subheading } from "./overview-styles";
@@ -31,8 +21,6 @@ class Overview extends React.Component<OverviewProps> {
   };
 
   componentDidMount() {
-    window.scrollTo(0, 0);
-
     axios.get(constants.ALL_PROBLEMS_URL).then((res) => {
       this.setState({
         loading: false,
@@ -40,41 +28,6 @@ class Overview extends React.Component<OverviewProps> {
       });
     });
   }
-
-  handleSearchChange = (e, { value }) => {
-    this.setState({ searching: true, searchValue: value });
-
-    setTimeout(() => {
-      if (this.state.searchValue.length < 1) return this.setState({ searching: false, searchResults: [] });
-
-      const re = new RegExp(_.escapeRegExp(this.state.searchValue), "i");
-      const isMatch = (result) => {
-        return re.test(result.name);
-      };
-
-      const filteredResults = _.reduce(
-        this.state.results,
-        (memo, data, name) => {
-          let results = _.filter(data.results, isMatch);
-          results = _.map(results, (result) => {
-            return {
-              title: result.name,
-              category: result.category,
-              urlName: result.urlName,
-            };
-          });
-          if (results.length) memo[name] = { name, results };
-          return memo;
-        },
-        {}
-      );
-
-      this.setState({
-        searching: false,
-        searchResults: filteredResults,
-      });
-    }, 300);
-  };
 
   render() {
     if (this.state.loading) {

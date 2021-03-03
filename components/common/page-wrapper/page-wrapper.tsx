@@ -9,7 +9,7 @@ interface PageWrapperProps extends PropsWithChildren<any> {
   hideFooter?: boolean;
 }
 
-const PageWrapper: FC<PageWrapperProps> = (props: PageWrapperProps) => {
+const PageWrapper: FC<PageWrapperProps> = (props) => {
   return (
     <FlexContainer>
       {props.homeNavbar ? <HomeNavbar /> : <Navbar />}
