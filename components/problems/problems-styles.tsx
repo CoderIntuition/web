@@ -8,6 +8,12 @@ export const NotFoundWrapper = styled.div`
   text-align: center;
 `;
 
+export const StyledGrid = styled(Grid)`
+  &&& {
+    margin: 0;
+  }
+`;
+
 export const FirstRow = styled(Grid.Row)`
   margin: 10px 15px 0 15px;
 `;

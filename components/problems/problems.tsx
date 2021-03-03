@@ -12,14 +12,14 @@ import {
   Radio,
   Search,
   Segment,
-  Table
+  Table,
 } from "semantic-ui-react";
 import ProblemsSidebar from "components/common/problems-sidebar/problems-sidebar";
 import { constants } from "common/constants";
 import { capitalize, getDifficultyColor, withGlobalContext } from "common/utils";
 import _ from "lodash";
-import { GrayBackground, Heading, HeadingSection, SearchInput, StyledGrid, Subheading } from "./overview-styles";
-import { BottomRow, FirstRow, NotFoundWrapper, RadioLabel, SecondRow } from "./problems-styles";
+import { GrayBackground, Heading, HeadingSection, SearchInput, Subheading } from "./overview-styles";
+import { BottomRow, FirstRow, NotFoundWrapper, RadioLabel, SecondRow, StyledGrid } from "./problems-styles";
 
 const categories = {
   arrays: "Arrays",
@@ -257,7 +257,9 @@ class Problems extends React.Component<ProblemsProps, ProblemsState> {
                             <Label circular>{capitalize(problem.category)}</Label>
                           </Table.Cell>
                           <Table.Cell>
-                            <Label color={getDifficultyColor(problem.difficulty)} circular>{capitalize(problem.difficulty)}</Label>
+                            <Label color={getDifficultyColor(problem.difficulty)} circular>
+                              {capitalize(problem.difficulty)}
+                            </Label>
                           </Table.Cell>
                         </Table.Row>
                       ))}
