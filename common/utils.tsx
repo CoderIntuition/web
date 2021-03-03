@@ -110,6 +110,20 @@ export function getName(str) {
   return capitalize(str.split(" ")[0]);
 }
 
+export function getDifficultyColor(difficulty) {
+  console.log(difficulty);
+  switch (difficulty) {
+    case "BEGINNER":
+      return "blue";
+    case "EASY":
+      return "green";
+    case "MEDIUM":
+      return "yellow";
+    case "HARD":
+      return "red";
+  }
+}
+
 export function wrapQuestions(questions) {
   return JSON.parse(
     "{\n" +

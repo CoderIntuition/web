@@ -1,10 +1,22 @@
 import React from "react";
 import { NextRouter, withRouter } from "next/router";
 import axios from "axios";
-import { Button, Grid, Icon, Loader, Message, Pagination, Radio, Search, Segment, Table } from "semantic-ui-react";
+import {
+  Button,
+  Grid,
+  Icon,
+  Label,
+  Loader,
+  Message,
+  Pagination,
+  Radio,
+  Search,
+  Segment,
+  Table
+} from "semantic-ui-react";
 import ProblemsSidebar from "components/common/problems-sidebar/problems-sidebar";
 import { constants } from "common/constants";
-import { capitalize, withGlobalContext } from "common/utils";
+import { capitalize, getDifficultyColor, withGlobalContext } from "common/utils";
 import _ from "lodash";
 import { GrayBackground, Heading, HeadingSection, SearchInput, StyledGrid, Subheading } from "./overview-styles";
 import { BottomRow, FirstRow, NotFoundWrapper, RadioLabel, SecondRow } from "./problems-styles";
@@ -227,7 +239,7 @@ class Problems extends React.Component<ProblemsProps, ProblemsState> {
                     <Table.Header>
                       <Table.Row>
                         <Table.HeaderCell className="second" width={10} style={{ paddingLeft: 30 }}>
-                          Name
+                          Problem Name
                         </Table.HeaderCell>
                         <Table.HeaderCell className="second" width={3}>
                           Category
@@ -241,8 +253,12 @@ class Problems extends React.Component<ProblemsProps, ProblemsState> {
                       {(this.state.problems as any[]).map((problem, i) => (
                         <Table.Row key={i} onClick={() => router.push("/problem/" + problem.urlName)}>
                           <Table.Cell style={{ paddingLeft: 30 }}>{problem.name}</Table.Cell>
-                          <Table.Cell>{capitalize(problem.category)}</Table.Cell>
-                          <Table.Cell>{capitalize(problem.difficulty)}</Table.Cell>
+                          <Table.Cell>
+                            <Label circular>{capitalize(problem.category)}</Label>
+                          </Table.Cell>
+                          <Table.Cell>
+                            <Label color={getDifficultyColor(problem.difficulty)} circular>{capitalize(problem.difficulty)}</Label>
+                          </Table.Cell>
                         </Table.Row>
                       ))}
                     </Table.Body>
