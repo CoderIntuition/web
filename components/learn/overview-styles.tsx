@@ -30,7 +30,7 @@ export const SearchInput = styled(Input)`
   width: 20vw;
   min-width: 200px;
   border-radius: 999px;
-`
+`;
 
 export const StyledGrid = styled(Grid)`
   &&& {

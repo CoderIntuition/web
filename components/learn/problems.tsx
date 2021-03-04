@@ -1,25 +1,22 @@
 import React from "react";
 import { NextRouter, withRouter } from "next/router";
 import axios from "axios";
-import {
-  Button,
-  Grid,
-  Icon,
-  Label,
-  Loader,
-  Message,
-  Pagination,
-  Radio,
-  Search,
-  Segment,
-  Table,
-} from "semantic-ui-react";
+import _ from "lodash";
+import { Button, Grid, Icon, Label, Loader, Message, Pagination, Radio, Segment, Table } from "semantic-ui-react";
 import ProblemsSidebar from "components/common/problems-sidebar/problems-sidebar";
 import { constants } from "common/constants";
 import { capitalize, getDifficultyColor, withGlobalContext } from "common/utils";
-import _ from "lodash";
-import { GrayBackground, Heading, HeadingSection, SearchInput, Subheading } from "./overview-styles";
-import { BottomRow, FirstRow, NotFoundWrapper, RadioLabel, SecondRow, StyledGrid } from "./problems-styles";
+import { SimpleProblem } from "common/types";
+import { GrayBackground, Heading, HeadingSection, Subheading } from "./overview-styles";
+import {
+  BottomRow,
+  FirstRow,
+  NotFoundWrapper,
+  RadioLabel,
+  SearchInput,
+  SecondRow,
+  StyledGrid,
+} from "./problems-styles";
 
 const categories = {
   arrays: "Arrays",
@@ -42,16 +39,6 @@ interface ProblemsProps {
   currentUser: any;
 }
 
-interface SimpleProblem {
-  id: number;
-  name: string;
-  urlName: string;
-  category: string;
-  difficulty: string;
-  plusOnly: boolean;
-  totalPages: number;
-}
-
 interface ProblemsState {
   loading: boolean;
   notFound: boolean;
@@ -60,7 +47,7 @@ interface ProblemsState {
   problems: SimpleProblem[];
   searching: boolean;
   searchValue: string;
-  searchResults: SimpleProblem[];
+  searchedProblems: SimpleProblem[];
 }
 
 class Problems extends React.Component<ProblemsProps, ProblemsState> {
@@ -75,7 +62,7 @@ class Problems extends React.Component<ProblemsProps, ProblemsState> {
       totalPages: 0,
       searching: false,
       searchValue: "",
-      searchResults: [],
+      searchedProblems: [],
     };
   }
 
@@ -95,6 +82,7 @@ class Problems extends React.Component<ProblemsProps, ProblemsState> {
           loading: false,
           problems: res.data.problems,
           totalPages: res.data.totalPages,
+          searchedProblems: res.data.problems,
         });
       })
       .catch((_err) => {
@@ -144,24 +132,22 @@ class Problems extends React.Component<ProblemsProps, ProblemsState> {
     });
   };
 
-  handleSearchChange = (e, { value }) => {
-    this.setState({ searching: true, searchValue: value });
+  handleSearchChange = (e) => {
+    this.setState({ searching: true, searchValue: e.target.value });
 
     setTimeout(() => {
       if (this.state.searchValue.length < 1) {
-        return this.setState({ searching: false, searchResults: [] });
+        return this.setState({ searching: false, searchedProblems: this.state.problems });
       }
 
       const re = new RegExp(_.escapeRegExp(this.state.searchValue), "i");
       const isMatch = (result) => {
-        return re.test(result.title);
+        return re.test(result.name);
       };
-
-      const filteredResults = _.filter(this.state.problems, isMatch);
 
       this.setState({
         searching: false,
-        searchResults: filteredResults,
+        searchedProblems: _.filter(this.state.problems, isMatch),
       });
     }, 300);
   };
@@ -206,18 +192,12 @@ class Problems extends React.Component<ProblemsProps, ProblemsState> {
                     </span>
                   </Grid.Column>
                   <Grid.Column floated="right" width={8}>
-                    <Search
-                      category
+                    <SearchInput
+                      placeholder="Search for a problem"
                       loading={this.state.searching}
-                      value={this.state.searchValue}
-                      onResultSelect={(e, { result }) => this.props.router.push("/problem/" + result.urlName)}
-                      onSearchChange={
-                        _.debounce(this.handleSearchChange, 500, {
-                          leading: true,
-                        }) as any
-                      }
-                      results={this.state.searchResults}
-                      input={<SearchInput placeholder="Search for a problem" style={{ float: "right" }} />}
+                      onChange={_.debounce(this.handleSearchChange, 500, {
+                        leading: true,
+                      })}
                     />
                   </Grid.Column>
                 </FirstRow>
@@ -250,7 +230,7 @@ class Problems extends React.Component<ProblemsProps, ProblemsState> {
                       </Table.Row>
                     </Table.Header>
                     <Table.Body>
-                      {(this.state.problems as any[]).map((problem, i) => (
+                      {this.state.searchedProblems.map((problem, i) => (
                         <Table.Row key={i} onClick={() => router.push("/problem/" + problem.urlName)}>
                           <Table.Cell style={{ paddingLeft: 30 }}>{problem.name}</Table.Cell>
                           <Table.Cell>

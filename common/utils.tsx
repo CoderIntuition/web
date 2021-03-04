@@ -111,7 +111,6 @@ export function getName(str) {
 }
 
 export function getDifficultyColor(difficulty) {
-  console.log(difficulty);
   switch (difficulty) {
     case "BEGINNER":
       return "blue";

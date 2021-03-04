@@ -1,43 +1,48 @@
 import React, { RefObject } from "react";
-import { CheckCircle } from "react-feather";
+import { NextRouter, withRouter } from "next/router";
 import { Card, CardGroup, GridRow, Header, List, ListItem } from "semantic-ui-react";
+import { CheckCircle } from "react-feather";
 import ProblemsSidebar from "components/common/problems-sidebar/problems-sidebar";
 import NotFound from "components/common/404/404";
+import { SimpleProblem } from "../../common/types";
 import { ItemCard, ItemHeader, StyledGrid } from "./beginner-path-styles";
-import { NextRouter, withRouter } from "next/router";
 import { Heading, HeadingSection, Subheading } from "./overview-styles";
 
 interface BeginnerPathProps {
   router: NextRouter;
 }
 
-class BeginnerPath extends React.Component<BeginnerPathProps, {}> {
-  state = {
-    notFound: false,
-    page: 1,
-    problems: {} as any,
-    totalPages: 0,
-    searching: false,
-    searchValue: "",
-    searchResults: {} as any,
-    activeIndex: 0,
-  };
+interface BeginnerPathState {
+  notFound: boolean;
+  problems: SimpleProblem[];
+  page: number;
+  totalPages: number;
+  activeIndex: number;
+}
 
+class BeginnerPath extends React.Component<BeginnerPathProps, BeginnerPathState> {
+  TEXT_COLOR = "#c4cfc4";
+  PROBLEM_COLOR = "#4d69e9";
+  QUIZ_COLOR = "#f79862";
+  TIPS_COLOR = "#77df79";
   contentsRefs: RefObject<any>[];
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      notFound: false,
+      page: 1,
+      problems: [],
+      totalPages: 0,
+      activeIndex: 0,
+    };
     this.contentsRefs = [...Array(5)].map((_, _i) => React.createRef());
   }
 
   handleResultSelect(result) {
     this.props.router.push("/problem/" + result.urlName);
   }
-
-  TEXT_COLOR = "#c4cfc4";
-  PROBLEM_COLOR = "#4d69e9";
-  QUIZ_COLOR = "#f79862";
-  TIPS_COLOR = "#77df79";
 
   render() {
     const { router } = this.props;

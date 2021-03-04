@@ -4,7 +4,6 @@ import "@stripe/stripe-js";
 import { withGlobalContext } from "common/utils";
 import { constants } from "common/constants";
 import AnimationRevealPage from "components/common/helpers/animation-reveal-page";
-import Footer from "components/common/footer/footer";
 import Checkout from "./checkout";
 import Emoji from "components/common/emoji/emoji";
 import { isPlus } from "common/auth-service";
@@ -123,9 +122,9 @@ const Plus = (props) => {
                 </h2>
                 <p className={Description}>Intuition+ gives you full access to the CoderIntuition platform.</p>
                 <div className={PlanDurationSwitcher}>
-                  {planDurations.map((planDuration, index) => (
-                    <>
-                      {activeDurationIndex == index ? (
+                  {planDurations.map((planDuration, index) => {
+                    if (activeDurationIndex == index) {
+                      return (
                         <button
                           className={SwitchButtonActive}
                           key={index}
@@ -133,13 +132,14 @@ const Plus = (props) => {
                         >
                           {planDuration.switcherText}
                         </button>
-                      ) : (
-                        <button className={SwitchButton} key={index} onClick={() => setActiveDurationIndex(index)}>
-                          {planDuration.switcherText}
-                        </button>
-                      )}
-                    </>
-                  ))}
+                      );
+                    }
+                    return (
+                      <button className={SwitchButton} key={index} onClick={() => setActiveDurationIndex(index)}>
+                        {planDuration.switcherText}
+                      </button>
+                    );
+                  })}
                 </div>
               </div>
               <div className={PlansContainer}>

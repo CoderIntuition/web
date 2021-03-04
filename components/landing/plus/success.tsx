@@ -7,7 +7,6 @@ import { constants } from "common/constants";
 import { getCurrentUserToken } from "common/auth-service";
 import AnimationRevealPage from "components/common/helpers/animation-reveal-page";
 import Emoji from "components/common/emoji/emoji";
-import Footer from "components/common/footer/footer";
 import {
   DecoratorBlob,
   Heading,

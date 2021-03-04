@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Grid } from "semantic-ui-react";
+import { Grid, Input } from "semantic-ui-react";
 
 export const NotFoundWrapper = styled.div`
   width: 400px;
@@ -12,6 +12,13 @@ export const StyledGrid = styled(Grid)`
   &&& {
     margin: 0;
   }
+`;
+
+export const SearchInput = styled(Input)`
+  width: 20vw;
+  min-width: 200px;
+  border-radius: 999px;
+  float: right;
 `;
 
 export const FirstRow = styled(Grid.Row)`
