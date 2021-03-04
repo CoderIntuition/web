@@ -20,6 +20,7 @@ import {
   StyledSignInButton,
   StyledTextColumn,
 } from "./login-styles";
+import AnimationRevealPage from "../common/helpers/animation-reveal-page";
 
 interface LoginProps {
   router: NextRouter;
@@ -135,99 +136,103 @@ class Login extends Component<LoginProps, LoginState> {
       <div className={styles.loginWrapper}>
         <StyledGrid columns={2} style={{ minWidth: 1000 }} stackable>
           <StyledTextColumn textAlign="center" width={7}>
-            <Link href="/" passHref>
-              <a>
-                <Image src="/images/logoname.svg" alt="CoderIntuition logo" width="200px" height="46px" />
-              </a>
-            </Link>
-            <h1 className={styles.title}>Log In</h1>
-            <StyledForm onSubmit={this.handleLogin}>
-              <StyledFormField>
-                <StyledInput
-                  type="text"
-                  width={16}
-                  onChange={this.onChangeEmail}
-                  value={this.state.email}
-                  placeholder="Email"
-                />
-                <StyledInput
-                  type="password"
-                  width={16}
-                  onChange={this.onChangePassword}
-                  value={this.state.password}
-                  placeholder="Password"
-                />
-                {this.state.loading ? (
-                  <StyledSignInButton content="Log In" primary loading disabled />
-                ) : (
-                  <StyledSignInButton content="Log In" type="submit" primary />
-                )}
-              </StyledFormField>
-            </StyledForm>
-            <p className={styles.forgotPassword}>
-              <a className={styles.link} onClick={() => this.setState({ forgotPasswordModalOpen: true })}>
-                Forgot Password?
-              </a>
-              <Modal
-                closeOnEscape={true}
-                closeOnDimmerClick={false}
-                open={this.state.forgotPasswordModalOpen}
-                onClose={() => this.setState({ forgotPasswordModalOpen: false })}
-                size="tiny"
-              >
-                <Modal.Header>Forgot your password?</Modal.Header>
-                <Modal.Content>
-                  <p>
-                    Enter your email and we'll send you a link to reset your password if an account with that email
-                    exists.
-                  </p>
-                  <br />
-                  <Form style={{ marginInline: 10 }}>
-                    <Grid>
-                      <GridRow>
-                        <GridColumn>
-                          <span className={styles.label}>Email</span>
-                          <Input
-                            onChange={(e) => {
-                              this.setState({
-                                forgotPasswordEmail: e.target.value,
-                              });
-                            }}
-                            fluid
-                          />
-                        </GridColumn>
-                      </GridRow>
-                    </Grid>
-                  </Form>
-                </Modal.Content>
-                <Modal.Actions>
-                  <GrayButton onClick={() => this.setState({ forgotPasswordModalOpen: false })}>Cancel</GrayButton>
-                  <Button primary onClick={() => this.handleForgotPassword()}>
-                    Submit
-                  </Button>
-                </Modal.Actions>
-              </Modal>
-            </p>
-            <div className={styles.separatorWrapper}>
-              <Separator>or continue with</Separator>
-            </div>
-            <div>
-              <OAuthButton href={GOOGLE_AUTH_URL} icon>
-                <Image src="/images/google-logo.png" alt="Google logo" width="40px" height="40px" />
-              </OAuthButton>
-              <OAuthButton href={FACEBOOK_AUTH_URL} icon>
-                <Image src="/images/fb-logo.png" alt="Google logo" width="40px" height="40px" />
-              </OAuthButton>
-              <OAuthButton href={GITHUB_AUTH_URL} icon>
-                <Image src="/images/github-logo.png" alt="Google logo" width="40px" height="40px" />
-              </OAuthButton>
-            </div>
-            <p className={styles.signUp}>
-              Don't have an account? &nbsp;
-              <Link href="/signup" passHref>
-                <a className={styles.link}>Sign up</a>
-              </Link>
-            </p>
+            <AnimationRevealPage>
+              <>
+                <Link href="/" passHref>
+                  <a>
+                    <Image src="/images/logoname.svg" alt="CoderIntuition logo" width="200px" height="46px" />
+                  </a>
+                </Link>
+                <h1 className={styles.title}>Log In</h1>
+                <StyledForm onSubmit={this.handleLogin}>
+                  <StyledFormField>
+                    <StyledInput
+                      type="text"
+                      width={16}
+                      onChange={this.onChangeEmail}
+                      value={this.state.email}
+                      placeholder="Email"
+                    />
+                    <StyledInput
+                      type="password"
+                      width={16}
+                      onChange={this.onChangePassword}
+                      value={this.state.password}
+                      placeholder="Password"
+                    />
+                    {this.state.loading ? (
+                      <StyledSignInButton content="Log In" primary loading disabled />
+                    ) : (
+                      <StyledSignInButton content="Log In" type="submit" primary />
+                    )}
+                  </StyledFormField>
+                </StyledForm>
+                <p className={styles.forgotPassword}>
+                  <a className={styles.link} onClick={() => this.setState({ forgotPasswordModalOpen: true })}>
+                    Forgot Password?
+                  </a>
+                  <Modal
+                    closeOnEscape={true}
+                    closeOnDimmerClick={false}
+                    open={this.state.forgotPasswordModalOpen}
+                    onClose={() => this.setState({ forgotPasswordModalOpen: false })}
+                    size="tiny"
+                  >
+                    <Modal.Header>Forgot your password?</Modal.Header>
+                    <Modal.Content>
+                      <p>
+                        Enter your email and we'll send you a link to reset your password if an account with that email
+                        exists.
+                      </p>
+                      <br />
+                      <Form style={{ marginInline: 10 }}>
+                        <Grid>
+                          <GridRow>
+                            <GridColumn>
+                              <span className={styles.label}>Email</span>
+                              <Input
+                                onChange={(e) => {
+                                  this.setState({
+                                    forgotPasswordEmail: e.target.value,
+                                  });
+                                }}
+                                fluid
+                              />
+                            </GridColumn>
+                          </GridRow>
+                        </Grid>
+                      </Form>
+                    </Modal.Content>
+                    <Modal.Actions>
+                      <GrayButton onClick={() => this.setState({ forgotPasswordModalOpen: false })}>Cancel</GrayButton>
+                      <Button primary onClick={() => this.handleForgotPassword()}>
+                        Submit
+                      </Button>
+                    </Modal.Actions>
+                  </Modal>
+                </p>
+                <div className={styles.separatorWrapper}>
+                  <Separator>or continue with</Separator>
+                </div>
+                <div>
+                  <OAuthButton href={GOOGLE_AUTH_URL} icon>
+                    <Image src="/images/google-logo.png" alt="Google logo" width="40px" height="40px" />
+                  </OAuthButton>
+                  <OAuthButton href={FACEBOOK_AUTH_URL} icon>
+                    <Image src="/images/fb-logo.png" alt="Google logo" width="40px" height="40px" />
+                  </OAuthButton>
+                  <OAuthButton href={GITHUB_AUTH_URL} icon>
+                    <Image src="/images/github-logo.png" alt="Google logo" width="40px" height="40px" />
+                  </OAuthButton>
+                </div>
+                <p className={styles.signUp}>
+                  Don't have an account? &nbsp;
+                  <Link href="/signup" passHref>
+                    <a className={styles.link}>Sign up</a>
+                  </Link>
+                </p>
+              </>
+            </AnimationRevealPage>
           </StyledTextColumn>
           <StyledGraphicColumn width={9}>
             <Image src="/images/login.svg" width="450px" height="450px" />

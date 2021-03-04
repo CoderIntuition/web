@@ -29,7 +29,7 @@ const Hero = () => {
                 Don't just keep memorizing solutions! Learn the actual intuition required to solve interview problems.
               </p>
               <Link href="/problems">
-                <button className={PrimaryButton} style={{ backgroundColor: "#ffffffd0", color: "#635bff" }}>
+                <button className={PrimaryButton} style={{ backgroundColor: "#ffffffd0", color: "#4d69e9" }}>
                   Get Started
                 </button>
               </Link>

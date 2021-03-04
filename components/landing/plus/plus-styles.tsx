@@ -16,7 +16,7 @@ export const SwitchButton = cntl`w-1/2 sm:w-32 px-4 sm:px-8 py-3 rounded-full fo
 
 export const SwitchButtonActive = cntl`w-1/2 sm:w-32 px-4 sm:px-8 py-3 rounded-full focus:outline-none text-sm font-bold transition duration-300 bg-primary-500 text-gray-100`;
 
-export const PlansContainer = cntl`flex justify-center flex-col md:flex-row items-center md:items-start relative`;
+export const PlansContainer = cntl`flex justify-center flex-col md:flex-row items-center md:items-start relative pb-24`;
 
 export const Plan = cntl`w-full max-w-80 mt-16 md:mr-12 md:last:mr-0 text-center px-8 rounded-2xl relative text-gray-900 bg-white flex flex-col shadow-lg`;
 
@@ -42,7 +42,7 @@ export const PlanAction = cntl`px-4 pb-8 mt-4`;
 
 export const DecoratorBlob1 = cntl`pointer-events-none -z-20 absolute right-0 top-0 h-64 w-64 opacity-10 transform translate-x-40 fill-current text-teal-300`;
 
-export const DecoratorBlob2 = cntl`pointer-events-none -z-20 absolute left-0 bottom-0 h-64 w-64 opacity-25 transform -translate-x-2/3 -translate-y-1/2`;
+export const DecoratorBlob2 = cntl`pointer-events-none -z-20 absolute left-0 bottom-0 h-64 w-64 opacity-25 transform -translate-x-32 -translate-y-1/2`;
 
 export const StyledButton = styled(Button)`
   &&& {
