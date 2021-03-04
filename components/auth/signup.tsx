@@ -7,20 +7,16 @@ import { showErrorToast, withGlobalContext } from "common/utils";
 import {
   OAuthButton,
   Separator,
-  SeparatorDiv,
   StyledForm,
   StyledFormField,
   StyledGraphicColumn,
   StyledGrid,
   StyledInput,
-  StyledLink,
-  StyledLogin,
-  StyledSignUpBackground,
   StyledSignUpButton,
-  StyledSignUpTitle,
   StyledTextColumn,
 } from "./signup-styles";
 import Image from "next/image";
+import styles from "./Signup.module.css";
 
 interface SignupProps {
   router: NextRouter;
@@ -122,7 +118,7 @@ class Signup extends Component<SignupProps, SignupState> {
 
   render() {
     return (
-      <StyledSignUpBackground>
+      <div className={styles.signupWrapper}>
         <StyledGrid columns={2} stackable>
           <StyledTextColumn textAlign="center" width={7}>
             <Link href="/" passHref>
@@ -130,7 +126,7 @@ class Signup extends Component<SignupProps, SignupState> {
                 <Image src="/images/logoname.svg" alt="CoderIntuition logo" width="200px" height="46px" />
               </a>
             </Link>
-            <StyledSignUpTitle>Sign Up</StyledSignUpTitle>
+            <h1 className={styles.title}>Sign Up</h1>
             <StyledForm onSubmit={this.handleRegister}>
               <StyledFormField>
                 <StyledInput
@@ -168,9 +164,9 @@ class Signup extends Component<SignupProps, SignupState> {
                 )}
               </StyledFormField>
             </StyledForm>
-            <SeparatorDiv>
+            <div className={styles.separatorWrapper}>
               <Separator>or continue with</Separator>
-            </SeparatorDiv>
+            </div>
             <div>
               <OAuthButton href={GOOGLE_AUTH_URL} icon>
                 <Image src="/images/google-logo.png" alt="Google logo" width="40px" height="40px" />
@@ -182,18 +178,18 @@ class Signup extends Component<SignupProps, SignupState> {
                 <Image src="/images/github-logo.png" alt="Google logo" width="40px" height="40px" />
               </OAuthButton>
             </div>
-            <StyledLogin>
+            <p className={styles.login}>
               Already have an account? &nbsp;
               <Link href="/login" passHref>
-                <StyledLink>Log in</StyledLink>
+                <a className={styles.link}>Log in</a>
               </Link>
-            </StyledLogin>
+            </p>
           </StyledTextColumn>
           <StyledGraphicColumn width={9}>
             <Image src="/images/signup.svg" width="450px" height="450px" />
           </StyledGraphicColumn>
         </StyledGrid>
-      </StyledSignUpBackground>
+      </div>
     );
   }
 }

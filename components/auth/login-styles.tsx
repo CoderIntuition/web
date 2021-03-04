@@ -1,15 +1,5 @@
 import styled from "styled-components";
-import { Button, Form, FormField, Grid, GridColumn, Image, Input } from "semantic-ui-react";
-
-export const StyledLoginBackground = styled.div`
-  &&& {
-    display: flex;
-    background-color: #4d69e9;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
-`;
+import { Button, Form, FormField, Grid, GridColumn, Input } from "semantic-ui-react";
 
 export const StyledGrid = styled(Grid)`
   &&& {
@@ -35,25 +25,9 @@ export const StyledGraphicColumn = styled(GridColumn)`
   }
 `;
 
-export const StyledGraphic = styled(Image)`
-  &&& {
-    transform: translateY(50%);
-    width: 450px;
-  }
-`;
-
 export const StyledTextColumn = styled(GridColumn)`
   &&&&& {
     padding: 48px;
-  }
-`;
-
-export const StyledLoginTitle = styled.h1`
-  &&& {
-    font-weight: bold;
-    color: #1a202c;
-    font-size: 30px;
-    margin-top: 48px;
   }
 `;
 
@@ -89,32 +63,6 @@ export const StyledSignInButton = styled(Button)`
   }
 `;
 
-export const ForgotPassword = styled.p`
-  &&& {
-    margin-top: 24px;
-    font-size: 12px;
-    color: rgb(113, 128, 150);
-    text-align: center;
-    font-weight: 500;
-  }
-`;
-
-export const StyledLink = styled.a`
-  &&& {
-    border-bottom: 1px dotted rgb(160, 174, 192);
-    color: inherit;
-    cursor: pointer;
-  }
-`;
-
-export const StyledA = styled.a`
-  &&& {
-    border-bottom: 1px dotted rgb(160, 174, 192);
-    color: inherit;
-    cursor: pointer;
-  }
-`;
-
 export const OAuthButton = styled(Button)`
   &&&&& {
     padding: 10px 20px;
@@ -126,12 +74,6 @@ export const OAuthButton = styled(Button)`
       background-color: #f4f4f4;
     }
   }
-`;
-
-export const SeparatorDiv = styled.div`
-  max-width: 320px;
-  width: 80%;
-  margin: 0 auto;
 `;
 
 export const Separator = styled.div`
@@ -154,25 +96,5 @@ export const Separator = styled.div`
     &:after {
       margin-left: 10px;
     }
-  }
-`;
-
-export const StyledSignUp = styled.p`
-  &&& {
-    margin-top: 32px;
-    font-size: 14px;
-    color: rgb(113, 128, 150);
-    text-align: center;
-    font-weight: 500;
-  }
-`;
-
-export const Label = styled.span`
-  &&& {
-    display: block;
-    margin-bottom: 4px;
-    color: #000000de;
-    font-size: 13px;
-    font-weight: 600;
   }
 `;

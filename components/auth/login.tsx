@@ -8,23 +8,16 @@ import { constants, FACEBOOK_AUTH_URL, GITHUB_AUTH_URL, GOOGLE_AUTH_URL } from "
 import { login } from "common/auth-service";
 import { showErrorToast, showSuccessToast, withGlobalContext } from "common/utils";
 import { GrayButton } from "common/global-styles";
+import styles from "./Login.module.css";
 import {
-  ForgotPassword,
-  Label,
   OAuthButton,
   Separator,
-  SeparatorDiv,
-  StyledA,
   StyledForm,
   StyledFormField,
   StyledGraphicColumn,
   StyledGrid,
   StyledInput,
-  StyledLink,
-  StyledLoginBackground,
-  StyledLoginTitle,
   StyledSignInButton,
-  StyledSignUp,
   StyledTextColumn,
 } from "./login-styles";
 
@@ -139,7 +132,7 @@ class Login extends Component<LoginProps, LoginState> {
     }
 
     return (
-      <StyledLoginBackground>
+      <div className={styles.loginWrapper}>
         <StyledGrid columns={2} style={{ minWidth: 1000 }} stackable>
           <StyledTextColumn textAlign="center" width={7}>
             <Link href="/" passHref>
@@ -147,7 +140,7 @@ class Login extends Component<LoginProps, LoginState> {
                 <Image src="/images/logoname.svg" alt="CoderIntuition logo" width="200px" height="46px" />
               </a>
             </Link>
-            <StyledLoginTitle>Log In</StyledLoginTitle>
+            <h1 className={styles.title}>Log In</h1>
             <StyledForm onSubmit={this.handleLogin}>
               <StyledFormField>
                 <StyledInput
@@ -171,8 +164,10 @@ class Login extends Component<LoginProps, LoginState> {
                 )}
               </StyledFormField>
             </StyledForm>
-            <ForgotPassword>
-              <StyledA onClick={() => this.setState({ forgotPasswordModalOpen: true })}>Forgot Password?</StyledA>
+            <p className={styles.forgotPassword}>
+              <a className={styles.link} onClick={() => this.setState({ forgotPasswordModalOpen: true })}>
+                Forgot Password?
+              </a>
               <Modal
                 closeOnEscape={true}
                 closeOnDimmerClick={false}
@@ -191,7 +186,7 @@ class Login extends Component<LoginProps, LoginState> {
                     <Grid>
                       <GridRow>
                         <GridColumn>
-                          <Label>Email</Label>
+                          <span className={styles.label}>Email</span>
                           <Input
                             onChange={(e) => {
                               this.setState({
@@ -212,10 +207,10 @@ class Login extends Component<LoginProps, LoginState> {
                   </Button>
                 </Modal.Actions>
               </Modal>
-            </ForgotPassword>
-            <SeparatorDiv>
+            </p>
+            <div className={styles.separatorWrapper}>
               <Separator>or continue with</Separator>
-            </SeparatorDiv>
+            </div>
             <div>
               <OAuthButton href={GOOGLE_AUTH_URL} icon>
                 <Image src="/images/google-logo.png" alt="Google logo" width="40px" height="40px" />
@@ -227,18 +222,18 @@ class Login extends Component<LoginProps, LoginState> {
                 <Image src="/images/github-logo.png" alt="Google logo" width="40px" height="40px" />
               </OAuthButton>
             </div>
-            <StyledSignUp>
+            <p className={styles.signUp}>
               Don't have an account? &nbsp;
               <Link href="/signup" passHref>
-                <StyledLink>Sign up</StyledLink>
+                <a className={styles.link}>Sign up</a>
               </Link>
-            </StyledSignUp>
+            </p>
           </StyledTextColumn>
           <StyledGraphicColumn width={9}>
             <Image src="/images/login.svg" width="450px" height="450px" />
           </StyledGraphicColumn>
         </StyledGrid>
-      </StyledLoginBackground>
+      </div>
     );
   }
 }
