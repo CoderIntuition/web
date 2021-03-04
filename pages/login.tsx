@@ -1,6 +1,5 @@
 import React, { FC } from "react";
 import Head from "next/head";
-import PageWrapper from "../components/common/page-wrapper/page-wrapper";
 import Login from "../components/auth/login";
 
 const PlusPage: FC = () => {

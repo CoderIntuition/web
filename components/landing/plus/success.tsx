@@ -69,7 +69,7 @@ const Success: FC = () => {
               <div className={TwoColumn}>
                 <div className={LeftColumn}>
                   <h1 className={Heading}>
-                    Thanks for subscribing to Intuition+ <Emoji symbol="🎉" />
+                    Thanks for Subscribing to Intuition+ <Emoji symbol="🎉" />
                   </h1>
                   <p className={Paragraph}>Hey {name}, you made the right choice to invest in yourself.</p>
                   <p className={Paragraph}>

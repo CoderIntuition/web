@@ -9,7 +9,15 @@ export const FlexContainer = styled.div`
 
 export const FlexContent = styled.div`
   flex: 1;
-`
+`;
+
+export const Label = styled.span`
+  display: block;
+  margin-bottom: 4px;
+  color: #000000de;
+  font-size: 13px;
+  font-weight: 600;
+`;
 
 export const GreenButton = styled(Button)`
   &&& {
