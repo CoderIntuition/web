@@ -4,10 +4,6 @@ import Link from "next/link";
 import Image from "next/image";
 import axios from "axios";
 import { Button, Form, Grid, GridColumn, GridRow, Input, Modal } from "semantic-ui-react";
-// import LoginGraphic from "assets/graphics/login.svg";
-// import GoogleLogo from "assets/images/google-logo.png";
-// import FacebookLogo from "assets/images/fb-logo.png";
-// import GitHubLogo from "assets/images/github-logo.png";
 import { constants, FACEBOOK_AUTH_URL, GITHUB_AUTH_URL, GOOGLE_AUTH_URL } from "common/constants";
 import { login } from "common/auth-service";
 import { showErrorToast, showSuccessToast, withGlobalContext } from "common/utils";
@@ -16,13 +12,11 @@ import {
   ForgotPassword,
   Label,
   OAuthButton,
-  OAuthIcon,
   Separator,
   SeparatorDiv,
   StyledA,
   StyledForm,
   StyledFormField,
-  StyledGraphic,
   StyledGraphicColumn,
   StyledGrid,
   StyledInput,
@@ -235,7 +229,9 @@ class Login extends Component<LoginProps, LoginState> {
             </div>
             <StyledSignUp>
               Don't have an account? &nbsp;
-              <StyledLink to="/signup">Sign up</StyledLink>
+              <Link href="/signup" passHref>
+                <StyledLink>Sign up</StyledLink>
+              </Link>
             </StyledSignUp>
           </StyledTextColumn>
           <StyledGraphicColumn width={9}>

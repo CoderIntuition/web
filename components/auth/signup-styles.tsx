@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Button, Form, FormField, Grid, GridColumn, Image, Input } from "semantic-ui-react";
 
-export const StyledLoginBackground = styled.div`
+export const StyledSignUpBackground = styled.div`
   &&& {
     display: flex;
     background-color: #4d69e9;
@@ -22,15 +22,12 @@ export const StyledGrid = styled(Grid)`
 `;
 
 export const StyledGraphicColumn = styled(GridColumn)`
-  &&&&& {
-    padding: 0;
+  &&& {
+    padding: 0 !important;
     background: #eaedfc;
     border-radius: 0 15px 15px 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     @media only screen and (max-width: 767px) {
-      display: none;
+      display: none !important;
     }
   }
 `;
@@ -38,17 +35,27 @@ export const StyledGraphicColumn = styled(GridColumn)`
 export const StyledGraphic = styled(Image)`
   &&& {
     transform: translateY(50%);
-    width: 450px;
+    width: 370px;
   }
 `;
 
 export const StyledTextColumn = styled(GridColumn)`
-  &&&&& {
-    padding: 48px;
+  &&& {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 48px !important;
   }
 `;
 
-export const StyledLoginTitle = styled.h1`
+export const StyledLogo = styled(Image)`
+  &&& {
+    height: 46px;
+    margin: auto;
+  }
+`;
+
+export const StyledSignUpTitle = styled.h1`
   &&& {
     font-weight: bold;
     color: #1a202c;
@@ -59,7 +66,7 @@ export const StyledLoginTitle = styled.h1`
 
 export const StyledInput = styled(Input)`
   &&& {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
   }
 `;
 
@@ -79,23 +86,14 @@ export const StyledFormField = styled(FormField)`
   }
 `;
 
-export const StyledSignInButton = styled(Button)`
+export const StyledSignUpButton = styled(Button)`
   &&& {
     width: 100%;
     max-width: 320px;
     letter-spacing: 0.025em;
+    margin-top: 10px;
     padding-block: 12px;
     border-radius: 10px;
-  }
-`;
-
-export const ForgotPassword = styled.p`
-  &&& {
-    margin-top: 24px;
-    font-size: 12px;
-    color: rgb(113, 128, 150);
-    text-align: center;
-    font-weight: 500;
   }
 `;
 
@@ -107,24 +105,22 @@ export const StyledLink = styled.a`
   }
 `;
 
-export const StyledA = styled.a`
+export const OAuthButton = styled(Button)`
   &&& {
-    border-bottom: 1px dotted rgb(160, 174, 192);
-    color: inherit;
-    cursor: pointer;
+    padding: 10px 20px !important;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 15px;
+    margin-left: 10px;
+    &:hover {
+      background-color: #f4f4f4 !important;
+    }
   }
 `;
 
-export const OAuthButton = styled(Button)`
-  &&&&& {
-    padding: 10px 20px;
-    background-color: #ffffff;
-    border: 1px solid #e0e0e0;
-    border-radius: 10px;
-    margin-left: 10px;
-    &:hover {
-      background-color: #f4f4f4;
-    }
+export const OAuthIcon = styled(Image)`
+  &&& {
+    width: 40px;
   }
 `;
 
@@ -157,22 +153,12 @@ export const Separator = styled.div`
   }
 `;
 
-export const StyledSignUp = styled.p`
+export const StyledLogin = styled.p`
   &&& {
     margin-top: 32px;
     font-size: 14px;
     color: rgb(113, 128, 150);
     text-align: center;
     font-weight: 500;
-  }
-`;
-
-export const Label = styled.span`
-  &&& {
-    display: block;
-    margin-bottom: 4px;
-    color: #000000de;
-    font-size: 13px;
-    font-weight: 600;
   }
 `;

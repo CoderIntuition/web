@@ -40,7 +40,7 @@ export const PlanFeaturesSpan = cntl`mt-5 first:mt-0 font-normal text-secondary-
 
 export const PlanAction = cntl`px-4 pb-8 mt-4`;
 
-export const DecoratorBlob1 = cntl`pointer-events-none -z-20 absolute right-0 top-0 h-64 w-64 opacity-10 transform translate-x-48 fill-current text-teal-300`;
+export const DecoratorBlob1 = cntl`pointer-events-none -z-20 absolute right-0 top-0 h-64 w-64 opacity-10 transform translate-x-40 fill-current text-teal-300`;
 
 export const DecoratorBlob2 = cntl`pointer-events-none -z-20 absolute left-0 bottom-0 h-64 w-64 opacity-25 transform -translate-x-2/3 -translate-y-1/2`;
 
