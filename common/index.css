@@ -1,0 +1,78 @@
+/* ----- NOTIFICATIONS ----- */
+
+.notification__title {
+  color: #24292e;
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+
+.notification__message {
+  color: #7c8ba1;
+  font-weight: 400;
+}
+
+.notification__item {
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+}
+
+.notification__item--default {
+  border-left: 5px solid #4d69e9;
+}
+
+.notification__item--default .notification__timer {
+  background-color: #4d69e9;
+}
+
+.notification__item--success {
+  border-left: 5px solid #10b981;
+}
+
+.notification__item--success .notification__timer {
+  background-color: #10b981;
+}
+
+.notification__item--success .notification__title {
+  color: #10b981;
+}
+
+.notification__item--danger {
+  border-left: 5px solid #ef4444;
+}
+
+.notification__item--danger .notification__timer {
+  background-color: #ef4444;
+}
+
+.notification__item--danger .notification__title {
+  color: #ef4444;
+}
+
+.notification__item--warning {
+  border-left: 5px solid #fbbf24;
+}
+
+.notification__item--warning .notification__timer {
+  background-color: #fbbf24;
+}
+
+.notification__item--warning .notification__title {
+  color: #fbbf24;
+}
+
+/* ----- SPLITTER LAYOUT ----- */
+
+.splitter-layout > .layout-splitter {
+  width: 6px !important;
+  background-color: #ccc !important;
+}
+
+.splitter-layout .layout-splitter:hover {
+  background-color: #4d69e9 !important;
+}
+
+.splitter-layout.splitter-layout-vertical > .layout-splitter {
+  width: 100% !important;
+  height: 6px !important;
+}

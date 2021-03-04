@@ -35,7 +35,7 @@ class Navbar extends Component<NavbarProps, {}> {
         window.open(constants.ADMIN_WEB_URL, "_blank");
         break;
       case "signOut":
-        showSuccessToast("Success", "We hope to see you later!");
+        showSuccessToast("Logged Out", "We hope to see you soon!");
         this.props.logout();
         this.props.router.push("/");
         break;
