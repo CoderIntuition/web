@@ -44,7 +44,7 @@ class Navbar extends Component<NavbarProps, {}> {
         this.props.router.push("/user/" + this.props.currentUser.username);
         break;
       case "settings":
-        this.props.router.push("/settings");
+        this.props.router.push("/settings/general");
         break;
     }
   }

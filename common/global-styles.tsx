@@ -9,6 +9,7 @@ export const FlexContainer = styled.div`
 
 export const FlexContent = styled.div`
   flex: 1;
+  min-height: calc(100vh - 80px);
 `;
 
 export const Label = styled.span`

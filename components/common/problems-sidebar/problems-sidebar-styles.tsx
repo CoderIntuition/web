@@ -8,12 +8,11 @@ export const FlexWrapper = styled.div`
 
 export const SidebarContainer = styled.div`
   flex: 0 0 250px;
-`
+`;
 
 export const SidebarMenu = styled(Menu)`
   &&& {
     width: 100%;
-    margin-left: 5px;
     padding: 5px;
     border-radius: 10px;
     border: none;
@@ -23,7 +22,7 @@ export const SidebarMenu = styled(Menu)`
 
 export const Spacer = styled.div`
   flex: 0 0 35px;
-`
+`;
 
 export const ContentDiv = styled.div`
   &&& {
@@ -32,14 +31,14 @@ export const ContentDiv = styled.div`
 `;
 
 export const StyledMenuHeader = styled(Menu.Header)`
-  &&& {
-    font-size: 1.2em !important;
-    color: #1a202c !important;
+  &&&&&& {
+    font-size: 1.2em;
+    color: #1a202c;
   }
 `;
 
 export const StyledMenuItem = styled(Menu.Item)`
-  &&& {
-    font-size: 1em !important;
+  &&&&&& {
+    font-size: 1em;
   }
 `;
