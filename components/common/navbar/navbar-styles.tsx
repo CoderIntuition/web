@@ -64,8 +64,8 @@ export const StyledLink = styled.a`
     }
 
     ${({ active }) =>
-      active &&
-      `
+            active &&
+            `
       color: #4d69e9;
       &::after {
         width: 100%;
@@ -79,6 +79,13 @@ export const StyledDropdown = styled(Dropdown)`
   &&&& {
     padding: 10px 25px;
     margin: 0;
+    color: #243e63;
+    &&&&&:hover {
+      color: #243e63;
+    }
+    &&&&&:not(:focus) {
+      color: #243e63;
+    }
   }
 `;
 

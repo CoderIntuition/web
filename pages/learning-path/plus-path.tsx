@@ -1,0 +1,31 @@
+import React, { FC } from "react";
+import Head from "next/head";
+import PageWrapper from "components/common/page-wrapper/page-wrapper";
+import BeginnerPath from "../../components/learn/beginner-path";
+
+const BeginnerPathPage: FC = () => {
+  const head = () => {
+    return (
+      <Head>
+        <title>FAQ</title>
+        <meta
+          charSet="utf-8"
+          name="description"
+          content="Beginner Learning Path"
+        />
+        <link rel="canonical" href="https://www.coderintuition.com/faq" />
+      </Head>
+    );
+  };
+
+  return (
+    <>
+      {head()}
+      <PageWrapper>
+        <BeginnerPath />
+      </PageWrapper>
+    </>
+  );
+};
+
+export default BeginnerPathPage;

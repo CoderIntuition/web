@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { NextRouter, withRouter } from "next/router";
 import Link from "next/link";
 import Image from "next/image";
-import { Dropdown, Icon } from "semantic-ui-react";
+import { Dropdown } from "semantic-ui-react";
+import { User } from "react-feather";
 import { isMod } from "../../../common/auth-service";
 import { showSuccessToast, withGlobalContext } from "common/utils";
 import { constants } from "common/constants";
@@ -66,7 +67,7 @@ class Navbar extends Component<NavbarProps, {}> {
 
     const trigger = authenticated ? (
       <>
-        <Icon name="user circle" size="big" />
+        <User color="#243e63" />
         <span className={styles.userName}>{currentUser.name}</span>
       </>
     ) : (
@@ -77,7 +78,7 @@ class Navbar extends Component<NavbarProps, {}> {
       <>
         <StyledMenuItem position="left">
           <Link href="/" passHref>
-            <LogoLink >
+            <LogoLink>
               <Image src="/images/logoname.svg" alt="CoderIntuition logo" width="200px" height="36px" />
             </LogoLink>
           </Link>
@@ -90,7 +91,7 @@ class Navbar extends Component<NavbarProps, {}> {
             <StyledLink active={this.onPaths(/^\/(?:problem|learning-path|reading)/)}>Learn</StyledLink>
           </Link>
           <Link href="/plus" passHref>
-            <StyledLink active={this.onPaths(/\/plus/)}>Intuition+</StyledLink>
+            <StyledLink active={this.onPaths(/\/plus$/)}>Intuition+</StyledLink>
           </Link>
           <Link href="/blog" passHref>
             <StyledLink active={this.onPaths(/\/blog/)}>Blog</StyledLink>
@@ -115,7 +116,7 @@ class Navbar extends Component<NavbarProps, {}> {
                 {isMod(currentUser.roles) && (
                   <Dropdown.Item
                     value="admin"
-                    text="Admin Panel"
+                    text="Admin"
                     icon="key"
                     onClick={() => this.handleDropdownClick("admin")}
                   />
@@ -192,7 +193,7 @@ class Navbar extends Component<NavbarProps, {}> {
                   {isMod(currentUser.roles) && (
                     <Dropdown.Item
                       value="admin"
-                      text="Admin Panel"
+                      text="Admin"
                       icon="key"
                       onClick={() => this.handleDropdownClick("admin")}
                     />

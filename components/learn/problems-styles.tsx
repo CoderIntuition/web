@@ -30,7 +30,7 @@ export const SecondRow = styled(Grid.Row)`
 `;
 
 export const BottomRow = styled(Grid.Row)`
-  margin: 0;
+  margin: -5px 0 5px 0;
 `;
 
 export const RadioLabel = styled.span`

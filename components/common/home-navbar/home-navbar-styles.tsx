@@ -75,9 +75,16 @@ export const StyledLink = styled.a`
 `;
 
 export const StyledDropdown = styled(Dropdown)`
-  &&&& {
+  &&&&& {
     padding: 10px 25px;
     margin: 0;
+    color: #ffffff;
+    &&&&&:hover {
+      color: #ffffff;
+    }
+    &&&&&:not(:focus) {
+      color: #ffffff;
+    }
   }
 `;
 

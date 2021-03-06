@@ -13,6 +13,7 @@ export const SidebarContainer = styled.div`
 export const SidebarMenu = styled(Menu)`
   &&& {
     width: 100%;
+    margin-left: 5px;
     padding: 5px;
     border-radius: 10px;
     border: none;
@@ -21,7 +22,7 @@ export const SidebarMenu = styled(Menu)`
 `;
 
 export const Spacer = styled.div`
-  flex: 0 0 30px;
+  flex: 0 0 35px;
 `
 
 export const ContentDiv = styled.div`

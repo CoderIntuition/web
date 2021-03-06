@@ -26,6 +26,7 @@
     "postcss-flexbugs-fixes": "^5.0.2",
     "postcss-preset-env": "^6.7.0",
     "react": "^17.0.1",
+    "react-ace": "^9.3.0",
     "react-dom": "^17.0.1",
     "react-feather": "^2.0.9",
     "react-intersection-observer": "^8.31.0",
@@ -37,6 +38,7 @@
     "remark-math": "^4.0.0",
     "semantic-ui-react": "^2.0.3",
     "slick-carousel": "^1.8.1",
+    "stompjs": "^2.3.3",
     "styled-components": "^5.2.1",
     "tailwindcss": "^2.0.3"
   },

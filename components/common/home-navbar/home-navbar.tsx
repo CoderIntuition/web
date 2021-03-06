@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import { NextRouter, withRouter } from "next/router";
 import Link from "next/link";
 import Image from "next/image";
-import { Dropdown, Icon } from "semantic-ui-react";
-import { isMod } from "../../../common/auth-service";
+import { Dropdown } from "semantic-ui-react";
+import { User } from "react-feather";
+import { isMod } from "common/auth-service";
 import { showSuccessToast, withGlobalContext } from "common/utils";
 import { constants } from "common/constants";
 import styles from "./HomeNavbar.module.css";
@@ -60,7 +61,7 @@ class HomeNavbar extends Component<HomeNavbarProps, {}> {
   render() {
     const trigger = this.props.authenticated ? (
       <>
-        <Icon name="user circle" size="big" />
+        <User color="#ffffff" />
         <span className={styles.userName}>{this.props.currentUser.name}</span>
       </>
     ) : (
@@ -109,7 +110,7 @@ class HomeNavbar extends Component<HomeNavbarProps, {}> {
                 {isMod(this.props.currentUser.roles) && (
                   <Dropdown.Item
                     value="admin"
-                    text="Admin Panel"
+                    text="Admin"
                     icon="key"
                     onClick={() => this.handleDropdownClick("admin")}
                   />
@@ -186,7 +187,7 @@ class HomeNavbar extends Component<HomeNavbarProps, {}> {
                   {isMod(this.props.currentUser.roles) && (
                     <Dropdown.Item
                       value="admin"
-                      text="Admin Panel"
+                      text="Admin"
                       icon="key"
                       onClick={() => this.handleDropdownClick("admin")}
                     />

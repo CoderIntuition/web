@@ -6,7 +6,7 @@
 @color: #595f6b !important;
 @headerColor: #243e63 !important;
 @headerBackground: #ffffff;
-@headerSecondBackground: linear-gradient(180deg, rgba(255,255,255,1) 40%, rgba(249,249,253,1) 100%);
+@headerSecondBackground: linear-gradient(180deg, rgba(255,255,255,1) 40%, rgba(251,251,255,1) 100%);
 @stripedBackground: #fcfcff;
 @selectableTextColor: #4d69e9;
 @footerBackground: #ffffff;
