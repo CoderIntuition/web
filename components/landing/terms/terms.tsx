@@ -250,7 +250,7 @@ const Terms = () => {
 
               <ul className={TextUl}>
                 <li className={TextLi}>
-                  <Link href="/contact-us">Contact Us Form</Link>
+                  <Link href="/contact">Contact Us Form</Link>
                 </li>
                 <li className={TextLi}>By email: support@coderintuition.com</li>
               </ul>
