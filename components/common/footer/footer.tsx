@@ -1,7 +1,10 @@
 import React, { FC } from "react";
 import Link from "next/link";
 import {
+  Bar,
+  FooterWrapper,
   MobileContainer,
+  MobileFooterWrapper,
   MobileLink,
   MobileMenu,
   StyledContainer,
@@ -9,31 +12,30 @@ import {
   StyledGrid,
   StyledMenu,
 } from "./footer-styles";
-import styles from "./Footer.module.css";
 import { GridColumn } from "semantic-ui-react";
 import Image from "next/image";
 
 const Footer: FC = () => {
   const desktopFooter = (
-    <div className={styles.footerWrapper}>
+    <FooterWrapper>
       <StyledContainer className="md:flex">
         <StyledMenu secondary>
           <Link href="/" passHref>
             <StyledFooterLink>About Us</StyledFooterLink>
           </Link>
-          <span className={styles.bar}>&#124;</span>
+          <Bar>&#124;</Bar>
           <Link href="/faq" passHref>
             <StyledFooterLink>FAQ</StyledFooterLink>
           </Link>
-          <span className={styles.bar}>&#124;</span>
+          <Bar>&#124;</Bar>
           <Link href="/contact" passHref>
             <StyledFooterLink>Contact Us</StyledFooterLink>
           </Link>
-          <span className={styles.bar}>&#124;</span>
+          <Bar>&#124;</Bar>
           <Link href="/privacy" passHref>
             <StyledFooterLink href="/privacy">Privacy Policy</StyledFooterLink>
           </Link>
-          <span className={styles.bar}>&#124;</span>
+          <Bar>&#124;</Bar>
           <Link href="/terms" passHref>
             <StyledFooterLink href="/terms">Terms of Service</StyledFooterLink>
           </Link>
@@ -54,11 +56,11 @@ const Footer: FC = () => {
           </GridColumn>
         </StyledGrid>
       </StyledContainer>
-    </div>
+    </FooterWrapper>
   );
 
   const mobileFooter = (
-    <div className={styles.mobileFooterWrapper}>
+    <MobileFooterWrapper>
       <MobileContainer className="md:flex">
         <MobileMenu secondary>
           <Link href="/" passHref>
@@ -84,7 +86,7 @@ const Footer: FC = () => {
           <p>&#169; {new Date().getFullYear()} CoderIntuition. All rights reserved.</p>
         </MobileMenu>
       </MobileContainer>
-    </div>
+    </MobileFooterWrapper>
   );
 
   return (

@@ -64,8 +64,8 @@ export const StyledLink = styled.a`
     }
 
     ${({ active }) =>
-            active &&
-            `
+      active &&
+      `
       color: #4d69e9;
       &::after {
         width: 100%;
@@ -86,6 +86,15 @@ export const StyledDropdown = styled(Dropdown)`
     &&&&&:not(:focus) {
       color: #243e63;
     }
+  }
+`;
+
+export const UserName = styled.span`
+  &&& {
+    font-size: 15px;
+    font-weight: 500;
+    margin-left: 10px;
+    color: #ffffff;
   }
 `;
 

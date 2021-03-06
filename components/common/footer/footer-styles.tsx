@@ -1,6 +1,18 @@
 import styled from "styled-components";
 import { Container, Grid, Menu } from "semantic-ui-react";
 
+export const FooterWrapper = styled.div`
+  &&& {
+    width: 100%;
+    height: 300px;
+    background: #ffffff;
+    font-weight: 500;
+    border-top: solid;
+    border-top-width: 1px;
+    border-top-color: rgba(124, 139, 161, 0.1);
+  }
+`;
+
 export const StyledContainer = styled(Container)`
   &&& {
     display: flex;
@@ -60,7 +72,28 @@ export const StyledGrid = styled(Grid)`
   }
 `;
 
+export const Bar = styled.span`
+  &&& {
+    margin: 0 13px;
+    height: 15px;
+    width: 2px;
+    color: #7c8ba1;
+  }
+`;
+
 // For mobile
+
+export const MobileFooterWrapper = styled.div`
+  &&& {
+    width: 100%;
+    height: 350px;
+    background: #ffffff;
+    font-weight: 500;
+    border-top: solid;
+    border-top-width: 1px;
+    border-top-color: rgba(124, 139, 161, 0.1);
+  }
+`;
 
 export const MobileContainer = styled(Container)`
   &&& {

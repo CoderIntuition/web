@@ -88,6 +88,15 @@ export const StyledDropdown = styled(Dropdown)`
   }
 `;
 
+export const UserName = styled.span`
+  &&& {
+    font-size: 15px;
+    font-weight: 500;
+    margin-left: 10px;
+    color: #ffffff;
+  }
+`;
+
 export const SignUpButton = styled(Button)`
   &&&&& {
     color: #4d69e9;

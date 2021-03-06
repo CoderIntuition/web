@@ -7,7 +7,6 @@ import { User } from "react-feather";
 import { isMod } from "../../../common/auth-service";
 import { showSuccessToast, withGlobalContext } from "common/utils";
 import { constants } from "common/constants";
-import styles from "./navbar.module.css";
 import {
   LogoLink,
   MobileDropDown,
@@ -19,6 +18,7 @@ import {
   StyledLink,
   StyledMenuItem,
   StyledMobileLink,
+  UserName,
 } from "./navbar-styles";
 
 interface NavbarProps {
@@ -68,7 +68,7 @@ class Navbar extends Component<NavbarProps, {}> {
     const trigger = authenticated ? (
       <>
         <User color="#243e63" />
-        <span className={styles.userName}>{currentUser.name}</span>
+        <UserName>{currentUser.name}</UserName>
       </>
     ) : (
       <span />

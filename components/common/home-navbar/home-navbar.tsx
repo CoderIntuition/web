@@ -7,7 +7,6 @@ import { User } from "react-feather";
 import { isMod } from "common/auth-service";
 import { showSuccessToast, withGlobalContext } from "common/utils";
 import { constants } from "common/constants";
-import styles from "./HomeNavbar.module.css";
 import {
   HomeNavbarMenu,
   LogoLink,
@@ -19,6 +18,7 @@ import {
   StyledLink,
   StyledMenuItem,
   StyledMobileLink,
+  UserName,
 } from "./home-navbar-styles";
 
 interface HomeNavbarProps {
@@ -62,7 +62,7 @@ class HomeNavbar extends Component<HomeNavbarProps, {}> {
     const trigger = this.props.authenticated ? (
       <>
         <User color="#ffffff" />
-        <span className={styles.userName}>{this.props.currentUser.name}</span>
+        <UserName>{this.props.currentUser.name}</UserName>
       </>
     ) : (
       <span />
