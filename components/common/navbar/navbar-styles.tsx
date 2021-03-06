@@ -94,7 +94,7 @@ export const UserName = styled.span`
     font-size: 15px;
     font-weight: 500;
     margin-left: 10px;
-    color: #ffffff;
+    color: #243e63;
   }
 `;
 
