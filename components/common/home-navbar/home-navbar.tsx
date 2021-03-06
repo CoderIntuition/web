@@ -201,8 +201,16 @@ class HomeNavbar extends Component<HomeNavbarProps, {}> {
                 </>
               ) : (
                 <>
-                  <Dropdown.Item>Log In</Dropdown.Item>
-                  <Dropdown.Item>Sign Up</Dropdown.Item>
+                  <Dropdown.Item>
+                    <Link href="/login" passHref>
+                      <StyledMobileLink onClick={() => this.handleLogin()}>Log In</StyledMobileLink>
+                    </Link>
+                  </Dropdown.Item>
+                  <Dropdown.Item>
+                    <Link href="/login" passHref>
+                      <StyledMobileLink onClick={() => this.handleSignUp()}>Sign Up</StyledMobileLink>
+                    </Link>
+                  </Dropdown.Item>
                 </>
               )}
             </MobileDropDownMenu>

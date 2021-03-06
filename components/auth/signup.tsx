@@ -4,20 +4,24 @@ import Link from "next/link";
 import { constants, FACEBOOK_AUTH_URL, GITHUB_AUTH_URL, GOOGLE_AUTH_URL } from "common/constants";
 import { signup } from "common/auth-service";
 import { showErrorToast, withGlobalContext } from "common/utils";
+import Image from "next/image";
+import AnimationRevealPage from "../common/helpers/animation-reveal-page";
 import {
+  Heading,
   OAuthButton,
+  PromptText,
   Separator,
+  SeparatorWrapper,
   StyledForm,
   StyledFormField,
   StyledGraphicColumn,
   StyledGrid,
-  StyledInput,
+  StyledLink,
   StyledSignUpButton,
+  StyledSignUpInput,
   StyledTextColumn,
-} from "./signup-styles";
-import Image from "next/image";
-import styles from "./Signup.module.css";
-import AnimationRevealPage from "../common/helpers/animation-reveal-page";
+  Wrapper,
+} from "./login-signup-styles";
 
 interface SignupProps {
   router: NextRouter;
@@ -119,7 +123,7 @@ class Signup extends Component<SignupProps, SignupState> {
 
   render() {
     return (
-      <div className={styles.signupWrapper}>
+      <Wrapper>
         <StyledGrid columns={2} stackable>
           <StyledTextColumn textAlign="center" width={7}>
             <AnimationRevealPage>
@@ -129,31 +133,31 @@ class Signup extends Component<SignupProps, SignupState> {
                     <Image src="/images/logoname.svg" alt="CoderIntuition logo" width="200px" height="46px" />
                   </a>
                 </Link>
-                <h1 className={styles.title}>Sign Up</h1>
+                <Heading>Sign Up</Heading>
                 <StyledForm onSubmit={this.handleRegister}>
                   <StyledFormField>
-                    <StyledInput
+                    <StyledSignUpInput
                       type="text"
                       width={16}
                       onChange={this.onChangeName}
                       value={this.state.name}
                       placeholder="Name"
                     />
-                    <StyledInput
+                    <StyledSignUpInput
                       type="text"
                       width={16}
                       onChange={this.onChangeEmail}
                       value={this.state.email}
                       placeholder="Email"
                     />
-                    <StyledInput
+                    <StyledSignUpInput
                       type="password"
                       width={16}
                       onChange={this.onChangePassword}
                       value={this.state.password}
                       placeholder="Password"
                     />
-                    <StyledInput
+                    <StyledSignUpInput
                       type="password"
                       width={16}
                       onChange={this.onChangeConfirmPassword}
@@ -167,9 +171,9 @@ class Signup extends Component<SignupProps, SignupState> {
                     )}
                   </StyledFormField>
                 </StyledForm>
-                <div className={styles.separatorWrapper}>
+                <SeparatorWrapper>
                   <Separator>or continue with</Separator>
-                </div>
+                </SeparatorWrapper>
                 <div>
                   <OAuthButton href={GOOGLE_AUTH_URL} icon>
                     <Image src="/images/google-logo.png" alt="Google logo" width="40px" height="40px" />
@@ -181,12 +185,12 @@ class Signup extends Component<SignupProps, SignupState> {
                     <Image src="/images/github-logo.png" alt="Google logo" width="40px" height="40px" />
                   </OAuthButton>
                 </div>
-                <p className={styles.login}>
+                <PromptText>
                   Already have an account? &nbsp;
                   <Link href="/login" passHref>
-                    <a className={styles.link}>Log in</a>
+                    <StyledLink>Log in</StyledLink>
                   </Link>
-                </p>
+                </PromptText>
               </>
             </AnimationRevealPage>
           </StyledTextColumn>
@@ -194,7 +198,7 @@ class Signup extends Component<SignupProps, SignupState> {
             <Image src="/images/signup.svg" width="350px" height="350px" />
           </StyledGraphicColumn>
         </StyledGrid>
-      </div>
+      </Wrapper>
     );
   }
 }
