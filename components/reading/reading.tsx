@@ -8,6 +8,7 @@ import { withGlobalContext, wrapQuestions } from "common/utils";
 import { constants } from "common/constants";
 import { WhiteButton } from "common/global-styles";
 import { CenteredDiv, LeftDiv, ReadingStyles } from "./reading-styles";
+import Head from "next/head";
 
 interface ReadingProps {
   router: NextRouter;
@@ -84,6 +85,11 @@ class Reading extends Component<ReadingProps, ReadingState> {
 
     return (
       <>
+        <Head>
+          <title>{this.state.reading.name}</title>
+          <meta charSet="utf-8" name="description" content={this.state.reading.name} />
+          <link rel="canonical" href={"https://www.coderintuition.com/reading/" + this.props.router.query.urlName} />
+        </Head>
         <CenteredDiv>
           <LeftDiv>
             <WhiteButton icon onClick={() => router.push("/learning-path/beginner-path")}>

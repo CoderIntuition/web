@@ -19,8 +19,8 @@ const ReadingPage: FC = () => {
   const head = () => {
     return (
       <Head>
-        <title>{router.query.urlName}</title>
-        <meta charSet="utf-8" name="description" content={"Reading"} />
+        <title>CoderIntuition</title>
+        <meta charSet="utf-8" name="description" content="CoderIntuition" />
         <link rel="canonical" href={"https://www.coderintuition.com/reading/" + router.query.urlName} />
       </Head>
     );

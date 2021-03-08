@@ -17,6 +17,7 @@ import {
   SecondRow,
   StyledGrid,
 } from "./problems-styles";
+import Head from "next/head";
 
 const categories = {
   arrays: "Arrays",
@@ -177,6 +178,11 @@ class Problems extends React.Component<ProblemsProps, ProblemsState> {
 
     return (
       <GrayBackground>
+        <Head>
+          <title>Problems: {categories[category]}</title>
+          <meta charSet="utf-8" name="description" content={"Problems under the " + categories[category] + " category."} />
+          <link rel="canonical" href="https://www.coderintuition.com/problems" />
+        </Head>
         <ProblemsSidebar active={category ? category : ""}>
           <>
             <HeadingSection>
