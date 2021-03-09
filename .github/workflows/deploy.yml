@@ -1,0 +1,37 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Create production build and publish to Github Packages Registry
+        uses: elgohr/Publish-Docker-Github-Action@master
+        with:
+          name: coderintuition/web
+          registry: docker.pkg.github.com
+          username: ${{ secrets.GIT_USERNAME }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          dockerfile: Dockerfile
+          tags: latest
+      - name: Pull and deploy package on web server
+        uses: appleboy/ssh-action@master
+        env:
+          GITHUB_USERNAME: ${{ secrets.GIT_USERNAME }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          host: ${{ secrets.REMOTE_HOST }}
+          username: ${{ secrets.REMOTE_USERNAME }}
+          password: ${{ secrets.REMOTE_PASSWORD }}
+          port: ${{ secrets.REMOTE_PORT }}
+          envs: GITHUB_USERNAME, GITHUB_TOKEN
+          script: |
+            docker login docker.pkg.github.com -u $GITHUB_USERNAME -p $GITHUB_TOKEN
+            docker pull docker.pkg.github.com/coderintuition/web:latest
+            docker-compose -f ~/docker-compose/docker-compose.yml up --force-recreate --build -d
+            docker image prune -f
