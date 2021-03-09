@@ -8,7 +8,8 @@
     "dev": "next dev",
     "build": "next build",
     "full-build": "npm run build-semantic && next build",
-    "start": "next start"
+    "start": "next start",
+    "start80": "next start -p 80"
   },
   "dependencies": {
     "@babel/core": "^7.12.17",
