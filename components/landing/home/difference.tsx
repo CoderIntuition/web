@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { Info, Zap } from "react-feather";
-import { Container, HighlightedText } from "../landing-styles";
+import { Container, ContentWithPaddingXl, HighlightedText } from "../landing-styles";
 import {
   DecoratorBlob,
   Description,
@@ -57,25 +57,27 @@ const Difference = () => {
 
   return (
     <div className={Container}>
-      <div className={TwoColumn}>
-        <div className={ImageColumn}>
-          <Image src="/images/difference.svg" alt="CoderIntuition's difference" width="800px" height="800px" />
-        </div>
-        <div className={TextColumn}>
-          <div className={TextContent}>
-            <h1 className={Subheading}>{subheading}</h1>
-            <h2 className={Heading}>{heading}</h2>
-            <p className={Description}>{description}</p>
-            <div className={Features}>
-              {values.map((value, index) => (
-                <div className={Feature} key={index}>
-                  <div className={FeatureHeadingContainer}>
-                    <div className={FeatureIconContainer}>{<value.Icon className={FeatureIcon} />}</div>
-                    <span className={FeatureHeading}>{value.title}</span>
+      <div className={ContentWithPaddingXl}>
+        <div className={TwoColumn}>
+          <div className={ImageColumn}>
+            <Image src="/images/difference.svg" alt="CoderIntuition's difference" width="800px" height="800px" />
+          </div>
+          <div className={TextColumn}>
+            <div className={TextContent}>
+              <h1 className={Subheading}>{subheading}</h1>
+              <h2 className={Heading}>{heading}</h2>
+              <p className={Description}>{description}</p>
+              <div className={Features}>
+                {values.map((value, index) => (
+                  <div className={Feature} key={index}>
+                    <div className={FeatureHeadingContainer}>
+                      <div className={FeatureIconContainer}>{<value.Icon className={FeatureIcon} />}</div>
+                      <span className={FeatureHeading}>{value.title}</span>
+                    </div>
+                    <span className={FeatureDescription}>{value.description}</span>
                   </div>
-                  <span className={FeatureDescription}>{value.description}</span>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
         </div>

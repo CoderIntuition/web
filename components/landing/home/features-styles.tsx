@@ -2,7 +2,7 @@ import cntl from "cntl";
 
 export const Container = cntl`relative`;
 
-export const ThreeColumnContainer = cntl`flex flex-col items-center md:items-stretch md:flex-row flex-wrap md:justify-center max-w-screen-lg mx-auto py-20 md:pb-24 md:pt-0`;
+export const ThreeColumnContainer = cntl`flex flex-col items-center md:items-stretch md:flex-row flex-wrap md:justify-center max-w-screen-lg mx-auto py-20 md:pb-4 md:pt-0`;
 
 export const Subheading = cntl`text-lg md:text-2xl font-normal text-primary-500 mb-0 md:mb-4 uppercase tracking-widest`;
 
