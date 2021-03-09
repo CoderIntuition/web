@@ -5,7 +5,7 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 RUN npm cache verify
 COPY . ./
-RUN npm install && npm run build
+RUN npm install && npm run full-build
 
 # Stage - Deploy
 EXPOSE 80
