@@ -1,6 +1,6 @@
 # CoderIntuition React Web App
 
-![Deploy](https://github.com/CoderIntuition/web/workflows/Deploy/badge.svg?branch=master)
+![Deploy](https://github.com/CoderIntuition/web/workflows/Deploy/badge.svg?branch=main)
 
 ## Documentation
 
