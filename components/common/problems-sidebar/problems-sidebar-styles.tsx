@@ -3,7 +3,7 @@ import { Menu } from "semantic-ui-react";
 
 export const FlexWrapper = styled.div`
   display: flex;
-  padding: 30px 30px 50px 30px;
+  padding: 30px 30px 50px 40px;
 `;
 
 export const SidebarContainer = styled.div`

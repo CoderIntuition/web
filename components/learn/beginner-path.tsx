@@ -60,7 +60,7 @@ class BeginnerPath extends React.Component<BeginnerPathProps, BeginnerPathState>
           </HeadingSection>
           <StyledGrid>
             <GridRow>
-              <CardGroup style={{ width: "100%", maxWidth: 1000 }}>
+              <CardGroup style={{ width: "100%", maxWidth: 1280 }}>
                 <Card raised fluid style={{ padding: 20 }}>
                   <Header size="medium">Overview</Header>
                   <p style={{ color: "#00000090", fontSize: 15 }}>
