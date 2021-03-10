@@ -5,11 +5,11 @@ import axios from "axios";
 import Stomp from "stompjs";
 import _ from "lodash";
 import Timer from "react-compound-timer";
+import dynamic from "next/dynamic";
+import { SplitterLayoutProps } from "react-splitter-layout";
 import {
   Button,
   Dropdown,
-  DropdownItem,
-  DropdownMenu,
   Form,
   Grid,
   GridColumn,
@@ -17,8 +17,6 @@ import {
   Icon,
   Input,
   Loader,
-  Menu,
-  MenuItem,
   MenuMenu,
   Message,
   Modal,
@@ -45,6 +43,7 @@ import {
   BottomLeftButton,
   BottomRightButton,
   ContentSegment,
+  EditorWrapper,
   FlexDiv,
   InfoContentWrapper,
   InfoDiv,
@@ -54,10 +53,14 @@ import {
   RunButton,
   SplitterVerticalDiv,
   StyledAlertTriangle,
+  StyledDropdown,
+  StyledDropdownItem,
+  StyledDropdownMenu,
+  StyledMenu,
+  StyledMenuItem,
   StyledMoon,
+  TestContentWrapper,
 } from "./problem-styles";
-import dynamic from "next/dynamic";
-import { SplitterLayoutProps } from "react-splitter-layout";
 
 const SplitterLayout = dynamic<SplitterLayoutProps>(
   async () => {
@@ -90,6 +93,7 @@ class Problem extends Component<ProblemProps> {
     horizontalPaneSize: -1,
     loading: true,
     problem: {} as any,
+    darkMode: 0,
     infoTab: "description",
     step: -1,
     intuitionCompleted: false,
@@ -498,26 +502,106 @@ class Problem extends Component<ProblemProps> {
       );
     }
 
+    const contactModal = (
+      <Modal
+        closeOnEscape={true}
+        closeOnDimmerClick={false}
+        open={this.state.issueModalOpen}
+        onClose={() => this.setState({ issueModalOpen: false })}
+      >
+        <Modal.Header>Report an Issue</Modal.Header>
+        <Modal.Content>
+          <p>
+            Found an issue with our website or this problem? Submit this form and a member of our team will reach out to
+            you via email within 24 hours to help you resolve it or ask for more information.
+          </p>
+          <br />
+          <Form style={{ margin: 10 }}>
+            <Grid>
+              <GridRow>
+                <GridColumn>
+                  <Label>Problem</Label>
+                  <Input value={this.state.problem.name} fluid />
+                </GridColumn>
+              </GridRow>
+              <GridRow>
+                <GridColumn>
+                  <Label>Email</Label>
+                  <Input
+                    value={this.state.issueFormEmail}
+                    onChange={(e) => {
+                      this.setState({
+                        issueFormEmail: e.target.value,
+                      });
+                    }}
+                    fluid
+                  />
+                </GridColumn>
+              </GridRow>
+              <GridRow>
+                <GridColumn>
+                  <Label>Issue Category</Label>
+                  <Dropdown
+                    options={this.issueItems}
+                    onChange={(event, data) => {
+                      this.setState({
+                        issueFormCategory: data.value,
+                      });
+                    }}
+                    selection
+                    fluid
+                  />
+                </GridColumn>
+              </GridRow>
+              <GridRow>
+                <GridColumn>
+                  <Label>Issue Description</Label>
+                  <TextArea
+                    onChange={(e, { value }) => {
+                      this.setState({
+                        issueFormDescription: value,
+                      });
+                    }}
+                    fluid={1}
+                  />
+                </GridColumn>
+              </GridRow>
+            </Grid>
+          </Form>
+        </Modal.Content>
+        <Modal.Actions>
+          <GrayButton onClick={() => this.setState({ issueModalOpen: false })}>Cancel</GrayButton>
+          <Button primary onClick={() => this.handleIssueFormSubmit()}>
+            Submit
+          </Button>
+        </Modal.Actions>
+      </Modal>
+    );
+
     const infoContent = (
       <OuterPaddingDiv>
         <ContentSegment height={this.state.windowHeight - 140} raised>
-          <Menu attached="top" tabular>
-            <Menu.Item
+          <StyledMenu dark={this.state.darkMode} attached="top" tabular>
+            <StyledMenuItem
+              dark={this.state.darkMode}
               active={this.state.infoTab === "description"}
               onClick={() => this.handleInfoTabClick("description")}
               name="Description"
             />
-            <Menu.Item
+            <StyledMenuItem
+              dark={this.state.darkMode}
               active={this.state.infoTab === "intuition"}
               onClick={() => this.handleInfoTabClick("intuition")}
               name="Intuition"
             />
-            <Menu.Item
+            <StyledMenuItem
+              dark={this.state.darkMode}
               active={this.state.infoTab === "solution"}
               onClick={() => this.handleInfoTabClick("solution")}
               name="Solution"
             />
-            <Menu.Item
+            <StyledMenuItem
+              dark={this.state.darkMode}
               active={this.state.infoTab === "submissions"}
               onClick={() => this.handleInfoTabClick("submissions")}
               name="Submissions"
@@ -532,97 +616,34 @@ class Problem extends Component<ProblemProps> {
                       size={25}
                       strokeWidth={1.5}
                       onClick={() => this.setState({ issueModalOpen: true })}
+                      dark={this.state.darkMode}
                     />
                   }
                 />
-                <Modal
-                  closeOnEscape={true}
-                  closeOnDimmerClick={false}
-                  open={this.state.issueModalOpen}
-                  onClose={() => this.setState({ issueModalOpen: false })}
-                >
-                  <Modal.Header>Report an Issue</Modal.Header>
-                  <Modal.Content>
-                    <p>
-                      Found an issue with our website or this problem? Submit this form and a member of our team will
-                      reach out to you via email within 24 hours to help you resolve it or ask for more information.
-                    </p>
-                    <br />
-                    <Form style={{ margin: 10 }}>
-                      <Grid>
-                        <GridRow>
-                          <GridColumn>
-                            <Label>Problem</Label>
-                            <Input value={this.state.problem.name} fluid />
-                          </GridColumn>
-                        </GridRow>
-                        <GridRow>
-                          <GridColumn>
-                            <Label>Email</Label>
-                            <Input
-                              value={this.state.issueFormEmail}
-                              onChange={(e) => {
-                                this.setState({
-                                  issueFormEmail: e.target.value,
-                                });
-                              }}
-                              fluid
-                            />
-                          </GridColumn>
-                        </GridRow>
-                        <GridRow>
-                          <GridColumn>
-                            <Label>Issue Category</Label>
-                            <Dropdown
-                              options={this.issueItems}
-                              onChange={(event, data) => {
-                                this.setState({
-                                  issueFormCategory: data.value,
-                                });
-                              }}
-                              selection
-                              fluid
-                            />
-                          </GridColumn>
-                        </GridRow>
-                        <GridRow>
-                          <GridColumn>
-                            <Label>Issue Description</Label>
-                            <TextArea
-                              onChange={(e, { value }) => {
-                                this.setState({
-                                  issueFormDescription: value,
-                                });
-                              }}
-                              fluid
-                            />
-                          </GridColumn>
-                        </GridRow>
-                      </Grid>
-                    </Form>
-                  </Modal.Content>
-                  <Modal.Actions>
-                    <GrayButton onClick={() => this.setState({ issueModalOpen: false })}>Cancel</GrayButton>
-                    <Button primary onClick={() => this.handleIssueFormSubmit()}>
-                      Submit
-                    </Button>
-                  </Modal.Actions>
-                </Modal>
+                {contactModal}
               </div>
               <div style={{ margin: "auto", width: 35 }}>
                 <Popup
-                  content="Dark mode is coming soon!"
+                  content={"Turn " + (this.state.darkMode ? "Off" : "On") + " Dark Mode"}
                   position="bottom left"
-                  trigger={<StyledMoon size={25} strokeWidth={1.5} />}
+                  trigger={
+                    <StyledMoon
+                      size={25}
+                      strokeWidth={1.5}
+                      onClick={() => this.setState({ darkMode: this.state.darkMode ? 0 : 1 })}
+                      dark={this.state.darkMode}
+                    />
+                  }
                 />
               </div>
             </MenuMenu>
-          </Menu>
-          <InfoContentWrapper>
+          </StyledMenu>
+          <InfoContentWrapper dark={this.state.darkMode}>
             <InfoContent
               authenticated={this.props.authenticated}
               currentUser={this.props.currentUser}
               problem={this.state.problem}
+              darkMode={this.state.darkMode}
               language={this.state.language}
               infoTab={this.state.infoTab}
               step={this.state.step}
@@ -638,7 +659,7 @@ class Problem extends Component<ProblemProps> {
     );
 
     const bottomBar = (
-      <BottomBar>
+      <BottomBar dark={this.state.darkMode}>
         {this.state.step === -1 ? (
           <Button primary icon labelPosition="right" onClick={() => this.handleLearnIntuitionClick()}>
             Learn The Intuition
@@ -674,34 +695,48 @@ class Problem extends Component<ProblemProps> {
     const codeEditor = (
       <OuterPaddingDiv>
         <ContentSegment raised height={this.state.horizontalPaneSize - 21}>
-          <Menu attached="top" tabular>
-            <MenuItem name="Code Editor" active />
+          <StyledMenu dark={this.state.darkMode} attached="top" tabular>
+            <StyledMenuItem dark={this.state.darkMode} name="Code Editor" active />
             <MenuMenu position="right">
-              <Dropdown item text={this.languageEnumToText(this.state.language)} className="noactiveitem">
-                <DropdownMenu>
-                  <DropdownItem onClick={() => this.handleLanguageClick("PYTHON")} content="Python 3" />
-                  <DropdownItem onClick={() => this.handleLanguageClick("JAVA")} content="Java" />
-                  <DropdownItem onClick={() => this.handleLanguageClick("JAVASCRIPT")} content="JavaScript" />
-                </DropdownMenu>
-              </Dropdown>
+              <StyledDropdown item text={this.languageEnumToText(this.state.language)} dark={this.state.darkMode}>
+                <StyledDropdownMenu dark={this.state.darkMode}>
+                  <StyledDropdownItem
+                    dark={this.state.darkMode}
+                    onClick={() => this.handleLanguageClick("PYTHON")}
+                    content="Python 3"
+                  />
+                  <StyledDropdownItem
+                    dark={this.state.darkMode}
+                    onClick={() => this.handleLanguageClick("JAVA")}
+                    content="Java"
+                  />
+                  <StyledDropdownItem
+                    dark={this.state.darkMode}
+                    onClick={() => this.handleLanguageClick("JAVASCRIPT")}
+                    content="JavaScript"
+                  />
+                </StyledDropdownMenu>
+              </StyledDropdown>
             </MenuMenu>
-          </Menu>
-          <AceEditor
-            width={this.state.verticalPaneSize - 22 + "px"}
-            height={this.state.horizontalPaneSize - 69 + "px"}
-            mode={this.state.language.toLowerCase()}
-            theme="xcode"
-            value={this.state.code[this.state.language.toLowerCase()]}
-            editorProps={{ $blockScrolling: true }}
-            onChange={this.codeEditorChange}
-            setOptions={{
-              enableBasicAutocompletion: true,
-              enableLiveAutocompletion: true,
-              showLineNumbers: true,
-              tabSize: 4,
-              useWorker: false,
-            }}
-          />
+          </StyledMenu>
+          <EditorWrapper dark={this.state.darkMode}>
+            <AceEditor
+              width={this.state.verticalPaneSize - 22 + "px"}
+              height={this.state.horizontalPaneSize - 69 + "px"}
+              mode={this.state.language.toLowerCase()}
+              theme={this.state.darkMode ? "monokai" : "xcode"}
+              value={this.state.code[this.state.language.toLowerCase()]}
+              editorProps={{ $blockScrolling: true }}
+              onChange={this.codeEditorChange}
+              setOptions={{
+                enableBasicAutocompletion: true,
+                enableLiveAutocompletion: true,
+                showLineNumbers: true,
+                tabSize: 4,
+                useWorker: false,
+              }}
+            />
+          </EditorWrapper>
         </ContentSegment>
       </OuterPaddingDiv>
     );
@@ -709,18 +744,21 @@ class Problem extends Component<ProblemProps> {
     const testContent = (
       <OuterPaddingDiv>
         <ContentSegment raised height={this.state.windowHeight - this.state.horizontalPaneSize - 88}>
-          <Menu attached="top" tabular>
-            <MenuItem
+          <StyledMenu dark={this.state.darkMode} attached="top" tabular>
+            <StyledMenuItem
+              dark={this.state.darkMode}
               active={this.state.testTab === "input"}
               onClick={() => this.handleTestTabClick("input")}
               name="Test Input"
             />
-            <MenuItem
+            <StyledMenuItem
+              dark={this.state.darkMode}
               active={this.state.testTab === "testResult"}
               onClick={() => this.handleTestTabClick("testResult")}
               name="Test Result"
             />
-            <MenuItem
+            <StyledMenuItem
+              dark={this.state.darkMode}
               active={this.state.testTab === "submission"}
               onClick={() => this.handleTestTabClick("submission")}
               name="Submission"
@@ -731,6 +769,7 @@ class Problem extends Component<ProblemProps> {
                 icon
                 labelPosition="right"
                 size="small"
+                dark={this.state.darkMode}
                 disabled={this.state.running || this.state.submitting}
                 onClick={() => this.handleTestRunClick()}
               >
@@ -770,25 +809,28 @@ class Problem extends Component<ProblemProps> {
                 </Modal.Actions>
               </Modal>
             </RightSubMenu>
-          </Menu>
-          <TestContent
-            problem={this.state.problem}
-            testTab={this.state.testTab}
-            running={this.state.running}
-            handleTestInputChange={this.handleTestInputChange}
-            testInput={this.state.testInput}
-            testStatus={this.state.testStatus}
-            testStdout={this.state.testStdout}
-            testOutput={this.state.testOutput}
-            testExpectedOutput={this.state.testExpectedOutput}
-            testStderr={this.state.testStderr}
-            submission={this.state.submission}
-            submitting={this.state.submitting}
-            horizontalPaneSize={this.state.horizontalPaneSize}
-            verticalPaneSize={this.state.verticalPaneSize}
-            windowHeight={this.state.windowHeight}
-            windowWidth={this.state.windowWidth}
-          />
+          </StyledMenu>
+          <TestContentWrapper dark={this.state.darkMode}>
+            <TestContent
+              problem={this.state.problem}
+              darkMode={this.state.darkMode}
+              testTab={this.state.testTab}
+              running={this.state.running}
+              handleTestInputChange={this.handleTestInputChange}
+              testInput={this.state.testInput}
+              testStatus={this.state.testStatus}
+              testStdout={this.state.testStdout}
+              testOutput={this.state.testOutput}
+              testExpectedOutput={this.state.testExpectedOutput}
+              testStderr={this.state.testStderr}
+              submission={this.state.submission}
+              submitting={this.state.submitting}
+              horizontalPaneSize={this.state.horizontalPaneSize}
+              verticalPaneSize={this.state.verticalPaneSize}
+              windowHeight={this.state.windowHeight}
+              windowWidth={this.state.windowWidth}
+            />
+          </TestContentWrapper>
         </ContentSegment>
       </OuterPaddingDiv>
     );
@@ -800,8 +842,8 @@ class Problem extends Component<ProblemProps> {
           <meta charSet="utf-8" name="description" content={this.state.problem.name} />
           <link rel="canonical" href={"https://www.coderintuition.com/problem/" + this.props.router.query.urlName} />
         </Head>
-        <FlexDiv>
-          <SplitterVerticalDiv>
+        <FlexDiv dark={this.state.darkMode}>
+          <SplitterVerticalDiv dark={this.state.darkMode}>
             {/* ========== LEFT SIDE ========== */}
             <SplitterLayout
               onSecondaryPaneSizeChange={this.onVerticalChange}

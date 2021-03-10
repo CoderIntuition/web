@@ -1,21 +1,13 @@
 import styled from "styled-components";
-import { Button, MenuMenu, Segment } from "semantic-ui-react";
+import { Button, Dropdown, DropdownMenu, Menu, MenuMenu, Segment } from "semantic-ui-react";
 import { AlertTriangle, Moon } from "react-feather";
 import { RedButton } from "common/global-styles";
-
-export const NavbarLine = styled.hr`
-  &&& {
-    margin-top: 0;
-    margin-bottom: 0;
-    background-color: #d3d3d3;
-    height: 1px;
-    border: none;
-`;
 
 export const FlexDiv = styled.div`
   &&& {
     flex: 1 1 auto;
     display: flex;
+    background-color: ${(props) => (props.dark ? "#16171b" : "")};
   }
 `;
 
@@ -24,7 +16,11 @@ export const SplitterVerticalDiv = styled.div`
     flex: 1 1 auto;
     position: relative;
     overflow: hidden;
-    height: calc(100vh - 61px);
+    height: calc(100vh - 60px);
+
+    .splitter-layout > .layout-splitter {
+      background-color: ${(props) => (props.dark ? "#303136" : "")};
+    }
   }
 `;
 
@@ -42,8 +38,45 @@ export const OuterPaddingDiv = styled.div`
   }
 `;
 
+export const StyledMenu = styled(Menu)`
+  &&& {
+    border-bottom: ${(props) => (props.dark ? "1px solid #3b3d44" : "")};
+    background-color: ${(props) => (props.dark ? "#242529" : "")};
+  }
+`;
+
+export const StyledMenuItem = styled(Menu.Item)`
+  &&&&& {
+    background-color: ${(props) => (props.dark ? "#242529" : "")};
+    color: ${(props) => (props.dark ? "#e0e0e0" : "")};
+  }
+`;
+
+export const StyledDropdown = styled(Dropdown)`
+  &&&&& {
+    background-color: ${(props) => (props.dark ? "#242529" : "")};
+    color: ${(props) => (props.dark ? "#e0e0e0" : "")};
+  }
+`;
+
+export const StyledDropdownItem = styled(Dropdown.Item)`
+  &&&&& {
+    .text {
+      color: ${(props) => (props.dark ? "#e0e0e0" : "")};
+    }
+  }
+`;
+
+export const StyledDropdownMenu = styled(DropdownMenu)`
+  &&&&& {
+    background-color: ${(props) => (props.dark ? "#242529" : "")};
+  }
+`;
+
 export const StyledAlertTriangle = styled(AlertTriangle)`
   &&& {
+    color: ${(props) => (props.dark ? "#e0e0e0" : "")};
+
     &:hover {
       color: #fc5c65;
       cursor: pointer;
@@ -53,6 +86,8 @@ export const StyledAlertTriangle = styled(AlertTriangle)`
 
 export const StyledMoon = styled(Moon)`
   &&& {
+    color: ${(props) => (props.dark ? "#4d69e9" : "")};
+
     &:hover {
       color: #4d69e9;
       cursor: pointer;
@@ -81,8 +116,27 @@ export const ContentSegment = styled(Segment)`
 export const InfoContentWrapper = styled.div`
   &&& {
     max-height: 100%;
+    height: 100%;
     overflow: auto;
     padding: 20px;
+    background-color: ${(props) => (props.dark ? "#202125" : "")};
+    color: ${(props) => (props.dark ? "#e0e0e0" : "")};
+  }
+`;
+
+export const EditorWrapper = styled.div`
+  &&& {
+    max-height: 100%;
+    height: 100%;
+    background-color: ${(props) => (props.dark ? "#202125" : "")};
+  }
+`;
+
+export const TestContentWrapper = styled.div`
+  &&& {
+    max-height: 100%;
+    height: 100%;
+    background-color: ${(props) => (props.dark ? "#202125" : "")};
   }
 `;
 
@@ -107,8 +161,9 @@ export const BottomBar = styled.div`
     position: absolute;
     bottom: 0;
     border-top: 1px solid;
-    border-color: #d3d3d3cc;
-    background-color: #ffffff;
+    color: ${(props) => (props.dark ? "#e0e0e0" : "")};
+    border-color: ${(props) => (props.dark ? "#202125" : "#d3d3d3cc")};
+    background-color: ${(props) => (props.dark ? "#202125" : "#ffffff")};
     z-index: 1;
     text-align: center;
     display: inline-block;
@@ -128,8 +183,10 @@ export const RightSubMenu = styled(MenuMenu)`
 
 export const RunButton = styled(Button)`
   &&& {
+    background-color: ${(props) => (props.dark ? "#e0e0e0" : "")};
+
     &:hover {
-      background-color: #f4f4f4 !important;
+      background-color: ${(props) => (props.dark ? "#caccce" : "#f4f4f4")};
     }
   }
 `;

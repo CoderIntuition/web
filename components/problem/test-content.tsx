@@ -27,6 +27,7 @@ function TestContentWrapper(props) {
 
 type PropTypes = {
   problem: any;
+  darkMode: number;
   testTab: string;
   running: boolean;
   handleTestInputChange: any;
@@ -64,7 +65,7 @@ class TestContent extends React.Component<PropTypes> {
             width={this.props.verticalPaneSize - 22 + "px"}
             height={this.props.windowHeight - this.props.horizontalPaneSize - 138 + "px"}
             mode="plain_text"
-            theme="xcode"
+            theme={this.props.darkMode ? "monokai" : "xcode"}
             value={this.props.testInput}
             editorProps={{ $blockScrolling: true }}
             setOptions={{
@@ -87,7 +88,7 @@ class TestContent extends React.Component<PropTypes> {
             case "ERROR":
               return (
                 <TestContentWrapper>
-                  <TopRow>
+                  <TopRow dark={this.props.darkMode}>
                     <StatusText>
                       <StyledXCircle size={28} />
                       Test Error
@@ -116,7 +117,7 @@ class TestContent extends React.Component<PropTypes> {
             case "FAILED":
               return (
                 <TestContentWrapper>
-                  <TopRow>
+                  <TopRow dark={this.props.darkMode}>
                     {this.props.testStatus === "PASSED" ? (
                       <StatusText>
                         <StyledCheckCircle size={28} />
@@ -167,7 +168,7 @@ class TestContent extends React.Component<PropTypes> {
             default:
               return (
                 <TestContentWrapper>
-                  <TopRow verticalAlign="middle">
+                  <TopRow dark={this.props.darkMode} verticalAlign="middle">
                     Click&nbsp;<b>Run</b>&nbsp;to run your code with input from the&nbsp;<b>Test Input</b>&nbsp;tab.
                   </TopRow>
                 </TestContentWrapper>
@@ -184,7 +185,7 @@ class TestContent extends React.Component<PropTypes> {
             case "ERROR":
               return (
                 <TestContentWrapper>
-                  <TopRow verticalAlign="middle">
+                  <TopRow dark={this.props.darkMode} verticalAlign="middle">
                     <StatusText>
                       <StyledXCircle size={28} />
                       Test Error
@@ -272,7 +273,7 @@ class TestContent extends React.Component<PropTypes> {
               /* ========== SUBMISSION TAB -> PASSED OR FAILED -> SUBMISSION RESULT ========== */
               return (
                 <TestContentWrapper>
-                  <TopRow>
+                  <TopRow dark={this.props.darkMode}>
                     {this.props.submission.status === "ACCEPTED" ? (
                       <StatusText>
                         <StyledCheckCircle size={28} />
@@ -292,7 +293,7 @@ class TestContent extends React.Component<PropTypes> {
             default:
               return (
                 <TestContentWrapper>
-                  <TopRow verticalAlign="middle">
+                  <TopRow dark={this.props.darkMode} verticalAlign="middle">
                     Click&nbsp;<b>Submit</b>&nbsp;to submit your code and run all the tests.
                   </TopRow>
                 </TestContentWrapper>

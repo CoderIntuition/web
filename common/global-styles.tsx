@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Button } from "semantic-ui-react";
+import { Button, Header } from "semantic-ui-react";
 
 export const FlexContainer = styled.div`
   display: flex;
@@ -18,6 +18,12 @@ export const Label = styled.span`
   color: #000000de;
   font-size: 13px;
   font-weight: 600;
+`;
+
+export const VHeader = styled(Header)`
+  &&& {
+    color: ${(props) => props.dark ? "#e0e0e0" : ""};
+  }
 `;
 
 export const GreenButton = styled(Button)`

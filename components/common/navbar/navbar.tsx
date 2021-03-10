@@ -225,6 +225,7 @@ class Navbar extends Component<NavbarProps, {}> {
               secondary
               height={/^\/problem\//.test(router.pathname) ? 60 : 80}
               bgcolor={/^\/problem\//.test(router.pathname) ? "#ffffff" : "#ffffff"}
+              mgbottom={/^\/problem\//.test(router.pathname) ? 0 : 5}
             >
               <NavContainer>
                 <div className="hidden lg:contents">{desktopNavbar}</div>

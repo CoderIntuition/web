@@ -11,6 +11,7 @@ const AceEditor = dynamic(
     require("ace-builds/src-noconflict/mode-plain_text");
     require("ace-builds/src-noconflict/mode-json");
     require("ace-builds/src-noconflict/theme-xcode");
+    require("ace-builds/src-noconflict/theme-monokai");
     require("ace-builds/src-noconflict/ext-language_tools");
     return ace;
   },

@@ -13,6 +13,7 @@ export const StyledTextArea = styled(TextArea)`
 export const TopRow = styled(GridRow)`
   &&& {
     margin-top: -5px;
+    color: ${(props) => props.dark ? "#e0e0e0" : ""};
   }
 `;
 

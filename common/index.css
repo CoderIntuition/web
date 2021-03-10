@@ -2,6 +2,14 @@ body {
   background-color: #fcfcfe;
 }
 
+/* ----- ACE EDITOR ----- */
+
+.ace-monokai {
+  background-color: #202125 !important;
+}
+.ace-monokai .ace_gutter {
+  background-color: #242529 !important;
+}
 
 /* ----- NOTIFICATIONS ----- */
 
@@ -70,7 +78,7 @@ body {
 
 .splitter-layout > .layout-splitter {
   width: 6px !important;
-  background-color: #ccc !important;
+  background-color: #ccc;
 }
 
 .splitter-layout .layout-splitter:hover {

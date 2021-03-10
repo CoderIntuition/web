@@ -2,22 +2,12 @@ import React from "react";
 import Image from "next/image";
 import moment from "moment/moment";
 import Quiz from "react-quiz-component";
-import {
-  Grid,
-  GridColumn,
-  GridRow,
-  Header,
-  Modal,
-  Table,
-  TableHeader,
-  TableHeaderCell,
-  TableRow,
-} from "semantic-ui-react";
+import { Grid, GridColumn, GridRow, Modal, Table, TableHeader, TableHeaderCell, TableRow } from "semantic-ui-react";
 import MarkdownRender from "components/common/markdown-render/markdown-render";
 import AceEditor from "components/common/ace-editor/ace-editor";
 import Emoji from "components/common/emoji/emoji";
 import { capitalize, wrapQuestions } from "common/utils";
-import { GrayButton } from "common/global-styles";
+import { GrayButton, VHeader } from "common/global-styles";
 import { Label } from "./problem-styles";
 import {
   ActionText,
@@ -28,11 +18,13 @@ import {
   StatusText,
   TestResultText,
 } from "./info-content-styles";
+import MarkdownRenderDark from "../common/markdown-render/markdown-render-dark";
 
 interface InfoContentProps {
   authenticated: boolean;
   currentUser: any;
   problem: any;
+  darkMode: number;
   language: string;
   infoTab: string;
   step: number;
@@ -69,9 +61,15 @@ class InfoContent extends React.Component<InfoContentProps> {
       case "description":
         return (
           <>
-            <Header size="large">{this.props.problem.name}</Header>
+            <VHeader dark={this.props.darkMode} size="large">
+              {this.props.problem.name}
+            </VHeader>
             <DescriptionStyles>
-              <MarkdownRender source={this.props.problem.description} />
+              {this.props.darkMode ? (
+                <MarkdownRenderDark source={this.props.problem.description} />
+              ) : (
+                <MarkdownRender source={this.props.problem.description} />
+              )}
             </DescriptionStyles>
           </>
         );
@@ -81,12 +79,12 @@ class InfoContent extends React.Component<InfoContentProps> {
           return (
             <Grid style={{ marginBottom: 50 }}>
               <GridRow centered>
-                <Header size="large">
+                <VHeader dark={this.props.darkMode} size="large">
                   Stuck? <Emoji symbol="😕" />
-                </Header>
+                </VHeader>
               </GridRow>
               <GridRow centered style={{ marginTop: 50 }}>
-                <div style={{width: "40vh", height: "40vh"}}>
+                <div style={{ width: "40vh", height: "40vh" }}>
                   <Image src="/images/stuck.svg" alt="Stuck on question graphic" layout="fill" />
                 </div>
               </GridRow>
@@ -101,12 +99,16 @@ class InfoContent extends React.Component<InfoContentProps> {
           const curStep = this.props.problem.problemSteps[this.props.step - 1];
           return (
             <div style={{ marginBottom: 70 }}>
-              <Header size="medium">
+              <VHeader dark={this.props.darkMode} size="medium">
                 Step {curStep.stepNum} - {curStep.name}
-              </Header>
+              </VHeader>
               {curStep.type === "TEXT" ? (
                 <DescriptionStyles>
-                  <MarkdownRender source={curStep.content} />
+                  {this.props.darkMode ? (
+                    <MarkdownRenderDark source={curStep.content} />
+                  ) : (
+                    <MarkdownRender source={curStep.content} />
+                  )}
                 </DescriptionStyles>
               ) : (
                 <Quiz quiz={wrapQuestions(curStep.content)} />
@@ -126,17 +128,21 @@ class InfoContent extends React.Component<InfoContentProps> {
                 {this.props.problem.solutions.map((solution, idx) => {
                   return (
                     <div key={idx}>
-                      <Header size="medium">
+                      <VHeader dark={this.props.darkMode} size="medium">
                         Approach {solution.solutionNum}: {solution.name}
-                      </Header>
+                      </VHeader>
                       <DescriptionStyles>
-                        <MarkdownRender source={solution.description} />
+                        {this.props.darkMode ? (
+                          <MarkdownRenderDark source={solution.description} />
+                        ) : (
+                          <MarkdownRender source={solution.description} />
+                        )}
                       </DescriptionStyles>
                       <br />
                       <AceEditor
                         width={this.props.windowWidth - this.props.verticalPaneSize - 65 + "px"}
                         mode={"python"}
-                        theme="xcode"
+                        theme={this.props.darkMode ? "monokai" : "xcode"}
                         value={solution.pythonCode}
                         editorProps={{
                           $blockScrolling: true,
@@ -165,9 +171,9 @@ class InfoContent extends React.Component<InfoContentProps> {
               {this.props.problem.solutions.map((solution, idx) => {
                 return (
                   <div key={idx}>
-                    <Header as="h3">
+                    <VHeader dark={this.props.darkMode} as="h3">
                       Approach {solution.solutionNum}: {solution.name}
-                    </Header>
+                    </VHeader>
                     <MarkdownRender source={solution.description} />
                     <br />
                     <AceEditor

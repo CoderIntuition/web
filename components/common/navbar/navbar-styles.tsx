@@ -5,7 +5,7 @@ export const NavbarMenu = styled(Menu)`
   &&& {
     background-color: ${(props) => props.bgcolor};
     height: ${(props) => props.height}px;
-    margin-bottom: 5px;
+    margin-bottom: ${(props) => props.mgbottom}px;
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
   }
 `;
