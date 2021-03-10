@@ -2,5 +2,6 @@
     User Variable Overrides
 *******************************/
 
-@fontWeight: 400;
-@circularPadding: 5px 10px;
+@fontWeight: 500;
+@circularPadding: 6px 8px 5px 8px;
+@backgroundColor: @grey;

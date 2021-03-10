@@ -140,10 +140,15 @@
 .ui.table > tr > td,
 .ui.table > tbody > tr > td {
   border-top: @rowBorder;
+  font-weight: 500;
 }
 .ui.table > tr:first-child > td,
 .ui.table > tbody > tr:first-child > td {
   border-top: none;
+}
+.ui.table > tr:last-child > td,
+.ui.table > tbody > tr:last-child > td {
+  border-bottom: @rowBorder;
 }
 
 /* Repeated tbody */
@@ -626,9 +631,9 @@
 
   .ui.ui.selectable.table > tbody > tr:hover,
   .ui.table tbody tr td.selectable:hover {
-    //background: @selectableBackground;
+    background: @selectableBackground;
     color: @selectableTextColor;
-    font-weight: 500;
+    font-weight: 600 !important;
   }
   & when (@variationTableInverted) {
     .ui.ui.selectable.inverted.table > tbody > tr:hover,

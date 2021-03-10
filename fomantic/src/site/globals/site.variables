@@ -5,3 +5,8 @@
 @fontName: 'Inter';
 @bold: 600;
 @googleFontSizes: '100,200,300,400,500,600,700,800,900,100italic,200italic,300italic,400italic,500italic,600italic,700italic,800italic,900italic';
+@blue: #4d69e9;
+@grey: #f0f0f0;
+@yellow: #fbbd08;
+@red: #fc5c65;
+@green: #20bf6b;

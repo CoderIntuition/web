@@ -2,22 +2,15 @@ import React from "react";
 import { NextRouter, withRouter } from "next/router";
 import axios from "axios";
 import _ from "lodash";
-import { Button, Grid, Icon, Label, Loader, Message, Pagination, Radio, Segment, Table } from "semantic-ui-react";
+import { Button, Grid, Icon, Label, Loader, Message, Pagination, Segment, Table } from "semantic-ui-react";
 import ProblemsSidebar from "components/common/problems-sidebar/problems-sidebar";
 import { constants } from "common/constants";
 import { capitalize, getDifficultyColor, withGlobalContext } from "common/utils";
 import { SimpleProblem } from "common/types";
 import { GrayBackground, Heading, HeadingSection, Subheading } from "./overview-styles";
-import {
-  BottomRow,
-  FirstRow,
-  NotFoundWrapper,
-  RadioLabel,
-  SearchInput,
-  SecondRow,
-  StyledGrid,
-} from "./problems-styles";
+import { BottomRow, FirstRow, NotFoundWrapper, SearchInput, StyledGrid } from "./problems-styles";
 import Head from "next/head";
+import { AlertCircle } from "react-feather";
 
 const categories = {
   arrays: "Arrays",
@@ -180,7 +173,11 @@ class Problems extends React.Component<ProblemsProps, ProblemsState> {
       <GrayBackground>
         <Head>
           <title>Problems: {categories[category]}</title>
-          <meta charSet="utf-8" name="description" content={"Problems under the " + categories[category] + " category."} />
+          <meta
+            charSet="utf-8"
+            name="description"
+            content={"Problems under the " + categories[category] + " category."}
+          />
           <link rel="canonical" href="https://www.coderintuition.com/problems" />
         </Head>
         <ProblemsSidebar active={category ? category : ""}>
@@ -193,8 +190,8 @@ class Problems extends React.Component<ProblemsProps, ProblemsState> {
               <StyledGrid>
                 <FirstRow>
                   <Grid.Column floated="left" verticalAlign="middle" width={8}>
-                    <span style={{ fontSize: 16, fontWeight: 500 }}>
-                      You have <b>12</b> un-attempted problems
+                    <span style={{ fontSize: 14, fontWeight: 500, color: "#595f6b" }}>
+                      You have <Label circular color="yellow">12</Label> problems to try!
                     </span>
                   </Grid.Column>
                   <Grid.Column floated="right" width={8}>
@@ -207,24 +204,11 @@ class Problems extends React.Component<ProblemsProps, ProblemsState> {
                     />
                   </Grid.Column>
                 </FirstRow>
-                <SecondRow>
-                  <Grid.Column verticalAlign="middle">
-                    <div
-                      style={{
-                        display: "flex",
-                        alignContent: "center",
-                      }}
-                    >
-                      <Radio toggle />
-                      <RadioLabel>See your completed problems</RadioLabel>
-                    </div>
-                  </Grid.Column>
-                </SecondRow>
-                <Grid.Row>
-                  <Table striped padded selectable style={{ width: "100%", margin: 0 }}>
+                <Grid.Row centered>
+                  <Table padded selectable style={{ width: "92%" }}>
                     <Table.Header>
                       <Table.Row>
-                        <Table.HeaderCell className="second" width={10} style={{ paddingLeft: 30 }}>
+                        <Table.HeaderCell className="second" width={10} style={{ paddingLeft: 20 }}>
                           Problem Name
                         </Table.HeaderCell>
                         <Table.HeaderCell className="second" width={3}>
@@ -238,7 +222,7 @@ class Problems extends React.Component<ProblemsProps, ProblemsState> {
                     <Table.Body>
                       {this.state.searchedProblems.map((problem, i) => (
                         <Table.Row key={i} onClick={() => router.push("/problem/" + problem.urlName)}>
-                          <Table.Cell style={{ paddingLeft: 30 }}>{problem.name}</Table.Cell>
+                          <Table.Cell style={{ paddingLeft: 20 }}>{problem.name}</Table.Cell>
                           <Table.Cell>
                             <Label circular>{capitalize(problem.category)}</Label>
                           </Table.Cell>
@@ -250,6 +234,7 @@ class Problems extends React.Component<ProblemsProps, ProblemsState> {
                         </Table.Row>
                       ))}
                     </Table.Body>
+                    <Table.Footer></Table.Footer>
                   </Table>
                 </Grid.Row>
                 <BottomRow centered>

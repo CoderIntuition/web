@@ -18,4 +18,4 @@
 
 @arrowBorder: none;
 @secondaryItemBorderRadius: 12px;
-@borderRadius: 10px;
+@borderRadius: 8px;

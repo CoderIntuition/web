@@ -2,12 +2,13 @@
     User Variable Overrides
 *******************************/
 @border: none;
-@rowBorder: none;
+@rowBorder: 1px solid #dadada;
 @color: #595f6b !important;
 @headerColor: #243e63 !important;
 @headerBackground: #ffffff;
-@headerSecondBackground: linear-gradient(180deg, rgba(255,255,255,1) 40%, rgba(251,251,255,1) 100%);
+@headerSecondBackground: none;
 @stripedBackground: #fcfcff;
 @selectableTextColor: #4d69e9;
+@selectableBackground: #fafaff;
 @footerBackground: #ffffff;
-@headerBorder: none;
+@headerBorder: 1px solid #dadada;

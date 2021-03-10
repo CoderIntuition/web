@@ -2,7 +2,7 @@
     User Variable Overrides
 *******************************/
 @borderRadius: 13px !important;
-@raisedShadow: 0px 0px 10px rgba(0, 0, 0, 0.05) !important;
+@raisedShadow: 0px 0px 10px rgba(0, 0, 0, 0.08) !important;
 @contentPadding: 20px !important;
 @headerColor: #1a202c !important;
 @descriptionColor: rgba(0, 0, 0, 0.5) !important;
