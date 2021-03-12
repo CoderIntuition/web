@@ -81,7 +81,7 @@ class TestContent extends React.Component<PropTypes> {
       /* ========== TEST RESULT TAB ========== */
       case "testResult":
         if (this.props.running) {
-          return <TestOutputLoader text="Running Your Test" />;
+          return <TestOutputLoader text="Running your test..." dark={this.props.darkMode} />;
         } else {
           switch (this.props.testStatus) {
             /* ========== TEST RESULT TAB -> ERROR ========== */
@@ -178,7 +178,7 @@ class TestContent extends React.Component<PropTypes> {
       /* ========== SUBMISSION TAB ========== */
       case "submission":
         if (this.props.submitting) {
-          return <TestOutputLoader text="Submitting Your Code" />;
+          return <TestOutputLoader text="Submitting your code..." dark={this.props.darkMode} />;
         } else {
           switch (this.props.submission.status) {
             /* ========== SUBMISSION TAB -> ERROR ========== */

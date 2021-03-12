@@ -1,15 +1,22 @@
-import React, { FC, PropsWithChildren } from "react";
-import { Dimmer, Grid, GridRow, Loader } from "semantic-ui-react";
+import React, { FC } from "react";
+import { Dimmer, Grid, GridRow, Header, Loader } from "semantic-ui-react";
 
-const TestOutputLoader: FC<PropsWithChildren<any>> = (props) => {
+interface TestOutputLoaderProps {
+  text: string;
+  dark: number;
+}
+
+const TestOutputLoader: FC<TestOutputLoaderProps> = (props) => {
   return (
-    <Dimmer active inverted>
-      <Grid columns={2}>
+    <Dimmer active inverted={!props.dark}>
+      <Grid columns={2} style={{ marginTop: 20 }}>
         <GridRow>
-          <Loader />
+          <Loader active />
         </GridRow>
         <GridRow>
-          <div style={{ color: "black", fontSize: "18px", fontWeight: 500 }}>{props.text}</div>
+          <Header size="small" color={props.dark ? "grey" : "black"} style={{ fontWeight: 500 }}>
+            {props.text}
+          </Header>
         </GridRow>
       </Grid>
     </Dimmer>
