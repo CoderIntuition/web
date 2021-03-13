@@ -174,12 +174,16 @@ class InfoContent extends React.Component<InfoContentProps> {
                     <VHeader dark={this.props.darkMode} as="h3">
                       Approach {solution.solutionNum}: {solution.name}
                     </VHeader>
-                    <MarkdownRender source={solution.description} />
+                    {this.props.darkMode ? (
+                      <MarkdownRenderDark source={solution.description} />
+                    ) : (
+                      <MarkdownRender source={solution.description} />
+                    )}
                     <br />
                     <AceEditor
                       width={this.props.windowWidth - this.props.verticalPaneSize - 65 + "px"}
                       mode={"python"}
-                      theme="xcode"
+                      theme={this.props.darkMode ? "monokai" : "xcode"}
                       value={solution.pythonCode}
                       editorProps={{
                         $blockScrolling: true,

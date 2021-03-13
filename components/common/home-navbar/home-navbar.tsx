@@ -58,11 +58,17 @@ class HomeNavbar extends Component<HomeNavbarProps, {}> {
     this.props.router.push("/signup");
   }
 
+  onProblemPage() {
+    return /^\/problem\//.test(this.props.router.pathname);
+  }
+
   render() {
-    const trigger = this.props.authenticated ? (
+    const { authenticated, currentUser } = this.props;
+
+    const trigger = authenticated ? (
       <>
         <User color="#ffffff" />
-        <UserName>{this.props.currentUser.name}</UserName>
+        <UserName>{currentUser.name}</UserName>
       </>
     ) : (
       <span />
@@ -91,7 +97,7 @@ class HomeNavbar extends Component<HomeNavbarProps, {}> {
             <StyledLink active={0}>Blog</StyledLink>
           </Link>
         </StyledMenuItem>
-        {this.props.authenticated ? (
+        {authenticated ? (
           <StyledMenuItem position="right">
             <StyledDropdown item pointing="top right" trigger={trigger}>
               <Dropdown.Menu>
@@ -107,7 +113,7 @@ class HomeNavbar extends Component<HomeNavbarProps, {}> {
                   icon="settings"
                   onClick={() => this.handleDropdownClick("settings")}
                 />
-                {isMod(this.props.currentUser.roles) && (
+                {isMod(currentUser.roles) && (
                   <Dropdown.Item
                     value="admin"
                     text="Admin"
@@ -170,7 +176,7 @@ class HomeNavbar extends Component<HomeNavbarProps, {}> {
                 </Link>
               </Dropdown.Item>
               <Dropdown.Divider />
-              {this.props.authenticated ? (
+              {authenticated ? (
                 <>
                   <Dropdown.Item
                     value="profile"
@@ -184,7 +190,7 @@ class HomeNavbar extends Component<HomeNavbarProps, {}> {
                     icon="settings"
                     onClick={() => this.handleDropdownClick("settings")}
                   />
-                  {isMod(this.props.currentUser.roles) && (
+                  {isMod(currentUser.roles) && (
                     <Dropdown.Item
                       value="admin"
                       text="Admin"
@@ -220,7 +226,15 @@ class HomeNavbar extends Component<HomeNavbarProps, {}> {
     );
 
     return (
-      <HomeNavbarMenu secondary>
+      <HomeNavbarMenu
+        secondary
+        position={this.onProblemPage() ? "" : "absolute"}
+        width={this.onProblemPage() ? "" : "100%"}
+        background={this.onProblemPage() ? "" : "transparent"}
+        backgroundcolor={this.onProblemPage() ? "#242529" : "transparent"}
+        height={this.onProblemPage() ? 60 : 80}
+        mgbottom={this.onProblemPage() ? 0 : 5}
+      >
         <NavContainer>
           <div className="hidden lg:contents">{desktopNavbar}</div>
           <div className="contents lg:hidden">{mobileNavbar}</div>

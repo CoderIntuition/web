@@ -5,6 +5,7 @@ import { FlexContainer, FlexContent } from "common/global-styles";
 import Footer from "components/common/footer/footer";
 
 interface PageWrapperProps extends PropsWithChildren<any> {
+  darkMode?: number;
   homeNavbar?: boolean;
   hideFooter?: boolean;
 }
@@ -12,7 +13,7 @@ interface PageWrapperProps extends PropsWithChildren<any> {
 const PageWrapper: FC<PageWrapperProps> = (props) => {
   return (
     <FlexContainer>
-      {props.homeNavbar ? <HomeNavbar /> : <Navbar />}
+      {props.homeNavbar || props.darkMode ? <HomeNavbar /> : <Navbar />}
       <FlexContent>{props.children}</FlexContent>
       {!props.hideFooter && <Footer />}
     </FlexContainer>

@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Dropdown } from "semantic-ui-react";
 import { User } from "react-feather";
-import { isMod } from "../../../common/auth-service";
+import { isMod } from "common/auth-service";
 import { showSuccessToast, withGlobalContext } from "common/utils";
 import { constants } from "common/constants";
 import {

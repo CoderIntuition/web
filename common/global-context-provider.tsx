@@ -4,18 +4,27 @@ import { constants } from "common/constants";
 import { getName, showSuccessToast } from "./utils";
 
 export const GlobalContext = React.createContext({
+  darkMode: 0,
   authenticated: false,
   currentUser: null,
   loadCurrentUser: (_type) => {},
   logout: () => {},
+  setDarkMode: (_value) => {},
 });
 
 class GlobalContextProvider extends React.Component {
   state = {
+    darkMode: 0,
     authenticated: false,
     currentUser: null,
     loading: true,
   };
+
+  setDarkMode = (value: number) => {
+    this.setState({
+      darkMode: value,
+    })
+  }
 
   loadCurrentUser = (type) => {
     this.setState({
@@ -65,10 +74,12 @@ class GlobalContextProvider extends React.Component {
     return (
       <GlobalContext.Provider
         value={{
+          darkMode: this.state.darkMode,
           authenticated: this.state.authenticated,
           currentUser: this.state.currentUser,
           loadCurrentUser: this.loadCurrentUser,
           logout: this.logout,
+          setDarkMode: this.setDarkMode,
         }}
       >
         {this.props.children}

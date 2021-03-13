@@ -3,12 +3,13 @@ import { Button, Container, Dropdown, Menu, MenuItem } from "semantic-ui-react";
 
 export const HomeNavbarMenu = styled(Menu)`
   &&& {
-    position: absolute;
-    width: 100%;
-    background: transparent;
+    position: ${(props) => props.position};
+    width: ${(props) => props.width};
     z-index: 1;
-    height: 80px;
-    margin: 0;
+    background: ${(props) => props.background};
+    background-color: ${(props) => props.backgroundcolor};
+    height: ${(props) => props.height}px;
+    margin-bottom: ${(props) => props.mgbottom}px;
   }
 `;
 

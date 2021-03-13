@@ -81,8 +81,10 @@ const withTimer = (timerProps) => (WrappedComponent) => (wrappedComponentProps) 
 interface ProblemProps {
   router: NextRouter;
   timer: any;
+  darkMode: number;
   authenticated: boolean;
   currentUser: any;
+  setDarkMode: (value: number) => void;
 }
 
 class Problem extends Component<ProblemProps> {
@@ -93,7 +95,6 @@ class Problem extends Component<ProblemProps> {
     horizontalPaneSize: -1,
     loading: true,
     problem: {} as any,
-    darkMode: 0,
     infoTab: "description",
     step: -1,
     intuitionCompleted: false,
@@ -581,27 +582,27 @@ class Problem extends Component<ProblemProps> {
     const infoContent = (
       <OuterPaddingDiv>
         <ContentSegment height={this.state.windowHeight - 140} raised>
-          <StyledMenu dark={this.state.darkMode} attached="top" tabular>
+          <StyledMenu dark={this.props.darkMode} attached="top" tabular>
             <StyledMenuItem
-              dark={this.state.darkMode}
+              dark={this.props.darkMode}
               active={this.state.infoTab === "description"}
               onClick={() => this.handleInfoTabClick("description")}
               name="Description"
             />
             <StyledMenuItem
-              dark={this.state.darkMode}
+              dark={this.props.darkMode}
               active={this.state.infoTab === "intuition"}
               onClick={() => this.handleInfoTabClick("intuition")}
               name="Intuition"
             />
             <StyledMenuItem
-              dark={this.state.darkMode}
+              dark={this.props.darkMode}
               active={this.state.infoTab === "solution"}
               onClick={() => this.handleInfoTabClick("solution")}
               name="Solution"
             />
             <StyledMenuItem
-              dark={this.state.darkMode}
+              dark={this.props.darkMode}
               active={this.state.infoTab === "submissions"}
               onClick={() => this.handleInfoTabClick("submissions")}
               name="Submissions"
@@ -616,7 +617,7 @@ class Problem extends Component<ProblemProps> {
                       size={25}
                       strokeWidth={1.5}
                       onClick={() => this.setState({ issueModalOpen: true })}
-                      dark={this.state.darkMode}
+                      dark={this.props.darkMode}
                     />
                   }
                 />
@@ -624,26 +625,28 @@ class Problem extends Component<ProblemProps> {
               </div>
               <div style={{ margin: "auto", width: 35 }}>
                 <Popup
-                  content={"Turn " + (this.state.darkMode ? "Off" : "On") + " Dark Mode"}
+                  content={"Turn " + (this.props.darkMode ? "Off" : "On") + " Dark Mode"}
                   position="bottom left"
                   trigger={
                     <StyledMoon
                       size={25}
                       strokeWidth={1.5}
-                      onClick={() => this.setState({ darkMode: this.state.darkMode ? 0 : 1 })}
-                      dark={this.state.darkMode}
+                      onClick={() => {
+                        this.props.setDarkMode(this.props.darkMode ? 0 : 1);
+                      }}
+                      dark={this.props.darkMode}
                     />
                   }
                 />
               </div>
             </MenuMenu>
           </StyledMenu>
-          <InfoContentWrapper dark={this.state.darkMode}>
+          <InfoContentWrapper dark={this.props.darkMode}>
             <InfoContent
               authenticated={this.props.authenticated}
               currentUser={this.props.currentUser}
               problem={this.state.problem}
-              darkMode={this.state.darkMode}
+              darkMode={this.props.darkMode}
               language={this.state.language}
               infoTab={this.state.infoTab}
               step={this.state.step}
@@ -659,7 +662,7 @@ class Problem extends Component<ProblemProps> {
     );
 
     const bottomBar = (
-      <BottomBar dark={this.state.darkMode}>
+      <BottomBar dark={this.props.darkMode}>
         {this.state.step === -1 ? (
           <Button primary icon labelPosition="right" onClick={() => this.handleLearnIntuitionClick()}>
             Learn The Intuition
@@ -695,23 +698,23 @@ class Problem extends Component<ProblemProps> {
     const codeEditor = (
       <OuterPaddingDiv>
         <ContentSegment raised height={this.state.horizontalPaneSize - 21}>
-          <StyledMenu dark={this.state.darkMode} attached="top" tabular>
-            <StyledMenuItem dark={this.state.darkMode} name="Code Editor" active />
+          <StyledMenu dark={this.props.darkMode} attached="top" tabular>
+            <StyledMenuItem dark={this.props.darkMode} name="Code Editor" active />
             <MenuMenu position="right">
-              <StyledDropdown item text={this.languageEnumToText(this.state.language)} dark={this.state.darkMode}>
-                <StyledDropdownMenu dark={this.state.darkMode}>
+              <StyledDropdown item text={this.languageEnumToText(this.state.language)} dark={this.props.darkMode}>
+                <StyledDropdownMenu dark={this.props.darkMode}>
                   <StyledDropdownItem
-                    dark={this.state.darkMode}
+                    dark={this.props.darkMode}
                     onClick={() => this.handleLanguageClick("PYTHON")}
                     content="Python 3"
                   />
                   <StyledDropdownItem
-                    dark={this.state.darkMode}
+                    dark={this.props.darkMode}
                     onClick={() => this.handleLanguageClick("JAVA")}
                     content="Java"
                   />
                   <StyledDropdownItem
-                    dark={this.state.darkMode}
+                    dark={this.props.darkMode}
                     onClick={() => this.handleLanguageClick("JAVASCRIPT")}
                     content="JavaScript"
                   />
@@ -719,12 +722,12 @@ class Problem extends Component<ProblemProps> {
               </StyledDropdown>
             </MenuMenu>
           </StyledMenu>
-          <EditorWrapper dark={this.state.darkMode}>
+          <EditorWrapper dark={this.props.darkMode}>
             <AceEditor
               width={this.state.verticalPaneSize - 22 + "px"}
               height={this.state.horizontalPaneSize - 69 + "px"}
               mode={this.state.language.toLowerCase()}
-              theme={this.state.darkMode ? "monokai" : "xcode"}
+              theme={this.props.darkMode ? "monokai" : "xcode"}
               value={this.state.code[this.state.language.toLowerCase()]}
               editorProps={{ $blockScrolling: true }}
               onChange={this.codeEditorChange}
@@ -744,21 +747,21 @@ class Problem extends Component<ProblemProps> {
     const testContent = (
       <OuterPaddingDiv>
         <ContentSegment raised height={this.state.windowHeight - this.state.horizontalPaneSize - 88}>
-          <StyledMenu dark={this.state.darkMode} attached="top" tabular>
+          <StyledMenu dark={this.props.darkMode} attached="top" tabular>
             <StyledMenuItem
-              dark={this.state.darkMode}
+              dark={this.props.darkMode}
               active={this.state.testTab === "input"}
               onClick={() => this.handleTestTabClick("input")}
               name="Test Input"
             />
             <StyledMenuItem
-              dark={this.state.darkMode}
+              dark={this.props.darkMode}
               active={this.state.testTab === "testResult"}
               onClick={() => this.handleTestTabClick("testResult")}
               name="Test Result"
             />
             <StyledMenuItem
-              dark={this.state.darkMode}
+              dark={this.props.darkMode}
               active={this.state.testTab === "submission"}
               onClick={() => this.handleTestTabClick("submission")}
               name="Submission"
@@ -769,7 +772,7 @@ class Problem extends Component<ProblemProps> {
                 icon
                 labelPosition="right"
                 size="small"
-                dark={this.state.darkMode}
+                dark={this.props.darkMode}
                 disabled={this.state.running || this.state.submitting}
                 onClick={() => this.handleTestRunClick()}
               >
@@ -810,10 +813,10 @@ class Problem extends Component<ProblemProps> {
               </Modal>
             </RightSubMenu>
           </StyledMenu>
-          <TestContentWrapper dark={this.state.darkMode}>
+          <TestContentWrapper dark={this.props.darkMode}>
             <TestContent
               problem={this.state.problem}
-              darkMode={this.state.darkMode}
+              darkMode={this.props.darkMode}
               testTab={this.state.testTab}
               running={this.state.running}
               handleTestInputChange={this.handleTestInputChange}
@@ -842,8 +845,8 @@ class Problem extends Component<ProblemProps> {
           <meta charSet="utf-8" name="description" content={this.state.problem.name} />
           <link rel="canonical" href={"https://www.coderintuition.com/problem/" + this.props.router.query.urlName} />
         </Head>
-        <FlexDiv dark={this.state.darkMode}>
-          <SplitterVerticalDiv dark={this.state.darkMode}>
+        <FlexDiv dark={this.props.darkMode}>
+          <SplitterVerticalDiv dark={this.props.darkMode}>
             {/* ========== LEFT SIDE ========== */}
             <SplitterLayout
               onSecondaryPaneSizeChange={this.onVerticalChange}

@@ -5,8 +5,14 @@ import PageWrapper from "components/common/page-wrapper/page-wrapper";
 import { useRouter } from "next/router";
 import { Loader } from "semantic-ui-react";
 import Problem from "components/problem/problem";
+import { withGlobalContext } from "../../common/utils";
 
-const ProblemPage: FC = () => {
+interface ProblemPageProps {
+  darkMode: number;
+  setDarkMode: (value: number) => void;
+}
+
+const ProblemPage: FC<ProblemPageProps> = (props) => {
   const router = useRouter();
   const [loading, setLoading] = useState(true);
 
@@ -28,7 +34,7 @@ const ProblemPage: FC = () => {
 
   return (
     <>
-      <PageWrapper hideFooter>
+      <PageWrapper hideFooter darkMode={props.darkMode}>
         {loading ? (
           <Loader active inverted size="large">
             Loading
@@ -36,11 +42,11 @@ const ProblemPage: FC = () => {
         ) : (
           <>
             {head()}
-            <Problem />
+            <Problem setDarkMode={props.setDarkMode}/>
           </>
         )}
       </PageWrapper>
     </>
   );
 };
-export default ProblemPage;
+export default withGlobalContext(ProblemPage);
