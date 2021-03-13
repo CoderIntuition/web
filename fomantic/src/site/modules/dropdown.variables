@@ -6,3 +6,5 @@
 @pointingArrowBoxShadow: none;
 @pointingMenuBorderRadius: 12px !important;
 @itemHeight: 35px !important;
+@borderRadius: 0.5rem;
+@borderColor: #e2e8f0;

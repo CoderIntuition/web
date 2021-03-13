@@ -1,16 +1,16 @@
 import React, { FC, useEffect, useState } from "react";
-import { Button, Form, Grid, GridColumn, Header, Image, Loader, Menu, Message } from "semantic-ui-react";
+import { Button, Form, Grid, GridColumn, Image, Loader, Menu, Message } from "semantic-ui-react";
 import {
   FlexWrapper,
   Heading,
   ImageEditButton,
   ProfilePictureWrapper,
-  StyledButton,
   SettingsHeader,
   SettingsMenuItem,
   SettingsSegment,
   SidebarContainer,
   SidebarSettingsMenu,
+  StyledButton,
   StyledInput,
 } from "./settings-styles";
 import { constants } from "common/constants";
@@ -34,11 +34,12 @@ const Settings: FC<SettingsProps> = (props) => {
   const [usernameMessage, setUsernameMessage] = useState<string>("");
   const [nameMessage, setNameMessage] = useState<string>("");
   const [state, setState] = useState({
-    name: "",
-    username: "",
-    github: "",
-    linkedin: "",
-    website: "",
+    name: props.currentUser.name,
+    username: props.currentUser.username,
+    github: props.currentUser.githubLink,
+    linkedin: props.currentUser.linkedinLink,
+    website: props.currentUser.websiteLink,
+    language: props.currentUser.language,
     currentPassword: "",
     newPassword: "",
     confirmNewPassword: "",
@@ -51,14 +52,6 @@ const Settings: FC<SettingsProps> = (props) => {
       return;
     }
     setLoading(false);
-    setState({
-      ...state,
-      name: props.currentUser.name,
-      username: props.currentUser.username,
-      github: props.currentUser.githubLink,
-      linkedin: props.currentUser.linkedinLink,
-      website: props.currentUser.websiteLink,
-    });
   }, []);
 
   // Effect 2 - runs when user saved their changes and the settings are updated
@@ -126,6 +119,10 @@ const Settings: FC<SettingsProps> = (props) => {
     });
   };
 
+  const onChangeDropDown = (event, value) => {
+    setState({ ...state, language: value.value });
+  };
+
   const handleSaveGeneral = () => {
     const token = getCurrentUserToken();
     if (usernameMessage !== "" || nameMessage !== "") {
@@ -145,6 +142,7 @@ const Settings: FC<SettingsProps> = (props) => {
         githubLink: state.github,
         linkedinLink: state.linkedin,
         websiteLink: state.website,
+        language: state.language,
       }),
     })
       .then((response) => {
@@ -152,7 +150,8 @@ const Settings: FC<SettingsProps> = (props) => {
           showErrorToast("Error", "Failed to update - please try again.");
           return;
         }
-        showSuccessToast("Success", "Your settings have been updated.");
+        // TODO: this is causing error and conflicting with props.loadCurrentUser()
+        // showSuccessToast("Success", "Your settings have been updated.");
         setSaving(false);
         props.loadCurrentUser();
       })
@@ -251,6 +250,23 @@ const Settings: FC<SettingsProps> = (props) => {
   };
 
   const generalSettings = () => {
+    const languageOptions = [
+      {
+        key: "python",
+        text: "Python",
+        value: "PYTHON",
+      },
+      {
+        key: "java",
+        text: "Java",
+        value: "JAVA",
+      },
+      {
+        key: "javascript",
+        text: "JavaScript",
+        value: "JAVASCRIPT",
+      },
+    ];
     return (
       <>
         <Heading>General</Heading>
@@ -285,6 +301,14 @@ const Settings: FC<SettingsProps> = (props) => {
                 label="Website"
                 onChange={(e) => handleChange("website", e)}
                 defaultValue={props.currentUser.websiteLink}
+              />
+              <Form.Dropdown
+                label="Language"
+                fluid
+                selection
+                defaultValue={props.currentUser.language}
+                onChange={onChangeDropDown}
+                options={languageOptions}
               />
             </Form>
           </GridColumn>

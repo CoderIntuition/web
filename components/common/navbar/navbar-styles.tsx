@@ -86,6 +86,11 @@ export const StyledDropdown = styled(Dropdown)`
     &&&&&:not(:focus) {
       color: #243e63;
     }
+    .item {
+      &:not(:first-child) {
+        margin-top: 10px;
+      }
+    }
   }
 `;
 
@@ -123,6 +128,12 @@ export const MobileDropDown = styled(Dropdown)`
 
       &:hover {
         color: #4d69e9;
+      }
+    }
+
+    .item {
+      &:not(:first-child) {
+        margin-top: 10px;
       }
     }
   }
