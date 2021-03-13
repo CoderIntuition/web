@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { NextRouter, withRouter } from "next/router";
 import Link from "next/link";
-import Stomp from "stompjs";
+import { Client } from "@stomp/stompjs";
 import axios from "axios";
 import Quiz from "react-quiz-component";
 import {
@@ -109,10 +109,13 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
       return;
     }
 
-    this.client = Stomp.client(constants.STOMP_BASE_URL);
-    this.client.connect(
-      {},
-      () => {
+    this.client = new Client();
+    this.client.configure({
+      brokerURL: constants.STOMP_BASE_URL,
+      reconnectDelay: 1000,
+      heartbeatIncoming: 5000,
+      heartbeatOutgoing: 1000,
+      onConnect: () => {
         // listen for produce output
         this.client.subscribe("/topic/produceoutput", (message) => {
           // if token matches call api with auth to get produce output data
@@ -138,8 +141,9 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
           }
         });
       },
-      () => this.setupWebSocket()
-    );
+    });
+
+    this.client.activate();
   }
 
   async componentDidMount() {

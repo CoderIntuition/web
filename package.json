@@ -16,6 +16,7 @@
     "@emotion/core": "^11.0.0",
     "@emotion/react": "^11.1.5",
     "@emotion/styled": "^11.1.5",
+    "@stomp/stompjs": "^6.1.0",
     "@stripe/stripe-js": "^1.12.1",
     "autoprefixer": "^10.2.4",
     "axios": "^0.21.1",
@@ -43,7 +44,6 @@
     "remark-math": "^4.0.0",
     "semantic-ui-react": "^2.0.3",
     "slick-carousel": "^1.8.1",
-    "stompjs": "^2.3.3",
     "styled-components": "^5.2.1",
     "tailwindcss": "^2.0.3"
   },

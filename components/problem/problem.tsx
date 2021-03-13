@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { NextRouter, withRouter } from "next/router";
 import Head from "next/head";
 import axios from "axios";
-import Stomp from "stompjs";
+import { Client } from "@stomp/stompjs";
 import _ from "lodash";
 import Timer from "react-compound-timer";
 import dynamic from "next/dynamic";
@@ -145,7 +145,7 @@ class Problem extends Component<ProblemProps> {
   client;
 
   setupWebSocket() {
-    this.client = Stomp.client();
+    this.client = new Client();
     this.client.configure({
       brokerURL: constants.STOMP_BASE_URL,
       reconnectDelay: 1000,
