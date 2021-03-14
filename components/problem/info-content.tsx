@@ -15,8 +15,8 @@ import {
   BlurTopDiv,
   DescriptionStyles,
   StatusLinkText,
-  StatusText,
-  TestResultText,
+  StatusText, StyledTable, StyledTableHeaderCell, StyledTableRow,
+  TestResultText
 } from "./info-content-styles";
 import MarkdownRenderDark from "../common/markdown-render/markdown-render-dark";
 
@@ -210,27 +210,27 @@ class InfoContent extends React.Component<InfoContentProps> {
         if (this.props.submissions.length > 0) {
           return (
             <>
-              <Table celled striped stackable compact style={{ border: "1px solid rgb(232, 237, 242)" }}>
+              <StyledTable striped stackable dark={this.props.darkMode}>
                 <TableHeader>
-                  <TableRow>
-                    <TableHeaderCell className="second" width={5}>
+                  <StyledTableRow dark={this.props.darkMode}>
+                    <StyledTableHeaderCell className="second" width={7} dark={this.props.darkMode}>
                       Submission Time
-                    </TableHeaderCell>
-                    <TableHeaderCell className="second" width={4}>
+                    </StyledTableHeaderCell>
+                    <StyledTableHeaderCell className="second" width={3} dark={this.props.darkMode}>
                       Status
-                    </TableHeaderCell>
-                    <TableHeaderCell className="second" width={3}>
+                    </StyledTableHeaderCell>
+                    <StyledTableHeaderCell className="second" width={3} dark={this.props.darkMode}>
                       Runtime
-                    </TableHeaderCell>
-                    <TableHeaderCell className="second" width={4}>
+                    </StyledTableHeaderCell>
+                    <StyledTableHeaderCell className="second" width={3} dark={this.props.darkMode}>
                       Language
-                    </TableHeaderCell>
-                  </TableRow>
+                    </StyledTableHeaderCell>
+                  </StyledTableRow>
                 </TableHeader>
                 <Table.Body>
                   {this.props.submissions.map((submission, idx) => {
                     return (
-                      <Table.Row key={idx}>
+                      <StyledTableRow key={idx} dark={this.props.darkMode}>
                         <Table.Cell>{moment(submission.created_at).format("MMM Do YYYY, h:mm a")}</Table.Cell>
                         <Table.Cell>
                           <StatusLinkText
@@ -247,11 +247,12 @@ class InfoContent extends React.Component<InfoContentProps> {
                         </Table.Cell>
                         <Table.Cell>30ms</Table.Cell>
                         <Table.Cell>{capitalize(submission.language)}</Table.Cell>
-                      </Table.Row>
+                      </StyledTableRow>
                     );
                   })}
                 </Table.Body>
-              </Table>
+              </StyledTable>
+              {console.log(this.state.curSubmission)}
               {this.state.curSubmission && (
                 <Modal
                   closeOnEscape={true}

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Table, TableHeaderCell } from "semantic-ui-react";
 
 export const ActionText = styled.span`
   &&& {
@@ -74,5 +75,25 @@ export const DescriptionStyles = styled.div`
     .markdown-body h3 {
       font-size: 16px;
     }
+  }
+`;
+
+export const StyledTable = styled(Table)`
+  &&&&& {
+    background-color: ${(props) => (props.dark ? "#202125": "")};
+    color: ${(props) => (props.dark ? "#e0e0e0": "")} !important;
+  }
+`;
+
+export const StyledTableRow = styled(Table.Row)`
+  &&&&& {
+    background-color: ${(props) => (props.dark ? "#202125": "")};
+    color: ${(props) => (props.dark ? "#e0e0e0": "")} !important;
+  }
+`;
+
+export const StyledTableHeaderCell = styled(TableHeaderCell)`
+  &&&&& {
+    color: ${(props) => (props.dark ? "#e0e0e0": "")} !important;
   }
 `;
