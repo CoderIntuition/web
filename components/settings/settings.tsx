@@ -306,6 +306,7 @@ const Settings: FC<SettingsProps> = (props) => {
                 label="Language"
                 fluid
                 selection
+                header="Choose language"
                 defaultValue={props.currentUser.language}
                 onChange={onChangeDropDown}
                 options={languageOptions}
