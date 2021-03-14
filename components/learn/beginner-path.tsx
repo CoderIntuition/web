@@ -1,11 +1,11 @@
 import React, { RefObject } from "react";
 import { NextRouter, withRouter } from "next/router";
-import { Card, CardGroup, GridRow, Header, List, ListItem } from "semantic-ui-react";
+import { Card, CardGroup, GridRow, Header, List } from "semantic-ui-react";
 import { CheckCircle } from "react-feather";
 import ProblemsSidebar from "components/common/problems-sidebar/problems-sidebar";
 import NotFound from "components/common/404/404";
 import { SimpleProblem } from "../../common/types";
-import { ItemCard, ItemHeader, StyledGrid } from "./beginner-path-styles";
+import { ItemCard, ItemHeader, StyledGrid, StyledListItem } from "./beginner-path-styles";
 import { Heading, HeadingSection, Subheading } from "./overview-styles";
 
 interface BeginnerPathProps {
@@ -73,20 +73,20 @@ class BeginnerPath extends React.Component<BeginnerPathProps, BeginnerPathState>
                   <Header size="medium" style={{ marginBottom: 0 }}>
                     Contents
                   </Header>
-                  <List ordered style={{ fontSize: 15 }}>
-                    <ListItem as="a" onClick={() => this.contentsRefs[0].current.scrollIntoView()}>
+                  <List ordered>
+                    <StyledListItem onClick={() => this.contentsRefs[0].current.scrollIntoView()}>
                       Introduction
-                    </ListItem>
-                    <ListItem as="a" onClick={() => this.contentsRefs[1].current.scrollIntoView()}>
+                    </StyledListItem>
+                    <StyledListItem onClick={() => this.contentsRefs[1].current.scrollIntoView()}>
                       Big-O Notation
-                    </ListItem>
-                    <ListItem as="a" onClick={() => this.contentsRefs[2].current.scrollIntoView()}>
+                    </StyledListItem>
+                    <StyledListItem onClick={() => this.contentsRefs[2].current.scrollIntoView()}>
                       Basic Strings
-                    </ListItem>
-                    <ListItem as="a" onClick={() => this.contentsRefs[3].current.scrollIntoView()}>
+                    </StyledListItem>
+                    <StyledListItem onClick={() => this.contentsRefs[3].current.scrollIntoView()}>
                       Basic Arrays
-                    </ListItem>
-                    <ListItem as="a">Basic Linked Lists</ListItem>
+                    </StyledListItem>
+                    <StyledListItem>Basic Linked Lists</StyledListItem>
                   </List>
                 </Card>
 
