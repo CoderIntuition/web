@@ -59,9 +59,9 @@ class Login extends Component<LoginProps, LoginState> {
   componentDidMount() {
     // If the OAuth2 login encounters an error, the user is redirected to the /login page with an error
     // Here we display the error and then remove the error query parameter from the location.
-    const redirectState = this.props.router.query.state as any;
-    if (redirectState && redirectState.error) {
-      showErrorToast("Authentication Error", redirectState.error);
+    const error = this.props.router.query.error;
+    if (error) {
+      showErrorToast("Authentication Error", error);
     }
   }
 
