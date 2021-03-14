@@ -26,7 +26,7 @@ const Hero = () => {
                 Learn Algorithmic <span style={{ color: "#fbc30d" }}>Intuition</span> Interactively
               </h1>
               <p className={Paragraph}>
-                Don't just keep memorizing solutions! Learn the actual intuition required to solve interview problems.
+                Don't keep memorizing solutions! Learn repeatable intuition for solving algorithmic interview problems.
               </p>
               <Link href="/problems">
                 <button className={PrimaryButton} style={{ backgroundColor: "#ffffffd0", color: "#4d69e9" }}>

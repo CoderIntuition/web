@@ -19,11 +19,11 @@ export const LeftColumn = cntl`relative lg:w-5/12 text-center max-w-lg mt-32 xs:
 
 export const RightColumn = cntl`relative mb-16 lg:mb-0 flex-1 flex flex-col justify-center lg:self-end`;
 
-export const Heading = cntl`font-light mb-8 sm:mb-12 text-3.5xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-5.5xl leading-tight`;
+export const Heading = cntl`font-normal mb-8 sm:mb-16 text-3.5xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-5.5xl leading-tight`;
 
 export const Paragraph = cntl`lg:my-4 text-md sm:text-lg lg:text-xl xl:text-2xl`;
 
-export const PrimaryButton = cntl`px-24 py-4 font-medium rounded mt-8 rounded-full tracking-wide text-lg text-center`;
+export const PrimaryButton = cntl`px-24 py-4 font-medium rounded mt-12 rounded-full tracking-wide text-lg text-center`;
 
 export const IllustrationContainer = cntl`flex justify-center mt-16 lg:justify-end items-center`;
 
