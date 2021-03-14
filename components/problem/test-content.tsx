@@ -1,13 +1,15 @@
 import React from "react";
-import { Accordion, AccordionContent, AccordionTitle, Form, Grid, GridColumn, GridRow, Icon } from "semantic-ui-react";
+import { AccordionContent, AccordionTitle, Form, Grid, GridColumn, GridRow, Icon } from "semantic-ui-react";
 import TestOutputLoader from "./test-output-loader";
 import Emoji from "components/common/emoji/emoji";
 import AceEditor from "components/common/ace-editor/ace-editor";
 import {
+  AccordionTitleSpan,
   CheckRight,
   LeftColumn,
   RightColumn,
   StatusText,
+  StyledAccordion,
   StyledCheckCircle,
   StyledTextArea,
   StyledXCircle,
@@ -95,18 +97,27 @@ class TestContent extends React.Component<PropTypes> {
                     </StatusText>
                   </TopRow>
                   <GridRow columns={2} verticalAlign="middle">
-                    <LeftColumn textAlign="right">Your Input</LeftColumn>
+                    <LeftColumn textAlign="right" dark={this.props.darkMode}>
+                      Your Input
+                    </LeftColumn>
                     <RightColumn>
                       <Form>
-                        <StyledTextArea disabled value={this.props.testInput} height={40} />
+                        <StyledTextArea disabled value={this.props.testInput} height={40} dark={this.props.darkMode} />
                       </Form>
                     </RightColumn>
                   </GridRow>
                   <GridRow columns={2} verticalAlign="middle">
-                    <LeftColumn textAlign="right">Error</LeftColumn>
+                    <LeftColumn textAlign="right" dark={this.props.darkMode}>
+                      Error
+                    </LeftColumn>
                     <RightColumn>
                       <Form>
-                        <StyledTextArea disabled value={this.props.testStderr} height={150} />
+                        <StyledTextArea
+                          disabled
+                          value={this.props.testStderr}
+                          height={150}
+                          dark={this.props.darkMode}
+                        />
                       </Form>
                     </RightColumn>
                   </GridRow>
@@ -131,34 +142,47 @@ class TestContent extends React.Component<PropTypes> {
                     )}
                   </TopRow>
                   <GridRow columns={2} verticalAlign="middle">
-                    <LeftColumn textAlign="right">Your Input</LeftColumn>
+                    <LeftColumn textAlign="right" dark={this.props.darkMode}>
+                      Your Input
+                    </LeftColumn>
                     <RightColumn>
                       <Form>
-                        <StyledTextArea disabled value={this.props.testInput} height={40} />
+                        <StyledTextArea disabled value={this.props.testInput} height={40} dark={this.props.darkMode} />
                       </Form>
                     </RightColumn>
                   </GridRow>
                   <GridRow columns={2} verticalAlign="middle">
-                    <LeftColumn textAlign="right">Stdout</LeftColumn>
+                    <LeftColumn textAlign="right" dark={this.props.darkMode}>
+                      Stdout
+                    </LeftColumn>
                     <RightColumn>
                       <Form>
-                        <StyledTextArea disabled value={this.props.testStdout} height={40} />
+                        <StyledTextArea disabled value={this.props.testStdout} height={40} dark={this.props.darkMode} />
                       </Form>
                     </RightColumn>
                   </GridRow>
                   <GridRow columns={2} verticalAlign="middle">
-                    <LeftColumn textAlign="right">Your Output</LeftColumn>
+                    <LeftColumn textAlign="right" dark={this.props.darkMode}>
+                      Your Output
+                    </LeftColumn>
                     <RightColumn>
                       <Form>
-                        <StyledTextArea disabled value={this.props.testOutput} height={40} />
+                        <StyledTextArea disabled value={this.props.testOutput} height={40} dark={this.props.darkMode} />
                       </Form>
                     </RightColumn>
                   </GridRow>
                   <GridRow columns={2} verticalAlign="middle">
-                    <LeftColumn textAlign="right">Expected Output</LeftColumn>
+                    <LeftColumn textAlign="right" dark={this.props.darkMode}>
+                      Expected Output
+                    </LeftColumn>
                     <RightColumn>
                       <Form>
-                        <StyledTextArea disabled value={this.props.testExpectedOutput} height={40} />
+                        <StyledTextArea
+                          disabled
+                          value={this.props.testExpectedOutput}
+                          height={40}
+                          dark={this.props.darkMode}
+                        />
                       </Form>
                     </RightColumn>
                   </GridRow>
@@ -192,10 +216,17 @@ class TestContent extends React.Component<PropTypes> {
                     </StatusText>
                   </TopRow>
                   <GridRow columns={2} verticalAlign="middle">
-                    <LeftColumn textAlign="right">Error</LeftColumn>
+                    <LeftColumn textAlign="right" dark={this.props.darkMode}>
+                      Error
+                    </LeftColumn>
                     <RightColumn>
                       <Form>
-                        <StyledTextArea disabled value={this.props.submission.stderr} height={150} />
+                        <StyledTextArea
+                          disabled
+                          value={this.props.submission.stderr}
+                          height={150}
+                          dark={this.props.darkMode}
+                        />
                       </Form>
                     </RightColumn>
                   </GridRow>
@@ -210,10 +241,16 @@ class TestContent extends React.Component<PropTypes> {
                   case "PASSED":
                     return (
                       <GridRow key={index}>
-                        <Accordion fluid styled onClick={() => this.handleAccordionClick(index)}>
+                        <StyledAccordion
+                          fluid
+                          styled
+                          dark={this.props.darkMode}
+                          onClick={() => this.handleAccordionClick(index)}
+                        >
                           <AccordionTitle active={this.state["active" + index]}>
-                            <Icon name="dropdown" />
-                            Test {index + 1} <CheckRight />
+                            <Icon name="dropdown" color={this.props.darkMode ? "grey" : "black"} />
+                            <AccordionTitleSpan dark={this.props.darkMode}>Test {index + 1}</AccordionTitleSpan>
+                            <CheckRight />
                           </AccordionTitle>
                           <AccordionContent active={this.state["active" + index]}>
                             <Grid>
@@ -224,46 +261,68 @@ class TestContent extends React.Component<PropTypes> {
                               </GridRow>
                             </Grid>
                           </AccordionContent>
-                        </Accordion>
+                        </StyledAccordion>
                       </GridRow>
                     );
                   case "FAILED":
                     return (
                       <GridRow key={index}>
-                        <Accordion fluid styled onClick={() => this.handleAccordionClick(index)}>
+                        <StyledAccordion
+                          fluid
+                          styled
+                          dark={this.props.darkMode}
+                          onClick={() => this.handleAccordionClick(index)}
+                        >
                           <AccordionTitle active={this.state["active" + index]}>
-                            <Icon name="dropdown" />
-                            Test {index + 1} <XRight />
+                            <Icon name="dropdown" color={this.props.darkMode ? "grey" : "black"} />
+                            <AccordionTitleSpan dark={this.props.darkMode}>Test {index + 1}</AccordionTitleSpan>
+                            <XRight />
                           </AccordionTitle>
                           <AccordionContent active={this.state["active" + index]}>
                             <Grid>
                               <GridRow verticalAlign="middle">
-                                <LeftColumn textAlign="right">Test Input</LeftColumn>
+                                <LeftColumn textAlign="right" dark={this.props.darkMode}>
+                                  Test Input
+                                </LeftColumn>
                                 <RightColumn>
                                   <Form>
-                                    <StyledTextArea disabled value={run.input} height={40} />
+                                    <StyledTextArea disabled value={run.input} height={40} dark={this.props.darkMode} />
                                   </Form>
                                 </RightColumn>
                               </GridRow>
                               <GridRow verticalAlign="middle">
-                                <LeftColumn textAlign="right">Your Output</LeftColumn>
+                                <LeftColumn textAlign="right" dark={this.props.darkMode}>
+                                  Your Output
+                                </LeftColumn>
                                 <RightColumn>
                                   <Form>
-                                    <StyledTextArea disabled value={run.output} height={40} />
+                                    <StyledTextArea
+                                      disabled
+                                      value={run.output}
+                                      height={40}
+                                      dark={this.props.darkMode}
+                                    />
                                   </Form>
                                 </RightColumn>
                               </GridRow>
                               <GridRow verticalAlign="middle">
-                                <LeftColumn textAlign="right">Expected Output</LeftColumn>
+                                <LeftColumn textAlign="right" dark={this.props.darkMode}>
+                                  Expected Output
+                                </LeftColumn>
                                 <RightColumn>
                                   <Form>
-                                    <StyledTextArea disabled value={run.expectedOutput} height={40} />
+                                    <StyledTextArea
+                                      disabled
+                                      value={run.expectedOutput}
+                                      height={40}
+                                      dark={this.props.darkMode}
+                                    />
                                   </Form>
                                 </RightColumn>
                               </GridRow>
                             </Grid>
                           </AccordionContent>
-                        </Accordion>
+                        </StyledAccordion>
                       </GridRow>
                     );
                   default:
