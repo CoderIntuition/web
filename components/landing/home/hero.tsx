@@ -23,10 +23,12 @@ const Hero = () => {
           <div className={TwoColumn}>
             <div className={LeftColumn}>
               <h1 className={Heading}>
-                Learn Algorithmic <span style={{ color: "#fbc30d" }}>Intuition</span> Interactively
+                Learn Algorithmic <span style={{ color: "#fbc30d" }}>Intuition</span>
               </h1>
-              <p className={Paragraph}>
-                Don't keep memorizing solutions! Learn repeatable intuition for solving algorithmic interview problems.
+              <p className={Paragraph} style={{ fontWeight: 300 }}>
+                <b>Don't keep memorizing solutions! </b>
+                CoderIntuition teaches you <span style={{ color: "#fbc30d" }}>repeatable</span> algorithmic intuition so
+                that you can <span style={{ color: "#fbc30d" }}>ace</span> your coding interviews.
               </p>
               <Link href="/problems">
                 <button className={PrimaryButton} style={{ backgroundColor: "#ffffffd0", color: "#4d69e9" }}>
