@@ -12,6 +12,7 @@ interface Oauth2RedirectHandlerProps {
 class OAuth2RedirectHandler extends React.Component<Oauth2RedirectHandlerProps, {}> {
   componentDidMount() {
     const { router } = this.props;
+    console.log(router);
 
     const token: string = router.query.token as string;
     const error: string = router.query.error as string;

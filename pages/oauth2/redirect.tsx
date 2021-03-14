@@ -1,8 +1,21 @@
-import React, { FC } from "react";
+import React, { FC, useEffect, useState } from "react";
 import Head from "next/head";
-import OAuth2RedirectHandler from "../../components/auth/oauth2-redirect-handler";
+import { useRouter } from "next/router";
+import _ from "lodash";
+import OAuth2RedirectHandler from "components/auth/oauth2-redirect-handler";
+import PageWrapper from "components/common/page-wrapper/page-wrapper";
+import { Loader } from "semantic-ui-react";
 
 const RedirectPage: FC = () => {
+  const router = useRouter();
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (!_.isEmpty(router.query)) {
+      setLoading(false);
+    }
+  }, [router.query]);
+
   const head = () => {
     return (
       <Head>
@@ -19,8 +32,18 @@ const RedirectPage: FC = () => {
 
   return (
     <>
-      {head()}
-      <OAuth2RedirectHandler />
+      <PageWrapper>
+        {loading ? (
+          <Loader active inverted size="large">
+            Redirecting...
+          </Loader>
+        ) : (
+          <>
+            {head()}
+            <OAuth2RedirectHandler />
+          </>
+        )}
+      </PageWrapper>
     </>
   );
 };
