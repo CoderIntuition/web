@@ -75,7 +75,7 @@ class Reading extends Component<ReadingProps, ReadingState> {
             textAlign: "center",
           }}
         >
-          <Message error>Error: Reading not found.</Message>
+          <Message error>Error: Content not found.</Message>
           <Button primary onClick={() => router.back()}>
             Back
           </Button>
