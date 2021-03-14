@@ -89,7 +89,6 @@ class BeginnerPath extends React.Component<BeginnerPathProps, BeginnerPathState>
                     <StyledListItem>Basic Linked Lists</StyledListItem>
                   </List>
                 </Card>
-
                 <div ref={this.contentsRefs[0]} />
                 <Card raised fluid style={{ padding: 20 }}>
                   <Header size="medium">
