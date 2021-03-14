@@ -50,16 +50,16 @@ class Navbar extends Component<NavbarProps, {}> {
   }
 
   handleLogin() {
-    localStorage.setItem(constants.LAST_URL, this.props.router.pathname);
+    localStorage.setItem(constants.LAST_URL, this.props.router.asPath);
   }
 
   handleSignUp() {
-    localStorage.setItem(constants.LAST_URL, this.props.router.pathname);
+    localStorage.setItem(constants.LAST_URL, this.props.router.asPath);
     this.props.router.push("/signup");
   }
 
   onPaths(paths) {
-    return this.props.router && paths.test(this.props.router.pathname) ? 1 : 0;
+    return this.props.router && paths.test(this.props.router.asPath) ? 1 : 0;
   }
 
   render() {
@@ -219,13 +219,13 @@ class Navbar extends Component<NavbarProps, {}> {
 
     return (
       <>
-        {!/\/login/.test(router.pathname) && !/\/signup/.test(router.pathname) && (
+        {!/\/login/.test(router.asPath) && !/\/signup/.test(router.asPath) && (
           <>
             <NavbarMenu
               secondary
-              height={/^\/problem\//.test(router.pathname) ? 60 : 80}
-              bgcolor={/^\/problem\//.test(router.pathname) ? "#ffffff" : "#ffffff"}
-              mgbottom={/^\/problem\//.test(router.pathname) ? 0 : 5}
+              height={/^\/problem\//.test(router.asPath) ? 60 : 80}
+              bgcolor={/^\/problem\//.test(router.asPath) ? "#ffffff" : "#ffffff"}
+              mgbottom={/^\/problem\//.test(router.asPath) ? 0 : 5}
             >
               <NavContainer>
                 <div className="hidden lg:contents">{desktopNavbar}</div>

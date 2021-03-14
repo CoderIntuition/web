@@ -50,16 +50,16 @@ class HomeNavbar extends Component<HomeNavbarProps, {}> {
   }
 
   handleLogin() {
-    localStorage.setItem(constants.LAST_URL, this.props.router.pathname);
+    localStorage.setItem(constants.LAST_URL, this.props.router.asPath);
   }
 
   handleSignUp() {
-    localStorage.setItem(constants.LAST_URL, this.props.router.pathname);
+    localStorage.setItem(constants.LAST_URL, this.props.router.asPath);
     this.props.router.push("/signup");
   }
 
   onProblemPage() {
-    return /^\/problem\//.test(this.props.router.pathname);
+    return /^\/problem\//.test(this.props.router.asPath);
   }
 
   render() {

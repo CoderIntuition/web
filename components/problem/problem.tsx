@@ -417,13 +417,13 @@ class Problem extends Component<ProblemProps> {
   };
 
   handleLogin() {
-    localStorage.setItem(constants.LAST_URL, this.props.router.pathname);
+    localStorage.setItem(constants.LAST_URL, this.props.router.asPath);
     localStorage.setItem("problem_" + this.state.problem.id, JSON.stringify(this.state.code));
     this.props.router.push("/login");
   }
 
   handleSignUp() {
-    localStorage.setItem(constants.LAST_URL, this.props.router.pathname as string);
+    localStorage.setItem(constants.LAST_URL, this.props.router.asPath as string);
     localStorage.setItem("problem_" + this.state.problem.id, JSON.stringify(this.state.code));
     this.props.router.push("/signup");
   }
