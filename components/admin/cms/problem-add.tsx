@@ -22,12 +22,20 @@ import {
   TextArea,
 } from "semantic-ui-react";
 import { getCurrentUserToken, isMod } from "common/auth-service";
-import { constants } from "common/constants";
+import { constants, QUIZ_TEMPLATE } from "common/constants";
 import { isJsonArray, showErrorToast, showSuccessToast, withGlobalContext, wrapQuestions } from "common/utils";
 import { GrayButton, GreenButton, RedButton } from "common/global-styles";
 import MarkdownRender from "components/common/markdown-render/markdown-render";
 import AceEditor from "components/common/ace-editor/ace-editor";
-import { Label, RadioDiv, RadioLeftLabel, RadioRightLabel, StyledGrid, StyledSegment } from "./add-styles";
+import {
+  Label,
+  RadioDiv,
+  RadioLeftLabel,
+  RadioRightLabel,
+  StyledGrid,
+  StyledSegment,
+  TemplateSpan,
+} from "./add-styles";
 
 interface CmsProblemAddProps {
   router: NextRouter;
@@ -873,8 +881,17 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
                       </GridColumn>
                     </GridRow>
                     <GridRow>
-                      <GridColumn width={10}>
-                        <Label>Content</Label>
+                      <GridColumn width={8}>
+                        <Label>
+                          Content
+                          {item.isQuiz && (
+                            <TemplateSpan
+                              onClick={() => this.handleIntuitionFieldChange(idx, QUIZ_TEMPLATE, "content")}
+                            >
+                              Fill Template
+                            </TemplateSpan>
+                          )}
+                        </Label>
                         {item.isQuiz ? (
                           <AceEditor
                             width="100%"
@@ -901,7 +918,7 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
                           />
                         )}
                       </GridColumn>
-                      <GridColumn width={6}>
+                      <GridColumn width={8}>
                         <Label>Content Preview</Label>
                         <Segment raised>
                           {item.isQuiz ? (

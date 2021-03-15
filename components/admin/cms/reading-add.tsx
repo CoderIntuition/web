@@ -20,11 +20,19 @@ import {
 import Quiz from "react-quiz-component";
 import { getCurrentUserToken, isMod } from "common/auth-service";
 import MarkdownRender from "components/common/markdown-render/markdown-render";
-import { constants } from "common/constants";
+import { constants, QUIZ_TEMPLATE } from "common/constants";
 import { GrayButton, RedButton } from "common/global-styles";
 import { isJsonArray, withGlobalContext, wrapQuestions } from "common/utils";
 import AceEditor from "components/common/ace-editor/ace-editor";
-import { Label, RadioDiv, RadioLeftLabel, RadioRightLabel, StyledGrid, StyledSegment } from "./add-styles";
+import {
+  Label,
+  RadioDiv,
+  RadioLeftLabel,
+  RadioRightLabel,
+  StyledGrid,
+  StyledSegment,
+  TemplateSpan,
+} from "./add-styles";
 
 interface ReadingAddProps {
   router: NextRouter;
@@ -212,7 +220,14 @@ class ReadingAdd extends Component<ReadingAddProps> {
                   </GridRow>
                   <GridRow>
                     <GridColumn width={8}>
-                      <Label>Content</Label>
+                      <Label>
+                        Content
+                        {this.state.isQuiz && (
+                          <TemplateSpan onClick={() => this.setState({ content: QUIZ_TEMPLATE })}>
+                            Fill Template
+                          </TemplateSpan>
+                        )}
+                      </Label>
                       {this.state.isQuiz ? (
                         <AceEditor
                           width="100%"

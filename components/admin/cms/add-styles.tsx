@@ -25,6 +25,16 @@ export const Label = styled.span`
   }
 `;
 
+export const TemplateSpan = styled.span`
+  float: right;
+  font-weight: 500;
+  color: #4d69e9;
+  cursor: pointer;
+  &:hover {
+    color: #1c41e3;
+  }
+`;
+
 export const RadioDiv = styled.div`
   &&& {
     display: flex;

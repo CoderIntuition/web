@@ -11,7 +11,7 @@ const HomePage: FC = () => {
         <meta
           charSet="utf-8"
           name="description"
-          content="Don't keep memorizing solutions! CoderIntuition teaches you repeatable algorithmic intuition so that you can ace your coding interviews."
+          content="Don't keep memorizing solutions! CoderIntuition teaches you repeatable algorithmic intuition via an interactive platform with built-in quizzes so that you can ace your coding interviews."
         />
         <link rel="canonical" href="https://www.coderintuition.com" />
       </Head>
