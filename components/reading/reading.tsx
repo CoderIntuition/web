@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Image from "next/image";
 import { NextRouter, withRouter } from "next/router";
 import axios from "axios";
 import Quiz from "react-quiz-component";
@@ -101,17 +102,21 @@ class Reading extends Component<ReadingProps, ReadingState> {
             style={{
               padding: 30,
               borderRadius: 30,
-              minHeight: "calc(100vh - 150px)",
             }}
           >
             <Header as="h1">{this.state.reading.name}</Header>
-            <br />
             {this.state.reading.isQuiz ? (
-              <Quiz quiz={wrapQuestions(this.state.reading.content)} />
+              <>
+                {/*<Image src="/images/quiz.svg" alt="Quiz graphic" width="500px" height="500px"/>*/}
+                <Quiz quiz={wrapQuestions(this.state.reading.content)} />
+              </>
             ) : (
-              <ReadingStyles>
-                <MarkdownRender source={this.state.reading.content} />
-              </ReadingStyles>
+              <>
+                <br />
+                <ReadingStyles>
+                  <MarkdownRender source={this.state.reading.content} />
+                </ReadingStyles>
+              </>
             )}
           </Segment>
         </CenteredDiv>

@@ -127,7 +127,7 @@ export function wrapQuestions(questions) {
   return JSON.parse(
     "{\n" +
       '    "quizTitle": "",\n' +
-      '    "quizSynopsis": "",\n' +
+      '    "quizSynopsis": "Let\'s test your understanding. Good luck!",\n' +
       '    "appLocale": {\n' +
       '      "landingHeaderText": "",\n' +
       '      "question": "Question",\n' +
