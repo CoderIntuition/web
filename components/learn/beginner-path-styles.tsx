@@ -9,12 +9,16 @@ export const StyledGrid = styled(Grid)`
 `;
 
 export const StyledCardGroup = styled(CardGroup)`
-  width: 100%;
-  max-width: 1280px;
+  &&& {
+    width: 100%;
+    max-width: 1280px;
+  }
 `;
 
 export const StyledCard = styled(Card)`
-  padding: 20px;
+  &&& {
+    padding: 20px;
+  }
 `;
 
 export const ItemCard = styled(Card)`
