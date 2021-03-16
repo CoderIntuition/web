@@ -1,11 +1,18 @@
 import React, { RefObject } from "react";
 import { NextRouter, withRouter } from "next/router";
-import { Card, CardGroup, GridRow, Header, List } from "semantic-ui-react";
-import { CheckCircle } from "react-feather";
+import { CardGroup, GridRow, Header, List } from "semantic-ui-react";
 import ProblemsSidebar from "components/common/problems-sidebar/problems-sidebar";
 import NotFound from "components/common/404/404";
 import { SimpleProblem } from "../../common/types";
-import { ItemCard, ItemHeader, StyledGrid, StyledListItem } from "./beginner-path-styles";
+import {
+  Check,
+  ItemCard,
+  ItemHeader,
+  StyledCard,
+  StyledCardGroup,
+  StyledGrid,
+  StyledListItem,
+} from "./beginner-path-styles";
 import { Heading, HeadingSection, Subheading } from "./overview-styles";
 
 interface BeginnerPathProps {
@@ -60,16 +67,16 @@ class BeginnerPath extends React.Component<BeginnerPathProps, BeginnerPathState>
           </HeadingSection>
           <StyledGrid>
             <GridRow>
-              <CardGroup style={{ width: "100%", maxWidth: 1280 }}>
-                <Card raised fluid style={{ padding: 20 }}>
+              <StyledCardGroup>
+                <StyledCard raised fluid>
                   <Header size="medium">Overview</Header>
                   <p style={{ color: "#00000090", fontSize: 15 }}>
                     In this learning path, you'll understand the prerequisites that you need before you start using
                     CoderIntuition. You will also be introduced to Big O notation and simple algorithmic problems.
                   </p>
-                </Card>
+                </StyledCard>
 
-                <Card raised fluid style={{ padding: 20 }}>
+                <StyledCard raised fluid>
                   <Header size="medium" style={{ marginBottom: 0 }}>
                     Contents
                   </Header>
@@ -88,12 +95,13 @@ class BeginnerPath extends React.Component<BeginnerPathProps, BeginnerPathState>
                     </StyledListItem>
                     <StyledListItem>Basic Linked Lists</StyledListItem>
                   </List>
-                </Card>
+                </StyledCard>
+
                 <div ref={this.contentsRefs[0]} />
-                <Card raised fluid style={{ padding: 20 }}>
+                <StyledCard raised fluid>
                   <Header size="medium">
                     1 - Introduction
-                    <CheckCircle color="#00000030" size={20} style={{ float: "right", marginRight: 23 }} />
+                    <Check color="#00000030" size={20} style={{ marginRight: 23 }} />
                   </Header>
                   <CardGroup>
                     <ItemCard
@@ -104,7 +112,7 @@ class BeginnerPath extends React.Component<BeginnerPathProps, BeginnerPathState>
                     >
                       <ItemHeader size="small">
                         Who is the Beginner Path meant for?
-                        <CheckCircle color="#00000030" size={20} style={{ float: "right" }} />
+                        <Check color="#00000030" size={20} />
                       </ItemHeader>
                     </ItemCard>
                     <ItemCard
@@ -115,7 +123,7 @@ class BeginnerPath extends React.Component<BeginnerPathProps, BeginnerPathState>
                     >
                       <ItemHeader size="small">
                         Why should I use a Learning Path?
-                        <CheckCircle color="#00000030" size={20} style={{ float: "right" }} />
+                        <Check color="#00000030" size={20} />
                       </ItemHeader>
                     </ItemCard>
                     <ItemCard
@@ -126,7 +134,7 @@ class BeginnerPath extends React.Component<BeginnerPathProps, BeginnerPathState>
                     >
                       <ItemHeader size="small">
                         Problem: Fizz Buzz
-                        <CheckCircle color="#00000030" size={20} style={{ float: "right" }} />
+                        <Check color="#00000030" size={20} />
                       </ItemHeader>
                     </ItemCard>
                     <ItemCard
@@ -137,7 +145,7 @@ class BeginnerPath extends React.Component<BeginnerPathProps, BeginnerPathState>
                     >
                       <ItemHeader size="small">
                         Problem: Sum of Array
-                        <CheckCircle color="#00000030" size={20} style={{ float: "right" }} />
+                        <Check color="#00000030" size={20} />
                       </ItemHeader>
                     </ItemCard>
                     <ItemCard
@@ -148,210 +156,251 @@ class BeginnerPath extends React.Component<BeginnerPathProps, BeginnerPathState>
                     >
                       <ItemHeader size="small">
                         Quiz: Prerequisites
-                        <CheckCircle color="#00000030" size={20} style={{ float: "right" }} />
+                        <Check color="#00000030" size={20} />
                       </ItemHeader>
                     </ItemCard>
                   </CardGroup>
-                </Card>
+                </StyledCard>
 
                 <div ref={this.contentsRefs[1]} />
-                <Card raised fluid style={{ padding: 20 }}>
+                <StyledCard raised fluid>
                   <Header size="medium">
                     2 - Big O Notation
-                    <CheckCircle color="#00000030" size={20} style={{ float: "right", marginRight: 23 }} />
+                    <Check color="#00000030" size={20} style={{ marginRight: 23 }} />
                   </Header>
                   <CardGroup>
-                    <ItemCard raised fluid sidecolor={this.TEXT_COLOR}>
+                    <ItemCard
+                      raised
+                      fluid
+                      sidecolor={this.TEXT_COLOR}
+                      onClick={() => router.push("/reading/why-do-i-need-to-know-big-o-notation")}
+                    >
                       <ItemHeader size="small">
-                        Why do I need to know about Big O notation?
-                        <CheckCircle color="#00000030" size={20} style={{ float: "right" }} />
+                        Why do I need to know Big O notation?
+                        <Check color="#00000030" size={20} />
                       </ItemHeader>
                     </ItemCard>
-                    <ItemCard raised fluid sidecolor={this.TEXT_COLOR}>
+                    <ItemCard
+                      raised
+                      fluid
+                      sidecolor={this.TEXT_COLOR}
+                      onClick={() => router.push("/reading/big-o-notation")}
+                    >
                       <ItemHeader size="small">
-                        What is time complexity?
-                        <CheckCircle color="#00000030" size={20} style={{ float: "right" }} />
+                        Big O Notation
+                        <Check color="#00000030" size={20} />
                       </ItemHeader>
                     </ItemCard>
-                    <ItemCard raised fluid sidecolor={this.QUIZ_COLOR}>
+                    <ItemCard
+                      raised
+                      fluid
+                      sidecolor={this.TEXT_COLOR}
+                      onClick={() => router.push("/reading/time-complexity")}
+                    >
+                      <ItemHeader size="small">
+                        Time Complexity
+                        <Check color="#00000030" size={20} />
+                      </ItemHeader>
+                    </ItemCard>
+                    <ItemCard
+                      raised
+                      fluid
+                      sidecolor={this.QUIZ_COLOR}
+                      onClick={() => router.push("/quiz/time-complexity")}
+                    >
                       <ItemHeader size="small">
                         Quiz: Time Complexity
-                        <CheckCircle color="#00000030" size={20} style={{ float: "right" }} />
+                        <Check color="#00000030" size={20} />
                       </ItemHeader>
                     </ItemCard>
-                    <ItemCard raised fluid sidecolor={this.TEXT_COLOR}>
+                    <ItemCard
+                      raised
+                      fluid
+                      sidecolor={this.TEXT_COLOR}
+                      onClick={() => router.push("/reading/space-complexity")}
+                    >
                       <ItemHeader size="small">
-                        What is space complexity?
-                        <CheckCircle color="#00000030" size={20} style={{ float: "right" }} />
+                        Space Complexity
+                        <Check color="#00000030" size={20} />
                       </ItemHeader>
                     </ItemCard>
-                    <ItemCard raised fluid sidecolor={this.QUIZ_COLOR}>
+                    <ItemCard
+                      raised
+                      fluid
+                      sidecolor={this.QUIZ_COLOR}
+                      onClick={() => router.push("/quiz/space-complexity")}
+                    >
                       <ItemHeader size="small">
                         Quiz: Space Complexity
-                        <CheckCircle color="#00000030" size={20} style={{ float: "right" }} />
+                        <Check color="#00000030" size={20} />
                       </ItemHeader>
                     </ItemCard>
-                    <ItemCard raised fluid sidecolor={this.TIPS_COLOR}>
+                    <ItemCard
+                      raised
+                      fluid
+                      sidecolor={this.TIPS_COLOR}
+                      onClick={() => router.push("/reading/using-time-and-space-complexity")}
+                    >
                       <ItemHeader size="small">
                         Interview Tip: Using Time and Space Complexity
-                        <CheckCircle color="#00000030" size={20} style={{ float: "right" }} />
+                        <Check color="#00000030" size={20} />
                       </ItemHeader>
                     </ItemCard>
                   </CardGroup>
-                </Card>
+                </StyledCard>
 
                 <div ref={this.contentsRefs[2]} />
-                <Card raised fluid style={{ padding: 20 }}>
+                <StyledCard raised fluid>
                   <Header size="medium">
                     3 - Basic Strings
-                    <CheckCircle color="#00000030" size={20} style={{ float: "right", marginRight: 23 }} />
+                    <Check color="#00000030" size={20} style={{ marginRight: 23 }} />
                   </Header>
                   <CardGroup>
                     <ItemCard raised fluid sidecolor={this.TEXT_COLOR}>
                       <ItemHeader size="small">
                         Overview of Basic Strings
-                        <CheckCircle color="#00000030" size={20} style={{ float: "right" }} />
+                        <Check color="#00000030" size={20} />
                       </ItemHeader>
                     </ItemCard>
                     <ItemCard raised fluid sidecolor={this.PROBLEM_COLOR}>
                       <ItemHeader size="small">
                         Problem: To Lowercase
-                        <CheckCircle color="#00000030" size={20} style={{ float: "right" }} />
+                        <Check color="#00000030" size={20} />
                       </ItemHeader>
                     </ItemCard>
                     <ItemCard raised fluid sidecolor={this.PROBLEM_COLOR}>
                       <ItemHeader size="small">
                         Problem: Longest Common Prefix
-                        <CheckCircle color="#00000030" size={20} style={{ float: "right" }} />
+                        <Check color="#00000030" size={20} />
                       </ItemHeader>
                     </ItemCard>
                     <ItemCard raised fluid sidecolor={this.TEXT_COLOR}>
                       <ItemHeader size="small">
                         The Two-Pointer Method
-                        <CheckCircle color="#00000030" size={20} style={{ float: "right" }} />
+                        <Check color="#00000030" size={20} />
                       </ItemHeader>
                     </ItemCard>
                     <ItemCard raised fluid sidecolor={this.PROBLEM_COLOR}>
                       <ItemHeader size="small">
                         Problem: Reverse a String
-                        <CheckCircle color="#00000030" size={20} style={{ float: "right" }} />
+                        <Check color="#00000030" size={20} />
                       </ItemHeader>
                     </ItemCard>
                     <ItemCard raised fluid sidecolor={this.PROBLEM_COLOR}>
                       <ItemHeader size="small">
                         Problem: Valid Palindrome
-                        <CheckCircle color="#00000030" size={20} style={{ float: "right" }} />
+                        <Check color="#00000030" size={20} />
                       </ItemHeader>
                     </ItemCard>
                     <ItemCard raised fluid sidecolor={this.QUIZ_COLOR}>
                       <ItemHeader size="small">
                         Quiz: Strings
-                        <CheckCircle color="#00000030" size={20} style={{ float: "right" }} />
+                        <Check color="#00000030" size={20} />
                       </ItemHeader>
                     </ItemCard>
                     <ItemCard raised fluid sidecolor={this.TIPS_COLOR}>
                       <ItemHeader size="small">
                         Interview Tip: Determining if a Problem is a String Problem
-                        <CheckCircle color="#00000030" size={20} style={{ float: "right" }} />
+                        <Check color="#00000030" size={20} />
                       </ItemHeader>
                     </ItemCard>
                     <ItemCard raised fluid sidecolor={this.TIPS_COLOR}>
                       <ItemHeader size="small">
                         Interview Tip: Approaching String Problems
-                        <CheckCircle color="#00000030" size={20} style={{ float: "right" }} />
+                        <Check color="#00000030" size={20} />
                       </ItemHeader>
                     </ItemCard>
                   </CardGroup>
-                </Card>
+                </StyledCard>
 
                 <div ref={this.contentsRefs[3]} />
-                <Card raised fluid style={{ padding: 20 }}>
+                <StyledCard raised fluid>
                   <Header size="medium">
                     4 - Basic Arrays
-                    <CheckCircle color="#00000030" size={20} style={{ float: "right", marginRight: 23 }} />
+                    <Check color="#00000030" size={20} style={{ marginRight: 23 }} />
                   </Header>
                   <CardGroup>
                     <ItemCard raised fluid sidecolor={this.TEXT_COLOR}>
                       <ItemHeader size="small">
                         Overview of Basic Arrays
-                        <CheckCircle color="#00000030" size={20} style={{ float: "right" }} />
+                        <Check color="#00000030" size={20} />
                       </ItemHeader>
                     </ItemCard>
                     <ItemCard raised fluid sidecolor={this.TEXT_COLOR}>
                       <ItemHeader size="small">
                         The Two-Pointer Method
-                        <CheckCircle color="#00000030" size={20} style={{ float: "right" }} />
+                        <Check color="#00000030" size={20} />
                       </ItemHeader>
                     </ItemCard>
                     <ItemCard raised fluid sidecolor={this.PROBLEM_COLOR}>
                       <ItemHeader size="small">
                         Problem: Reverse an Array
-                        <CheckCircle color="#00000030" size={20} style={{ float: "right" }} />
+                        <Check color="#00000030" size={20} />
                       </ItemHeader>
                     </ItemCard>
                     <ItemCard raised fluid sidecolor={this.PROBLEM_COLOR}>
                       <ItemHeader size="small">
                         Problem: Move Zeros to the End
-                        <CheckCircle color="#00000030" size={20} style={{ float: "right" }} />
+                        <Check color="#00000030" size={20} />
                       </ItemHeader>
                     </ItemCard>
                     <ItemCard raised fluid sidecolor={this.TEXT_COLOR}>
                       <ItemHeader size="small">
                         How to search an array
-                        <CheckCircle color="#00000030" size={20} style={{ float: "right" }} />
+                        <Check color="#00000030" size={20} />
                       </ItemHeader>
                     </ItemCard>
                     <ItemCard raised fluid sidecolor={this.PROBLEM_COLOR}>
                       <ItemHeader size="small">
                         Problem: Binary Search
-                        <CheckCircle color="#00000030" size={20} style={{ float: "right" }} />
+                        <Check color="#00000030" size={20} />
                       </ItemHeader>
                     </ItemCard>
                     <ItemCard raised fluid sidecolor={this.TEXT_COLOR}>
                       <ItemHeader size="small">
                         How to sort an array
-                        <CheckCircle color="#00000030" size={20} style={{ float: "right" }} />
+                        <Check color="#00000030" size={20} />
                       </ItemHeader>
                     </ItemCard>
                     <ItemCard raised fluid sidecolor={this.PROBLEM_COLOR}>
                       <ItemHeader size="small">
                         Problem: Insertion Sort
-                        <CheckCircle color="#00000030" size={20} style={{ float: "right" }} />
+                        <Check color="#00000030" size={20} />
                       </ItemHeader>
                     </ItemCard>
                     <ItemCard raised fluid sidecolor={this.QUIZ_COLOR}>
                       <ItemHeader size="small">
                         Quiz: Sorting an Array
-                        <CheckCircle color="#00000030" size={20} style={{ float: "right" }} />
+                        <Check color="#00000030" size={20} />
                       </ItemHeader>
                     </ItemCard>
                     <ItemCard raised fluid sidecolor={this.PROBLEM_COLOR}>
                       <ItemHeader size="small">
                         Problem: Buy Low Sell High
-                        <CheckCircle color="#00000030" size={20} style={{ float: "right" }} />
+                        <Check color="#00000030" size={20} />
                       </ItemHeader>
                     </ItemCard>
                     <ItemCard raised fluid sidecolor={this.PROBLEM_COLOR}>
                       <ItemHeader size="small">
                         Problem: Merge Two Sorted Arrays
-                        <CheckCircle color="#00000030" size={20} style={{ float: "right" }} />
+                        <Check color="#00000030" size={20} />
                       </ItemHeader>
                     </ItemCard>
                     <ItemCard raised fluid sidecolor={this.TIPS_COLOR}>
                       <ItemHeader size="small">
                         Interview Tip: Determining if a Problem is an Array Problem
-                        <CheckCircle color="#00000030" size={20} style={{ float: "right" }} />
+                        <Check color="#00000030" size={20} />
                       </ItemHeader>
                     </ItemCard>
                     <ItemCard raised fluid sidecolor={this.TIPS_COLOR}>
                       <ItemHeader size="small">
                         Interview Tip: Approaching Array Problems
-                        <CheckCircle color="#00000030" size={20} style={{ float: "right" }} />
+                        <Check color="#00000030" size={20} />
                       </ItemHeader>
                     </ItemCard>
                   </CardGroup>
-                </Card>
-              </CardGroup>
+                </StyledCard>
+              </StyledCardGroup>
             </GridRow>
           </StyledGrid>
         </>
