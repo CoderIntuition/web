@@ -25,7 +25,7 @@ interface SettingsProps {
   router: NextRouter;
   authenticated: boolean;
   currentUser: any;
-  loadCurrentUser: () => void;
+  loadCurrentUser: (type: string) => void;
 }
 
 const Settings: FC<SettingsProps> = (props) => {
@@ -150,10 +150,8 @@ const Settings: FC<SettingsProps> = (props) => {
           showErrorToast("Error", "Failed to update - please try again.");
           return;
         }
-        // TODO: this is causing error and conflicting with props.loadCurrentUser()
-        // showSuccessToast("Success", "Your settings have been updated.");
         setSaving(false);
-        props.loadCurrentUser();
+        props.loadCurrentUser("SETTINGS");
       })
       .catch((error) => {
         showErrorToast(error.message, error.details[0]);

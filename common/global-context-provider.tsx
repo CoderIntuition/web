@@ -23,8 +23,8 @@ class GlobalContextProvider extends React.Component {
   setDarkMode = (value: number) => {
     this.setState({
       darkMode: value,
-    })
-  }
+    });
+  };
 
   loadCurrentUser = (type) => {
     this.setState({
@@ -38,13 +38,20 @@ class GlobalContextProvider extends React.Component {
           authenticated: true,
           loading: false,
         });
-        if (type === "LOGIN") {
-          showSuccessToast("Success", "Welcome back, " + getName(response.name) + "!");
-        } else if (type === "SIGNUP") {
-          showSuccessToast(
-            "Success",
-            "Welcome to CoderIntuition, " + getName(response.name) + "! Go try some problems 🚀"
-          );
+
+        switch (type) {
+          case "LOGIN":
+            showSuccessToast("Success", "Welcome back, " + getName(response.name) + "!");
+            break;
+          case "SIGNUP":
+            showSuccessToast(
+              "Success",
+              "Welcome to CoderIntuition, " + getName(response.name) + "! Go try some problems 🚀"
+            );
+            break;
+          case "SETTINGS":
+            showSuccessToast("Success", "Your settings have been updated.");
+            break;
         }
       })
       .catch((_err) => {
