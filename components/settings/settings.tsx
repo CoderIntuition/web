@@ -34,12 +34,12 @@ const Settings: FC<SettingsProps> = (props) => {
   const [usernameMessage, setUsernameMessage] = useState<string>("");
   const [nameMessage, setNameMessage] = useState<string>("");
   const [state, setState] = useState({
-    name: props.currentUser.name,
-    username: props.currentUser.username,
-    github: props.currentUser.githubLink,
-    linkedin: props.currentUser.linkedinLink,
-    website: props.currentUser.websiteLink,
-    language: props.currentUser.language,
+    name: "",
+    username: "",
+    github: "",
+    linkedin: "",
+    website: "",
+    language: "",
     currentPassword: "",
     newPassword: "",
     confirmNewPassword: "",
@@ -52,6 +52,15 @@ const Settings: FC<SettingsProps> = (props) => {
       return;
     }
     setLoading(false);
+    setState({
+      ...state,
+      name: props.currentUser.name,
+      username: props.currentUser.username,
+      github: props.currentUser.githubLink,
+      linkedin: props.currentUser.linkedinLink,
+      website: props.currentUser.websiteLink,
+      language: props.currentUser.language,
+    });
   }, []);
 
   // Effect 2 - runs when user saved their changes and the settings are updated
