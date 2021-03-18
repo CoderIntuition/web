@@ -1,6 +1,6 @@
 import React from "react";
 import { BookOpen, Code, EyeOff, Globe, Info, List } from "react-feather";
-import { HighlightedText } from "../landing-styles";
+import { ContentWithPaddingXl, HighlightedText } from "../landing-styles";
 import {
   Card,
   CardDescription,
@@ -62,26 +62,28 @@ const Features = () => {
 
   return (
     <div className={Container}>
-      <div className={ThreeColumnContainer}>
-        <h1 className={Subheading}>{subheading}</h1>
-        <h2 className={Heading}>{heading}</h2>
-        <p className={Description}>{description}</p>
-        <div className={VerticalSpacer} />
-        {cards.map((card, i) => (
-          <div className={Column} key={i}>
-            <div className={Card}>
-              <span className={CardImageContainer}>
-                <div className={CardFeatureIconContainer}>
-                  <card.imageSrc className={CardImageContainerImage} />
-                </div>
-              </span>
-              <span className={CardTextContainer}>
-                <span className={CardTitle}>{card.title || "Fully Secure"}</span>
-                <p className={CardDescription}>{card.description}</p>
-              </span>
+      <div className={ContentWithPaddingXl}>
+        <div className={ThreeColumnContainer}>
+          <h1 className={Subheading}>{subheading}</h1>
+          <h2 className={Heading}>{heading}</h2>
+          <p className={Description}>{description}</p>
+          <div className={VerticalSpacer} />
+          {cards.map((card, i) => (
+            <div className={Column} key={i}>
+              <div className={Card}>
+                <span className={CardImageContainer}>
+                  <div className={CardFeatureIconContainer}>
+                    <card.imageSrc className={CardImageContainerImage} />
+                  </div>
+                </span>
+                <span className={CardTextContainer}>
+                  <span className={CardTitle}>{card.title || "Fully Secure"}</span>
+                  <p className={CardDescription}>{card.description}</p>
+                </span>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
       <img className={DecoratorBlob} src="/images/svg-decorator-blob-3.svg" alt="Decorator blob" />
     </div>
