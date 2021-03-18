@@ -206,7 +206,7 @@ class BeginnerPath extends React.Component<BeginnerPathProps, BeginnerPathState>
                       raised
                       fluid
                       sidecolor={this.QUIZ_COLOR}
-                      onClick={() => router.push("/quiz/time-complexity")}
+                      onClick={() => router.push("/quiz/time-complexity-quiz")}
                     >
                       <ItemHeader size="small">
                         Quiz: Time Complexity
@@ -228,7 +228,7 @@ class BeginnerPath extends React.Component<BeginnerPathProps, BeginnerPathState>
                       raised
                       fluid
                       sidecolor={this.QUIZ_COLOR}
-                      onClick={() => router.push("/quiz/space-complexity")}
+                      onClick={() => router.push("/quiz/space-complexity-quiz")}
                     >
                       <ItemHeader size="small">
                         Quiz: Space Complexity
