@@ -44,7 +44,7 @@ class BeginnerPath extends React.Component<BeginnerPathProps, BeginnerPathState>
       totalPages: 0,
       activeIndex: 0,
     };
-    this.contentsRefs = [...Array(5)].map((_, _i) => React.createRef());
+    this.contentsRefs = [...Array(4)].map((_, _i) => React.createRef());
   }
 
   handleResultSelect(result) {
@@ -88,10 +88,7 @@ class BeginnerPath extends React.Component<BeginnerPathProps, BeginnerPathState>
                       Big-O Notation
                     </StyledListItem>
                     <StyledListItem onClick={() => this.contentsRefs[2].current.scrollIntoView()}>
-                      Basic Strings
-                    </StyledListItem>
-                    <StyledListItem onClick={() => this.contentsRefs[3].current.scrollIntoView()}>
-                      Basic Arrays
+                      Basic Strings and Arrays
                     </StyledListItem>
                     <StyledListItem>Basic Linked Lists</StyledListItem>
                   </List>
@@ -252,19 +249,13 @@ class BeginnerPath extends React.Component<BeginnerPathProps, BeginnerPathState>
                 <div ref={this.contentsRefs[2]} />
                 <StyledCard raised fluid>
                   <Header size="medium">
-                    3 - Basic Strings
+                    4 - Basic Strings and Arrays
                     <Check color="#00000030" size={20} style={{ marginRight: 23 }} />
                   </Header>
                   <CardGroup>
                     <ItemCard raised fluid sidecolor={this.TEXT_COLOR}>
                       <ItemHeader size="small">
-                        Overview of Basic Strings
-                        <Check color="#00000030" size={20} />
-                      </ItemHeader>
-                    </ItemCard>
-                    <ItemCard raised fluid sidecolor={this.PROBLEM_COLOR}>
-                      <ItemHeader size="small">
-                        Problem: To Lowercase
+                        Overview of Basic Strings and Arrays
                         <Check color="#00000030" size={20} />
                       </ItemHeader>
                     </ItemCard>
@@ -282,59 +273,13 @@ class BeginnerPath extends React.Component<BeginnerPathProps, BeginnerPathState>
                     </ItemCard>
                     <ItemCard raised fluid sidecolor={this.PROBLEM_COLOR}>
                       <ItemHeader size="small">
-                        Problem: Reverse a String
+                        Problem: Reverse an Array
                         <Check color="#00000030" size={20} />
                       </ItemHeader>
                     </ItemCard>
                     <ItemCard raised fluid sidecolor={this.PROBLEM_COLOR}>
                       <ItemHeader size="small">
                         Problem: Valid Palindrome
-                        <Check color="#00000030" size={20} />
-                      </ItemHeader>
-                    </ItemCard>
-                    <ItemCard raised fluid sidecolor={this.QUIZ_COLOR}>
-                      <ItemHeader size="small">
-                        Quiz: Strings
-                        <Check color="#00000030" size={20} />
-                      </ItemHeader>
-                    </ItemCard>
-                    <ItemCard raised fluid sidecolor={this.TIPS_COLOR}>
-                      <ItemHeader size="small">
-                        Interview Tip: Determining if a Problem is a String Problem
-                        <Check color="#00000030" size={20} />
-                      </ItemHeader>
-                    </ItemCard>
-                    <ItemCard raised fluid sidecolor={this.TIPS_COLOR}>
-                      <ItemHeader size="small">
-                        Interview Tip: Approaching String Problems
-                        <Check color="#00000030" size={20} />
-                      </ItemHeader>
-                    </ItemCard>
-                  </CardGroup>
-                </StyledCard>
-
-                <div ref={this.contentsRefs[3]} />
-                <StyledCard raised fluid>
-                  <Header size="medium">
-                    4 - Basic Arrays
-                    <Check color="#00000030" size={20} style={{ marginRight: 23 }} />
-                  </Header>
-                  <CardGroup>
-                    <ItemCard raised fluid sidecolor={this.TEXT_COLOR}>
-                      <ItemHeader size="small">
-                        Overview of Basic Arrays
-                        <Check color="#00000030" size={20} />
-                      </ItemHeader>
-                    </ItemCard>
-                    <ItemCard raised fluid sidecolor={this.TEXT_COLOR}>
-                      <ItemHeader size="small">
-                        The Two-Pointer Method
-                        <Check color="#00000030" size={20} />
-                      </ItemHeader>
-                    </ItemCard>
-                    <ItemCard raised fluid sidecolor={this.PROBLEM_COLOR}>
-                      <ItemHeader size="small">
-                        Problem: Reverse an Array
                         <Check color="#00000030" size={20} />
                       </ItemHeader>
                     </ItemCard>
@@ -358,7 +303,7 @@ class BeginnerPath extends React.Component<BeginnerPathProps, BeginnerPathState>
                     </ItemCard>
                     <ItemCard raised fluid sidecolor={this.TEXT_COLOR}>
                       <ItemHeader size="small">
-                        How to sort an array
+                        Sorting Arrays
                         <Check color="#00000030" size={20} />
                       </ItemHeader>
                     </ItemCard>
