@@ -44,6 +44,7 @@ class BeginnerPath extends React.Component<BeginnerPathProps, BeginnerPathState>
       totalPages: 0,
       activeIndex: 0,
     };
+
     this.contentsRefs = [...Array(4)].map((_, _i) => React.createRef());
   }
 
