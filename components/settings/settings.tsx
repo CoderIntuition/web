@@ -11,6 +11,7 @@ import {
   SidebarContainer,
   SidebarSettingsMenu,
   StyledButton,
+  StyledDropdown,
   StyledInput,
 } from "./settings-styles";
 import { constants } from "common/constants";
@@ -280,6 +281,7 @@ const Settings: FC<SettingsProps> = (props) => {
         <Grid relaxed="very">
           <GridColumn width={12}>
             <Form error={nameMessage !== "" || usernameMessage !== ""}>
+              <StyledInput label="Email" disabled defaultValue={props.currentUser.email} />
               <StyledInput
                 label="Name"
                 onChange={(e) => handleChange("name", e)}
@@ -309,7 +311,7 @@ const Settings: FC<SettingsProps> = (props) => {
                 onChange={(e) => handleChange("website", e)}
                 defaultValue={props.currentUser.websiteLink}
               />
-              <Form.Dropdown
+              <StyledDropdown
                 label="Language"
                 fluid
                 selection

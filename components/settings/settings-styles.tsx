@@ -56,7 +56,7 @@ export const Heading = styled.h1`
 `;
 
 export const StyledInput = styled(Form.Input)`
-  &&& {
+  &&&&& {
     display: flex;
     flex-direction: column;
     .label {
@@ -67,6 +67,20 @@ export const StyledInput = styled(Form.Input)`
     }
     .icon {
       color: ${(props) => (props.inputerror === "" ? "#20BF6B" : "#FC5C65")};
+    }
+    &.disabled {
+      opacity: 1;
+    }
+    &.disabled > label {
+      opacity: 1;
+    }
+  }
+`;
+
+export const StyledDropdown = styled(Form.Dropdown)`
+  &&& {
+    .dropdown {
+      color: #5a6778;
     }
   }
 `;
