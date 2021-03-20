@@ -34,7 +34,7 @@ const Settings: FC<SettingsProps> = (props) => {
   const [saving, setSaving] = useState<boolean>(false);
   const [usernameMessage, setUsernameMessage] = useState<string>("");
   const [nameMessage, setNameMessage] = useState<string>("");
-  const [state, setState] = useState({
+  const [state, setState] = useState<Record<string, string>>({
     name: "",
     username: "",
     github: "",
@@ -64,14 +64,7 @@ const Settings: FC<SettingsProps> = (props) => {
     });
   }, []);
 
-  // Effect 2 - runs when user saved their changes and the settings are updated
-  // Reset the username and name error messages to empty string
-  useEffect(() => {
-    setUsernameMessage("");
-    setNameMessage("");
-  }, [props.router.query.setting]);
-
-  // Effect 3 - Runs when the username state changes
+  // Effect 2 - Runs when the username state changes
   useEffect(() => {
     let timeoutId;
     if (state.username === "") {
@@ -93,7 +86,7 @@ const Settings: FC<SettingsProps> = (props) => {
               setUsernameMessage("");
             }
           });
-      }, 1000);
+      }, 500);
     }
     return () => clearTimeout(timeoutId);
   }, [state.username]);
@@ -107,12 +100,7 @@ const Settings: FC<SettingsProps> = (props) => {
     );
   }
 
-  if (props.currentUser === null) {
-    props.router.push("/");
-    return null;
-  }
-
-  const handleChange = (field, e) => {
+  const handleChange = (field: string, e: React.ChangeEvent<HTMLInputElement>) => {
     if (field === "name") {
       if (e.target.value === "") {
         setNameMessage("Please enter your name.");
@@ -133,6 +121,7 @@ const Settings: FC<SettingsProps> = (props) => {
     setState({ ...state, language: value.value });
   };
 
+  // Save General settings
   const handleSaveGeneral = () => {
     const token = getCurrentUserToken();
     if (usernameMessage !== "" || nameMessage !== "") {
@@ -140,35 +129,36 @@ const Settings: FC<SettingsProps> = (props) => {
       return;
     }
     setSaving(true);
-    fetch(constants.USER_PROFILE_URL + "me", {
-      method: "POST",
+    const url = constants.USER_URL;
+    const request = {
+      name: state.name,
+      username: state.username,
+      githubLink: state.github,
+      linkedinLink: state.linkedin,
+      websiteLink: state.website,
+      language: state.language,
+    };
+    const config = {
       headers: {
-        "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
+        "content-type": "application/json",
       },
-      body: JSON.stringify({
-        name: state.name,
-        username: state.username,
-        githubLink: state.github,
-        linkedinLink: state.linkedin,
-        websiteLink: state.website,
-        language: state.language,
-      }),
-    })
-      .then((response) => {
-        if (!response.ok) {
-          showErrorToast("Error", "Failed to update - please try again.");
-          return;
-        }
+    };
+    axios
+      .post(url, request, config)
+      .then(() => {
         setSaving(false);
+        setUsernameMessage("");
+        setNameMessage("");
         props.loadCurrentUser("SETTINGS");
       })
       .catch((error) => {
-        showErrorToast(error.message, error.details[0]);
+        showErrorToast("Error", error.response.data.message);
         setSaving(false);
       });
   };
 
+  // Save password settings
   const handleChangePassword = () => {
     if (state.newPassword !== state.confirmNewPassword) {
       showErrorToast("Error", "Your passwords do not match.");
@@ -187,7 +177,7 @@ const Settings: FC<SettingsProps> = (props) => {
     setSaving(true);
     axios
       .post(url, request, config)
-      .then((_res) => {
+      .then(() => {
         setSaving(false);
         showSuccessToast("Success", "Your password has been updated.");
         setState({
@@ -200,6 +190,23 @@ const Settings: FC<SettingsProps> = (props) => {
       .catch((error) => {
         showErrorToast("Error", error.response.data.message);
         setSaving(false);
+      });
+  };
+
+  // Saves membership settings
+  const handleStripePortal = () => {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${getCurrentUserToken()}`,
+      },
+    };
+    axios
+      .post(constants.CUSTOMER_PORTAL_URL, {}, config)
+      .then((res) => {
+        window.location.replace(res.data.url);
+      })
+      .catch((_err) => {
+        showErrorToast("Error", "Could not redirect to Stripe. Please contact support.");
       });
   };
 
@@ -230,22 +237,6 @@ const Settings: FC<SettingsProps> = (props) => {
         </Menu.Menu>
       </>
     );
-  };
-
-  const handleStripePortal = () => {
-    const config = {
-      headers: {
-        Authorization: `Bearer ${getCurrentUserToken()}`,
-      },
-    };
-    axios
-      .post(constants.CUSTOMER_PORTAL_URL, {}, config)
-      .then((res) => {
-        window.location.replace(res.data.url);
-      })
-      .catch((_err) => {
-        showErrorToast("Error", "Could not redirect to Stripe. Please contact support.");
-      });
   };
 
   const profileImageSettings = () => {
@@ -287,7 +278,7 @@ const Settings: FC<SettingsProps> = (props) => {
                 onChange={(e) => handleChange("name", e)}
                 defaultValue={props.currentUser.name}
               />
-              {nameMessage === "" ? <></> : <Message error content={nameMessage} />}
+              {nameMessage !== "" ? <Message error content={nameMessage} /> : <></>}
               <StyledInput
                 label="Username"
                 onChange={(e) => handleChange("username", e)}
@@ -295,7 +286,7 @@ const Settings: FC<SettingsProps> = (props) => {
                 inputerror={usernameMessage}
                 icon={usernameMessage === "" ? "check circle" : "times circle"}
               />
-              {usernameMessage === "" ? <></> : <Message error content={usernameMessage} />}
+              {usernameMessage !== "" ? <Message error content={usernameMessage} /> : <></>}
               <StyledInput
                 label="Github"
                 onChange={(e) => handleChange("github", e)}

@@ -33,6 +33,7 @@ export const constants = {
   CMS_READING_URL: API_BASE_URL + "/cms/reading/",
   PRODUCE_OUTPUT_URL: API_BASE_URL + "/produceoutput",
   USER_PROFILE_URL: API_BASE_URL + "/user/",
+  USER_URL: API_BASE_URL + "/user/me",
   CHANGE_PASSWORD_URL: API_BASE_URL + "/user/me/changepassword",
   USER_SUBMISSIONS_URL: API_BASE_URL + "/user/me/submissions/",
   VERIFY_EMAIL_URL: API_BASE_URL + "/user/verify",
@@ -61,27 +62,31 @@ export const FACEBOOK_AUTH_URL =
   API_BASE_URL + "/oauth2/authorize/facebook?redirect_uri=" + constants.OAUTH2_REDIRECT_URI;
 export const GITHUB_AUTH_URL = API_BASE_URL + "/oauth2/authorize/github?redirect_uri=" + constants.OAUTH2_REDIRECT_URI;
 
-export const QUIZ_TEMPLATE = JSON.stringify([
-  {
-    question: "",
-    questionType: "text",
-    answerSelectionType: "single",
-    answers: ["", "", "", ""],
-    correctAnswer: "1",
-    messageForCorrectAnswer: "Correct, good job!",
-    messageForIncorrectAnswer: "Incorrect, try again!",
-    explanation: "",
-    point: "1",
-  },
-  {
-    question: "",
-    questionType: "text",
-    answerSelectionType: "single",
-    answers: ["", "", "", ""],
-    correctAnswer: "1",
-    messageForCorrectAnswer: "Correct, good job!",
-    messageForIncorrectAnswer: "Incorrect, try again!",
-    explanation: "",
-    point: "1",
-  },
-], null, 1);
+export const QUIZ_TEMPLATE = JSON.stringify(
+  [
+    {
+      question: "",
+      questionType: "text",
+      answerSelectionType: "single",
+      answers: ["", "", "", ""],
+      correctAnswer: "1",
+      messageForCorrectAnswer: "Correct, good job!",
+      messageForIncorrectAnswer: "Incorrect, try again!",
+      explanation: "",
+      point: "1",
+    },
+    {
+      question: "",
+      questionType: "text",
+      answerSelectionType: "single",
+      answers: ["", "", "", ""],
+      correctAnswer: "1",
+      messageForCorrectAnswer: "Correct, good job!",
+      messageForIncorrectAnswer: "Incorrect, try again!",
+      explanation: "",
+      point: "1",
+    },
+  ],
+  null,
+  1
+);
