@@ -254,91 +254,122 @@ class BeginnerPath extends React.Component<BeginnerPathProps, BeginnerPathState>
                     <Check color="#00000030" size={20} style={{ marginRight: 23 }} />
                   </Header>
                   <CardGroup>
-                    <ItemCard raised fluid sidecolor={this.TEXT_COLOR}>
+                    <ItemCard
+                      raised
+                      fluid
+                      sidecolor={this.TEXT_COLOR}
+                      onClick={() => router.push("/reading/overview-of-basic-strings-and-arrays")}
+                    >
                       <ItemHeader size="small">
                         Overview of Basic Strings and Arrays
                         <Check color="#00000030" size={20} />
                       </ItemHeader>
                     </ItemCard>
-                    <ItemCard raised fluid sidecolor={this.PROBLEM_COLOR}>
+                    <ItemCard
+                      raised
+                      fluid
+                      sidecolor={this.TEXT_COLOR}
+                      onClick={() => router.push("/reading/the-array-data-structure")}
+                    >
+                      <ItemHeader size="small">
+                        The Array Data Structure
+                        <Check color="#00000030" size={20} />
+                      </ItemHeader>
+                    </ItemCard>
+                    <ItemCard
+                      raised
+                      fluid
+                      sidecolor={this.PROBLEM_COLOR}
+                      onClick={() => router.push("/problem/longest-common-prefix")}
+                    >
                       <ItemHeader size="small">
                         Problem: Longest Common Prefix
                         <Check color="#00000030" size={20} />
                       </ItemHeader>
                     </ItemCard>
-                    <ItemCard raised fluid sidecolor={this.TEXT_COLOR}>
+                    <ItemCard
+                      raised
+                      fluid
+                      sidecolor={this.TEXT_COLOR}
+                      onClick={() => router.push("/reading/the-two-pointer-method")}
+                    >
                       <ItemHeader size="small">
                         The Two-Pointer Method
                         <Check color="#00000030" size={20} />
                       </ItemHeader>
                     </ItemCard>
-                    <ItemCard raised fluid sidecolor={this.PROBLEM_COLOR}>
+                    <ItemCard
+                      raised
+                      fluid
+                      sidecolor={this.PROBLEM_COLOR}
+                      onClick={() => router.push("/problem/reverse-an-array")}
+                    >
                       <ItemHeader size="small">
                         Problem: Reverse an Array
                         <Check color="#00000030" size={20} />
                       </ItemHeader>
                     </ItemCard>
-                    <ItemCard raised fluid sidecolor={this.PROBLEM_COLOR}>
+                    <ItemCard raised fluid sidecolor={this.PROBLEM_COLOR} onClick={() => router.push("/problem/valid-palindrome")}>
                       <ItemHeader size="small">
                         Problem: Valid Palindrome
                         <Check color="#00000030" size={20} />
                       </ItemHeader>
                     </ItemCard>
-                    <ItemCard raised fluid sidecolor={this.PROBLEM_COLOR}>
+                    <ItemCard raised fluid sidecolor={this.PROBLEM_COLOR} onClick={() => router.push("/problem/move-zeros-to-the-end")}>
                       <ItemHeader size="small">
                         Problem: Move Zeros to the End
                         <Check color="#00000030" size={20} />
                       </ItemHeader>
                     </ItemCard>
-                    <ItemCard raised fluid sidecolor={this.TEXT_COLOR}>
+                    <ItemCard raised fluid sidecolor={this.TEXT_COLOR} onClick={() => router.push("/reading/searching-arrays")}>
                       <ItemHeader size="small">
-                        How to search an array
+                        Searching Arrays
                         <Check color="#00000030" size={20} />
                       </ItemHeader>
                     </ItemCard>
-                    <ItemCard raised fluid sidecolor={this.PROBLEM_COLOR}>
+                    <ItemCard raised fluid sidecolor={this.PROBLEM_COLOR} onClick={() => router.push("/problem/binary-search")}>
                       <ItemHeader size="small">
                         Problem: Binary Search
                         <Check color="#00000030" size={20} />
                       </ItemHeader>
                     </ItemCard>
-                    <ItemCard raised fluid sidecolor={this.TEXT_COLOR}>
+                    <ItemCard raised fluid sidecolor={this.TEXT_COLOR} onClick={() => router.push("/reading/sorting-arrays")}>
                       <ItemHeader size="small">
                         Sorting Arrays
                         <Check color="#00000030" size={20} />
                       </ItemHeader>
                     </ItemCard>
-                    <ItemCard raised fluid sidecolor={this.PROBLEM_COLOR}>
+                    <ItemCard raised fluid sidecolor={this.PROBLEM_COLOR} onClick={() => router.push("/problem/insertion-sort")}>
                       <ItemHeader size="small">
                         Problem: Insertion Sort
                         <Check color="#00000030" size={20} />
                       </ItemHeader>
                     </ItemCard>
-                    <ItemCard raised fluid sidecolor={this.QUIZ_COLOR}>
+                    <ItemCard raised fluid sidecolor={this.QUIZ_COLOR} onClick={() => router.push("/reading/sorting-arrays")}>
                       <ItemHeader size="small">
-                        Quiz: Sorting an Array
+                        Quiz: Sorting Arrays
                         <Check color="#00000030" size={20} />
                       </ItemHeader>
                     </ItemCard>
-                    <ItemCard raised fluid sidecolor={this.PROBLEM_COLOR}>
+                    <ItemCard raised fluid sidecolor={this.PROBLEM_COLOR} onClick={() => router.push("/problem/buy-low-sell-high")}>
                       <ItemHeader size="small">
                         Problem: Buy Low Sell High
                         <Check color="#00000030" size={20} />
                       </ItemHeader>
                     </ItemCard>
-                    <ItemCard raised fluid sidecolor={this.PROBLEM_COLOR}>
+                    <ItemCard raised fluid sidecolor={this.PROBLEM_COLOR} onClick={() => router.push("/problem/merge-two-sorted-arrays")}>
                       <ItemHeader size="small">
                         Problem: Merge Two Sorted Arrays
                         <Check color="#00000030" size={20} />
                       </ItemHeader>
                     </ItemCard>
-                    <ItemCard raised fluid sidecolor={this.TIPS_COLOR}>
+                    <ItemCard raised fluid sidecolor={this.TIPS_COLOR} onClick={() => router.push("/reading/how-to-spot-an-array-problem")}>
                       <ItemHeader size="small">
-                        Interview Tip: Determining if a Problem is an Array Problem
+                        Interview Tip: How to Spot an Array Problem
                         <Check color="#00000030" size={20} />
                       </ItemHeader>
                     </ItemCard>
-                    <ItemCard raised fluid sidecolor={this.TIPS_COLOR}>
+                    <ItemCard raised fluid sidecolor={this.TIPS_COLOR} onClick={() => router.push("/reading/approaching-array-problems")}>
                       <ItemHeader size="small">
                         Interview Tip: Approaching Array Problems
                         <Check color="#00000030" size={20} />
