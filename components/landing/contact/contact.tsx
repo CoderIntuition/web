@@ -114,7 +114,7 @@ const Contact = () => {
               <h1 className={Subheading}>Contact Us</h1>
               <h2 className={Heading}>Feel free to get in touch</h2>
               <p className={Description}>
-                If you have any questions or discovered any issues with our website, please fill this form and our
+                If you have questions, have feedback, or have found a bug, please fill this form and our
                 customer support team will get back to you within 24 hours!
               </p>
               <ContactForm />

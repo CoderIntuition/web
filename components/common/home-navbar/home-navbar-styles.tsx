@@ -21,7 +21,7 @@ export const HomeNavbarMenu = styled(Menu)`
     background-color: ${(props) => props.backgroundcolor};
     height: ${(props) => props.height}px;
     margin-bottom: ${(props) => props.mgbottom}px;
-    margin-top: 30px;
+    margin-top: 40px;
   }
 `;
 

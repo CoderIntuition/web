@@ -1,25 +1,15 @@
 import React, { FC, useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import Link from "next/link";
 import axios from "axios";
-import { Loader } from "semantic-ui-react";
+import { Button, Loader } from "semantic-ui-react";
 import { constants } from "common/constants";
 import { getCurrentUserToken } from "common/auth-service";
 import AnimationRevealPage from "components/common/helpers/animation-reveal-page";
-import Emoji from "components/common/emoji/emoji";
-import {
-  DecoratorBlob,
-  Heading,
-  IllustrationContainer,
-  InnerContainer,
-  LeftColumn,
-  MiddleContainer,
-  Paragraph,
-  PrimaryButton,
-  RightColumn,
-  StyledImage,
-  TwoColumn,
-} from "../home/hero-styles";
+import { Container, ContentWithPaddingXl } from "../landing-styles";
+import { ImageColumn, TextColumn, TextContent, TwoColumn } from "../home/difference-styles";
+import { DecoratorBlob1, Heading2 } from "./plus-styles";
+import Emoji from "../../common/emoji/emoji";
+import Image from "next/image";
 
 const Success: FC = () => {
   const router = useRouter();
@@ -63,38 +53,36 @@ const Success: FC = () => {
   return (
     <>
       <AnimationRevealPage>
-        <div style={{ marginTop: -50 }}>
-          <div className={MiddleContainer}>
-            <div className={InnerContainer}>
-              <div className={TwoColumn}>
-                <div className={LeftColumn}>
-                  <h1 className={Heading}>
-                    Thanks for Subscribing to Intuition+ <Emoji symbol="🎉" />
-                  </h1>
-                  <p className={Paragraph}>Hey {name}, you made the right choice to invest in yourself.</p>
-                  <p className={Paragraph}>
-                    You're now one step closer to acing those coding interviews and landing your dream job!
-                  </p>
-                  <p className={Paragraph}>Make sure to start your exclusive Intuition+ learning path experience!</p>
-                  <Link href="/problems">
-                    <button className={PrimaryButton}>Intuition+ Learning Path</button>
-                  </Link>
-                </div>
-                <div className={RightColumn}>
-                  <div className={IllustrationContainer}>
-                    <img
-                      className={StyledImage}
-                      src="/images/success.svg"
-                      alt="Success graphic"
-                      width="800px"
-                      height="800px"
-                    />
+        <div className={Container}>
+          <div className={ContentWithPaddingXl} style={{ marginTop: -50 }}>
+            <div className={TwoColumn}>
+              <div className={TextColumn}>
+                <div className={TextContent}>
+                  <br />
+                  <h2 className={Heading2} style={{ fontSize: 40 }}>
+                    Welcome to Intuition+ <Emoji symbol="🎉" />
+                  </h2>
+                  <div style={{ fontSize: 20, lineHeight: 1.2, marginTop: 50 }}>
+                    Hey {name}, you made the right choice to invest in yourself.
                   </div>
+                  <div style={{ fontSize: 20, lineHeight: 1.2, marginTop: 20 }}>
+                    To get the most out of your subscription, try our exclusive Intuition+ Learning Path!
+                  </div>
+                  <Button
+                    primary
+                    style={{ padding: 15, borderRadius: 12, marginTop: 50 }}
+                    onClick={() => router.push("/learning-path/plus-path")}
+                  >
+                    Intuition+ Learning Path
+                  </Button>
                 </div>
+              </div>
+              <div className={ImageColumn}>
+                <Image src="/images/success.svg" alt="Success graphic" width="800px" height="800px" />
               </div>
             </div>
           </div>
-          <img className={DecoratorBlob} src="/images/svg-decorator-blob-1.svg" alt="Decorator blob" />
+          <img className={DecoratorBlob1} src="/images/svg-decorator-blob-6.svg" alt="Decorator blob" />
         </div>
       </AnimationRevealPage>
     </>

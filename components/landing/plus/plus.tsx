@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
+import { Button } from "semantic-ui-react";
 import "@stripe/stripe-js";
 import { withGlobalContext } from "common/utils";
 import { constants } from "common/constants";
@@ -7,25 +9,14 @@ import AnimationRevealPage from "components/common/helpers/animation-reveal-page
 import Checkout from "./checkout";
 import Emoji from "components/common/emoji/emoji";
 import { isPlus } from "common/auth-service";
-import { Container, ContentWithPaddingLg, HighlightedText } from "../landing-styles";
-import {
-  Heading as Heading2,
-  IllustrationContainer,
-  InnerContainer,
-  LeftColumn,
-  MiddleContainer,
-  Paragraph,
-  PrimaryButton,
-  RightColumn,
-  StyledImage,
-  TwoColumn,
-} from "../home/hero-styles";
+import { Container, ContentWithPaddingLg, ContentWithPaddingXl, HighlightedText } from "../landing-styles";
 import {
   DecoratorBlob1,
   DecoratorBlob2,
   Description,
   HeaderContainer,
   Heading,
+  Heading2,
   Plan,
   PlanAction,
   PlanDuration,
@@ -44,6 +35,8 @@ import {
   SwitchButton,
   SwitchButtonActive,
 } from "./plus-styles";
+import { ImageColumn, TextColumn, TextContent, TwoColumn } from "../home/difference-styles";
+import { useRouter } from "next/router";
 
 const Plus = (props) => {
   const plans = [
@@ -79,34 +72,38 @@ const Plus = (props) => {
   ];
 
   const [activeDurationIndex, setActiveDurationIndex] = useState(0);
+  const router = useRouter();
 
   return (
     <>
       <AnimationRevealPage>
         {props.authenticated && isPlus(props.currentUser.roles) ? (
           <div className={Container}>
-            <div className={MiddleContainer}>
-              <div className={InnerContainer}>
-                <div className={TwoColumn}>
-                  <div className={LeftColumn}>
-                    <span className={Heading2}>
-                      Thanks for subscribing to Intuition+ <Emoji symbol="🎉" />
-                    </span>
-                    <span className={Paragraph}>
+            <div className={ContentWithPaddingXl} style={{ marginTop: -50 }}>
+              <div className={TwoColumn}>
+                <div className={TextColumn}>
+                  <div className={TextContent}>
+                    <br />
+                    <h2 className={Heading2} style={{ fontSize: 40 }}>
+                      Welcome to Intuition+ <Emoji symbol="🎉" />
+                    </h2>
+                    <div style={{ fontSize: 20, lineHeight: 1.2, marginTop: 50 }}>
                       Hey {props.currentUser.name.split(" ")[0]}, you made the right choice to invest in yourself.
-                    </span>
-                    <span className={Paragraph}>
-                      To get the most out of your subscription, try our exclusive Intuition+ learning path!
-                    </span>
-                    <Link href="/problems">
-                      <button className={PrimaryButton}>Intuition+ Learning Path</button>
-                    </Link>
-                  </div>
-                  <div className={RightColumn}>
-                    <div className={IllustrationContainer}>
-                      <img className={StyledImage} src="/images/success.svg" alt="Success graphic" />
                     </div>
+                    <div style={{ fontSize: 20, lineHeight: 1.2, marginTop: 20 }}>
+                      To get the most out of your subscription, try our exclusive Intuition+ Learning Path!
+                    </div>
+                    <Button
+                      primary
+                      style={{ padding: 15, borderRadius: 12, marginTop: 50 }}
+                      onClick={() => router.push("/learning-path/plus-path")}
+                    >
+                      Intuition+ Learning Path
+                    </Button>
                   </div>
+                </div>
+                <div className={ImageColumn}>
+                  <Image src="/images/success.svg" alt="Success graphic" width="800px" height="800px" />
                 </div>
               </div>
             </div>
