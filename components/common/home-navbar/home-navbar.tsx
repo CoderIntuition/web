@@ -8,6 +8,7 @@ import { isMod } from "common/auth-service";
 import { showSuccessToast, withGlobalContext } from "common/utils";
 import { constants } from "common/constants";
 import {
+  Banner,
   HomeNavbarMenu,
   LogoLink,
   MobileDropDown,
@@ -226,20 +227,29 @@ class HomeNavbar extends Component<HomeNavbarProps, {}> {
     );
 
     return (
-      <HomeNavbarMenu
-        secondary
-        position={this.onProblemPage() ? "" : "absolute"}
-        width={this.onProblemPage() ? "" : "100%"}
-        background={this.onProblemPage() ? "" : "transparent"}
-        backgroundcolor={this.onProblemPage() ? "#242529" : "transparent"}
-        height={this.onProblemPage() ? 60 : 80}
-        mgbottom={this.onProblemPage() ? 0 : 5}
-      >
-        <NavContainer>
-          <div className="hidden lg:contents">{desktopNavbar}</div>
-          <div className="contents lg:hidden">{mobileNavbar}</div>
-        </NavContainer>
-      </HomeNavbarMenu>
+      <>
+        <Banner>
+          🚧 CoderIntuition is still under construction. Feel free to try it out and&nbsp;
+          <Link href="/contact" passHref>
+            <a style={{ color: "white", textDecoration: "underline" }}>submit your feedback</a>
+          </Link>
+          ! 🚧
+        </Banner>
+        <HomeNavbarMenu
+          secondary
+          position={this.onProblemPage() ? "" : "absolute"}
+          width={this.onProblemPage() ? "" : "100%"}
+          background={this.onProblemPage() ? "" : "transparent"}
+          backgroundcolor={this.onProblemPage() ? "#242529" : "transparent"}
+          height={this.onProblemPage() ? 60 : 80}
+          mgbottom={this.onProblemPage() ? 0 : 5}
+        >
+          <NavContainer>
+            <div className="hidden lg:contents">{desktopNavbar}</div>
+            <div className="contents lg:hidden">{mobileNavbar}</div>
+          </NavContainer>
+        </HomeNavbarMenu>
+      </>
     );
   }
 }

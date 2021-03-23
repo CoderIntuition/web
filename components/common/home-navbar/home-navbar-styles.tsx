@@ -1,6 +1,17 @@
 import styled from "styled-components";
 import { Button, Container, Dropdown, Menu, MenuItem } from "semantic-ui-react";
 
+export const Banner = styled.div`
+  display: flex;
+  color: #ffffff;
+  background-color: #ed2939;
+  width: 100%;
+  padding-block: 10px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+`;
+
 export const HomeNavbarMenu = styled(Menu)`
   &&& {
     position: ${(props) => props.position};
@@ -10,6 +21,7 @@ export const HomeNavbarMenu = styled(Menu)`
     background-color: ${(props) => props.backgroundcolor};
     height: ${(props) => props.height}px;
     margin-bottom: ${(props) => props.mgbottom}px;
+    margin-top: 30px;
   }
 `;
 
@@ -80,12 +92,15 @@ export const StyledDropdown = styled(Dropdown)`
     padding: 10px 25px;
     margin: 0;
     color: #ffffff;
+
     &&&&&:hover {
       color: #ffffff;
     }
+
     &&&&&:not(:focus) {
       color: #ffffff;
     }
+
     .item {
       &:not(:first-child) {
         margin-top: 10px;
@@ -132,6 +147,7 @@ export const MobileDropDown = styled(Dropdown)`
         color: #ffffff;
       }
     }
+
     .item {
       &:not(:first-child) {
         margin-top: 10px;
