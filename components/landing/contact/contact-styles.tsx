@@ -16,6 +16,6 @@ export const Description = cntl`mt-4 text-base lg:text-lg leading-relaxed text-s
 
 export const Form = cntl`mt-8 md:mt-10 text-sm flex flex-col max-w-md mx-auto md:mx-0`;
 
-export const Input = cntl`mt-6 first:mt-0 border-b-2 py-3 focus:outline-none transition duration-300 focus:border-primary-500`;
+export const Input = cntl`mt-6 first:mt-0 border-b-2 py-3 pl-2 focus:outline-none transition duration-300 focus:border-primary-500`;
 
-export const TextArea = cntl`mt-6 h-32 first:mt-0 border-b-2 py-3 focus:outline-none transition duration-300 focus:border-primary-500`;
+export const TextArea = cntl`mt-6 h-32 first:mt-0 border-b-2 py-3 pl-2 focus:outline-none transition duration-300 focus:border-primary-500`;
