@@ -75,7 +75,7 @@ export const User: FC<UserProps> = (props) => {
 
   const ProfileSection = (
     <StyledProfileDiv>
-      <ProfilePicture centered circular src="/images/michelle.png" />
+      <ProfilePicture centered circular src={user.profilePicturePath || "/images/profile-placeholder.jpg"} />
       <ProfileName size="large">{user.name}</ProfileName>
       <ProfileUsername>{user.username}</ProfileUsername>
       {user.plusRole === true ? <ProfileBadge circular>Intuition+</ProfileBadge> : <></>}
