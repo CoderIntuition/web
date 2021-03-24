@@ -8,6 +8,8 @@ export const Subheading = cntl`mb-4 text-center text-lg md:text-2xl font-normal 
 
 export const Heading = cntl`text-3xl md:text-5xl font-semibold tracking-wide text-center w-full`;
 
+export const Heading2 = cntl`text-3xl md:text-5xl font-semibold tracking-wide w-full`;
+
 export const Description = cntl`mt-4 text-base lg:text-lg leading-relaxed text-secondary-100 max-w-xl w-full text-center`;
 
 export const PlanDurationSwitcher = cntl`block w-full max-w-xs sm:inline-block sm:w-auto border-2 rounded-full px-1 py-1 mt-8`;
@@ -54,3 +56,13 @@ export const StyledButton = styled(Button)`
     transition-duration: 300ms;
     letter-spacing: 0.025em;
 `;
+
+export const OuterContainer = styled.div`
+  margin-bottom: -20px;
+  position: relative;
+  background: linear-gradient(160deg, rgba(84,51,255,1) 0%, rgba(77,105,233,1) 50%, rgba(81,210,255,1) 100%);
+  text-align: center;
+  overflow: hidden;
+`;
+
+export const InnerContainer = cntl`relative md:pb-32 md:mt-16 xl:mt-0`;

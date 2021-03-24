@@ -8,6 +8,7 @@ import { isMod } from "common/auth-service";
 import { showSuccessToast, withGlobalContext } from "common/utils";
 import { constants } from "common/constants";
 import {
+  Banner,
   LogoLink,
   MobileDropDown,
   MobileDropDownMenu,
@@ -221,6 +222,13 @@ class Navbar extends Component<NavbarProps, {}> {
       <>
         {!/\/login/.test(router.asPath) && !/\/signup/.test(router.asPath) && (
           <>
+            <Banner>
+              🚧 CoderIntuition is still under construction. Feel free to try it out and&nbsp;
+              <Link href="/contact" passHref>
+                <a style={{ color: "white", textDecoration: "underline" }}>submit your feedback</a>
+              </Link>
+              ! 🚧
+            </Banner>
             <NavbarMenu
               secondary
               height={/^\/problem\//.test(router.asPath) ? 60 : 80}

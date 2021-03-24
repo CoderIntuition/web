@@ -1,10 +1,22 @@
 import styled from "styled-components";
 import { Button, Container, Dropdown, Menu, MenuItem } from "semantic-ui-react";
 
+export const Banner = styled.div`
+  display: flex;
+  color: #ffffff;
+  background-color: #ed2939;
+  width: 100%;
+  padding-block: 10px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+`;
+
 export const NavbarMenu = styled(Menu)`
   &&& {
     background-color: ${(props) => props.bgcolor};
     height: ${(props) => props.height}px;
+    margin-top: 0;
     margin-bottom: ${(props) => props.mgbottom}px;
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
   }
@@ -30,6 +42,7 @@ export const LogoLink = styled.a`
   &&& {
     padding: 2px 10px;
     border-radius: 10px;
+
     &:hover {
       background-color: #f0f1f2;
     }
@@ -80,12 +93,15 @@ export const StyledDropdown = styled(Dropdown)`
     padding: 10px 25px;
     margin: 0;
     color: #243e63;
+
     &&&&&:hover {
       color: #243e63;
     }
+
     &&&&&:not(:focus) {
       color: #243e63;
     }
+
     .item {
       &:not(:first-child) {
         margin-top: 10px;
