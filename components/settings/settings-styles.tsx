@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { Button, Form, Menu, Segment } from "semantic-ui-react";
+import { Button, Form, Header, Menu, Segment } from "semantic-ui-react";
+import cntl from "cntl";
 
 export const FlexWrapper = styled.div`
   display: flex;
@@ -107,3 +108,33 @@ export const ImageEditButton = styled(Button)`
     color: #ffffff;
   }
 `;
+
+export const CurrentPlan = styled(Header)`
+  font-weight: 500;
+  letter-spacing: 0.025em;
+  margin-bottom: 20px;
+`;
+
+export const BillingButton = styled(Button)`
+  &&& {
+    padding: 15px 20px;
+  }
+`;
+
+export const Plan = cntl`w-full max-w-80 mt-8 md:mr-12 md:last:mr-0 text-center px-8 rounded-2xl relative text-gray-900 bg-white flex flex-col shadow-lg`;
+
+export const PlanDuration = cntl`lowercase text-gray-600 font-medium tracking-widest`;
+
+export const PlanFeatures = cntl`flex flex-col -mx-8 px-8 py-4 flex-1 text-base`;
+
+export const PlanFeaturesSpan = cntl`first:mt-0 mt-5 font-normal text-secondary-200`;
+
+export const PlanFreeName = cntl`font-semibold text-gray-800 text-xl`;
+
+export const PlanHeader = cntl`flex flex-col leading-relaxed py-8 -mx-8 bg-primary-100 rounded-t-lg`;
+
+export const PlanMainFeature = cntl`text-gray-600 text-sm font-medium tracking-wide`;
+
+export const PlanPrice = cntl`font-bold text-gray-800 text-4xl sm:text-5xl my-1`;
+
+export const PlanSlash = cntl`text-xl text-gray-600`;
