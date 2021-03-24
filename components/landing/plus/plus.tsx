@@ -113,7 +113,7 @@ const Plus = (props) => {
           <div className={Container}>
             <div className={ContentWithPaddingLg}>
               <div className={HeaderContainer}>
-                <h1 className={Subheading}>Pricing</h1>
+                <h1 className={Subheading}>Intuition+</h1>
                 <h2 className={Heading}>
                   Maximize Your <span className={HighlightedText}>Intuition</span>
                 </h2>
@@ -153,9 +153,9 @@ const Plus = (props) => {
                     </div>
                     <div className={PlanFeatures}>
                       {plan.features.map((feature, index) => (
-                        <span key={index} className={PlanFeaturesSpan}>
+                        <PlanFeaturesSpan key={index}>
                           {feature}
-                        </span>
+                        </PlanFeaturesSpan>
                       ))}
                     </div>
                     <div className={PlanAction}>

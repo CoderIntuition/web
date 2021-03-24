@@ -417,14 +417,14 @@ const Settings: FC<SettingsProps> = (props) => {
           <div className={PlanFeatures}>
             {plus
               ? plans[1].features.map((feature, index) => (
-                  <span key={index} className={PlanFeaturesSpan}>
+                  <PlanFeaturesSpan key={index}>
                     {feature}
-                  </span>
+                  </PlanFeaturesSpan>
                 ))
               : plans[0].features.map((feature, index) => (
-                  <span key={index} className={PlanFeaturesSpan}>
+                  <PlanFeaturesSpan key={index}>
                     {feature}
-                  </span>
+                  </PlanFeaturesSpan>
                 ))}
           </div>
         </div>

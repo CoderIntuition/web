@@ -125,9 +125,16 @@ export const Plan = cntl`w-full max-w-80 mt-8 md:mr-12 md:last:mr-0 text-center 
 
 export const PlanDuration = cntl`lowercase text-gray-600 font-medium tracking-widest`;
 
-export const PlanFeatures = cntl`flex flex-col -mx-8 px-8 py-4 flex-1 text-base`;
+export const PlanFeatures = cntl`flex flex-col -mx-8 px-8 py-8 flex-1 text-base`;
 
-export const PlanFeaturesSpan = cntl`first:mt-0 mt-5 font-normal text-secondary-200`;
+export const PlanFeaturesSpan = styled.span`
+  margin-top: 15px;
+  font-weight: 400;
+  color: #667892;
+  &:first-child {
+    margin-top: 0;
+  }
+`;
 
 export const PlanFreeName = cntl`font-semibold text-gray-800 text-xl`;
 
