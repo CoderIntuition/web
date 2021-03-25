@@ -27,6 +27,7 @@ import InfoContent from "./info-content";
 import TestContent from "./test-content";
 import "react-splitter-layout/lib/index.css";
 import AceEditor from "components/common/ace-editor/ace-editor";
+import "react-quill/dist/quill.snow.css";
 import { constants } from "common/constants";
 import { getCurrentUserToken } from "common/auth-service";
 import {
@@ -56,11 +57,22 @@ import {
   StyledDropdown,
   StyledDropdownItem,
   StyledDropdownMenu,
+  StyledEditor,
   StyledMenu,
   StyledMenuItem,
   StyledMoon,
   TestContentWrapper,
 } from "./problem-styles";
+
+const ReactQuill = dynamic<any>(
+  async () => {
+    return await import("react-quill");
+  },
+  {
+    loading: () => <></>,
+    ssr: false,
+  }
+);
 
 const SplitterLayout = dynamic<SplitterLayoutProps>(
   async () => {
@@ -103,6 +115,8 @@ class Problem extends Component<ProblemProps> {
       java: "",
       javascript: "",
     },
+    editorTab: "code",
+    docsValue: "",
     language: "PYTHON",
     testTab: "input",
     running: false,
@@ -260,6 +274,8 @@ class Problem extends Component<ProblemProps> {
   }
 
   handleInfoTabClick = (tab) => this.setState({ infoTab: tab });
+
+  handleEditorTabClick = (tab) => this.setState({ editorTab: tab });
 
   handleLanguageClick = (language) => this.setState({ language: language });
 
@@ -699,7 +715,18 @@ class Problem extends Component<ProblemProps> {
       <OuterPaddingDiv>
         <ContentSegment raised height={this.state.horizontalPaneSize - 21}>
           <StyledMenu dark={this.props.darkMode} attached="top" tabular>
-            <StyledMenuItem dark={this.props.darkMode} name="Code Editor" active />
+            <StyledMenuItem
+              dark={this.props.darkMode}
+              active={this.state.editorTab === "code"}
+              onClick={() => this.handleEditorTabClick("code")}
+              name="Code Editor"
+            />
+            <StyledMenuItem
+              dark={this.props.darkMode}
+              active={this.state.editorTab === "docs"}
+              onClick={() => this.handleEditorTabClick("docs")}
+              name="Docs"
+            />
             <MenuMenu position="right">
               <StyledDropdown item text={this.languageEnumToText(this.state.language)} dark={this.props.darkMode}>
                 <StyledDropdownMenu dark={this.props.darkMode}>
@@ -723,22 +750,36 @@ class Problem extends Component<ProblemProps> {
             </MenuMenu>
           </StyledMenu>
           <EditorWrapper dark={this.props.darkMode}>
-            <AceEditor
-              width={this.state.verticalPaneSize - 22 + "px"}
-              height={this.state.horizontalPaneSize - 69 + "px"}
-              mode={this.state.language.toLowerCase()}
-              theme={this.props.darkMode ? "monokai" : "xcode"}
-              value={this.state.code[this.state.language.toLowerCase()]}
-              editorProps={{ $blockScrolling: true }}
-              onChange={this.codeEditorChange}
-              setOptions={{
-                enableBasicAutocompletion: true,
-                enableLiveAutocompletion: true,
-                showLineNumbers: true,
-                tabSize: 4,
-                useWorker: false,
-              }}
-            />
+            {this.state.editorTab === "code" ? (
+              <AceEditor
+                width={this.state.verticalPaneSize - 22 + "px"}
+                height={this.state.horizontalPaneSize - 69 + "px"}
+                mode={this.state.language.toLowerCase()}
+                theme={this.props.darkMode ? "monokai" : "xcode"}
+                value={this.state.code[this.state.language.toLowerCase()]}
+                editorProps={{ $blockScrolling: true }}
+                onChange={this.codeEditorChange}
+                setOptions={{
+                  enableBasicAutocompletion: true,
+                  enableLiveAutocompletion: true,
+                  showLineNumbers: true,
+                  tabSize: 4,
+                  useWorker: false,
+                }}
+              />
+            ) : (
+              <ReactQuill
+                theme="snow"
+                value={this.state.docsValue}
+                onChange={(value) => this.setState({ docsValue: value })}
+              >
+                <StyledEditor
+                  className="my-editing-area"
+                  height={this.state.horizontalPaneSize - 110 + "px"}
+                  dark={this.props.darkMode}
+                />
+              </ReactQuill>
+            )}
           </EditorWrapper>
         </ContentSegment>
       </OuterPaddingDiv>
