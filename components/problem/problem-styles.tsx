@@ -132,6 +132,13 @@ export const EditorWrapper = styled.div`
   }
 `;
 
+export const StyledEditor = styled.div`
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  height: ${(props) => props.height};
+  color: ${(props) => (props.dark ? "#e0e0e0" : "")};
+`;
+
 export const TestContentWrapper = styled.div`
   &&& {
     max-height: 100%;
