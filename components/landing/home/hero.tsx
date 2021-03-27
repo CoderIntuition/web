@@ -14,35 +14,48 @@ import {
   StyledImage,
   TwoColumn,
 } from "./hero-styles";
+import { motion } from "framer-motion";
 
 const Hero = () => {
   return (
     <OuterContainer>
       <div className={MiddleContainer}>
         <div className={InnerContainer} style={{ marginTop: 250 }}>
-          <div className={TwoColumn}>
-            <div className={LeftColumn}>
-              <h1 className={Heading}>
-                Learn Algorithmic <span style={{ color: "#fbc30d" }}>Intuition</span>
-              </h1>
-              <p className={Paragraph} style={{ fontWeight: 300 }}>
-                <b>Don't keep memorizing solutions! </b>
-                <br />
-                CoderIntuition teaches you <span style={{ color: "#fbc30d" }}>repeatable</span> algorithmic intuition so
-                that you can <span style={{ color: "#fbc30d" }}>ace</span> your coding interviews.
-              </p>
-              <Link href="/problems">
-                <button className={PrimaryButton} style={{ backgroundColor: "#ffffffd0", color: "#4d69e9" }}>
-                  Get Started
-                </button>
-              </Link>
-            </div>
-            <div className={RightColumn}>
-              <div className={IllustrationContainer}>
-                <img className={StyledImage} src="/images/landing.svg" alt="Landing page illustration" />
+          <motion.section
+            initial={{ x: "10%" }}
+            animate={{
+              x: "0%",
+              transitionEnd: {
+                x: 0,
+              },
+            }}
+            transition={{ type: "spring", damping: 30 }}
+          >
+            <div className={TwoColumn}>
+              <div className={LeftColumn}>
+                <h1 className={Heading}>
+                  Learn Algorithmic <span style={{ color: "#fbc30d" }}>Intuition</span>
+                </h1>
+                <p className={Paragraph} style={{ fontWeight: 300 }}>
+                  <b>Don't keep memorizing solutions! </b>
+                  <p style={{marginTop: 10}}>
+                    CoderIntuition teaches you <span style={{ color: "#fbc30d" }}>repeatable</span> algorithmic
+                    intuition so that you can <span style={{ color: "#fbc30d" }}>ace</span> your coding interviews.
+                  </p>
+                </p>
+                <Link href="/problems">
+                  <button className={PrimaryButton} style={{ backgroundColor: "#ffffffd0", color: "#4d69e9" }}>
+                    Get Started
+                  </button>
+                </Link>
+              </div>
+              <div className={RightColumn}>
+                <div className={IllustrationContainer}>
+                  <img className={StyledImage} src="/images/landing.svg" alt="Landing page illustration" />
+                </div>
               </div>
             </div>
-          </div>
+          </motion.section>
         </div>
       </div>
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
