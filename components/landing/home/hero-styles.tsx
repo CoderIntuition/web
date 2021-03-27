@@ -2,7 +2,7 @@ import styled from "styled-components";
 import cntl from "cntl";
 
 export const OuterContainer = styled.div`
-  margin-bottom: -20px;
+  margin-bottom: -80px;
   position: relative;
   background: linear-gradient(160deg, rgba(84,51,255,1) 0%, rgba(77,105,233,1) 50%, rgba(81,210,255,1) 100%);
   text-align: center;
