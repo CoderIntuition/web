@@ -62,6 +62,10 @@ const Settings: FC<SettingsProps> = (props) => {
       props.router.push("/login");
       return;
     }
+    if (!props.currentUser) {
+      props.router.push("/login");
+      return;
+    }
     setLoading(false);
     setState({
       ...state,

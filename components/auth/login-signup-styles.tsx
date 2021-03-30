@@ -129,7 +129,7 @@ export const OAuthButton = styled(Button)`
     border-radius: 10px;
     margin-left: 10px;
     &:hover {
-      background-color: #f4f4f4 !important;
+      background-color: #f4f4f4;
     }
   }
 `;

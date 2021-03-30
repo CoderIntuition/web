@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Button, Form, Header, Menu, Segment } from "semantic-ui-react";
+import { Button, Form, Menu, Segment } from "semantic-ui-react";
 import cntl from "cntl";
 
 export const FlexWrapper = styled.div`
