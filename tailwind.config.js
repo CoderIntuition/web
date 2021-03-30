@@ -772,5 +772,5 @@ module.exports = {
   },
   corePlugins: {},
   plugins: [],
-  purge: ["./pages/**/*.tsx", "./components/**/*.tsx"],
+  purge: ["./pages/**/*.tsx", "./components/**/*.tsx", "./common/**/*.tsx"],
 };

@@ -1,31 +1,20 @@
-import React, { FC, useEffect, useState } from "react";
-import AnimationRevealPage from "components/common/helpers/animation-reveal-page";
+import React, { FC } from "react";
+import dynamic from "next/dynamic";
 import Hero from "./hero";
-import Difference from "./difference";
-import Features from "./features";
-import Testimonials from "./testimonials";
-import { Loader } from "semantic-ui-react";
+
+const AnimationRevealPage = dynamic(() => import("components/common/helpers/animation-reveal-page"));
+const Difference = dynamic(() => import("./difference"));
+const Features = dynamic(() => import("./features"));
+const Testimonials = dynamic(() => import("./testimonials"));
 
 const Home: FC = () => {
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    setLoading(false);
-  }, []);
-
-  if (loading) {
-    return <Loader active inverted size="large">
-      Loading
-    </Loader>
-  }
-
   return (
     <>
       <Hero />
       <AnimationRevealPage>
         <Features />
-        <Difference/>
-        <Testimonials/>
+        <Difference />
+        <Testimonials />
       </AnimationRevealPage>
     </>
   );

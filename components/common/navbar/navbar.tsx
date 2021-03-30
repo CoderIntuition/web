@@ -8,7 +8,6 @@ import { isMod } from "common/auth-service";
 import { showSuccessToast, withGlobalContext } from "common/utils";
 import { constants } from "common/constants";
 import {
-  Banner,
   LogoLink,
   MobileDropDown,
   MobileDropDownMenu,

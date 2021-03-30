@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import moment from "moment/moment";
 import Quiz from "react-quiz-component";
-import { Grid, GridColumn, GridRow, Modal, Table, TableHeader, TableHeaderCell, TableRow } from "semantic-ui-react";
+import { Grid, GridColumn, GridRow, Modal, Table, TableHeader } from "semantic-ui-react";
 import MarkdownRender from "components/common/markdown-render/markdown-render";
 import AceEditor from "components/common/ace-editor/ace-editor";
 import Emoji from "components/common/emoji/emoji";
@@ -15,8 +15,11 @@ import {
   BlurTopDiv,
   DescriptionStyles,
   StatusLinkText,
-  StatusText, StyledTable, StyledTableHeaderCell, StyledTableRow,
-  TestResultText
+  StatusText,
+  StyledTable,
+  StyledTableHeaderCell,
+  StyledTableRow,
+  TestResultText,
 } from "./info-content-styles";
 import MarkdownRenderDark from "../common/markdown-render/markdown-render-dark";
 

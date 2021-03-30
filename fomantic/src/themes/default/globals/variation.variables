@@ -37,14 +37,14 @@
 @variationContainerJustified: true;
 
 /* Divider */
-@variationDividerInverted: true;
-@variationDividerHorizontal: true;
-@variationDividerVertical: true;
-@variationDividerIcon: true;
-@variationDividerHidden: true;
-@variationDividerFitted: true;
-@variationDividerClearing: true;
-@variationDividerSection: true;
+@variationDividerInverted: false;
+@variationDividerHorizontal: false;
+@variationDividerVertical: false;
+@variationDividerIcon: false;
+@variationDividerHidden: false;
+@variationDividerFitted: false;
+@variationDividerClearing: false;
+@variationDividerSection: false;
 @variationDividerSizes: @variationAllSizes;
 
 /* Header */
@@ -156,18 +156,18 @@
 @variationPlaceholderLengths: true;
 
 /* Rail */
-@variationRailInternal: true;
-@variationRailDividing: true;
-@variationRailDistance: true;
-@variationRailAttached: true;
+@variationRailInternal: false;
+@variationRailDividing: false;
+@variationRailDistance: false;
+@variationRailAttached: false;
 @variationRailSizes: @variationAllSizes;
 
 /* Reveal */
-@variationRevealDisabled: true;
-@variationRevealSlide: true;
-@variationRevealFade: true;
-@variationRevealMove: true;
-@variationRevealRotate: true;
+@variationRevealDisabled: false;
+@variationRevealSlide: false;
+@variationRevealFade: false;
+@variationRevealMove: false;
+@variationRevealRotate: false;
 @variationRevealSizes: @variationAllSizes;
 
 /* Segment */
@@ -195,13 +195,13 @@
 @variationSegmentSizes: @variationAllSizes;
 
 /* Step */
-@variationStepInverted: true;
-@variationStepDisabled: true;
-@variationStepStackable: true;
-@variationStepVertical: true;
-@variationStepOrdered: true;
-@variationStepFluid: true;
-@variationStepAttached: true;
+@variationStepInverted: false;
+@variationStepDisabled: false;
+@variationStepStackable: false;
+@variationStepVertical: false;
+@variationStepOrdered: false;
+@variationStepFluid: false;
+@variationStepAttached: false;
 @variationStepSizes: @variationAllSizes;
 
 /* Text */
@@ -216,7 +216,7 @@
 *******************************/
 
 /* Breadcrumb */
-@variationBreadcrumbInverted: true;
+@variationBreadcrumbInverted: false;
 @variationBreadcrumbSizes: @variationAllSizes;
 
 /* Form */
@@ -306,18 +306,18 @@
 *******************************/
 
 /* Ad */
-@variationAdLeaderboard: true;
-@variationAdBillboard: true;
-@variationAdPanorama: true;
-@variationAdNetboard: true;
-@variationAdRectangle: true;
-@variationAdSquare: true;
-@variationAdButton: true;
-@variationAdSkyscraper: true;
-@variationAdBanner: true;
-@variationAdMobile: true;
-@variationAdCentered: true;
-@variationAdTest: true;
+@variationAdLeaderboard: false;
+@variationAdBillboard: false;
+@variationAdPanorama: false;
+@variationAdNetboard: false;
+@variationAdRectangle: false;
+@variationAdSquare: false;
+@variationAdButton: false;
+@variationAdSkyscraper: false;
+@variationAdBanner: false;
+@variationAdMobile: false;
+@variationAdCentered: false;
+@variationAdTest: false;
 
 /* Card */
 @variationCardInverted: true;
@@ -331,22 +331,22 @@
 @variationCardSizes: @variationAllSizes;
 
 /* Comment */
-@variationCommentInverted: true;
-@variationCommentThreaded: true;
-@variationCommentMinimal: true;
+@variationCommentInverted: false;
+@variationCommentThreaded: false;
+@variationCommentMinimal: false;
 @variationCommentSizes: @variationAllSizes;
 
 /* Feed */
-@variationFeedInverted: true;
+@variationFeedInverted: false;
 @variationFeedSizes: @variationAllSizes;
 
 /* Item */
-@variationItemInverted: true;
-@variationItemAligned: true;
-@variationItemRelaxed: true;
-@variationItemDivided: true;
-@variationItemLink: true;
-@variationItemUnstackable: true;
+@variationItemInverted: false;
+@variationItemAligned: false;
+@variationItemRelaxed: false;
+@variationItemDivided: false;
+@variationItemLink: false;
+@variationItemUnstackable: false;
 @variationItemSizes: @variationAllSizes;
 
 /* Statistic */
@@ -367,18 +367,18 @@
 @variationAccordionFluid: true;
 
 /* Calendar */
-@variationCalendarInverted: true;
-@variationCalendarDisabled: true;
+@variationCalendarInverted: false;
+@variationCalendarDisabled: false;
 
 /* Checkbox */
 @variationCheckboxBox: false;   //.box (instead of label) is an ancient fragment of sui v1 and not even documented in v2.x anymore
-@variationCheckboxDisabled: true;
-@variationCheckboxInverted: true;
-@variationCheckboxRadio: true;
-@variationCheckboxSlider: true;
-@variationCheckboxToggle: true;
-@variationCheckboxIndeterminate: true;
-@variationCheckboxFitted: true;
+@variationCheckboxDisabled: false;
+@variationCheckboxInverted: false;
+@variationCheckboxRadio: false;
+@variationCheckboxSlider: false;
+@variationCheckboxToggle: false;
+@variationCheckboxIndeterminate: false;
+@variationCheckboxFitted: false;
 @variationCheckboxSizes: @variationAllSizes;
 
 /* Dimmer */
@@ -482,9 +482,9 @@
 @variationSearchSizes: @variationAllSizes;
 
 /* Shape */
-@variationShapeCube: true;
-@variationShapeText: true;
-@variationShapeLoading: true;
+@variationShapeCube: false;
+@variationShapeText: false;
+@variationShapeLoading: false;
 
 /* Sidebar */
 @variationSidebarThin: true;
@@ -514,26 +514,26 @@
 @variationTabLoading: true;
 
 /* Toast */
-@variationToastInverted: true;
-@variationToastTop: true;
-@variationToastBottom: true;
-@variationToastLeft: true;
-@variationToastRight: true;
-@variationToastCenter: true;
-@variationToastInfo: true;
-@variationToastWarning: true;
-@variationToastSuccess: true;
-@variationToastError: true;
-@variationToastFloating: true;
-@variationToastProgress: true;
-@variationToastIcon: true;
-@variationToastClose: true;
-@variationToastImage: true;
-@variationToastMessage: true;
-@variationToastCard: true;
-@variationToastActions: true;
-@variationToastVertical: true;
-@variationToastAttached: true;
+@variationToastInverted: false;
+@variationToastTop: false;
+@variationToastBottom: false;
+@variationToastLeft: false;
+@variationToastRight: false;
+@variationToastCenter: false;
+@variationToastInfo: false;
+@variationToastWarning: false;
+@variationToastSuccess: false;
+@variationToastError: false;
+@variationToastFloating: false;
+@variationToastProgress: false;
+@variationToastIcon: false;
+@variationToastClose: false;
+@variationToastImage: false;
+@variationToastMessage: false;
+@variationToastCard: false;
+@variationToastActions: false;
+@variationToastVertical: false;
+@variationToastAttached: false;
 
 /* Transition */
 @variationTransitionDisabled: true;

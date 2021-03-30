@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Image from "next/image";
 import { NextRouter, withRouter } from "next/router";
 import axios from "axios";
 import Quiz from "react-quiz-component";
