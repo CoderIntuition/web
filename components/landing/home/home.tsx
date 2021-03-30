@@ -11,11 +11,11 @@ const Home: FC = () => {
   return (
     <>
       <Hero />
-      <AnimationRevealPage>
+      {/*<AnimationRevealPage>*/}
         <Features />
         <Difference />
         <Testimonials />
-      </AnimationRevealPage>
+      {/*</AnimationRevealPage>*/}
     </>
   );
 };
