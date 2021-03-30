@@ -109,15 +109,12 @@ export const ImageEditButton = styled(Button)`
   }
 `;
 
-export const CurrentPlan = styled(Header)`
-  font-weight: 500;
-  letter-spacing: 0.025em;
-  margin-bottom: 20px;
-`;
-
 export const BillingButton = styled(Button)`
   &&& {
-    padding: 15px 20px;
+    padding: 16px 24px;
+    margin-bottom: 30px;
+    width: fit-content;
+    align-self: center;
   }
 `;
 

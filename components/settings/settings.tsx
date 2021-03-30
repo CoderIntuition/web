@@ -1,6 +1,7 @@
 import React, { FC, useEffect, useState } from "react";
 import { Form, Grid, GridColumn, Header, Image, Loader, Menu, Message } from "semantic-ui-react";
 import {
+  BillingButton,
   FlexWrapper,
   Heading,
   ImageEditButton,
@@ -364,7 +365,7 @@ const Settings: FC<SettingsProps> = (props) => {
 
   const planSettings = () => {
     const plus = isPlus(props.currentUser.roles);
-    const monthly = false;
+    const monthly = false; // TODO: find out whether user is on monthly or yearly plan
     const plans = [
       {
         name: "Free Plan",
@@ -387,11 +388,9 @@ const Settings: FC<SettingsProps> = (props) => {
     const planDurations = [
       {
         text: "Month",
-        switcherText: "Monthly",
       },
       {
         text: "Year",
-        switcherText: "Yearly",
       },
     ];
     return (
@@ -416,25 +415,13 @@ const Settings: FC<SettingsProps> = (props) => {
           </div>
           <div className={PlanFeatures}>
             {plus
-              ? plans[1].features.map((feature, index) => (
-                  <PlanFeaturesSpan key={index}>
-                    {feature}
-                  </PlanFeaturesSpan>
-                ))
-              : plans[0].features.map((feature, index) => (
-                  <PlanFeaturesSpan key={index}>
-                    {feature}
-                  </PlanFeaturesSpan>
-                ))}
+              ? plans[1].features.map((feature, index) => <PlanFeaturesSpan key={index}>{feature}</PlanFeaturesSpan>)
+              : plans[0].features.map((feature, index) => <PlanFeaturesSpan key={index}>{feature}</PlanFeaturesSpan>)}
           </div>
+          <BillingButton primary onClick={() => handleStripePortal()}>
+            Go to Stripe
+          </BillingButton>
         </div>
-        {/*<CurrentPlan as="h3">Your current plan is: {plus ? "Intuition+" : "Free plan"}</CurrentPlan>*/}
-        {/*<div>*/}
-        {/*  {!plus && <BillingButton primary>Upgrade to Intuition+</BillingButton>}*/}
-        {/*  <BillingButton primary onClick={() => handleStripePortal()}>*/}
-        {/*    Go to Stripe*/}
-        {/*  </BillingButton>*/}
-        {/*</div>*/}
       </>
     );
   };
