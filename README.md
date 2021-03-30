@@ -4,4 +4,4 @@
 
 ## Documentation
 
-Documentation is available in the private [Docs](https://github.com/CoderIntuition/docs) repo
+Documentation is available in the private [docs](https://github.com/CoderIntuition/docs) repo

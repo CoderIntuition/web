@@ -5,6 +5,7 @@ import { Container, ContentWithPaddingXl, HighlightedText } from "../landing-sty
 import {
   DecoratorBlob,
   Description,
+  Emphasis,
   Feature,
   FeatureDescription,
   FeatureHeading,
@@ -27,7 +28,7 @@ const Difference = () => {
       What Sets Us <span className={HighlightedText}>Apart</span>
     </>
   );
-  const description = "Unlike other interview preparation websites, we believe in two core values:";
+  const description = "Unlike other interview preparation websites, we value:";
 
   const values = [
     {
@@ -37,7 +38,8 @@ const Difference = () => {
         <>
           <span className={HighlightedText}>Don't memorize solutions!</span>
           <br />
-          Instead, let us help you understand intuition that can be repeatably applied in interview settings.
+          Instead, let us help you understand the <Emphasis>intuition</Emphasis> and{" "}
+          <Emphasis>thought process</Emphasis> that can be repeatedly applied.
         </>
       ),
     },
@@ -48,8 +50,8 @@ const Difference = () => {
         <>
           <span className={HighlightedText}>Your time matters!</span>
           <br />
-          Don't watch 45-minute solution videos. Instead, learn by experience with our hints, interactive quizzes, and
-          concise explanations.
+          Don't sit and watch 45-minute solution videos. Instead, get your hands dirty with our{" "}
+          <Emphasis>intuition steps </Emphasis>and <Emphasis>quizzes</Emphasis>.
         </>
       ),
     },

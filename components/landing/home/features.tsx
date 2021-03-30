@@ -24,12 +24,12 @@ const Features = () => {
     {
       imageSrc: List,
       title: "100+ Problems",
-      description: "Our problems teach you intuition that you can repeatably apply to other problems.",
+      description: "Our problems provide coding interview practice to help you ace your interviews.",
     },
     {
       imageSrc: Info,
       title: "Interactive Intuition",
-      description: "Our hints, quizzes, and concise explanations build your intuition while you code.",
+      description: "Our intuition steps and quizzes build your intuition while you get your hands dirty.",
     },
     {
       imageSrc: EyeOff,
@@ -39,7 +39,7 @@ const Features = () => {
     {
       imageSrc: BookOpen,
       title: "Learning Paths",
-      description: "We have standard learning paths for beginners to follow to build stronger intuition.",
+      description: "Our structured learning paths give you a sense of direction and help build your intuition.",
     },
     {
       imageSrc: Globe,
