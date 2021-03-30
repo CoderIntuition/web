@@ -17,6 +17,30 @@ export const StyledDiv = styled.div`
     p {
       font-size: 14px;
     }
+    
+    table {
+      font-size: 14px;
+      width: fit-content;
+      border-collapse: collapse;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid #dfe2e5;
+    }
+    td {
+      padding: 4px 8px;
+      border-left: none;
+      border-bottom: none;
+    }
+    
+    th {
+      padding: 4px 8px;
+      border: none;
+      background-color: #f6f8fa;
+    }
+    
+    tr {
+      border: none;
+    }
   }
 `;
 
