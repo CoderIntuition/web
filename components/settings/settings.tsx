@@ -1,9 +1,19 @@
 import React, { FC, useEffect, useState } from "react";
-import { Button, Form, Grid, GridColumn, Image, Loader, Menu, Message } from "semantic-ui-react";
+import { Form, Grid, GridColumn, Header, Image, Loader, Menu, Message } from "semantic-ui-react";
 import {
+  BillingButton,
   FlexWrapper,
   Heading,
   ImageEditButton,
+  Plan,
+  PlanDuration,
+  PlanFeatures,
+  PlanFeaturesSpan,
+  PlanFreeName,
+  PlanHeader,
+  PlanMainFeature,
+  PlanPrice,
+  PlanSlash,
   ProfilePictureWrapper,
   SettingsHeader,
   SettingsMenuItem,
@@ -15,7 +25,7 @@ import {
   StyledInput,
 } from "./settings-styles";
 import { constants } from "common/constants";
-import { getCurrentUserToken } from "common/auth-service";
+import { getCurrentUserToken, isPlus } from "common/auth-service";
 import { showErrorToast, showSuccessToast, withGlobalContext } from "common/utils";
 import axios from "axios";
 import { NextRouter } from "next/router";
@@ -354,12 +364,64 @@ const Settings: FC<SettingsProps> = (props) => {
   };
 
   const planSettings = () => {
+    const plus = isPlus(props.currentUser.roles);
+    const monthly = false; // TODO: find out whether user is on monthly or yearly plan
+    const plans = [
+      {
+        name: "Free Plan",
+        durationPrices: ["$0", "$0"],
+        mainFeature: "For Getting Started",
+        features: ["15 Sample Problems", "Beginner Learning Path"],
+      },
+      {
+        name: "Intuition+ Plan",
+        durationPrices: ["$12", "$84"],
+        mainFeature: "For Landing a Tech Job",
+        features: [
+          "Over 80 Problems",
+          "Intuition+ Learning Path",
+          "Intuition Steps - Concise Descriptions, Hints, and Quizzes",
+          "Interview Preparation Schedule Creator",
+        ],
+      },
+    ];
+    const planDurations = [
+      {
+        text: "Month",
+      },
+      {
+        text: "Year",
+      },
+    ];
     return (
       <>
         <Heading>Membership</Heading>
-        <Button primary onClick={() => handleStripePortal()} style={{ padding: "15px 20px" }}>
-          Go to Stripe
-        </Button>
+        <Header as="h3">Current plan</Header>
+        <div className={Plan}>
+          <div className={PlanHeader}>
+            <div>
+              <span className={PlanPrice}>
+                {plus
+                  ? monthly
+                    ? plans[1].durationPrices[0]
+                    : plans[1].durationPrices[1]
+                  : plans[0].durationPrices[0]}
+              </span>
+              <span className={PlanSlash}> / </span>
+              <span className={PlanDuration}>{monthly ? planDurations[0].text : planDurations[1].text}</span>
+            </div>
+            <span className={PlanFreeName}>{plus ? plans[1].name : plans[0].name}</span>
+            <span className={PlanMainFeature}>{plus ? plans[1].mainFeature : plans[0].mainFeature}</span>
+          </div>
+          <div className={PlanFeatures}>
+            {plus
+              ? plans[1].features.map((feature, index) => <PlanFeaturesSpan key={index}>{feature}</PlanFeaturesSpan>)
+              : plans[0].features.map((feature, index) => <PlanFeaturesSpan key={index}>{feature}</PlanFeaturesSpan>)}
+          </div>
+          <BillingButton primary onClick={() => handleStripePortal()}>
+            Go to Stripe
+          </BillingButton>
+        </div>
       </>
     );
   };

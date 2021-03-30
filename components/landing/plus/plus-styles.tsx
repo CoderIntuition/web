@@ -34,13 +34,20 @@ export const PlanFreeName = cntl`font-semibold text-gray-800 text-xl`;
 
 export const PlanPlusName = cntl`font-semibold text-primary-500 text-xl`;
 
-export const PlanMainFeature = cntl`text-gray-600 text-sm font-medium tracking-wide`;
+export const PlanMainFeature = cntl`text-gray-600 text-md font-medium tracking-wide`;
 
-export const PlanFeatures = cntl`flex flex-col -mx-8 px-8 py-4 flex-1 text-base`;
+export const PlanFeatures = cntl`flex flex-col -mx-8 px-8 py-8 flex-1 text-base`;
 
-export const PlanFeaturesSpan = cntl`mt-5 first:mt-0 font-normal text-secondary-200`;
+export const PlanFeaturesSpan = styled.span`
+  margin-top: 15px;
+  font-weight: 400;
+  color: #667892;
+  &:first-child {
+    margin-top: 0;
+  }
+`;
 
-export const PlanAction = cntl`px-4 pb-8 mt-4`;
+export const PlanAction = cntl`px-4 mb-8`;
 
 export const DecoratorBlob1 = cntl`pointer-events-none -z-20 absolute right-0 top-0 h-64 w-64 opacity-10 transform translate-x-40 fill-current text-teal-300`;
 
