@@ -369,7 +369,7 @@ const Settings: FC<SettingsProps> = (props) => {
 
   const planSettings = () => {
     const plus = isPlus(props.currentUser.roles);
-    const monthly = props.currentUser.planCycle === "MONTHLY";
+    const monthly = props.currentUser.planCycle !== "YEARLY";
     const plans = [
       {
         name: "Free Plan",
