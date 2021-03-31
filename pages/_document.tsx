@@ -1,11 +1,14 @@
 import React from "react";
-import Document, { Html, Main, NextScript } from "next/document";
+import Document, { Head, Html, Main, NextScript } from "next/document";
 import { ServerStyleSheet } from "styled-components";
 
 class MyDocument extends Document {
   render() {
     return (
       <Html lang="en">
+        <Head>
+          <title>CoderIntuition</title>
+        </Head>
         <body>
           <Main />
           <NextScript />
