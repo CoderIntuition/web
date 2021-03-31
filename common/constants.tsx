@@ -18,7 +18,7 @@ export const constants = {
   API_BASE_URL: API_BASE_URL,
   WEB_BASE_URL: WEB_BASE_URL,
   STOMP_BASE_URL: WEBSOCKET_BASE_URL + "/socket/websocket",
-  ACTIVITY_URL: API_BASE_URL + "/activity",
+  ACTIVITY_URL: API_BASE_URL + "/activity/",
   PROBLEM_WEB_URL: WEB_BASE_URL + "/problem/",
   PROBLEM_URL: API_BASE_URL + "/problem/",
   PROBLEMS_URL: API_BASE_URL + "/problems/",

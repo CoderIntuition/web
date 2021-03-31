@@ -114,7 +114,7 @@ export const ActivityHeader = styled(List.Header)`
 export const ActivitySegment = styled(Segment)`
   &&& {
     padding: 10px 30px;
-    min-height: calc(100vh - 160px);
+    min-height: calc(100vh - 180px);
   }
 `;
 

@@ -1,5 +1,17 @@
 import React, { FC, useEffect, useState } from "react";
-import { Grid, GridColumn, GridRow, Header, Label, List, Loader, Segment, Statistic } from "semantic-ui-react";
+import {
+  Grid,
+  GridColumn,
+  GridRow,
+  Header,
+  Icon,
+  Label,
+  List,
+  Loader,
+  Pagination,
+  Segment,
+  Statistic,
+} from "semantic-ui-react";
 import { Award, CheckCircle, GitHub, Globe, Linkedin, PlusCircle, Upload } from "react-feather";
 import {
   ActivityGrid,
@@ -38,16 +50,38 @@ interface UserProps {
 
 export const User: FC<UserProps> = (props) => {
   const [user, setUser] = useState<Record<string, any>>({});
+  const [activities, setActivities] = useState<Record<string, any>[]>([]);
+  const [activityPage, setActivityPage] = useState<number>(1);
+  const [activityTotalPages, setActivityTotalPages] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(true);
   const [statsIndex, setStatsIndex] = useState<number>(0);
 
   const maxStatsPages = 2;
 
+  function fetchActivities(page) {
+    const activityUrl = constants.ACTIVITY_URL + props.router.query.username;
+    axios
+      .get(activityUrl, {
+        params: {
+          page: page - 1,
+          size: 10,
+        },
+      })
+      .then((res) => {
+        setActivities(res.data.activities);
+        setActivityTotalPages(res.data.totalPages);
+        setLoading(false);
+      })
+      .catch((_error) => {
+        setLoading(true);
+      });
+  }
+
   // Effect 1 - upon mounting, load user
   useEffect(() => {
-    const url = constants.USER_PROFILE_URL + props.router.query.username;
+    const userUrl = constants.USER_PROFILE_URL + props.router.query.username;
     axios
-      .get(url)
+      .get(userUrl)
       .then((res) => {
         setUser(res.data);
         setLoading(false);
@@ -55,6 +89,8 @@ export const User: FC<UserProps> = (props) => {
       .catch((_error) => {
         setLoading(true);
       });
+
+    fetchActivities(activityPage);
   }, []);
 
   const handleNavButtons = (direction) => {
@@ -71,6 +107,11 @@ export const User: FC<UserProps> = (props) => {
         setStatsIndex(maxStatsPages - 1);
       }
     }
+  };
+
+  const handlePageChange = (e, props) => {
+    fetchActivities(props.activePage);
+    setActivityPage(props.activePage);
   };
 
   const ProfileSection = (
@@ -148,10 +189,10 @@ export const User: FC<UserProps> = (props) => {
         <HeaderRow>
           <Header as="h4">Activity</Header>
         </HeaderRow>
-        <GridRow>
+        <GridRow style={{ minHeight: "480px" }}>
           <ActivityList divided relaxed verticalAlign="middle">
-            {user.activities?.length !== 0 ? (
-              user.activities?.map((activity, index) => (
+            {activities?.length !== 0 ? (
+              activities.map((activity, index) => (
                 <List.Item key={index}>
                   {activity.submissionStatus && (
                     <List.Content floated="right" verticalAlign="middle">
@@ -186,6 +227,23 @@ export const User: FC<UserProps> = (props) => {
               <div>The user doesn't have any activities to display.</div>
             )}
           </ActivityList>
+        </GridRow>
+        <GridRow centered>
+          <Pagination
+            defaultActivePage={1}
+            firstItem={null}
+            lastItem={null}
+            prevItem={{
+              content: <Icon name="angle left" />,
+              icon: true,
+            }}
+            nextItem={{
+              content: <Icon name="angle right" />,
+              icon: true,
+            }}
+            totalPages={activityTotalPages}
+            onPageChange={handlePageChange}
+          />
         </GridRow>
       </ActivityGrid>
     </ActivitySegment>
