@@ -4,6 +4,7 @@ import { constants } from "common/constants";
 import { getName, showSuccessToast } from "./utils";
 
 export const GlobalContext = React.createContext({
+  contextLoading: true,
   darkMode: 0,
   authenticated: false,
   currentUser: null,
@@ -14,10 +15,10 @@ export const GlobalContext = React.createContext({
 
 class GlobalContextProvider extends React.Component {
   state = {
+    contextLoading: true,
     darkMode: 0,
     authenticated: false,
     currentUser: null,
-    loading: true,
   };
 
   setDarkMode = (value: number) => {
@@ -28,7 +29,7 @@ class GlobalContextProvider extends React.Component {
 
   loadCurrentUser = (type) => {
     this.setState({
-      loading: true,
+      contextLoading: true,
     });
 
     getCurrentUser()
@@ -36,7 +37,7 @@ class GlobalContextProvider extends React.Component {
         this.setState({
           currentUser: response,
           authenticated: true,
-          loading: false,
+          contextLoading: false,
         });
 
         switch (type) {
@@ -57,7 +58,7 @@ class GlobalContextProvider extends React.Component {
       .catch((_err) => {
         localStorage.removeItem(constants.ACCESS_TOKEN);
         this.setState({
-          loading: false,
+          contextLoading: false,
         });
       });
   };
@@ -75,12 +76,10 @@ class GlobalContextProvider extends React.Component {
   }
 
   render() {
-    if (this.state.loading) {
-      return <></>;
-    }
     return (
       <GlobalContext.Provider
         value={{
+          contextLoading: this.state.contextLoading,
           darkMode: this.state.darkMode,
           authenticated: this.state.authenticated,
           currentUser: this.state.currentUser,

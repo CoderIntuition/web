@@ -36,6 +36,7 @@ import {
 
 interface ReadingAddProps {
   router: NextRouter;
+  contextLoading: boolean;
   authenticated: boolean;
   currentUser: any;
 }
@@ -145,6 +146,14 @@ class ReadingAdd extends Component<ReadingAddProps> {
     const { router } = this.props;
 
     if (this.state.preLoading) {
+      return (
+        <Loader active inverted size="large">
+          Loading
+        </Loader>
+      );
+    }
+
+    if (this.props.contextLoading) {
       return (
         <Loader active inverted size="large">
           Loading

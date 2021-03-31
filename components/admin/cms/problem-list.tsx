@@ -24,6 +24,7 @@ import {
 
 interface ProblemListProps {
   router: NextRouter;
+  contextLoading: boolean;
   authenticated: boolean;
   currentUser: any;
 }
@@ -98,6 +99,14 @@ class ProblemList extends Component<ProblemListProps> {
   ];
 
   render() {
+    if (this.props.contextLoading) {
+      return (
+        <Loader active inverted size="large">
+          Loading
+        </Loader>
+      );
+    }
+
     if (!this.props.authenticated || !isMod(this.props.currentUser.roles)) {
       this.props.router.push("/login");
       return null;

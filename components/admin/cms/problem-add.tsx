@@ -39,6 +39,7 @@ import {
 
 interface CmsProblemAddProps {
   router: NextRouter;
+  contextLoading: boolean;
   authenticated: boolean;
   currentUser: any;
 }
@@ -566,6 +567,14 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
     const { router } = this.props;
 
     if (this.state.preLoading) {
+      return (
+        <Loader active inverted size="large">
+          Loading
+        </Loader>
+      );
+    }
+
+    if (this.props.contextLoading) {
       return (
         <Loader active inverted size="large">
           Loading

@@ -24,6 +24,7 @@ import {
 
 interface ReadingListProps {
   router: NextRouter;
+  contextLoading: boolean;
   authenticated: boolean;
   currentUser: any;
 }
@@ -65,6 +66,14 @@ class ReadingList extends Component<ReadingListProps> {
   }
 
   render() {
+    if (this.props.contextLoading) {
+      return (
+        <Loader active inverted size="large">
+          Loading
+        </Loader>
+      );
+    }
+
     if (!this.props.authenticated || !isMod(this.props.currentUser.roles)) {
       this.props.router.push("/login");
       return null;
