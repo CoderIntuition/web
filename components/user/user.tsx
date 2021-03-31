@@ -120,7 +120,7 @@ export const User: FC<UserProps> = (props) => {
       <ProfileName size="large">{user.name}</ProfileName>
       <ProfileUsername>{user.username}</ProfileUsername>
       {user.plusRole === true ? <ProfileBadge circular>Intuition+</ProfileBadge> : <></>}
-      <JoinedDate>Joined {user.joinedDate}</JoinedDate>
+      <JoinedDate>Joined {moment(user.joinedDate).format("MMMM Do YYYY")}</JoinedDate>
     </StyledProfileDiv>
   );
 
@@ -219,7 +219,7 @@ export const User: FC<UserProps> = (props) => {
                         <span>{activity.problemName}</span>
                       </a>
                     </ActivityHeader>
-                    <List.Description>{moment(activity.createdDate).format("MMM Do YYYY, h:mm a")}</List.Description>
+                    <List.Description style={{fontSize: 11}}>{moment(activity.createdDate).format("MMMM Do YYYY, h:mm a")}</List.Description>
                   </List.Content>
                 </List.Item>
               ))
