@@ -23,7 +23,6 @@ import {
 
 interface NavbarProps {
   router: NextRouter;
-  contextLoading: boolean;
   authenticated: boolean;
   currentUser: any;
   loadCurrentUser: () => {};
@@ -98,9 +97,7 @@ class Navbar extends Component<NavbarProps, {}> {
             <StyledLink active={this.onPaths(/\/blog/)}>Blog</StyledLink>
           </Link>
         </StyledMenuItem>
-        {this.props.contextLoading ? (
-          <></>
-        ) : authenticated ? (
+        {authenticated ? (
           <StyledMenuItem position="right">
             <StyledDropdown item pointing="top right" trigger={trigger}>
               <Dropdown.Menu>
