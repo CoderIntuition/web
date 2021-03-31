@@ -5,12 +5,8 @@ import "fomantic/dist/semantic.css";
 import "react-notifications-component/dist/theme.css";
 import "common/quiz.css";
 import "../common/index.css";
-import dynamic from "next/dynamic";
-
-const ReactNotification = dynamic(() => import("react-notifications-component"));
-const GlobalContextProvider = dynamic<any>(() =>
-  import("../common/global-context-provider").then((mod) => mod.GlobalContextProvider)
-);
+import ReactNotification from "react-notifications-component";
+import { GlobalContextProvider } from "../common/global-context-provider";
 
 const App = ({ Component, pageProps }: AppProps) => {
   return (
