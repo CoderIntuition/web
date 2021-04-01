@@ -1,9 +1,9 @@
 import React, { RefObject } from "react";
 import { NextRouter, withRouter } from "next/router";
-import { CardGroup, GridRow, Header, List } from "semantic-ui-react";
+import axios from "axios";
+import { CardGroup, GridRow, Header, List, Loader } from "semantic-ui-react";
 import ProblemsSidebar from "components/common/problems-sidebar/problems-sidebar";
-import NotFound from "components/common/404/404";
-import { SimpleProblem } from "../../common/types";
+import { SimpleProblem } from "common/types";
 import {
   Check,
   ItemCard,
@@ -14,17 +14,25 @@ import {
   StyledListItem,
 } from "./beginner-path-styles";
 import { Heading, HeadingSection, Subheading } from "./overview-styles";
+import { withGlobalContext } from "common/utils";
+import { constants } from "common/constants";
+import { getCurrentUserToken } from "../../common/auth-service";
 
 interface BeginnerPathProps {
   router: NextRouter;
+  contextLoading: boolean;
+  authenticated: boolean;
+  currentUser: any;
 }
 
 interface BeginnerPathState {
-  notFound: boolean;
   problems: SimpleProblem[];
   page: number;
   totalPages: number;
   activeIndex: number;
+  loading: boolean;
+  completedProblems: string[];
+  completedReadings: string[];
 }
 
 class BeginnerPath extends React.Component<BeginnerPathProps, BeginnerPathState> {
@@ -38,25 +46,89 @@ class BeginnerPath extends React.Component<BeginnerPathProps, BeginnerPathState>
     super(props);
 
     this.state = {
-      notFound: false,
       page: 1,
       problems: [],
       totalPages: 0,
       activeIndex: 0,
+      loading: true,
+      completedProblems: [],
+      completedReadings: [],
     };
 
     this.contentsRefs = [...Array(4)].map((_, _i) => React.createRef());
   }
 
-  handleResultSelect(result) {
-    this.props.router.push("/problem/" + result.urlName);
+  componentDidMount() {
+    if (this.props.authenticated) {
+      const url = constants.ACTIVITY_URL + "completed/" + this.props.currentUser.id;
+      const config = {
+        headers: {
+          Authorization: `Bearer ${getCurrentUserToken()}`,
+        },
+      };
+      axios.get(url, config).then((res) => {
+        this.setState({
+          loading: false,
+          completedProblems: res.data.completedProblems,
+          completedReadings: res.data.completedReadings,
+        });
+      });
+    } else {
+      this.setState({
+        loading: false,
+      });
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps === this.props) return;
+
+    if (
+      (this.state.completedProblems.length === 0 || this.state.completedReadings.length === 0) &&
+      !this.props.contextLoading &&
+      this.props.authenticated
+    ) {
+      this.setState({ loading: true });
+      const url = constants.ACTIVITY_URL + "completed/" + this.props.currentUser.id;
+      const config = {
+        headers: {
+          Authorization: `Bearer ${getCurrentUserToken()}`,
+        },
+      };
+      axios.get(url, config).then((res) => {
+        this.setState({
+          loading: false,
+          completedProblems: res.data.completedProblems,
+          completedReadings: res.data.completedReadings,
+        });
+      });
+    }
+  }
+
+  createCard(router, completedList, type, urlName, name) {
+    return (
+      <ItemCard raised fluid sidecolor={this.TEXT_COLOR} onClick={() => router.push("/" + type + "/" + urlName)}>
+        <ItemHeader size="small">
+          {name}
+          {completedList.includes(urlName) ? (
+            <Check color="#20bf6b" size={20} />
+          ) : (
+            <Check color="#00000030" size={20} />
+          )}
+        </ItemHeader>
+      </ItemCard>
+    );
   }
 
   render() {
     const { router } = this.props;
 
-    if (this.state.notFound) {
-      return <NotFound />;
+    if (this.state.loading) {
+      return (
+        <Loader active inverted size="large">
+          Loading
+        </Loader>
+      );
     }
 
     return (
@@ -102,28 +174,20 @@ class BeginnerPath extends React.Component<BeginnerPathProps, BeginnerPathState>
                     <Check color="#00000030" size={20} style={{ marginRight: 23 }} />
                   </Header>
                   <CardGroup>
-                    <ItemCard
-                      raised
-                      fluid
-                      sidecolor={this.TEXT_COLOR}
-                      onClick={() => router.push("/reading/who-is-the-beginner-path-meant-for")}
-                    >
-                      <ItemHeader size="small">
-                        Who is the Beginner Path meant for?
-                        <Check color="#00000030" size={20} />
-                      </ItemHeader>
-                    </ItemCard>
-                    <ItemCard
-                      raised
-                      fluid
-                      sidecolor={this.TEXT_COLOR}
-                      onClick={() => router.push("/reading/why-should-i-use-a-learning-path")}
-                    >
-                      <ItemHeader size="small">
-                        Why should I use a Learning Path?
-                        <Check color="#00000030" size={20} />
-                      </ItemHeader>
-                    </ItemCard>
+                    {this.createCard(
+                      router,
+                      this.state.completedReadings,
+                      "reading",
+                      "test-reading",
+                      "Who is the Beginner Path meant for?"
+                    )}
+                    {this.createCard(
+                      router,
+                      this.state.completedReadings,
+                      "reading",
+                      "why-should-i-use-a-learning-path",
+                      "Why should I use a Learning Path?"
+                    )}
                     <ItemCard
                       raised
                       fluid
@@ -309,67 +373,122 @@ class BeginnerPath extends React.Component<BeginnerPathProps, BeginnerPathState>
                         <Check color="#00000030" size={20} />
                       </ItemHeader>
                     </ItemCard>
-                    <ItemCard raised fluid sidecolor={this.PROBLEM_COLOR} onClick={() => router.push("/problem/valid-palindrome")}>
+                    <ItemCard
+                      raised
+                      fluid
+                      sidecolor={this.PROBLEM_COLOR}
+                      onClick={() => router.push("/problem/valid-palindrome")}
+                    >
                       <ItemHeader size="small">
                         Problem: Valid Palindrome
                         <Check color="#00000030" size={20} />
                       </ItemHeader>
                     </ItemCard>
-                    <ItemCard raised fluid sidecolor={this.PROBLEM_COLOR} onClick={() => router.push("/problem/move-zeros-to-the-end")}>
+                    <ItemCard
+                      raised
+                      fluid
+                      sidecolor={this.PROBLEM_COLOR}
+                      onClick={() => router.push("/problem/move-zeros-to-the-end")}
+                    >
                       <ItemHeader size="small">
                         Problem: Move Zeros to the End
                         <Check color="#00000030" size={20} />
                       </ItemHeader>
                     </ItemCard>
-                    <ItemCard raised fluid sidecolor={this.TEXT_COLOR} onClick={() => router.push("/reading/searching-arrays")}>
+                    <ItemCard
+                      raised
+                      fluid
+                      sidecolor={this.TEXT_COLOR}
+                      onClick={() => router.push("/reading/searching-arrays")}
+                    >
                       <ItemHeader size="small">
                         Searching Arrays
                         <Check color="#00000030" size={20} />
                       </ItemHeader>
                     </ItemCard>
-                    <ItemCard raised fluid sidecolor={this.PROBLEM_COLOR} onClick={() => router.push("/problem/binary-search")}>
+                    <ItemCard
+                      raised
+                      fluid
+                      sidecolor={this.PROBLEM_COLOR}
+                      onClick={() => router.push("/problem/binary-search")}
+                    >
                       <ItemHeader size="small">
                         Problem: Binary Search
                         <Check color="#00000030" size={20} />
                       </ItemHeader>
                     </ItemCard>
-                    <ItemCard raised fluid sidecolor={this.TEXT_COLOR} onClick={() => router.push("/reading/sorting-arrays")}>
+                    <ItemCard
+                      raised
+                      fluid
+                      sidecolor={this.TEXT_COLOR}
+                      onClick={() => router.push("/reading/sorting-arrays")}
+                    >
                       <ItemHeader size="small">
                         Sorting Arrays
                         <Check color="#00000030" size={20} />
                       </ItemHeader>
                     </ItemCard>
-                    <ItemCard raised fluid sidecolor={this.PROBLEM_COLOR} onClick={() => router.push("/problem/insertion-sort")}>
+                    <ItemCard
+                      raised
+                      fluid
+                      sidecolor={this.PROBLEM_COLOR}
+                      onClick={() => router.push("/problem/insertion-sort")}
+                    >
                       <ItemHeader size="small">
                         Problem: Insertion Sort
                         <Check color="#00000030" size={20} />
                       </ItemHeader>
                     </ItemCard>
-                    <ItemCard raised fluid sidecolor={this.QUIZ_COLOR} onClick={() => router.push("/reading/sorting-arrays")}>
+                    <ItemCard
+                      raised
+                      fluid
+                      sidecolor={this.QUIZ_COLOR}
+                      onClick={() => router.push("/reading/sorting-arrays")}
+                    >
                       <ItemHeader size="small">
                         Quiz: Sorting Arrays
                         <Check color="#00000030" size={20} />
                       </ItemHeader>
                     </ItemCard>
-                    <ItemCard raised fluid sidecolor={this.PROBLEM_COLOR} onClick={() => router.push("/problem/buy-low-sell-high")}>
+                    <ItemCard
+                      raised
+                      fluid
+                      sidecolor={this.PROBLEM_COLOR}
+                      onClick={() => router.push("/problem/buy-low-sell-high")}
+                    >
                       <ItemHeader size="small">
                         Problem: Buy Low Sell High
                         <Check color="#00000030" size={20} />
                       </ItemHeader>
                     </ItemCard>
-                    <ItemCard raised fluid sidecolor={this.PROBLEM_COLOR} onClick={() => router.push("/problem/merge-two-sorted-arrays")}>
+                    <ItemCard
+                      raised
+                      fluid
+                      sidecolor={this.PROBLEM_COLOR}
+                      onClick={() => router.push("/problem/merge-two-sorted-arrays")}
+                    >
                       <ItemHeader size="small">
                         Problem: Merge Two Sorted Arrays
                         <Check color="#00000030" size={20} />
                       </ItemHeader>
                     </ItemCard>
-                    <ItemCard raised fluid sidecolor={this.TIPS_COLOR} onClick={() => router.push("/reading/how-to-spot-an-array-problem")}>
+                    <ItemCard
+                      raised
+                      fluid
+                      sidecolor={this.TIPS_COLOR}
+                      onClick={() => router.push("/reading/how-to-spot-an-array-problem")}
+                    >
                       <ItemHeader size="small">
                         Interview Tip: How to Spot an Array Problem
                         <Check color="#00000030" size={20} />
                       </ItemHeader>
                     </ItemCard>
-                    <ItemCard raised fluid sidecolor={this.TIPS_COLOR} onClick={() => router.push("/reading/approaching-array-problems")}>
+                    <ItemCard
+                      raised
+                      fluid
+                      sidecolor={this.TIPS_COLOR}
+                      onClick={() => router.push("/reading/approaching-array-problems")}
+                    >
                       <ItemHeader size="small">
                         Interview Tip: Approaching Array Problems
                         <Check color="#00000030" size={20} />
@@ -386,4 +505,4 @@ class BeginnerPath extends React.Component<BeginnerPathProps, BeginnerPathState>
   }
 }
 
-export default withRouter(BeginnerPath);
+export default withGlobalContext(withRouter(BeginnerPath));
