@@ -84,6 +84,13 @@ export const StatsContentRow = styled(GridRow)`
   }
 `;
 
+export const StatsDifficultyList = styled(List)`
+  &&& {
+    text-align: left;
+    width: 80%;
+  }
+`;
+
 export const StyledNavIcon = styled(Icon)`
   &&& {
     cursor: pointer;

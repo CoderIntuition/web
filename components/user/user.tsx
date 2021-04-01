@@ -33,6 +33,7 @@ import {
   ProfileUsername,
   SocialButton,
   StatsContentRow,
+  StatsDifficultyList,
   StyledGrid,
   StyledNavIcon,
   StyledProfileDiv,
@@ -124,6 +125,27 @@ export const User: FC<UserProps> = (props) => {
     </StyledProfileDiv>
   );
 
+  const difficulties = [
+    {
+      key: "easy",
+      number: user.numCompletedEasyProblems,
+      label: "Easy",
+      color: "green",
+    },
+    {
+      key: "medium",
+      number: user.numCompletedMediumProblems,
+      label: "Medium",
+      color: "yellow",
+    },
+    {
+      key: "hard",
+      number: user.numCompletedHardProblems,
+      label: "Hard",
+      color: "red",
+    },
+  ] as Record<string, any>[];
+
   const StatsSection = (
     <Segment raised>
       <Grid>
@@ -137,7 +159,16 @@ export const User: FC<UserProps> = (props) => {
               <Statistic.Label>Problem{user.numCompletedProblems === 1 ? "" : "s"} Solved</Statistic.Label>
             </Statistic>
           ) : (
-            <div>page 2</div>
+            <StatsDifficultyList divided relaxed="very">
+              {difficulties.map((difficulty, index) => (
+                <List.Item key={index}>
+                  <Statistic color={difficulty.color} horizontal size="mini">
+                    <Statistic.Value>{difficulty.number}</Statistic.Value>
+                    <Statistic.Label>{difficulty.label}</Statistic.Label>
+                  </Statistic>
+                </List.Item>
+              ))}
+            </StatsDifficultyList>
           )}
         </StatsContentRow>
         <GridRow centered>
@@ -219,7 +250,9 @@ export const User: FC<UserProps> = (props) => {
                         <span>{activity.problemName}</span>
                       </a>
                     </ActivityHeader>
-                    <List.Description style={{fontSize: 11}}>{moment(activity.createdDate).format("MMMM Do YYYY, h:mm a")}</List.Description>
+                    <List.Description style={{ fontSize: 11 }}>
+                      {moment(activity.createdDate).format("MMMM Do YYYY, h:mm a")}
+                    </List.Description>
                   </List.Content>
                 </List.Item>
               ))
