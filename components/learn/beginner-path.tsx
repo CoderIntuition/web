@@ -184,32 +184,32 @@ class BeginnerPath extends React.Component<BeginnerPathProps, BeginnerPathState>
                     )}
                     {this.createCard(
                       router,
-                      this.TEXT_COLOR,
                       this.state.completedReadings,
+                      this.TEXT_COLOR,
                       "reading",
                       "why-should-i-use-a-learning-path",
                       "Why should I use a Learning Path?"
                     )}
                     {this.createCard(
                       router,
-                      this.PROBLEM_COLOR,
                       this.state.completedProblems,
+                      this.PROBLEM_COLOR,
                       "problem",
                       "fizz-buzz",
                       "Problem: Fizz Buzz"
                     )}
                     {this.createCard(
                       router,
-                      this.PROBLEM_COLOR,
                       this.state.completedProblems,
+                      this.PROBLEM_COLOR,
                       "problem",
                       "sum-of-array",
                       "Problem: Sum of Array"
                     )}
                     {this.createCard(
                       router,
-                      this.QUIZ_COLOR,
                       this.state.completedReadings,
+                      this.QUIZ_COLOR,
                       "quiz",
                       "prerequisites",
                       "Quiz: Prerequisites"
