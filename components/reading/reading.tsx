@@ -9,6 +9,7 @@ import { constants } from "common/constants";
 import { WhiteButton } from "common/global-styles";
 import { CenteredDiv, LeftDiv, ReadingStyles } from "./reading-styles";
 import Head from "next/head";
+import { getCurrentUserToken } from "../../common/auth-service";
 
 interface ReadingProps {
   router: NextRouter;
@@ -17,6 +18,7 @@ interface ReadingProps {
 }
 
 interface Reading {
+  id: number;
   name: string;
   isQuiz: boolean;
   content: string;
@@ -45,11 +47,37 @@ class Reading extends Component<ReadingProps, ReadingState> {
           reading: res.data,
           loading: false,
         });
+        this.completeReading();
       })
       .catch((_err) => {
         this.setState({
           loading: false,
         });
+      });
+  }
+
+  completeReading() {
+    if (!this.props.authenticated) return;
+
+    const url = constants.ACTIVITY_URL;
+    const token = getCurrentUserToken();
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    const request = {
+      activityType: "COMPLETE_READING",
+      readingId: this.state.reading?.id,
+    };
+
+    axios
+      .post(url, request, config)
+      .then((_res) => {
+        console.log("Created activity");
+      })
+      .catch((error) => {
+        console.log(error);
       });
   }
 
