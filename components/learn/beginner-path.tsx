@@ -105,9 +105,9 @@ class BeginnerPath extends React.Component<BeginnerPathProps, BeginnerPathState>
     }
   }
 
-  createCard(router, completedList, type, urlName, name) {
+  createCard(router, completedList, color, type, urlName, name) {
     return (
-      <ItemCard raised fluid sidecolor={this.TEXT_COLOR} onClick={() => router.push("/" + type + "/" + urlName)}>
+      <ItemCard raised fluid sidecolor={color} onClick={() => router.push("/" + type + "/" + urlName)}>
         <ItemHeader size="small">
           {name}
           {completedList.includes(urlName) ? (
@@ -177,50 +177,43 @@ class BeginnerPath extends React.Component<BeginnerPathProps, BeginnerPathState>
                     {this.createCard(
                       router,
                       this.state.completedReadings,
+                      this.TEXT_COLOR,
                       "reading",
-                      "test-reading",
+                      "who-is-the-beginner-path-meant-for",
                       "Who is the Beginner Path meant for?"
                     )}
                     {this.createCard(
                       router,
+                      this.TEXT_COLOR,
                       this.state.completedReadings,
                       "reading",
                       "why-should-i-use-a-learning-path",
                       "Why should I use a Learning Path?"
                     )}
-                    <ItemCard
-                      raised
-                      fluid
-                      sidecolor={this.PROBLEM_COLOR}
-                      onClick={() => router.push("/problem/fizz-buzz")}
-                    >
-                      <ItemHeader size="small">
-                        Problem: Fizz Buzz
-                        <Check color="#00000030" size={20} />
-                      </ItemHeader>
-                    </ItemCard>
-                    <ItemCard
-                      raised
-                      fluid
-                      sidecolor={this.PROBLEM_COLOR}
-                      onClick={() => router.push("/problem/sum-of-array")}
-                    >
-                      <ItemHeader size="small">
-                        Problem: Sum of Array
-                        <Check color="#00000030" size={20} />
-                      </ItemHeader>
-                    </ItemCard>
-                    <ItemCard
-                      raised
-                      fluid
-                      sidecolor={this.QUIZ_COLOR}
-                      onClick={() => router.push("/quiz/prerequisites")}
-                    >
-                      <ItemHeader size="small">
-                        Quiz: Prerequisites
-                        <Check color="#00000030" size={20} />
-                      </ItemHeader>
-                    </ItemCard>
+                    {this.createCard(
+                      router,
+                      this.PROBLEM_COLOR,
+                      this.state.completedProblems,
+                      "problem",
+                      "fizz-buzz",
+                      "Problem: Fizz Buzz"
+                    )}
+                    {this.createCard(
+                      router,
+                      this.PROBLEM_COLOR,
+                      this.state.completedProblems,
+                      "problem",
+                      "sum-of-array",
+                      "Problem: Sum of Array"
+                    )}
+                    {this.createCard(
+                      router,
+                      this.QUIZ_COLOR,
+                      this.state.completedReadings,
+                      "quiz",
+                      "prerequisites",
+                      "Quiz: Prerequisites"
+                    )}
                   </CardGroup>
                 </StyledCard>
 
