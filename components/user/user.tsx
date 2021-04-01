@@ -12,7 +12,7 @@ import {
   Segment,
   Statistic,
 } from "semantic-ui-react";
-import { Award, CheckCircle, GitHub, Globe, Linkedin, PlusCircle, Upload } from "react-feather";
+import { Award, BookOpen, CheckCircle, GitHub, Globe, Linkedin, PlusCircle, Upload } from "react-feather";
 import {
   ActivityGrid,
   ActivityHeader,
@@ -206,6 +206,8 @@ export const User: FC<UserProps> = (props) => {
                       <CheckCircle />
                     ) : activity.activityType === "SUBMIT_PROBLEM" ? (
                       <Upload />
+                    ) : activity.activityType === "COMPLETE_READING" ? (
+                      <BookOpen />
                     ) : activity.activityType === "EARN_BADGE" ? (
                       <Award />
                     ) : activity.activityType === "UPGRADE_PLUS" ? (
@@ -215,11 +217,19 @@ export const User: FC<UserProps> = (props) => {
                   <List.Content>
                     <ActivityHeader>
                       {formatActivityType(activity.activityType) + ": "}
-                      <a href={constants.PROBLEM_WEB_URL + activity.problemUrl} target="_blank">
-                        <span>{activity.problemName}</span>
-                      </a>
+                      {activity.activityType === "COMPLETE_READING" ? (
+                        <a href={constants.READING_WEB_URL + activity.readingUrl} target="_blank">
+                          <span>{activity.readingName}</span>
+                        </a>
+                      ) : (
+                        <a href={constants.PROBLEM_WEB_URL + activity.problemUrl} target="_blank">
+                          <span>{activity.problemName}</span>
+                        </a>
+                      )}
                     </ActivityHeader>
-                    <List.Description style={{fontSize: 11}}>{moment(activity.createdDate).format("MMMM Do YYYY, h:mm a")}</List.Description>
+                    <List.Description style={{ fontSize: 11 }}>
+                      {moment(activity.createdDate).format("MMMM Do YYYY, h:mm a")}
+                    </List.Description>
                   </List.Content>
                 </List.Item>
               ))
