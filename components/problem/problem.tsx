@@ -116,7 +116,11 @@ class Problem extends Component<ProblemProps> {
       javascript: "",
     },
     editorTab: "code",
-    docsValue: "",
+    docsValue: "Did you know that many companies including <b>Google</b> make you do " +
+      "your coding interview on a <b>whiteboard</b> or a <b>Google Doc</b>? Try writing your " +
+      "code here instead of in the editor so you don't get caught by surprise!" +
+      "<br/><br/><u>My Notes</u><br/><br/><br/><br/><u>My Code</u><br/><br/>" +
+      "<br/><br/><u>Time and Space Complexity</u><br/><br/><br/><br/><br/>",
     language: "PYTHON",
     testTab: "input",
     running: false,
@@ -729,7 +733,7 @@ class Problem extends Component<ProblemProps> {
               dark={this.props.darkMode}
               active={this.state.editorTab === "docs"}
               onClick={() => this.handleEditorTabClick("docs")}
-              name="Docs"
+              name="Whiteboard"
             />
             <MenuMenu position="right">
               <StyledDropdown item text={this.languageEnumToText(this.state.language)} dark={this.props.darkMode}>
