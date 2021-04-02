@@ -106,9 +106,9 @@ class BeginnerPath extends React.Component<BeginnerPathProps, BeginnerPathState>
     }
   }
 
-  createCard(router, completedList, color, type, urlName, name) {
+  createCard(idx, router, completedList, color, type, urlName, name) {
     return (
-      <ItemCard raised fluid sidecolor={color} onClick={() => router.push("/" + type + "/" + urlName)}>
+      <ItemCard raised fluid sidecolor={color} key={idx} onClick={() => router.push("/" + type + "/" + urlName)}>
         <ItemHeader size="small">
           {name}
           {completedList.includes(urlName) ? (
@@ -339,7 +339,7 @@ class BeginnerPath extends React.Component<BeginnerPathProps, BeginnerPathState>
 
     const cardGroupContents = (data) => (
       <>
-        {data.map((introduction) => {
+        {data.map((introduction, idx) => {
           let completedList;
           if (introduction.type === "problem") {
             completedList = this.state.completedProblems;
@@ -354,6 +354,7 @@ class BeginnerPath extends React.Component<BeginnerPathProps, BeginnerPathState>
           }
 
           return this.createCard(
+            idx,
             router,
             completedList,
             color,
