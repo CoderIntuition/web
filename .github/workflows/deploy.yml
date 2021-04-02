@@ -14,7 +14,7 @@ jobs:
       - name: Turnstyle
         uses: softprops/turnstyle@v1
         with:
-          abort-after-seconds: 600
+          abort-after-seconds: 1200
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Create production build and publish to Github Packages Registry
