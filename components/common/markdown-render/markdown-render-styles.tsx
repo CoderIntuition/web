@@ -26,6 +26,7 @@ export const StyledDiv = styled.div`
       overflow: hidden;
       border: 1px solid #dfe2e5;
     }
+    
     td {
       padding: 4px 8px;
       border-left: none;
@@ -40,6 +41,7 @@ export const StyledDiv = styled.div`
     
     tr {
       border: none;
+      background-color: #ffffff;
     }
   }
 `;

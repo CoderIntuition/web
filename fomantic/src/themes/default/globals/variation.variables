@@ -11,7 +11,7 @@
 
 /* Button */
 @variationButtonDisabled: true;
-@variationButtonAnimated: true;
+@variationButtonAnimated: false;
 @variationButtonInverted: true;
 @variationButtonSocial: true;
 @variationButtonFloated: true;
@@ -20,9 +20,9 @@
 @variationButtonTertiary: true;
 @variationButtonLabeled: true;
 @variationButtonLabeledIcon: true;
-@variationButtonToggle: true;
+@variationButtonToggle: false;
 @variationButtonOr: true;
-@variationButtonAttached: true;
+@variationButtonAttached: false;
 @variationButtonFluid: true;
 @variationButtonCircular: true;
 @variationButtonGroups: true;
@@ -172,25 +172,25 @@
 
 /* Segment */
 @variationSegmentInverted: true;
-@variationSegmentDisabled: true;
-@variationSegmentVertical: true;
-@variationSegmentPlaceholder: true;
-@variationSegmentHorizontal: true;
-@variationSegmentPiled: true;
-@variationSegmentStacked: true;
+@variationSegmentDisabled: false;
+@variationSegmentVertical: false;
+@variationSegmentPlaceholder: false;
+@variationSegmentHorizontal: false;
+@variationSegmentPiled: false;
+@variationSegmentStacked: false;
 @variationSegmentPadded: true;
-@variationSegmentCircular: true;
-@variationSegmentCompact: true;
+@variationSegmentCircular: false;
+@variationSegmentCompact: false;
 @variationSegmentRaised: true;
-@variationSegmentGroups: true;
+@variationSegmentGroups: false;
 @variationSegmentBasic: true;
-@variationSegmentClearing: true;
-@variationSegmentLoading: true;
+@variationSegmentClearing: false;
+@variationSegmentLoading: false;
 @variationSegmentFloating: true;
 @variationSegmentAligned: true;
 @variationSegmentSecondary: true;
 @variationSegmentTertiary: true;
-@variationSegmentAttached: true;
+@variationSegmentAttached: false;
 @variationSegmentFitted: true;
 @variationSegmentSizes: @variationAllSizes;
 
@@ -376,63 +376,63 @@
 @variationCheckboxInverted: false;
 @variationCheckboxRadio: false;
 @variationCheckboxSlider: false;
-@variationCheckboxToggle: false;
+@variationCheckboxToggle: true;
 @variationCheckboxIndeterminate: false;
 @variationCheckboxFitted: false;
 @variationCheckboxSizes: @variationAllSizes;
 
 /* Dimmer */
 @variationDimmerInverted: true;
-@variationDimmerDisabled: true;
-@variationDimmerLegacy: true;
-@variationDimmerAligned: true;
-@variationDimmerPage: true;
-@variationDimmerBlurring: true;
-@variationDimmerShades: true;
-@variationDimmerSimple: true;
-@variationDimmerPartially: true;
+@variationDimmerDisabled: false;
+@variationDimmerLegacy: false;
+@variationDimmerAligned: false;
+@variationDimmerPage: false;
+@variationDimmerBlurring: false;
+@variationDimmerShades: false;
+@variationDimmerSimple: false;
+@variationDimmerPartially: false;
 
 /* Dropdown */
-@variationDropdownInverted: true;
-@variationDropdownDisabled: true;
+@variationDropdownInverted: false;
+@variationDropdownDisabled: false;
 @variationDropdownLabel: true;
 @variationDropdownButton: true;
 @variationDropdownSelection: true;
 @variationDropdownShort: true;
 @variationDropdownLong: true;
-@variationDropdownCompact: true;
-@variationDropdownSearch: true;
+@variationDropdownCompact: false;
+@variationDropdownSearch: false;
 @variationDropdownMultiple: true;
-@variationDropdownInline: true;
-@variationDropdownLoading: true;
+@variationDropdownInline: false;
+@variationDropdownLoading: false;
 @variationDropdownStates: true;
-@variationDropdownClear: true;
-@variationDropdownLeft: true;
-@variationDropdownUpward: true;
-@variationDropdownSimple: true;
-@variationDropdownScrolling: true;
-@variationDropdownFluid: true;
+@variationDropdownClear: false;
+@variationDropdownLeft: false;
+@variationDropdownUpward: false;
+@variationDropdownSimple: false;
+@variationDropdownScrolling: false;
+@variationDropdownFluid: false;
 @variationDropdownFloating: true;
 @variationDropdownPointing: true;
-@variationDropdownScrollhint: true;
+@variationDropdownScrollhint: false;
 @variationDropdownSizes: @variationAllSizes;
 
 /* Embed */
 @variationEmbedRatio: true;
 
 /* Modal */
-@variationModalInverted: true;
+@variationModalInverted: false;
 @variationModalBasic: true;
 @variationModalFullscreen: true;
 @variationModalOverlay: true;
-@variationModalAligned: true;
+@variationModalAligned: false;
 @variationModalScrolling: true;
-@variationModalLegacy: true;
+@variationModalLegacy: false;
 @variationModalCloseInside: true;
 @variationModalSizes: @variationAllSizes;
 
 /* Popup */
-@variationPopupInverted: true;
+@variationPopupInverted: false;
 @variationPopupTooltip: true;
 @variationPopupPosition: true;
 @variationPopupTop: true;
@@ -442,9 +442,9 @@
 @variationPopupCenter: true;
 @variationPopupLoading: true;
 @variationPopupBasic: true;
-@variationPopupWide: true;
-@variationPopupFluid: true;
-@variationPopupFlowing: true;
+@variationPopupWide: false;
+@variationPopupFluid: false;
+@variationPopupFlowing: false;
 @variationPopupFixed: true;
 @variationPopupSizes: @variationAllSizes;
 
@@ -466,7 +466,7 @@
 @variationProgressSizes: @variationAllSizes;
 
 /* Rating */
-@variationRatingDisabled: true;
+@variationRatingDisabled: false;
 @variationRatingSizes: @variationAllSizes;
 
 /* Search */

@@ -45,9 +45,8 @@
     "transition",
     "statistic",
     "list",
-    "item",
-    "site",
-    "reset"
+    "checkbox",
+    "site"
   ],
   "version": "2.8.7"
 }
