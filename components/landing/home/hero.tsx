@@ -15,6 +15,7 @@ import {
   TwoColumn,
 } from "./hero-styles";
 import { motion } from "framer-motion";
+import { Image } from "semantic-ui-react";
 
 const Hero = () => {
   return (
@@ -22,7 +23,7 @@ const Hero = () => {
       <div className={MiddleContainer}>
         <div className={InnerContainer} style={{ marginTop: 250 }}>
           <motion.section
-            initial={{ x: "10%" }}
+            initial={{ x: "8%" }}
             animate={{
               x: "0%",
               transitionEnd: {
@@ -51,7 +52,7 @@ const Hero = () => {
               </div>
               <div className={RightColumn}>
                 <div className={IllustrationContainer}>
-                  <img className={StyledImage} src="/images/landing.svg" alt="Landing page illustration" />
+                  <Image className={StyledImage} src="/images/landing.svg" alt="Landing page illustration" />
                 </div>
               </div>
             </div>

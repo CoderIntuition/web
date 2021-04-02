@@ -22,14 +22,14 @@ function AnimationReveal({ right, disabled, children }) {
 }
 
 function AnimatedSlideInComponent({ direction = "left", children }) {
-  const [ref, inView] = useInView({ rootMargin: "-100px" });
+  const [ref, inView] = useInView({ rootMargin: "-80px" });
 
   const x = { target: "0%" };
 
   if (direction === "right") {
-    x.initial = "10%";
+    x.initial = "8%";
   } else {
-    x.initial = "-10%";
+    x.initial = "-8%";
   }
 
   return (
