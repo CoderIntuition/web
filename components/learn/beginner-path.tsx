@@ -319,7 +319,7 @@ class BeginnerPath extends React.Component<BeginnerPathProps, BeginnerPathState>
 
     const headerCheck = (data) => {
       const completed = data.every((val) =>
-        this.state.completedProblems.concat(this.state.completedReadings).includes(val)
+        this.state.completedProblems.concat(this.state.completedReadings).includes(val.urlName)
       );
       return completed ? (
         <Check color="#20bf6b" size={20} style={{ marginRight: 23 }} />
@@ -404,7 +404,7 @@ class BeginnerPath extends React.Component<BeginnerPathProps, BeginnerPathState>
 
                 <div ref={this.contentsRefs[0]} />
                 <StyledCard raised fluid>
-                  <Header size="medium">
+                  <Header size="medium" style={{marginBottom: 15}}>
                     1 - Introduction
                     {headerCheck(this.introductionData)}
                   </Header>
@@ -413,7 +413,7 @@ class BeginnerPath extends React.Component<BeginnerPathProps, BeginnerPathState>
 
                 <div ref={this.contentsRefs[1]} />
                 <StyledCard raised fluid>
-                  <Header size="medium">
+                  <Header size="medium" style={{marginBottom: 15}}>
                     2 - Big O Notation
                     {headerCheck(this.bigONotationData)}
                   </Header>
@@ -422,11 +422,20 @@ class BeginnerPath extends React.Component<BeginnerPathProps, BeginnerPathState>
 
                 <div ref={this.contentsRefs[2]} />
                 <StyledCard raised fluid>
-                  <Header size="medium">
+                  <Header size="medium" style={{marginBottom: 15}}>
                     4 - Basic Strings and Arrays
                     {headerCheck(this.stringsAndArraysData)}
                   </Header>
                   <CardGroup>{cardGroupContents(this.stringsAndArraysData)}</CardGroup>
+                </StyledCard>
+
+                <div ref={this.contentsRefs[3]} />
+                <StyledCard raised fluid>
+                  <Header size="medium" style={{marginBottom: 15}}>
+                    5 - Basic Linked Lists
+                    {headerCheck(this.linkedListsData)}
+                  </Header>
+                  <CardGroup>{cardGroupContents(this.linkedListsData)}</CardGroup>
                 </StyledCard>
               </StyledCardGroup>
             </GridRow>
