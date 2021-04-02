@@ -113,6 +113,8 @@ class BeginnerPath extends React.Component<BeginnerPathProps, BeginnerPathState>
           {name}
           {completedList.includes(urlName) ? (
             <Check color="#20bf6b" size={20} />
+          ) : this.props.authenticated ? (
+            <Check color="#00000030" size={20} />
           ) : (
             <Popup
               basic
@@ -323,6 +325,8 @@ class BeginnerPath extends React.Component<BeginnerPathProps, BeginnerPathState>
       );
       return completed ? (
         <Check color="#20bf6b" size={20} style={{ marginRight: 23 }} />
+      ) : this.props.authenticated ? (
+        <Check color="#00000030" size={20} style={{ marginRight: 23 }} />
       ) : (
         <Popup
           basic
@@ -404,7 +408,7 @@ class BeginnerPath extends React.Component<BeginnerPathProps, BeginnerPathState>
 
                 <div ref={this.contentsRefs[0]} />
                 <StyledCard raised fluid>
-                  <Header size="medium" style={{marginBottom: 15}}>
+                  <Header size="medium" style={{ marginBottom: 15 }}>
                     1 - Introduction
                     {headerCheck(this.introductionData)}
                   </Header>
@@ -413,7 +417,7 @@ class BeginnerPath extends React.Component<BeginnerPathProps, BeginnerPathState>
 
                 <div ref={this.contentsRefs[1]} />
                 <StyledCard raised fluid>
-                  <Header size="medium" style={{marginBottom: 15}}>
+                  <Header size="medium" style={{ marginBottom: 15 }}>
                     2 - Big O Notation
                     {headerCheck(this.bigONotationData)}
                   </Header>
@@ -422,7 +426,7 @@ class BeginnerPath extends React.Component<BeginnerPathProps, BeginnerPathState>
 
                 <div ref={this.contentsRefs[2]} />
                 <StyledCard raised fluid>
-                  <Header size="medium" style={{marginBottom: 15}}>
+                  <Header size="medium" style={{ marginBottom: 15 }}>
                     4 - Basic Strings and Arrays
                     {headerCheck(this.stringsAndArraysData)}
                   </Header>
@@ -431,7 +435,7 @@ class BeginnerPath extends React.Component<BeginnerPathProps, BeginnerPathState>
 
                 <div ref={this.contentsRefs[3]} />
                 <StyledCard raised fluid>
-                  <Header size="medium" style={{marginBottom: 15}}>
+                  <Header size="medium" style={{ marginBottom: 15 }}>
                     5 - Basic Linked Lists
                     {headerCheck(this.linkedListsData)}
                   </Header>
