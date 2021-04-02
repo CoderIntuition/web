@@ -161,7 +161,7 @@ class BeginnerPath extends React.Component<BeginnerPathProps, BeginnerPathState>
       name: "Why should I use a Learning Path?",
     },
     {
-      type: "reading",
+      type: "problem",
       urlName: "fizz-buzz",
       name: "Problem: Fizz Buzz",
     },
