@@ -22,6 +22,7 @@ const MarkdownRender: FC<MarkdownRenderProps> = (props) => {
       inlineMath: ({ value }) => <InlineMath>{value}</InlineMath>,
     },
   });
+
   return (
     <>
       <StyledDiv className="markdown-body">
