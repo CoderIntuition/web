@@ -1,9 +1,14 @@
 import React, { RefObject } from "react";
 import { NextRouter, withRouter } from "next/router";
+import Link from "next/link";
 import axios from "axios";
-import { CardGroup, GridRow, Header, List, Loader } from "semantic-ui-react";
+import { CardGroup, GridRow, Header, List, Loader, Popup } from "semantic-ui-react";
 import ProblemsSidebar from "components/common/problems-sidebar/problems-sidebar";
 import { SimpleProblem } from "common/types";
+import { constants } from "common/constants";
+import { getCurrentUserToken } from "common/auth-service";
+import { withGlobalContext } from "common/utils";
+import { Heading, HeadingSection, Subheading } from "./overview-styles";
 import {
   Check,
   ItemCard,
@@ -13,10 +18,6 @@ import {
   StyledGrid,
   StyledListItem,
 } from "./beginner-path-styles";
-import { Heading, HeadingSection, Subheading } from "./overview-styles";
-import { withGlobalContext } from "common/utils";
-import { constants } from "common/constants";
-import { getCurrentUserToken } from "../../common/auth-service";
 
 interface BeginnerPathProps {
   router: NextRouter;
@@ -113,12 +114,197 @@ class BeginnerPath extends React.Component<BeginnerPathProps, BeginnerPathState>
           {completedList.includes(urlName) ? (
             <Check color="#20bf6b" size={20} />
           ) : (
-            <Check color="#00000030" size={20} />
+            <Popup
+              basic
+              hoverable
+              content={
+                <>
+                  <Link href="/login">Log in</Link> or <Link href="/signup">Sign Up</Link> to save your progress
+                </>
+              }
+              trigger={<Check color="#00000030" size={20} />}
+            />
           )}
         </ItemHeader>
       </ItemCard>
     );
   }
+
+  getColor(introduction) {
+    let color;
+    switch (introduction.type) {
+      case "problem":
+        color = this.PROBLEM_COLOR;
+        break;
+      case "reading":
+        color = this.TEXT_COLOR;
+        break;
+      case "quiz":
+        color = this.QUIZ_COLOR;
+        break;
+      case "tip":
+        color = this.TIPS_COLOR;
+        break;
+    }
+    return color;
+  }
+
+  introductionData = [
+    {
+      type: "reading",
+      urlName: "who-is-the-beginner-path-meant-for",
+      name: "Who is the Beginner Path meant for?",
+    },
+    {
+      type: "reading",
+      urlName: "why-should-i-use-a-learning-path",
+      name: "Why should I use a Learning Path?",
+    },
+    {
+      type: "reading",
+      urlName: "fizz-buzz",
+      name: "Problem: Fizz Buzz",
+    },
+    {
+      type: "problem",
+      urlName: "sum-of-array",
+      name: "Problem: Sum of Array",
+    },
+    {
+      type: "quiz",
+      urlName: "prerequisites",
+      name: "Quiz: Prerequisites",
+    },
+  ];
+
+  bigONotationData = [
+    {
+      type: "reading",
+      urlName: "why-do-i-need-to-know-big-o-notation",
+      name: "Why do I need to know Big O notation?",
+    },
+    {
+      type: "reading",
+      urlName: "big-o-notation",
+      name: "Big O Notation",
+    },
+    {
+      type: "reading",
+      urlName: "time-complexity",
+      name: "Time Complexity",
+    },
+    {
+      type: "quiz",
+      urlName: "time-complexity-quiz",
+      name: "Quiz: Time Complexity",
+    },
+    {
+      type: "reading",
+      urlName: "space-complexity",
+      name: "Space Complexity",
+    },
+    {
+      type: "quiz",
+      urlName: "space-complexity-quiz",
+      name: "Quiz: Space Complexity",
+    },
+    {
+      type: "tip",
+      urlName: "using-time-and-space-complexity",
+      name: "Interview Tip: Using Time and Space Complexity",
+    },
+  ];
+
+  stringsAndArraysData = [
+    {
+      type: "reading",
+      urlName: "overview-of-basic-strings-and-arrays",
+      name: "Overview of Basic Strings and Arrays",
+    },
+    {
+      type: "reading",
+      urlName: "the-array-data-structure",
+      name: "The Array Data Structure",
+    },
+    {
+      type: "problem",
+      urlName: "longest-common-prefix",
+      name: "Problem: Longest Common Prefix",
+    },
+    {
+      type: "reading",
+      urlName: "the-two-pointer-method",
+      name: "The Two-Pointer Method",
+    },
+    {
+      type: "problem",
+      urlName: "reverse-an-array",
+      name: "Problem: Reverse an Array",
+    },
+    {
+      type: "problem",
+      urlName: "valid-palindrome",
+      name: "Problem: Valid Palindrome",
+    },
+    {
+      type: "problem",
+      urlName: "move-zeros-to-the-end",
+      name: "Problem: Move Zeros to the End",
+    },
+    {
+      type: "reading",
+      urlName: "searching-arrays",
+      name: "Searching Arrays",
+    },
+    {
+      type: "problem",
+      urlName: "binary-search",
+      name: "Problem: Binary Search",
+    },
+    {
+      type: "reading",
+      urlName: "/reading/sorting-arrays",
+      name: "Sorting Arrays",
+    },
+    {
+      type: "problem",
+      urlName: "insertion-sort",
+      name: "Problem: Insertion Sort",
+    },
+    {
+      type: "quiz",
+      urlName: "sorting-arrays",
+      name: "Quiz: Sorting Arrays",
+    },
+    {
+      type: "problem",
+      urlName: "buy-low-sell-high",
+      name: "Problem: Buy Low Sell High",
+    },
+    {
+      type: "problem",
+      urlName: "merge-two-sorted-arrays",
+      name: "Problem: Merge Two Sorted Arrays",
+    },
+    {
+      type: "reading",
+      urlName: "how-to-spot-an-array-problem",
+      name: "Interview Tip: How to Spot an Array Problem",
+    },
+    {
+      type: "reading",
+      urlName: "approaching-array-problems",
+      name: "Interview Tip: Approaching Array Problems",
+    },
+  ];
+
+  linkedListsData = [
+    {
+      type: "",
+      urlName: "",
+      name: "",
+    },
+  ];
 
   render() {
     const { router } = this.props;
@@ -130,6 +316,54 @@ class BeginnerPath extends React.Component<BeginnerPathProps, BeginnerPathState>
         </Loader>
       );
     }
+
+    const headerCheck = (data) => {
+      const completed = data.every((val) =>
+        this.state.completedProblems.concat(this.state.completedReadings).includes(val)
+      );
+      return completed ? (
+        <Check color="#20bf6b" size={20} style={{ marginRight: 23 }} />
+      ) : (
+        <Popup
+          basic
+          hoverable
+          content={
+            <>
+              <Link href="/login">Log in</Link> or <Link href="/signup">Sign Up</Link> to save your progress
+            </>
+          }
+          trigger={<Check color="#00000030" size={20} style={{ marginRight: 23 }} />}
+        />
+      );
+    };
+
+    const cardGroupContents = (data) => (
+      <>
+        {data.map((introduction) => {
+          let completedList;
+          if (introduction.type === "problem") {
+            completedList = this.state.completedProblems;
+          } else {
+            completedList = this.state.completedReadings;
+          }
+
+          let color = this.getColor(introduction);
+
+          if (introduction.type === "tip") {
+            introduction.type = "reading";
+          }
+
+          return this.createCard(
+            router,
+            completedList,
+            color,
+            introduction.type,
+            introduction.urlName,
+            introduction.name
+          );
+        })}
+      </>
+    );
 
     return (
       <ProblemsSidebar active="beginnerPath">
@@ -171,323 +405,27 @@ class BeginnerPath extends React.Component<BeginnerPathProps, BeginnerPathState>
                 <StyledCard raised fluid>
                   <Header size="medium">
                     1 - Introduction
-                    <Check color="#00000030" size={20} style={{ marginRight: 23 }} />
+                    {headerCheck(this.introductionData)}
                   </Header>
-                  <CardGroup>
-                    {this.createCard(
-                      router,
-                      this.state.completedReadings,
-                      this.TEXT_COLOR,
-                      "reading",
-                      "who-is-the-beginner-path-meant-for",
-                      "Who is the Beginner Path meant for?"
-                    )}
-                    {this.createCard(
-                      router,
-                      this.state.completedReadings,
-                      this.TEXT_COLOR,
-                      "reading",
-                      "why-should-i-use-a-learning-path",
-                      "Why should I use a Learning Path?"
-                    )}
-                    {this.createCard(
-                      router,
-                      this.state.completedProblems,
-                      this.PROBLEM_COLOR,
-                      "problem",
-                      "fizz-buzz",
-                      "Problem: Fizz Buzz"
-                    )}
-                    {this.createCard(
-                      router,
-                      this.state.completedProblems,
-                      this.PROBLEM_COLOR,
-                      "problem",
-                      "sum-of-array",
-                      "Problem: Sum of Array"
-                    )}
-                    {this.createCard(
-                      router,
-                      this.state.completedReadings,
-                      this.QUIZ_COLOR,
-                      "quiz",
-                      "prerequisites",
-                      "Quiz: Prerequisites"
-                    )}
-                  </CardGroup>
+                  <CardGroup>{cardGroupContents(this.introductionData)}</CardGroup>
                 </StyledCard>
 
                 <div ref={this.contentsRefs[1]} />
                 <StyledCard raised fluid>
                   <Header size="medium">
                     2 - Big O Notation
-                    <Check color="#00000030" size={20} style={{ marginRight: 23 }} />
+                    {headerCheck(this.bigONotationData)}
                   </Header>
-                  <CardGroup>
-                    <ItemCard
-                      raised
-                      fluid
-                      sidecolor={this.TEXT_COLOR}
-                      onClick={() => router.push("/reading/why-do-i-need-to-know-big-o-notation")}
-                    >
-                      <ItemHeader size="small">
-                        Why do I need to know Big O notation?
-                        <Check color="#00000030" size={20} />
-                      </ItemHeader>
-                    </ItemCard>
-                    <ItemCard
-                      raised
-                      fluid
-                      sidecolor={this.TEXT_COLOR}
-                      onClick={() => router.push("/reading/big-o-notation")}
-                    >
-                      <ItemHeader size="small">
-                        Big O Notation
-                        <Check color="#00000030" size={20} />
-                      </ItemHeader>
-                    </ItemCard>
-                    <ItemCard
-                      raised
-                      fluid
-                      sidecolor={this.TEXT_COLOR}
-                      onClick={() => router.push("/reading/time-complexity")}
-                    >
-                      <ItemHeader size="small">
-                        Time Complexity
-                        <Check color="#00000030" size={20} />
-                      </ItemHeader>
-                    </ItemCard>
-                    <ItemCard
-                      raised
-                      fluid
-                      sidecolor={this.QUIZ_COLOR}
-                      onClick={() => router.push("/quiz/time-complexity-quiz")}
-                    >
-                      <ItemHeader size="small">
-                        Quiz: Time Complexity
-                        <Check color="#00000030" size={20} />
-                      </ItemHeader>
-                    </ItemCard>
-                    <ItemCard
-                      raised
-                      fluid
-                      sidecolor={this.TEXT_COLOR}
-                      onClick={() => router.push("/reading/space-complexity")}
-                    >
-                      <ItemHeader size="small">
-                        Space Complexity
-                        <Check color="#00000030" size={20} />
-                      </ItemHeader>
-                    </ItemCard>
-                    <ItemCard
-                      raised
-                      fluid
-                      sidecolor={this.QUIZ_COLOR}
-                      onClick={() => router.push("/quiz/space-complexity-quiz")}
-                    >
-                      <ItemHeader size="small">
-                        Quiz: Space Complexity
-                        <Check color="#00000030" size={20} />
-                      </ItemHeader>
-                    </ItemCard>
-                    <ItemCard
-                      raised
-                      fluid
-                      sidecolor={this.TIPS_COLOR}
-                      onClick={() => router.push("/reading/using-time-and-space-complexity")}
-                    >
-                      <ItemHeader size="small">
-                        Interview Tip: Using Time and Space Complexity
-                        <Check color="#00000030" size={20} />
-                      </ItemHeader>
-                    </ItemCard>
-                  </CardGroup>
+                  <CardGroup>{cardGroupContents(this.bigONotationData)}</CardGroup>
                 </StyledCard>
 
                 <div ref={this.contentsRefs[2]} />
                 <StyledCard raised fluid>
                   <Header size="medium">
                     4 - Basic Strings and Arrays
-                    <Check color="#00000030" size={20} style={{ marginRight: 23 }} />
+                    {headerCheck(this.stringsAndArraysData)}
                   </Header>
-                  <CardGroup>
-                    <ItemCard
-                      raised
-                      fluid
-                      sidecolor={this.TEXT_COLOR}
-                      onClick={() => router.push("/reading/overview-of-basic-strings-and-arrays")}
-                    >
-                      <ItemHeader size="small">
-                        Overview of Basic Strings and Arrays
-                        <Check color="#00000030" size={20} />
-                      </ItemHeader>
-                    </ItemCard>
-                    <ItemCard
-                      raised
-                      fluid
-                      sidecolor={this.TEXT_COLOR}
-                      onClick={() => router.push("/reading/the-array-data-structure")}
-                    >
-                      <ItemHeader size="small">
-                        The Array Data Structure
-                        <Check color="#00000030" size={20} />
-                      </ItemHeader>
-                    </ItemCard>
-                    <ItemCard
-                      raised
-                      fluid
-                      sidecolor={this.PROBLEM_COLOR}
-                      onClick={() => router.push("/problem/longest-common-prefix")}
-                    >
-                      <ItemHeader size="small">
-                        Problem: Longest Common Prefix
-                        <Check color="#00000030" size={20} />
-                      </ItemHeader>
-                    </ItemCard>
-                    <ItemCard
-                      raised
-                      fluid
-                      sidecolor={this.TEXT_COLOR}
-                      onClick={() => router.push("/reading/the-two-pointer-method")}
-                    >
-                      <ItemHeader size="small">
-                        The Two-Pointer Method
-                        <Check color="#00000030" size={20} />
-                      </ItemHeader>
-                    </ItemCard>
-                    <ItemCard
-                      raised
-                      fluid
-                      sidecolor={this.PROBLEM_COLOR}
-                      onClick={() => router.push("/problem/reverse-an-array")}
-                    >
-                      <ItemHeader size="small">
-                        Problem: Reverse an Array
-                        <Check color="#00000030" size={20} />
-                      </ItemHeader>
-                    </ItemCard>
-                    <ItemCard
-                      raised
-                      fluid
-                      sidecolor={this.PROBLEM_COLOR}
-                      onClick={() => router.push("/problem/valid-palindrome")}
-                    >
-                      <ItemHeader size="small">
-                        Problem: Valid Palindrome
-                        <Check color="#00000030" size={20} />
-                      </ItemHeader>
-                    </ItemCard>
-                    <ItemCard
-                      raised
-                      fluid
-                      sidecolor={this.PROBLEM_COLOR}
-                      onClick={() => router.push("/problem/move-zeros-to-the-end")}
-                    >
-                      <ItemHeader size="small">
-                        Problem: Move Zeros to the End
-                        <Check color="#00000030" size={20} />
-                      </ItemHeader>
-                    </ItemCard>
-                    <ItemCard
-                      raised
-                      fluid
-                      sidecolor={this.TEXT_COLOR}
-                      onClick={() => router.push("/reading/searching-arrays")}
-                    >
-                      <ItemHeader size="small">
-                        Searching Arrays
-                        <Check color="#00000030" size={20} />
-                      </ItemHeader>
-                    </ItemCard>
-                    <ItemCard
-                      raised
-                      fluid
-                      sidecolor={this.PROBLEM_COLOR}
-                      onClick={() => router.push("/problem/binary-search")}
-                    >
-                      <ItemHeader size="small">
-                        Problem: Binary Search
-                        <Check color="#00000030" size={20} />
-                      </ItemHeader>
-                    </ItemCard>
-                    <ItemCard
-                      raised
-                      fluid
-                      sidecolor={this.TEXT_COLOR}
-                      onClick={() => router.push("/reading/sorting-arrays")}
-                    >
-                      <ItemHeader size="small">
-                        Sorting Arrays
-                        <Check color="#00000030" size={20} />
-                      </ItemHeader>
-                    </ItemCard>
-                    <ItemCard
-                      raised
-                      fluid
-                      sidecolor={this.PROBLEM_COLOR}
-                      onClick={() => router.push("/problem/insertion-sort")}
-                    >
-                      <ItemHeader size="small">
-                        Problem: Insertion Sort
-                        <Check color="#00000030" size={20} />
-                      </ItemHeader>
-                    </ItemCard>
-                    <ItemCard
-                      raised
-                      fluid
-                      sidecolor={this.QUIZ_COLOR}
-                      onClick={() => router.push("/reading/sorting-arrays")}
-                    >
-                      <ItemHeader size="small">
-                        Quiz: Sorting Arrays
-                        <Check color="#00000030" size={20} />
-                      </ItemHeader>
-                    </ItemCard>
-                    <ItemCard
-                      raised
-                      fluid
-                      sidecolor={this.PROBLEM_COLOR}
-                      onClick={() => router.push("/problem/buy-low-sell-high")}
-                    >
-                      <ItemHeader size="small">
-                        Problem: Buy Low Sell High
-                        <Check color="#00000030" size={20} />
-                      </ItemHeader>
-                    </ItemCard>
-                    <ItemCard
-                      raised
-                      fluid
-                      sidecolor={this.PROBLEM_COLOR}
-                      onClick={() => router.push("/problem/merge-two-sorted-arrays")}
-                    >
-                      <ItemHeader size="small">
-                        Problem: Merge Two Sorted Arrays
-                        <Check color="#00000030" size={20} />
-                      </ItemHeader>
-                    </ItemCard>
-                    <ItemCard
-                      raised
-                      fluid
-                      sidecolor={this.TIPS_COLOR}
-                      onClick={() => router.push("/reading/how-to-spot-an-array-problem")}
-                    >
-                      <ItemHeader size="small">
-                        Interview Tip: How to Spot an Array Problem
-                        <Check color="#00000030" size={20} />
-                      </ItemHeader>
-                    </ItemCard>
-                    <ItemCard
-                      raised
-                      fluid
-                      sidecolor={this.TIPS_COLOR}
-                      onClick={() => router.push("/reading/approaching-array-problems")}
-                    >
-                      <ItemHeader size="small">
-                        Interview Tip: Approaching Array Problems
-                        <Check color="#00000030" size={20} />
-                      </ItemHeader>
-                    </ItemCard>
-                  </CardGroup>
+                  <CardGroup>{cardGroupContents(this.stringsAndArraysData)}</CardGroup>
                 </StyledCard>
               </StyledCardGroup>
             </GridRow>

@@ -626,6 +626,8 @@ class Problem extends Component<ProblemProps> {
             <MenuMenu position="right">
               <div style={{ margin: "auto", width: 35 }}>
                 <Popup
+                  basic
+                  hoverable
                   content="Report an Issue"
                   position="bottom left"
                   trigger={
@@ -641,6 +643,8 @@ class Problem extends Component<ProblemProps> {
               </div>
               <div style={{ margin: "auto", width: 35 }}>
                 <Popup
+                  basic
+                  hoverable
                   content={"Turn " + (this.props.darkMode ? "Off" : "On") + " Dark Mode"}
                   position="bottom left"
                   trigger={
