@@ -6,7 +6,7 @@ import "react-notifications-component/dist/theme.css";
 import "common/quiz.css";
 import "../common/index.css";
 import ReactNotification from "react-notifications-component";
-import { GlobalContextProvider } from "../common/global-context-provider";
+import GlobalContextProvider from "../common/global-context-provider";
 
 const App = ({ Component, pageProps }: AppProps) => {
   return (

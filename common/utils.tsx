@@ -1,5 +1,5 @@
 import { store } from "react-notifications-component";
-import GlobalContext from "./global-context-provider";
+import { GlobalContext } from "./global-context-provider";
 import React from "react";
 
 export function showErrorToast(message, details) {

@@ -1,7 +1,9 @@
 import React from "react";
+import { NextRouter, withRouter } from "next/router";
 import { getCurrentUser } from "common/auth-service";
 import { constants } from "common/constants";
 import { getName, showSuccessToast } from "./utils";
+import { Loader } from "semantic-ui-react";
 
 export const GlobalContext = React.createContext({
   contextLoading: true,
@@ -13,13 +15,28 @@ export const GlobalContext = React.createContext({
   setDarkMode: (_value) => {},
 });
 
-class GlobalContextProvider extends React.Component {
-  state = {
-    contextLoading: true,
-    darkMode: 0,
-    authenticated: false,
-    currentUser: null,
-  };
+interface GlobalContextProviderProps {
+  router: NextRouter;
+}
+
+interface GlobalContextProviderState {
+  contextLoading: boolean;
+  darkMode: number;
+  authenticated: boolean;
+  currentUser: any;
+}
+
+class GlobalContextProvider extends React.Component<GlobalContextProviderProps, GlobalContextProviderState> {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      contextLoading: true,
+      darkMode: 0,
+      authenticated: false,
+      currentUser: null,
+    };
+  }
 
   setDarkMode = (value: number) => {
     this.setState({
@@ -76,6 +93,15 @@ class GlobalContextProvider extends React.Component {
   }
 
   render() {
+    // wait for data from backend only if we're not on the homepage
+    if (this.props.router.pathname !== "/" && this.state.contextLoading) {
+      return (
+        <Loader active inverted size="large">
+          Loading
+        </Loader>
+      );
+    }
+
     return (
       <GlobalContext.Provider
         value={{
@@ -94,6 +120,4 @@ class GlobalContextProvider extends React.Component {
   }
 }
 
-export default GlobalContext;
-
-export { GlobalContextProvider };
+export default withRouter(GlobalContextProvider);

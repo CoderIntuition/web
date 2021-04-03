@@ -411,7 +411,7 @@
 @variationDropdownUpward: false;
 @variationDropdownSimple: false;
 @variationDropdownScrolling: false;
-@variationDropdownFluid: false;
+@variationDropdownFluid: true;
 @variationDropdownFloating: true;
 @variationDropdownPointing: true;
 @variationDropdownScrollhint: false;

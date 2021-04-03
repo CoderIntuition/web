@@ -125,6 +125,7 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
       heartbeatIncoming: 5000,
       heartbeatOutgoing: 1000,
       onConnect: () => {
+        console.log("Connected to websocket");
         // listen for produce output
         this.client.subscribe("/topic/produceoutput", (message) => {
           // if token matches call api with auth to get produce output data
@@ -341,6 +342,7 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
       headers: {
         Authorization: `Bearer ${token}`,
       },
+      timeout: 5 * 1000,
     };
     const request = {
       problemId: this.state.problemId,
@@ -349,11 +351,25 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
       code: this.getPrimarySolution(this.state.testCaseRows[idx].produceOutputLanguage.toLowerCase()),
     };
 
-    axios.post(url, request, config).then((res) => {
-      this.setState({
-        produceOutputToken: res.data.token,
+    axios
+      .post(url, request, config)
+      .then((res) => {
+        this.setState({
+          produceOutputToken: res.data.token,
+        });
+      })
+      .catch((err) => {
+        if (err.message.includes("timeout")) {
+          showErrorToast("Timed Out", "Please try again or report this issue.");
+          const testCaseRows = this.state.testCaseRows;
+          testCaseRows[idx].produceOutputLoading = false;
+          this.setState({
+            testCaseRows: testCaseRows,
+            produceOutputToken: "",
+            produceOutputIdx: -1,
+          });
+        }
       });
-    });
   }
 
   handleAddRow(section) {
