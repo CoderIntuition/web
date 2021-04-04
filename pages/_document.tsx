@@ -6,9 +6,7 @@ class MyDocument extends Document {
   render() {
     return (
       <Html lang="en">
-        <Head>
-          <title>CoderIntuition</title>
-        </Head>
+        <Head/>
         <body>
           <Main />
           <NextScript />
