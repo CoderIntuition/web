@@ -342,7 +342,7 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
       headers: {
         Authorization: `Bearer ${token}`,
       },
-      timeout: 5 * 1000,
+      timeout: 15 * 1000,
     };
     const request = {
       problemId: this.state.problemId,
@@ -522,10 +522,9 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
         });
       })
       .catch((error) => {
-        const data = error.response.data;
         this.setState({
           submitStatus: "error",
-          message: data,
+          message: error.response.data || { message: "Error", details: [error.message] },
         });
       });
   }
