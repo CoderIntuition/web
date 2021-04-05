@@ -114,7 +114,7 @@ class InfoContent extends React.Component<InfoContentProps> {
                   )}
                 </DescriptionStyles>
               ) : (
-                <Quiz quiz={wrapQuestions(curStep.content)} />
+                <Quiz quiz={wrapQuestions(curStep.content)} key={this.props.step} />
               )}
             </div>
           );
