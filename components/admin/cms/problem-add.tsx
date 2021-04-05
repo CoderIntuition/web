@@ -139,7 +139,7 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
             axios.get(url, config).then((res) => {
               const testCaseRows = this.state.testCaseRows;
               const idx = this.state.produceOutputIdx;
-              testCaseRows[idx].output = res.data.output;
+              testCaseRows[idx].output = res.data.stderr || res.data.output;
               testCaseRows[idx].produceOutputLoading = false;
               showSuccessToast("Success", "Output produced.");
               this.setState({
