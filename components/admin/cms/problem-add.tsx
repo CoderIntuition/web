@@ -368,6 +368,15 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
             produceOutputToken: "",
             produceOutputIdx: -1,
           });
+        } else {
+          showErrorToast(err.response.data.message, err.response.data.details[0]);
+          const testCaseRows = this.state.testCaseRows;
+          testCaseRows[idx].produceOutputLoading = false;
+          this.setState({
+            testCaseRows: testCaseRows,
+            produceOutputToken: "",
+            produceOutputIdx: -1,
+          });
         }
       });
   }
