@@ -62,15 +62,15 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
     },
     returnType: {
       type: "",
-      underlyingType: "",
-      underlyingType2: "",
-      orderMatters: true,
+      underlyingType: "NONE",
+      underlyingType2: "NONE",
+      orderMatters: false,
     },
     argumentRows: [
       {
         type: "",
-        underlyingType: "",
-        underlyingType2: "",
+        underlyingType: "NONE",
+        underlyingType2: "NONE",
       },
     ] as any[],
     intuitionRows: [
@@ -385,8 +385,8 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
     if (section === "argument") {
       const item = {
         type: "",
-        underlyingType: "",
-        underlyingType2: "",
+        underlyingType: "NONE",
+        underlyingType2: "NONE",
       };
       this.setState({
         argumentRows: [...this.state.argumentRows, item],
@@ -776,7 +776,7 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
                         />
                       </GridColumn>
                       <GridColumn>
-                        <Label>Underlying Type</Label>
+                        <Label>Underlying Type (for collections & dictionary)</Label>
                         <Dropdown
                           value={this.state.argumentRows[idx].underlyingType}
                           options={this.underlyingTypes}
@@ -788,7 +788,7 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
                         />
                       </GridColumn>
                       <GridColumn>
-                        <Label>Underlying Type 2 (Dictionary)</Label>
+                        <Label>Underlying Type 2 (for dictionary only)</Label>
                         <Dropdown
                           value={this.state.argumentRows[idx].underlyingType2}
                           options={this.underlyingTypes}
@@ -830,7 +830,7 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
                       />
                     </GridColumn>
                     <GridColumn>
-                      <Label>Underlying Type</Label>
+                      <Label>Underlying Type (for collections & dictionary)</Label>
                       <Dropdown
                         value={this.state.returnType.underlyingType}
                         options={this.underlyingTypes}
@@ -842,7 +842,7 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
                       />
                     </GridColumn>
                     <GridColumn>
-                      <Label>Underlying Type 2 (Dictionary)</Label>
+                      <Label>Underlying Type 2 (for dictionary only)</Label>
                       <Dropdown
                         value={this.state.returnType.underlyingType2}
                         options={this.underlyingTypes}
@@ -854,7 +854,7 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
                       />
                     </GridColumn>
                     <GridColumn>
-                      <Label>Order Matters</Label>
+                      <Label>Order Matters (for collections only)</Label>
                       <Radio
                         toggle
                         checked={this.state.returnType.orderMatters}
