@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Grid, Segment } from "semantic-ui-react";
+import { Grid, Header, Segment } from "semantic-ui-react";
 
 export const StyledGrid = styled(Grid)`
   &&& {
@@ -13,6 +13,27 @@ export const StyledSegment = styled(Segment)`
     margin-inline: 20px;
     padding: 30px;
   }
+`;
+
+export const SegmentHeader = styled(Header)`
+  &&& {
+    color: #243e63;
+    font-weight: 500;
+    font-size: 20px;
+  }
+`;
+
+export const Divider = styled.hr`
+  width: 100%;
+  margin-inline: 10px;
+`;
+
+export const SectionDivider = styled.hr`
+  width: 10%;
+  height: 5px;
+  color: #000000;
+  background-color: #243e63;
+  border-radius: 999px;
 `;
 
 export const Label = styled.span`

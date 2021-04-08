@@ -6,13 +6,13 @@ import axios from "axios";
 import Quiz from "react-quiz-component";
 import {
   Button,
-  Divider,
   Dropdown,
   Form,
   Grid,
   GridColumn,
   GridRow,
   Header,
+  Icon,
   Input,
   Loader,
   Menu,
@@ -28,10 +28,13 @@ import { GrayButton, GreenButton, RedButton } from "common/global-styles";
 import MarkdownRender from "components/common/markdown-render/markdown-render";
 import AceEditor from "components/common/ace-editor/ace-editor";
 import {
+  Divider,
   Label,
   RadioDiv,
   RadioLeftLabel,
   RadioRightLabel,
+  SectionDivider,
+  SegmentHeader,
   StyledGrid,
   StyledSegment,
   TemplateSpan,
@@ -381,72 +384,79 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
       });
   }
 
-  handleAddRow(section) {
-    if (section === "argument") {
-      const item = {
-        type: "",
-        underlyingType: "NONE",
-        underlyingType2: "NONE",
-      };
-      this.setState({
-        argumentRows: [...this.state.argumentRows, item],
-      });
-    } else if (section === "intuition") {
-      const item = {
-        name: "",
-        time: 0,
-        isQuiz: false,
-        content: "",
-      };
-      this.setState({
-        intuitionRows: [...this.state.intuitionRows, item],
-      });
-    } else if (section === "solution") {
-      const item = {
-        name: "",
-        isPrimary: false,
-        description: "",
-        language: "python",
-        code: {
-          python: "",
-          java: "",
-          javascript: "",
-        },
-      };
-      this.setState({
-        solutionRows: [...this.state.solutionRows, item],
-      });
-    } else if (section === "testCase") {
-      const item = {
-        name: "",
-        isDefault: false,
-        input: "",
-        output: "",
-      };
-      this.setState({
-        testCaseRows: [...this.state.testCaseRows, item],
-      });
+  handleAddRow(section, idx) {
+    const rowsName = section + "Rows";
+    const rows = this.state[rowsName];
+    let item = {};
+
+    switch (section) {
+      case "argument":
+        item = {
+          type: "",
+          underlyingType: "NONE",
+          underlyingType2: "NONE",
+        };
+        break;
+      case "intuition":
+        item = {
+          name: "",
+          time: 0,
+          isQuiz: false,
+          content: "",
+        };
+        break;
+      case "solution":
+        item = {
+          name: "",
+          isPrimary: false,
+          description: "",
+          language: "python",
+          code: {
+            python: "",
+            java: "",
+            javascript: "",
+          },
+        };
+        break;
+      case "testCase":
+        item = {
+          name: "",
+          isDefault: false,
+          input: "",
+          output: "",
+        };
+        break;
+    }
+
+    rows.splice(idx + 1, 0, item);
+    this.setState({ rowsName: rows });
+  }
+
+  handleRemoveRow(section, idx) {
+    const rowsName = section + "Rows";
+    const rows = this.state[rowsName];
+
+    if (rows.length > 1) {
+      rows.splice(idx, 1);
+      this.setState({ rowsName: rows });
     }
   }
 
-  handleRemoveRow(section) {
-    if (section === "argument" && this.state.argumentRows.length > 1) {
-      this.setState({
-        argumentRows: this.state.argumentRows.slice(0, -1),
-      });
-    } else if (section === "intuition" && this.state.intuitionRows.length > 1) {
-      this.setState({
-        intuitionRows: this.state.intuitionRows.slice(0, -1),
-      });
-    } else if (section === "solution" && this.state.solutionRows.length > 1) {
-      this.setState({
-        solutionRows: this.state.solutionRows.slice(0, -1),
-      });
-    } else if (section === "testCase" && this.state.testCaseRows.length > 1) {
-      this.setState({
-        testCaseRows: this.state.testCaseRows.slice(0, -1),
-      });
+  handleMoveRow(section, idx, direction) {
+    const rowsName = section + "Rows";
+    const rows = this.state[rowsName];
+
+    if (direction === "up" && idx > 0) {
+      let temp = rows[idx - 1]
+      rows[idx - 1] = rows[idx]
+      rows[idx] = temp;
+    } else if (direction === "down" && idx < rows.length - 1) {
+      let temp = rows[idx + 1]
+      rows[idx + 1] = rows[idx]
+      rows[idx] = temp;
     }
+
+    this.setState({ rowsName: rows });
   }
 
   handleSubmit() {
@@ -618,13 +628,20 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
             <GridRow centered>
               <Header as="h1">{this.props.router.query.id ? "CMS: Edit Problem" : "CMS: Add New Problem"}</Header>
             </GridRow>
-            <Divider />
+            <GridRow centered>
+              <SectionDivider />
+            </GridRow>
             {/* ----- PROBLEM INFO ----- */}
             <GridRow>
               <StyledSegment raised>
                 <Grid stackable>
-                  <GridRow centered>
-                    <Header>Problem Info</Header>
+                  <GridRow>
+                    <GridColumn>
+                      <SegmentHeader>Problem Info</SegmentHeader>
+                    </GridColumn>
+                  </GridRow>
+                  <GridRow style={{ paddingTop: 0 }}>
+                    <Divider />
                   </GridRow>
                   <GridRow>
                     <GridColumn width={8}>
@@ -753,14 +770,35 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
                 </Grid>
               </StyledSegment>
             </GridRow>
-            <Divider />
+            <GridRow centered>
+              <SectionDivider />
+            </GridRow>
             {/* ----- ARGUMENTS ----- */}
             {this.state.argumentRows.map((item, idx) => (
               <GridRow key={idx}>
                 <StyledSegment raised>
                   <Grid stackable>
-                    <GridRow centered>
-                      <Header>Argument {idx + 1}</Header>
+                    <GridRow>
+                      <GridColumn width={12} verticalAlign="middle">
+                        <SegmentHeader>Argument {idx + 1}</SegmentHeader>
+                      </GridColumn>
+                      <GridColumn width={4} floated="right" textAlign="right">
+                        <GrayButton icon circular size="tiny" onClick={() => this.handleMoveRow("argument", idx, "down")}>
+                          <Icon name="arrow down" />
+                        </GrayButton>
+                        <GrayButton icon circular size="tiny" onClick={() => this.handleMoveRow("argument", idx, "up")}>
+                          <Icon name="arrow up" />
+                        </GrayButton>
+                        <RedButton icon circular size="tiny" onClick={() => this.handleRemoveRow("argument", idx)}>
+                          <Icon name="minus" />
+                        </RedButton>
+                        <GreenButton icon circular size="tiny" onClick={() => this.handleAddRow("argument", idx)}>
+                          <Icon name="plus" />
+                        </GreenButton>
+                      </GridColumn>
+                    </GridRow>
+                    <GridRow style={{ paddingTop: 0 }}>
+                      <Divider />
                     </GridRow>
                     <GridRow columns={3}>
                       <GridColumn>
@@ -805,16 +843,19 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
               </GridRow>
             ))}
             <GridRow centered>
-              <RedButton onClick={() => this.handleRemoveRow("argument")}>Remove Argument</RedButton>
-              <GreenButton onClick={() => this.handleAddRow("argument")}>Add Argument</GreenButton>
+              <SectionDivider />
             </GridRow>
-            <Divider />
             {/* ----- RETURN TYPE ----- */}
             <GridRow>
               <StyledSegment raised>
                 <Grid stackable>
-                  <GridRow centered>
-                    <Header>Return Type</Header>
+                  <GridRow>
+                    <GridColumn verticalAlign="middle">
+                      <SegmentHeader>Return Type</SegmentHeader>
+                    </GridColumn>
+                  </GridRow>
+                  <GridRow style={{ paddingTop: 0 }}>
+                    <Divider />
                   </GridRow>
                   <GridRow columns={4}>
                     <GridColumn>
@@ -867,14 +908,35 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
                 </Grid>
               </StyledSegment>
             </GridRow>
-            <Divider />
+            <GridRow centered>
+              <SectionDivider />
+            </GridRow>
             {/* ----- INTUITION STEPS ----- */}
             {this.state.intuitionRows.map((item, idx) => (
               <GridRow key={idx}>
                 <StyledSegment raised>
                   <Grid stackable>
-                    <GridRow centered>
-                      <Header>Intuition Step {idx + 1}</Header>
+                    <GridRow>
+                      <GridColumn width={12} verticalAlign="middle">
+                        <SegmentHeader>Intuition Step {idx + 1}</SegmentHeader>
+                      </GridColumn>
+                      <GridColumn width={4} floated="right" textAlign="right">
+                        <GrayButton icon circular size="tiny" onClick={() => this.handleMoveRow("intuition", idx, "down")}>
+                          <Icon name="arrow down" />
+                        </GrayButton>
+                        <GrayButton icon circular size="tiny" onClick={() => this.handleMoveRow("intuition", idx, "up")}>
+                          <Icon name="arrow up" />
+                        </GrayButton>
+                        <RedButton icon circular size="tiny" onClick={() => this.handleRemoveRow("intuition", idx)}>
+                          <Icon name="minus" />
+                        </RedButton>
+                        <GreenButton icon circular size="tiny" onClick={() => this.handleAddRow("intuition", idx)}>
+                          <Icon name="plus" />
+                        </GreenButton>
+                      </GridColumn>
+                    </GridRow>
+                    <GridRow style={{ paddingTop: 0 }}>
+                      <Divider />
                     </GridRow>
                     <GridRow>
                       <GridColumn width={10}>
@@ -971,17 +1033,34 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
               </GridRow>
             ))}
             <GridRow centered>
-              <RedButton onClick={() => this.handleRemoveRow("intuition")}>Remove Intuition Step</RedButton>
-              <GreenButton onClick={() => this.handleAddRow("intuition")}>Add Intuition Step</GreenButton>
+              <SectionDivider />
             </GridRow>
-            <Divider />
             {/* ----- SOLUTIONS ----- */}
             {this.state.solutionRows.map((item, idx) => (
               <GridRow key={idx}>
                 <StyledSegment raised>
                   <Grid stackable>
-                    <GridRow centered>
-                      <Header>Solution {idx + 1}</Header>
+                    <GridRow>
+                      <GridColumn width={12} verticalAlign="middle">
+                        <SegmentHeader>Solution {idx + 1}</SegmentHeader>
+                      </GridColumn>
+                      <GridColumn width={4} floated="right" textAlign="right">
+                        <GrayButton icon circular size="tiny" onClick={() => this.handleMoveRow("solution", idx, "down")}>
+                          <Icon name="arrow down" />
+                        </GrayButton>
+                        <GrayButton icon circular size="tiny" onClick={() => this.handleMoveRow("solution", idx, "up")}>
+                          <Icon name="arrow up" />
+                        </GrayButton>
+                        <RedButton icon circular size="tiny" onClick={() => this.handleRemoveRow("solution", idx)}>
+                          <Icon name="minus" />
+                        </RedButton>
+                        <GreenButton icon circular size="tiny" onClick={() => this.handleAddRow("solution", idx)}>
+                          <Icon name="plus" />
+                        </GreenButton>
+                      </GridColumn>
+                    </GridRow>
+                    <GridRow style={{ paddingTop: 0 }}>
+                      <Divider />
                     </GridRow>
                     <GridRow>
                       <GridColumn width={12}>
@@ -1069,17 +1148,34 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
               </GridRow>
             ))}
             <GridRow centered>
-              <RedButton onClick={() => this.handleRemoveRow("solution")}>Remove Solution</RedButton>
-              <GreenButton onClick={() => this.handleAddRow("solution")}>Add Solution</GreenButton>
+              <SectionDivider />
             </GridRow>
-            <Divider />
             {/* ----- TEST CASES ----- */}
             {this.state.testCaseRows.map((item, idx) => (
               <GridRow key={idx}>
                 <StyledSegment raised>
                   <Grid stackable>
-                    <GridRow centered>
-                      <Header>Test Case {idx + 1}</Header>
+                    <GridRow>
+                      <GridColumn width={12} verticalAlign="middle">
+                        <SegmentHeader>Test Case {idx + 1}</SegmentHeader>
+                      </GridColumn>
+                      <GridColumn width={4} floated="right" textAlign="right">
+                        <GrayButton icon circular size="tiny" onClick={() => this.handleMoveRow("testCase", idx, "down")}>
+                          <Icon name="arrow down" />
+                        </GrayButton>
+                        <GrayButton icon circular size="tiny" onClick={() => this.handleMoveRow("testCase", idx, "up")}>
+                          <Icon name="arrow up" />
+                        </GrayButton>
+                        <RedButton icon circular size="tiny" onClick={() => this.handleRemoveRow("testCase", idx)}>
+                          <Icon name="minus" />
+                        </RedButton>
+                        <GreenButton icon circular size="tiny" onClick={() => this.handleAddRow("testCase", idx)}>
+                          <Icon name="plus" />
+                        </GreenButton>
+                      </GridColumn>
+                    </GridRow>
+                    <GridRow style={{ paddingTop: 0 }}>
+                      <Divider />
                     </GridRow>
                     <GridRow>
                       <GridColumn width={12}>
@@ -1175,10 +1271,8 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
               </GridRow>
             ))}
             <GridRow centered>
-              <RedButton onClick={() => this.handleRemoveRow("testCase")}>Remove Test Case</RedButton>
-              <GreenButton onClick={() => this.handleAddRow("testCase")}>Add Test Case</GreenButton>
+              <SectionDivider />
             </GridRow>
-            <Divider />
             {this.state.submitStatus && this.state.submitStatus !== "loading" && (
               <GridRow centered>
                 {this.state.submitStatus === "success" ? (
