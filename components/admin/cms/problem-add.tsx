@@ -29,6 +29,7 @@ import MarkdownRender from "components/common/markdown-render/markdown-render";
 import AceEditor from "components/common/ace-editor/ace-editor";
 import {
   Divider,
+  FloatingSaveButton,
   Label,
   RadioDiv,
   RadioLeftLabel,
@@ -54,8 +55,8 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
     name: "",
     urlName: "",
     plusOnly: false,
-    category: "",
-    difficulty: 1,
+    category: "ARRAYS",
+    difficulty: "EASY",
     description: "",
     defaultCodeLanguage: "python",
     defaultCode: {
@@ -64,14 +65,14 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
       javascript: "",
     },
     returnType: {
-      type: "",
+      type: "STRING",
       underlyingType: "NONE",
       underlyingType2: "NONE",
       orderMatters: false,
     },
     argumentRows: [
       {
-        type: "",
+        type: "STRING",
         underlyingType: "NONE",
         underlyingType2: "NONE",
       },
@@ -392,7 +393,7 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
     switch (section) {
       case "argument":
         item = {
-          type: "",
+          type: "STRING",
           underlyingType: "NONE",
           underlyingType2: "NONE",
         };
@@ -447,12 +448,12 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
     const rows = this.state[rowsName];
 
     if (direction === "up" && idx > 0) {
-      let temp = rows[idx - 1]
-      rows[idx - 1] = rows[idx]
+      let temp = rows[idx - 1];
+      rows[idx - 1] = rows[idx];
       rows[idx] = temp;
     } else if (direction === "down" && idx < rows.length - 1) {
-      let temp = rows[idx + 1]
-      rows[idx + 1] = rows[idx]
+      let temp = rows[idx + 1];
+      rows[idx + 1] = rows[idx];
       rows[idx] = temp;
     }
 
@@ -535,15 +536,21 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
     axios
       .post(url, request, config)
       .then((res) => {
-        this.setState({
-          submitStatus: "success",
-          message: res.data,
-        });
+        showSuccessToast("Success", "Problem updated successfully");
+        if (!this.props.router.query.id) {
+          this.props.router.push("/admin/cms/problems");
+        } else {
+          this.setState({
+            submitStatus: "success",
+            message: res.data,
+          });
+        }
       })
       .catch((error) => {
+        showErrorToast(error.response.data.message || "Error", error.response.data.details[0] || error.message);
         this.setState({
           submitStatus: "error",
-          message: error.response.data || { message: "Error", details: [error.message] },
+          message: error.response.data || { message: "Error", details: error.message },
         });
       });
   }
@@ -624,6 +631,16 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
     return (
       <>
         <Form>
+          <FloatingSaveButton
+            primary
+            icon
+            circular
+            size="large"
+            loading={this.state.submitStatus === "loading"}
+            onClick={() => this.handleSubmit()}
+          >
+            <Icon name="save" />
+          </FloatingSaveButton>
           <StyledGrid>
             <GridRow centered>
               <Header as="h1">{this.props.router.query.id ? "CMS: Edit Problem" : "CMS: Add New Problem"}</Header>
@@ -775,7 +792,7 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
             </GridRow>
             {/* ----- ARGUMENTS ----- */}
             {this.state.argumentRows.map((item, idx) => (
-              <GridRow key={idx}>
+              <GridRow key={"argumentRows" + idx}>
                 <StyledSegment raised>
                   <Grid stackable>
                     <GridRow>
@@ -783,7 +800,12 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
                         <SegmentHeader>Argument {idx + 1}</SegmentHeader>
                       </GridColumn>
                       <GridColumn width={4} floated="right" textAlign="right">
-                        <GrayButton icon circular size="tiny" onClick={() => this.handleMoveRow("argument", idx, "down")}>
+                        <GrayButton
+                          icon
+                          circular
+                          size="tiny"
+                          onClick={() => this.handleMoveRow("argument", idx, "down")}
+                        >
                           <Icon name="arrow down" />
                         </GrayButton>
                         <GrayButton icon circular size="tiny" onClick={() => this.handleMoveRow("argument", idx, "up")}>
@@ -913,7 +935,7 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
             </GridRow>
             {/* ----- INTUITION STEPS ----- */}
             {this.state.intuitionRows.map((item, idx) => (
-              <GridRow key={idx}>
+              <GridRow key={"intuitionRows" + idx}>
                 <StyledSegment raised>
                   <Grid stackable>
                     <GridRow>
@@ -921,10 +943,20 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
                         <SegmentHeader>Intuition Step {idx + 1}</SegmentHeader>
                       </GridColumn>
                       <GridColumn width={4} floated="right" textAlign="right">
-                        <GrayButton icon circular size="tiny" onClick={() => this.handleMoveRow("intuition", idx, "down")}>
+                        <GrayButton
+                          icon
+                          circular
+                          size="tiny"
+                          onClick={() => this.handleMoveRow("intuition", idx, "down")}
+                        >
                           <Icon name="arrow down" />
                         </GrayButton>
-                        <GrayButton icon circular size="tiny" onClick={() => this.handleMoveRow("intuition", idx, "up")}>
+                        <GrayButton
+                          icon
+                          circular
+                          size="tiny"
+                          onClick={() => this.handleMoveRow("intuition", idx, "up")}
+                        >
                           <Icon name="arrow up" />
                         </GrayButton>
                         <RedButton icon circular size="tiny" onClick={() => this.handleRemoveRow("intuition", idx)}>
@@ -1037,7 +1069,7 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
             </GridRow>
             {/* ----- SOLUTIONS ----- */}
             {this.state.solutionRows.map((item, idx) => (
-              <GridRow key={idx}>
+              <GridRow key={"solutionRows" + idx}>
                 <StyledSegment raised>
                   <Grid stackable>
                     <GridRow>
@@ -1045,7 +1077,12 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
                         <SegmentHeader>Solution {idx + 1}</SegmentHeader>
                       </GridColumn>
                       <GridColumn width={4} floated="right" textAlign="right">
-                        <GrayButton icon circular size="tiny" onClick={() => this.handleMoveRow("solution", idx, "down")}>
+                        <GrayButton
+                          icon
+                          circular
+                          size="tiny"
+                          onClick={() => this.handleMoveRow("solution", idx, "down")}
+                        >
                           <Icon name="arrow down" />
                         </GrayButton>
                         <GrayButton icon circular size="tiny" onClick={() => this.handleMoveRow("solution", idx, "up")}>
@@ -1152,7 +1189,7 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
             </GridRow>
             {/* ----- TEST CASES ----- */}
             {this.state.testCaseRows.map((item, idx) => (
-              <GridRow key={idx}>
+              <GridRow key={"testCaseRows" + idx}>
                 <StyledSegment raised>
                   <Grid stackable>
                     <GridRow>
@@ -1160,7 +1197,12 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
                         <SegmentHeader>Test Case {idx + 1}</SegmentHeader>
                       </GridColumn>
                       <GridColumn width={4} floated="right" textAlign="right">
-                        <GrayButton icon circular size="tiny" onClick={() => this.handleMoveRow("testCase", idx, "down")}>
+                        <GrayButton
+                          icon
+                          circular
+                          size="tiny"
+                          onClick={() => this.handleMoveRow("testCase", idx, "down")}
+                        >
                           <Icon name="arrow down" />
                         </GrayButton>
                         <GrayButton icon circular size="tiny" onClick={() => this.handleMoveRow("testCase", idx, "up")}>
