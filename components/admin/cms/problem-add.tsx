@@ -122,40 +122,44 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
       return;
     }
 
-    this.client = new Client();
-    this.client.configure({
+    this.client = new Client({
       brokerURL: constants.STOMP_BASE_URL,
       reconnectDelay: 1000,
-      heartbeatIncoming: 5000,
-      heartbeatOutgoing: 1000,
-      onConnect: () => {
-        console.log("Connected to websocket");
-        // listen for produce output
-        this.client.subscribe("/topic/produceoutput", (message) => {
-          // if token matches call api with auth to get produce output data
-          if (message.body === this.state.produceOutputToken) {
-            const url = constants.PRODUCE_OUTPUT_URL + "/" + this.state.produceOutputToken;
-            const config = {
-              headers: {
-                Authorization: `Bearer ${getCurrentUserToken()}`,
-              },
-            };
-            axios.get(url, config).then((res) => {
-              const testCaseRows = this.state.testCaseRows;
-              const idx = this.state.produceOutputIdx;
-              testCaseRows[idx].output = res.data.stderr || res.data.output;
-              testCaseRows[idx].produceOutputLoading = false;
-              showSuccessToast("Success", "Output produced.");
-              this.setState({
-                testCaseRows: testCaseRows,
-                produceOutputToken: "",
-                produceOutputIdx: -1,
-              });
-            });
-          }
-        });
-      },
+      heartbeatOutgoing: 10000,
+      heartbeatIncoming: 10000,
     });
+
+    this.client.onConnect = (_frame) => {
+      // listen for produce output
+      this.client.subscribe("/topic/produceoutput", (message) => {
+        // if token matches call api with auth to get produce output data
+        if (message.body === this.state.produceOutputToken) {
+          const url = constants.PRODUCE_OUTPUT_URL + "/" + this.state.produceOutputToken;
+          const config = {
+            headers: {
+              Authorization: `Bearer ${getCurrentUserToken()}`,
+            },
+          };
+          axios.get(url, config).then((res) => {
+            const testCaseRows = this.state.testCaseRows;
+            const idx = this.state.produceOutputIdx;
+            testCaseRows[idx].output = res.data.stderr || res.data.output;
+            testCaseRows[idx].produceOutputLoading = false;
+            showSuccessToast("Success", "Output produced.");
+            this.setState({
+              testCaseRows: testCaseRows,
+              produceOutputToken: "",
+              produceOutputIdx: -1,
+            });
+          });
+        }
+      });
+    }
+
+    this.client.onStompError = (frame) => {
+      console.log('Broker reported error: ' + frame.headers['message']);
+      console.log('Additional details: ' + frame.body);
+    }
 
     this.client.activate();
   }
@@ -166,6 +170,7 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
     if (id) {
       // edit
       this.setupWebSocket();
+
       const url = constants.CMS_PROBLEM_URL + "id/" + id;
       const config = {
         headers: {

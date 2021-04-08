@@ -164,53 +164,60 @@ class Problem extends Component<ProblemProps> {
 
   setupWebSocket() {
     this.client = new Client();
-    this.client.configure({
+
+    this.client = new Client({
       brokerURL: constants.STOMP_BASE_URL,
       reconnectDelay: 1000,
-      heartbeatIncoming: 5000,
-      heartbeatOutgoing: 1000,
-      onConnect: () => {
-        // listen for submissions
-        this.client.subscribe("/topic/submission", (message) => {
-          // if token matches call api with auth to get submission data
-          if (message.body === this.state.submissionToken) {
-            const url = constants.SUBMISSION_URL + "/" + this.state.submissionToken;
-            const config = {
-              headers: {
-                Authorization: `Bearer ${getCurrentUserToken()}`,
-              },
-            };
-            axios.get(url, config).then((res) => {
-              this.setState({
-                submitting: false,
-                submissionToken: "",
-                testTab: "submission",
-                submission: res.data,
-              });
-              this.getSubmissions(this.state.problem.id);
-            });
-          }
-        });
-
-        // listen for test runs
-        this.client.subscribe("/topic/testrun", (message) => {
-          const testRunData = JSON.parse(message.body);
-          // if token matches set the test run data
-          if (testRunData.token === this.state.testRunToken) {
-            this.setState({
-              running: false,
-              testRunToken: "",
-              testTab: "testResult",
-              testStatus: testRunData.status,
-              testStderr: testRunData.stderr,
-              testStdout: testRunData.stdout,
-              testOutput: testRunData.output,
-              testExpectedOutput: testRunData.expectedOutput,
-            });
-          }
-        });
-      },
+      heartbeatOutgoing: 10000,
+      heartbeatIncoming: 10000,
     });
+
+    this.client.onConnect = (_frame) => {
+      // listen for submissions
+      this.client.subscribe("/topic/submission", (message) => {
+        // if token matches call api with auth to get submission data
+        if (message.body === this.state.submissionToken) {
+          const url = constants.SUBMISSION_URL + "/" + this.state.submissionToken;
+          const config = {
+            headers: {
+              Authorization: `Bearer ${getCurrentUserToken()}`,
+            },
+          };
+          axios.get(url, config).then((res) => {
+            this.setState({
+              submitting: false,
+              submissionToken: "",
+              testTab: "submission",
+              submission: res.data,
+            });
+            this.getSubmissions(this.state.problem.id);
+          });
+        }
+      });
+
+      // listen for test runs
+      this.client.subscribe("/topic/testrun", (message) => {
+        const testRunData = JSON.parse(message.body);
+        // if token matches set the test run data
+        if (testRunData.token === this.state.testRunToken) {
+          this.setState({
+            running: false,
+            testRunToken: "",
+            testTab: "testResult",
+            testStatus: testRunData.status,
+            testStderr: testRunData.stderr,
+            testStdout: testRunData.stdout,
+            testOutput: testRunData.output,
+            testExpectedOutput: testRunData.expectedOutput,
+          });
+        }
+      });
+    }
+
+    this.client.onStompError = (frame) => {
+      console.log('Broker reported error: ' + frame.headers['message']);
+      console.log('Additional details: ' + frame.body);
+    }
 
     this.client.activate();
   }
