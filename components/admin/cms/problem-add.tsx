@@ -725,7 +725,7 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
                       <Label>Description</Label>
                       <TextArea
                         value={this.state.description}
-                        rows={10}
+                        rows={15}
                         onChange={(e, { value }) => {
                           this.setState({ description: value });
                         }}
@@ -1022,7 +1022,7 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
                         {item.isQuiz ? (
                           <AceEditor
                             width="100%"
-                            height="550px"
+                            height="500px"
                             mode="json"
                             theme="xcode"
                             value={item.content}
@@ -1130,6 +1130,7 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
                         <Label>Description</Label>
                         <TextArea
                           value={this.state.solutionRows[idx].description}
+                          rows={10}
                           onChange={(e, { value }) => {
                             this.handleSolutionFieldChange(idx, value, "description");
                           }}
@@ -1164,7 +1165,7 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
                         </Menu>
                         <AceEditor
                           width="100%"
-                          height="400px"
+                          height="300px"
                           mode={this.state.solutionRows[idx].language}
                           theme="xcode"
                           value={this.state.solutionRows[idx].code[this.state.solutionRows[idx].language]}
@@ -1250,7 +1251,7 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
                         <Label>Input</Label>
                         <AceEditor
                           width="100%"
-                          height="150px"
+                          height="100px"
                           mode="plain_text"
                           theme="xcode"
                           value={this.state.testCaseRows[idx].input}
@@ -1291,7 +1292,7 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
                         <Label>Output (not necessary - just for verification)</Label>
                         <AceEditor
                           width="100%"
-                          height="150px"
+                          height="100px"
                           mode="plain_text"
                           theme="xcode"
                           value={this.state.testCaseRows[idx].output}
@@ -1324,29 +1325,21 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
                 )}
               </GridRow>
             )}
-            {this.state.submitStatus === "success" && !router.query.id ? (
-              <GridRow centered>
-                <Link href="/admin/cms/problems">
-                  <Button primary>Back</Button>
-                </Link>
-              </GridRow>
-            ) : (
-              <GridRow centered>
-                <Link href="/admin/cms/problems">
-                  <RedButton>{router.query.id ? "Back" : "Cancel"}</RedButton>
-                </Link>
-                {router.query.id && (
-                  <GrayButton
-                    onClick={() => window.open(constants.WEB_BASE_URL + "/problem/" + this.state.urlName, "_blank")}
-                  >
-                    Preview
-                  </GrayButton>
-                )}
-                <Button primary loading={this.state.submitStatus === "loading"} onClick={() => this.handleSubmit()}>
-                  Save Problem
-                </Button>
-              </GridRow>
-            )}
+            <GridRow centered>
+              <Link href="/admin/cms/problems">
+                <RedButton>{router.query.id ? "Back" : "Cancel"}</RedButton>
+              </Link>
+              {router.query.id && (
+                <GrayButton
+                  onClick={() => window.open(constants.WEB_BASE_URL + "/problem/" + this.state.urlName, "_blank")}
+                >
+                  View Problem
+                </GrayButton>
+              )}
+              <Button primary loading={this.state.submitStatus === "loading"} onClick={() => this.handleSubmit()}>
+                Save Problem
+              </Button>
+            </GridRow>
           </StyledGrid>
         </Form>
       </>
