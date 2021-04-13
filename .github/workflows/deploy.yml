@@ -40,5 +40,5 @@ jobs:
           script: |
             docker login docker.pkg.github.com -u $GITHUB_USERNAME -p $GITHUB_TOKEN
             docker pull docker.pkg.github.com/coderintuition/web/web:latest
-            docker-compose -f ~/docker-compose/docker-compose.yml up --force-recreate --build -d
+            docker-compose -f ~/compose/docker-compose.yml up --force-recreate --build -d
             docker image prune -f
