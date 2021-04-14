@@ -249,11 +249,6 @@ class BeginnerPath extends React.Component<BeginnerPathProps, BeginnerPathState>
       name: "Problem: Valid Palindrome",
     },
     {
-      type: "problem",
-      urlName: "move-zeros-to-the-end",
-      name: "Problem: Move Zeros to the End",
-    },
-    {
       type: "reading",
       urlName: "searching-arrays",
       name: "Searching Arrays",
