@@ -19,7 +19,7 @@ import {
   StyledTable,
   StyledTableHeaderCell,
   StyledTableRow,
-  TestResultText,
+  TestResultText, VHeaderWithBorder
 } from "./info-content-styles";
 import MarkdownRenderDark from "../common/markdown-render/markdown-render-dark";
 
@@ -56,6 +56,17 @@ class InfoContent extends React.Component<InfoContentProps> {
 
   hasPassedSubmission() {
     return this.props.submissions.some((x) => x.status === "ACCEPTED");
+  }
+
+  getSolutionCode(solution, language) {
+    switch (language) {
+      case "PYTHON":
+        return solution.pythonCode;
+      case "JAVA":
+        return solution.javaCode;
+      case "JAVASCRIPT":
+        return solution.javascriptCode;
+    }
   }
 
   render() {
@@ -175,21 +186,22 @@ class InfoContent extends React.Component<InfoContentProps> {
               {this.props.problem.solutions.map((solution, idx) => {
                 return (
                   <div key={idx}>
-                    <VHeader dark={this.props.darkMode} as="h3">
+                    <VHeaderWithBorder dark={this.props.darkMode} as="h3">
                       Approach {solution.solutionNum}: {solution.name}
-                      <hr style={{backgroundColor: "#cccccc", border: "none", height: 1, borderRadius: 999, marginTop: 3}}/>
-                    </VHeader>
+                    </VHeaderWithBorder>
                     {this.props.darkMode ? (
                       <MarkdownRenderDark source={solution.description} />
                     ) : (
                       <MarkdownRender source={solution.description} />
                     )}
-                    <br />
+                    <VHeader dark={this.props.darkMode} as="h4">
+                      Code
+                    </VHeader>
                     <AceEditor
                       width={this.props.windowWidth - this.props.verticalPaneSize - 65 + "px"}
-                      mode={"python"}
+                      mode={this.props.language.toLowerCase()}
                       theme={this.props.darkMode ? "monokai" : "xcode"}
-                      value={solution.pythonCode}
+                      value={this.getSolutionCode(solution, this.props.language)}
                       editorProps={{
                         $blockScrolling: true,
                         $blockSelectEnabled: true,

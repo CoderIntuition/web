@@ -1,11 +1,17 @@
 import styled from "styled-components";
 import { Table, TableHeaderCell } from "semantic-ui-react";
+import { VHeader } from "../../common/global-styles";
 
 export const ActionText = styled.span`
   &&& {
     font-weight: 400;
     font-size: 14px;
   }
+`;
+
+export const VHeaderWithBorder = styled(VHeader)`
+  padding-bottom: .3em;
+  border-bottom: 1px solid #eaecef;
 `;
 
 export const BlurTopDiv = styled.div`
