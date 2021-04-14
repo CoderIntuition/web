@@ -31,7 +31,6 @@ export const Divider = styled.hr`
 export const SectionDivider = styled.hr`
   width: 10%;
   height: 5px;
-  color: #000000;
   background-color: #243e63;
   border-radius: 999px;
 `;

@@ -134,6 +134,7 @@ class InfoContent extends React.Component<InfoContentProps> {
                       <VHeader dark={this.props.darkMode} size="medium">
                         Approach {solution.solutionNum}: {solution.name}
                       </VHeader>
+                      <hr/>
                       <DescriptionStyles>
                         {this.props.darkMode ? (
                           <MarkdownRenderDark source={solution.description} />
@@ -176,6 +177,7 @@ class InfoContent extends React.Component<InfoContentProps> {
                   <div key={idx}>
                     <VHeader dark={this.props.darkMode} as="h3">
                       Approach {solution.solutionNum}: {solution.name}
+                      <hr style={{backgroundColor: "#cccccc", border: "none", height: 1, borderRadius: 999, marginTop: 3}}/>
                     </VHeader>
                     {this.props.darkMode ? (
                       <MarkdownRenderDark source={solution.description} />
