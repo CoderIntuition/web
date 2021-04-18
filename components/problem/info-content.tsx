@@ -22,6 +22,7 @@ import {
   VHeaderWithBorder,
 } from "./info-content-styles";
 import MarkdownRenderDark from "../common/markdown-render/markdown-render-dark";
+import { Briefcase, CheckCircle, Heart, Upload } from "react-feather";
 
 interface InfoContentProps {
   authenticated: boolean;
@@ -78,15 +79,22 @@ class InfoContent extends React.Component<InfoContentProps> {
             <VHeader dark={this.props.darkMode} style={{ marginBottom: 6 }}>
               {this.props.problem.name}
             </VHeader>
-            <Label
-              color={getDifficultyColor(this.props.problem.difficulty)}
-              circular
-              size="small"
-              style={{ marginBottom: 10 }}
-            >
-              {capitalize(this.props.problem.difficulty)}
-            </Label>
-            <hr style={{ marginBottom: 16 }} />
+            <div style={{ display: "flex", flexDirection: "row", alignItems: "center", marginBottom: 10, minWidth: 280 }}>
+              <Label color={getDifficultyColor(this.props.problem.difficulty)} circular size="small">
+                {capitalize(this.props.problem.difficulty)}
+              </Label>
+              <Briefcase style={{ display: "inline", width: 16, marginLeft: 20 }} />
+              <span style={{ marginLeft: 5, marginBottom: 1, fontSize: 13}}>2</span>
+              <Upload style={{ display: "inline", width: 16, marginLeft: 20 }} />
+              <span style={{ marginLeft: 5, marginBottom: 1, fontSize: 13 }}>87</span>
+              <Heart style={{ display: "inline", width: 16, marginLeft: 20 }} />
+              <span style={{ marginLeft: 5, marginBottom: 1, fontSize: 13 }}>87</span>
+              <CheckCircle
+                color={this.hasPassedSubmission() ? "#20bf6b" : "#00000030"}
+                style={{ display: "inline", width: 16, marginLeft: 20 }}
+              />
+            </div>
+            <hr style={{ marginBottom: 16, minWidth: 280 }} />
             <DescriptionStyles>
               {this.props.darkMode ? (
                 <MarkdownRenderDark source={this.props.problem.description} />
