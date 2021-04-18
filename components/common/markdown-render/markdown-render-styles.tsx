@@ -17,7 +17,7 @@ export const StyledDiv = styled.div`
     p {
       font-size: 14px;
     }
-    
+
     table {
       font-size: 14px;
       width: fit-content;
@@ -63,6 +63,36 @@ export const StyledDivDark = styled.div`
 
     p {
       font-size: 14px;
+    }
+    
+    code {
+      background-color: #333333;  
+    }
+
+    table {
+      font-size: 14px;
+      width: fit-content;
+      border-collapse: collapse;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid #dfe2e5;
+    }
+
+    td {
+      padding: 4px 8px;
+      border-left: none;
+      border-bottom: none;
+    }
+
+    th {
+      padding: 4px 8px;
+      border: none;
+      background-color: #101010;
+    }
+
+    tr {
+      border: none;
+      background-color: #1a1a1a;
     }
   }
 `;

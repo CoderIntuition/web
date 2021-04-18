@@ -2,13 +2,12 @@ import React from "react";
 import Image from "next/image";
 import moment from "moment/moment";
 import Quiz from "react-quiz-component";
-import { Grid, GridColumn, GridRow, Modal, Table, TableHeader } from "semantic-ui-react";
+import { Grid, GridColumn, GridRow, Label, Modal, Table, TableHeader } from "semantic-ui-react";
 import MarkdownRender from "components/common/markdown-render/markdown-render";
 import AceEditor from "components/common/ace-editor/ace-editor";
 import Emoji from "components/common/emoji/emoji";
-import { capitalize, wrapQuestions } from "common/utils";
+import { capitalize, getDifficultyColor, wrapQuestions } from "common/utils";
 import { GrayButton, VHeader } from "common/global-styles";
-import { Label } from "./problem-styles";
 import {
   ActionText,
   BlurredDiv,
@@ -19,7 +18,8 @@ import {
   StyledTable,
   StyledTableHeaderCell,
   StyledTableRow,
-  TestResultText, VHeaderWithBorder
+  TestResultText,
+  VHeaderWithBorder,
 } from "./info-content-styles";
 import MarkdownRenderDark from "../common/markdown-render/markdown-render-dark";
 
@@ -75,9 +75,18 @@ class InfoContent extends React.Component<InfoContentProps> {
       case "description":
         return (
           <>
-            <VHeader dark={this.props.darkMode} size="large">
+            <VHeader dark={this.props.darkMode} style={{ marginBottom: 6 }}>
               {this.props.problem.name}
             </VHeader>
+            <Label
+              color={getDifficultyColor(this.props.problem.difficulty)}
+              circular
+              size="small"
+              style={{ marginBottom: 10 }}
+            >
+              {capitalize(this.props.problem.difficulty)}
+            </Label>
+            <hr style={{ marginBottom: 16 }} />
             <DescriptionStyles>
               {this.props.darkMode ? (
                 <MarkdownRenderDark source={this.props.problem.description} />
@@ -93,7 +102,7 @@ class InfoContent extends React.Component<InfoContentProps> {
           return (
             <Grid style={{ marginBottom: 50 }}>
               <GridRow centered>
-                <VHeader dark={this.props.darkMode} size="large">
+                <VHeader dark={this.props.darkMode}>
                   Stuck? <Emoji symbol="😕" />
                 </VHeader>
               </GridRow>
@@ -104,7 +113,8 @@ class InfoContent extends React.Component<InfoContentProps> {
               </GridRow>
               <GridRow centered style={{ marginTop: 50 }}>
                 <ActionText>
-                  Click <b>below</b> to learn the <b>Intuition Steps</b> required to solve this problem!
+                  Click <b style={{ fontWeight: 600 }}>below</b> to learn the{" "}
+                  <b style={{ fontWeight: 600 }}>Intuition Steps</b> required to solve this problem!
                 </ActionText>
               </GridRow>
             </Grid>
@@ -113,9 +123,9 @@ class InfoContent extends React.Component<InfoContentProps> {
           const curStep = this.props.problem.problemSteps[this.props.step - 1];
           return (
             <div style={{ marginBottom: 70 }}>
-              <VHeader dark={this.props.darkMode} size="medium">
-                Step {curStep.stepNum} - {curStep.name}
-              </VHeader>
+              <VHeaderWithBorder dark={this.props.darkMode} as="h3">
+                Step {curStep.stepNum}: {curStep.name}
+              </VHeaderWithBorder>
               {curStep.type === "TEXT" ? (
                 <DescriptionStyles>
                   {this.props.darkMode ? (
@@ -142,10 +152,9 @@ class InfoContent extends React.Component<InfoContentProps> {
                 {this.props.problem.solutions.map((solution, idx) => {
                   return (
                     <div key={idx}>
-                      <VHeader dark={this.props.darkMode} size="medium">
+                      <VHeaderWithBorder dark={this.props.darkMode} as="h3">
                         Approach {solution.solutionNum}: {solution.name}
-                      </VHeader>
-                      <hr/>
+                      </VHeaderWithBorder>
                       <DescriptionStyles>
                         {this.props.darkMode ? (
                           <MarkdownRenderDark source={solution.description} />
@@ -189,12 +198,17 @@ class InfoContent extends React.Component<InfoContentProps> {
                     <VHeaderWithBorder dark={this.props.darkMode} as="h3">
                       Approach {solution.solutionNum}: {solution.name}
                     </VHeaderWithBorder>
-                    {this.props.darkMode ? (
-                      <MarkdownRenderDark source={solution.description} />
-                    ) : (
-                      <MarkdownRender source={solution.description} />
-                    )}
-                    <VHeader dark={this.props.darkMode} as="h4">
+                    <DescriptionStyles>
+                      {this.props.darkMode ? (
+                        <MarkdownRenderDark source={solution.description} />
+                      ) : (
+                        <MarkdownRender source={solution.description} />
+                      )}
+                    </DescriptionStyles>
+                    <VHeader
+                      dark={this.props.darkMode}
+                      style={{ fontSize: 14, fontWeight: 600, marginTop: 20, marginBottom: 8 }}
+                    >
                       Code
                     </VHeader>
                     <AceEditor
@@ -269,7 +283,6 @@ class InfoContent extends React.Component<InfoContentProps> {
                   })}
                 </Table.Body>
               </StyledTable>
-              {console.log(this.state.curSubmission)}
               {this.state.curSubmission && (
                 <Modal
                   closeOnEscape={true}

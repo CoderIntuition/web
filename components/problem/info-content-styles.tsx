@@ -75,11 +75,20 @@ export const DescriptionStyles = styled.div`
     }
 
     .markdown-body h2 {
-      font-size: 18px;
+      font-size: 16px;
+      font-weight: 500;
     }
 
     .markdown-body h3 {
-      font-size: 16px;
+      font-size: 15px;
+      font-weight: 600;
+      margin-top: 20px;
+      margin-bottom: 8px;
+    }
+
+    .markdown-body h4 {
+      font-size: 14px;
+      font-weight: 600;
     }
   }
 `;

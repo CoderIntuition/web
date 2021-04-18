@@ -164,6 +164,7 @@ export const BottomRightButton = styled(Button)`
 export const BottomBar = styled.div`
   &&& {
     height: 58px;
+    min-width: 440px;
     width: 100%;
     position: absolute;
     bottom: 0;

@@ -8,7 +8,7 @@ import "katex/dist/katex.min.css";
 import { StyledDiv } from "./markdown-render-styles";
 
 interface MarkdownRenderProps {
-  source: string
+  source: string;
 }
 
 const MarkdownRender: FC<MarkdownRenderProps> = (props) => {

@@ -40,6 +40,7 @@ import {
   StyledSegment,
   TemplateSpan,
 } from "./add-styles";
+import { DescriptionStyles } from "../../problem/info-content-styles";
 
 interface CmsProblemAddProps {
   router: NextRouter;
@@ -154,12 +155,12 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
           });
         }
       });
-    }
+    };
 
     this.client.onStompError = (frame) => {
-      console.log('Broker reported error: ' + frame.headers['message']);
-      console.log('Additional details: ' + frame.body);
-    }
+      console.log("Broker reported error: " + frame.headers["message"]);
+      console.log("Additional details: " + frame.body);
+    };
 
     this.client.activate();
   }
@@ -739,7 +740,9 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
                     <GridColumn width={8}>
                       <Label>Description Preview</Label>
                       <Segment raised>
-                        <MarkdownRender source={this.state.description} />
+                        <DescriptionStyles>
+                          <MarkdownRender source={this.state.description} />
+                        </DescriptionStyles>
                       </Segment>
                     </GridColumn>
                   </GridRow>
@@ -1060,7 +1063,9 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
                               <div>Quiz not formatted properly</div>
                             )
                           ) : (
-                            <MarkdownRender source={item.content} />
+                            <DescriptionStyles>
+                              <MarkdownRender source={item.content} />
+                            </DescriptionStyles>
                           )}
                         </Segment>
                       </GridColumn>
@@ -1144,7 +1149,9 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
                       <GridColumn width={8}>
                         <Label>Description Preview</Label>
                         <Segment raised>
-                          <MarkdownRender source={this.state.solutionRows[idx].description} />
+                          <DescriptionStyles>
+                            <MarkdownRender source={this.state.solutionRows[idx].description} />
+                          </DescriptionStyles>
                         </Segment>
                       </GridColumn>
                     </GridRow>

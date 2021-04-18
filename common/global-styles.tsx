@@ -23,6 +23,8 @@ export const Label = styled.span`
 export const VHeader = styled(Header)`
   &&& {
     color: ${(props) => props.dark ? "#e0e0e0" : ""};
+    font-size: 20px;
+    font-weight: 500;
   }
 `;
 

@@ -10,7 +10,6 @@ import { SimpleProblem } from "common/types";
 import { GrayBackground, Heading, HeadingSection, Subheading } from "./overview-styles";
 import { BottomRow, FirstRow, NotFoundWrapper, SearchInput, StyledGrid } from "./problems-styles";
 import Head from "next/head";
-import { AlertCircle } from "react-feather";
 
 const categories = {
   arrays: "Arrays",
