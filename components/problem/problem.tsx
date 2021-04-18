@@ -408,6 +408,12 @@ class Problem extends Component<ProblemProps> {
 
     axios.post(constants.TEST_RUN_URL, request).then((res) => {
       this.setState({ testRunToken: res.data.token });
+      setTimeout(() => {
+        if (this.state.testRunToken === res.data.token) {
+          showErrorToast("Test Run Timeout", "Please try running your code again or report this issue.")
+          this.setState({ running: false, testRunToken: "" });
+        }
+      }, 15000);
     });
   }
 
@@ -437,6 +443,12 @@ class Problem extends Component<ProblemProps> {
 
     axios.post(constants.SUBMISSION_URL, request, config).then((res) => {
       this.setState({ submissionToken: res.data.token });
+      setTimeout(() => {
+        if (this.state.submissionToken === res.data.token) {
+          showErrorToast("Submission Timeout", "Please try submitting your code again or report this issue.")
+          this.setState({ running: false, testRunToken: "" });
+        }
+      }, 15000);
     });
   }
 

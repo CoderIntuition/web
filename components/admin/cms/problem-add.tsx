@@ -352,7 +352,7 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
       headers: {
         Authorization: `Bearer ${token}`,
       },
-      timeout: 15 * 1000,
+      timeout: 15000,
     };
     const request = {
       problemId: this.state.problemId,
@@ -367,27 +367,32 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
         this.setState({
           produceOutputToken: res.data.token,
         });
+        setTimeout(() => {
+          if (this.state.produceOutputToken === res.data.token) {
+            showErrorToast("Submission Timeout", "Please try submitting your code again or report this issue.")
+            const testCaseRows = this.state.testCaseRows;
+            testCaseRows[idx].produceOutputLoading = false;
+            this.setState({
+              testCaseRows: testCaseRows,
+              produceOutputToken: "",
+              produceOutputIdx: -1,
+            });
+          }
+        }, 15000);
       })
       .catch((err) => {
         if (err.message.includes("timeout")) {
           showErrorToast("Timed Out", "Please try again or report this issue.");
-          const testCaseRows = this.state.testCaseRows;
-          testCaseRows[idx].produceOutputLoading = false;
-          this.setState({
-            testCaseRows: testCaseRows,
-            produceOutputToken: "",
-            produceOutputIdx: -1,
-          });
         } else {
           showErrorToast(err.response.data.message, err.response.data.details[0]);
-          const testCaseRows = this.state.testCaseRows;
-          testCaseRows[idx].produceOutputLoading = false;
-          this.setState({
-            testCaseRows: testCaseRows,
-            produceOutputToken: "",
-            produceOutputIdx: -1,
-          });
         }
+        const testCaseRows = this.state.testCaseRows;
+        testCaseRows[idx].produceOutputLoading = false;
+        this.setState({
+          testCaseRows: testCaseRows,
+          produceOutputToken: "",
+          produceOutputIdx: -1,
+        });
       });
   }
 
@@ -537,6 +542,7 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
       headers: {
         Authorization: `Bearer ${token}`,
       },
+      timeout: 15000,
     };
 
     axios
@@ -553,7 +559,11 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
         }
       })
       .catch((error) => {
-        showErrorToast(error.response.data.message || "Error", error.response.data.details[0] || error.message);
+        if (error.message.includes("timeout")) {
+          showErrorToast("Timed Out", "Please try again or report this issue.");
+        } else {
+          showErrorToast(error.response.data.message || "Error", error.response.data.details[0] || error.message);
+        }
         this.setState({
           submitStatus: "error",
           message: error.response.data || { message: "Error", details: error.message },
