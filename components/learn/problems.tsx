@@ -223,7 +223,7 @@ class Problems extends React.Component<ProblemsProps, ProblemsState> {
                         <Table.Row key={i} onClick={() => router.push("/problem/" + problem.urlName)}>
                           <Table.Cell style={{ paddingLeft: 20 }}>{problem.name}</Table.Cell>
                           <Table.Cell>
-                            <Label circular>{capitalize(problem.category)}</Label>
+                            <Label circular>{categories[category]}</Label>
                           </Table.Cell>
                           <Table.Cell>
                             <Label color={getDifficultyColor(problem.difficulty)} circular>
@@ -233,7 +233,7 @@ class Problems extends React.Component<ProblemsProps, ProblemsState> {
                         </Table.Row>
                       ))}
                     </Table.Body>
-                    <Table.Footer></Table.Footer>
+                    <Table.Footer/>
                   </Table>
                 </Grid.Row>
                 <BottomRow centered>

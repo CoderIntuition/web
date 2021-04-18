@@ -197,6 +197,7 @@ class Problem extends Component<ProblemProps> {
 
       // listen for test runs
       this.client.subscribe("/topic/testrun", (message) => {
+        console.log("Received message: " + message.body)
         const testRunData = JSON.parse(message.body);
         // if token matches set the test run data
         if (testRunData.token === this.state.testRunToken) {
