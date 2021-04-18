@@ -80,7 +80,7 @@ export const DescriptionStyles = styled.div`
     }
 
     .markdown-body h3 {
-      font-size: 15px;
+      font-size: 16px;
       font-weight: 500;
       margin-top: 20px;
       margin-bottom: 8px;
