@@ -13,6 +13,8 @@ import {
   BlurredDiv,
   BlurTopDiv,
   DescriptionStyles,
+  HeaderDiv,
+  HeaderText,
   StatusLinkText,
   StatusText,
   StyledTable,
@@ -79,21 +81,21 @@ class InfoContent extends React.Component<InfoContentProps> {
             <VHeader dark={this.props.darkMode} style={{ marginBottom: 6 }}>
               {this.props.problem.name}
             </VHeader>
-            <div style={{ display: "flex", flexDirection: "row", alignItems: "center", marginBottom: 10, minWidth: 280 }}>
+            <HeaderDiv>
               <Label color={getDifficultyColor(this.props.problem.difficulty)} circular size="small">
                 {capitalize(this.props.problem.difficulty)}
               </Label>
               <Briefcase style={{ display: "inline", width: 16, marginLeft: 20 }} />
-              <span style={{ marginLeft: 5, marginBottom: 1, fontSize: 13}}>2</span>
+              <HeaderText>2</HeaderText>
               <Upload style={{ display: "inline", width: 16, marginLeft: 20 }} />
-              <span style={{ marginLeft: 5, marginBottom: 1, fontSize: 13 }}>87</span>
+              <HeaderText>87</HeaderText>
               <Heart style={{ display: "inline", width: 16, marginLeft: 20 }} />
-              <span style={{ marginLeft: 5, marginBottom: 1, fontSize: 13 }}>87</span>
+              <HeaderText>87</HeaderText>
               <CheckCircle
-                color={this.hasPassedSubmission() ? "#20bf6b" : "#00000030"}
+                color={this.hasPassedSubmission() ? "#20bf6b" : this.props.darkMode ? "#555555" : "#00000030"}
                 style={{ display: "inline", width: 16, marginLeft: 20 }}
               />
-            </div>
+            </HeaderDiv>
             <hr style={{ marginBottom: 16, minWidth: 280 }} />
             <DescriptionStyles>
               {this.props.darkMode ? (

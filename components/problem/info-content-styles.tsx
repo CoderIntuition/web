@@ -10,8 +10,22 @@ export const ActionText = styled.span`
 `;
 
 export const VHeaderWithBorder = styled(VHeader)`
-  padding-bottom: .3em;
+  padding-bottom: 0.3em;
   border-bottom: 1px solid #eaecef;
+`;
+
+export const HeaderDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 10px;
+  min-width: 280px;
+`;
+
+export const HeaderText = styled.span`
+  margin-left: 5px;
+  margin-bottom: 1px;
+  font-size: 13px;
 `;
 
 export const BlurTopDiv = styled.div`
@@ -38,9 +52,9 @@ export const StatusLinkText = styled.span`
   &&& {
     cursor: pointer;
     color: ${(props) => (props.status === "ACCEPTED" ? "#20BF6B" : "#FC5C65")};
+
     &:hover {
-      color: ${(props) =>
-        props.status === "ACCEPTED" ? "#1eae61" : "#fb4751"};
+      color: ${(props) => (props.status === "ACCEPTED" ? "#1eae61" : "#fb4751")};
       text-decoration: underline;
     }
   }
@@ -95,20 +109,20 @@ export const DescriptionStyles = styled.div`
 
 export const StyledTable = styled(Table)`
   &&&&& {
-    background-color: ${(props) => (props.dark ? "#202125": "")};
-    color: ${(props) => (props.dark ? "#e0e0e0": "")} !important;
+    background-color: ${(props) => (props.dark ? "#202125" : "")};
+    color: ${(props) => (props.dark ? "#e0e0e0" : "")} !important;
   }
 `;
 
 export const StyledTableRow = styled(Table.Row)`
   &&&&& {
-    background-color: ${(props) => (props.dark ? "#202125": "")};
-    color: ${(props) => (props.dark ? "#e0e0e0": "")} !important;
+    background-color: ${(props) => (props.dark ? "#202125" : "")};
+    color: ${(props) => (props.dark ? "#e0e0e0" : "")} !important;
   }
 `;
 
 export const StyledTableHeaderCell = styled(TableHeaderCell)`
   &&&&& {
-    color: ${(props) => (props.dark ? "#e0e0e0": "")} !important;
+    color: ${(props) => (props.dark ? "#e0e0e0" : "")} !important;
   }
 `;

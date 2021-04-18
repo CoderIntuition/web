@@ -87,12 +87,12 @@ export const StyledDivDark = styled.div`
     th {
       padding: 4px 8px;
       border: none;
-      background-color: #101010;
+      background-color: #2a2a2a;
     }
 
     tr {
       border: none;
-      background-color: #1a1a1a;
+      background-color: #202020;
     }
   }
 `;
