@@ -81,14 +81,14 @@ export const DescriptionStyles = styled.div`
 
     .markdown-body h3 {
       font-size: 15px;
-      font-weight: 600;
+      font-weight: 500;
       margin-top: 20px;
       margin-bottom: 8px;
     }
 
     .markdown-body h4 {
       font-size: 14px;
-      font-weight: 600;
+      font-weight: 500;
     }
   }
 `;
