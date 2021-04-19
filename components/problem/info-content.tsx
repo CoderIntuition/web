@@ -117,7 +117,7 @@ class InfoContent extends React.Component<InfoContentProps> {
                 </VHeader>
               </GridRow>
               <GridRow centered style={{ marginTop: 50 }}>
-                <div style={{ width: "40vh", height: "40vh" }}>
+                <div style={{ width: "35vh", height: "35vh" }}>
                   <Image src="/images/stuck.svg" alt="Stuck on question graphic" layout="fill" />
                 </div>
               </GridRow>
@@ -156,7 +156,11 @@ class InfoContent extends React.Component<InfoContentProps> {
           return (
             <>
               <BlurTopDiv>
-                <ActionText>Try to finish the Intuition Steps first before viewing the solution!</ActionText>
+                <ActionText>
+                  Try the <b style={{ fontWeight: 600 }}>Intuition Steps</b> first before viewing the solution.
+                  <br />
+                  Click <b style={{ fontWeight: 600 }}>Learn The Intuition</b> below!
+                </ActionText>
               </BlurTopDiv>
               <BlurredDiv>
                 {this.props.problem.solutions.map((solution, idx) => {

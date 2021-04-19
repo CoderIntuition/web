@@ -730,7 +730,7 @@ class Problem extends Component<ProblemProps> {
               </BottomRightButton>
             ) : (
               <BottomRightButton primary icon labelPosition="right" onClick={() => this.doneStepClick()}>
-                Done This Step
+                Continue
                 <Icon name="chevron right" />
               </BottomRightButton>
             )}

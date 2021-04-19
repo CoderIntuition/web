@@ -37,6 +37,7 @@ export const BlurTopDiv = styled.div`
     align-items: center;
     width: calc(100% - 20px);
     height: 80%;
+    text-align: center;
   }
 `;
 
