@@ -123,8 +123,8 @@ class InfoContent extends React.Component<InfoContentProps> {
               </GridRow>
               <GridRow centered style={{ marginTop: 50 }}>
                 <ActionText>
-                  Click <b style={{ fontWeight: 600 }}>below</b> to learn the{" "}
-                  <b style={{ fontWeight: 600 }}>Intuition Steps</b> required to solve this problem!
+                  Click <b style={{ fontWeight: 600 }}>Learn The Intuition</b> below to learn the{" "}
+                  <b style={{ fontWeight: 600 }}>Intuition Steps</b> behind solving this problem!
                 </ActionText>
               </GridRow>
             </Grid>
