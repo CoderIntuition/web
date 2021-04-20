@@ -29,7 +29,7 @@ import "react-splitter-layout/lib/index.css";
 import AceEditor from "components/common/ace-editor/ace-editor";
 import "react-quill/dist/quill.snow.css";
 import { constants } from "common/constants";
-import { getCurrentUserToken } from "common/auth-service";
+import { getCurrentUserToken, isMod } from "common/auth-service";
 import {
   showDefaultToast,
   showErrorToast,
@@ -360,6 +360,10 @@ class Problem extends Component<ProblemProps> {
   };
 
   tooSoon() {
+    if (this.props.authenticated && isMod(this.props.currentUser.roles)) {
+      return false;
+    }
+
     return (
       this.state.problem.problemSteps[this.state.step - 1].time > 0 &&
       this.state.problem.problemSteps[this.state.step - 1].time * 60 - this.props.timer.getTime() / 1000 < 10
