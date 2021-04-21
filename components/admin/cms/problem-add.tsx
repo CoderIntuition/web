@@ -61,9 +61,15 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
     description: "",
     defaultCodeLanguage: "python",
     defaultCode: {
-      python: "",
-      java: "",
-      javascript: "",
+      python: "def placeholder(lst):\n\treturn 0",
+      java: "class Solution {\n" +
+        "\tint placeholder(List<String> lst) {\n" +
+        "\t\treturn 0;\n" +
+        "\t}\n" +
+        "}",
+      javascript: "function placeholder(lst) {\n" +
+        "\treturn 0;\n" +
+        "}",
     },
     returnType: {
       type: "STRING",
@@ -93,9 +99,15 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
         description: "",
         language: "python",
         code: {
-          python: "",
-          java: "",
-          javascript: "",
+          python: "def placeholder(lst):\n\treturn 0",
+          java: "class Solution {\n" +
+            "\tint placeholder(List<String> lst) {\n" +
+            "\t\treturn 0;\n" +
+            "\t}\n" +
+            "}",
+          javascript: "function placeholder(lst) {\n" +
+            "\treturn 0;\n" +
+            "}",
         },
       },
     ] as any[],
