@@ -13,7 +13,7 @@ export const MiddleContainer = cntl`flex items-center justify-center h-108 md:h-
 
 export const InnerContainer = cntl`relative text-white md:pb-32 md:mt-16 xl:mt-0`;
 
-export const TwoColumn = cntl`flex flex-col lg:flex-row lg:items-center max-w-screen-xl mx-auto px-16 xl:px-4 py-0 md:py-24`;
+export const TwoColumn = cntl`flex flex-col lg:flex-row lg:items-center w-full max-w-screen-xl mx-auto px-16 xl:px-4 py-0 md:py-24`;
 
 export const LeftColumn = cntl`relative lg:w-5/12 text-center max-w-lg mt-0 mb-16 xs:mb-16 sm:mb-0 md:mt-32 lg:mt-16 mx-auto lg:max-w-none lg:text-left`;
 
