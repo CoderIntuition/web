@@ -22,16 +22,16 @@ const Hero = () => {
     <OuterContainer>
       <div className={MiddleContainer}>
         <div className={InnerContainer} style={{ marginTop: 250 }}>
-          <motion.section
-            initial={{ x: "8%" }}
-            animate={{
-              x: "0%",
-              transitionEnd: {
-                x: 0,
-              },
-            }}
-            transition={{ type: "spring", damping: 30 }}
-          >
+          {/*<motion.section*/}
+          {/*  initial={{ x: "8%" }}*/}
+          {/*  animate={{*/}
+          {/*    x: "0%",*/}
+          {/*    transitionEnd: {*/}
+          {/*      x: 0,*/}
+          {/*    },*/}
+          {/*  }}*/}
+          {/*  transition={{ type: "spring", damping: 30 }}*/}
+          {/*>*/}
             <div className={TwoColumn}>
               <div className={LeftColumn}>
                 <h1 className={Heading}>
@@ -56,7 +56,7 @@ const Hero = () => {
                 </div>
               </div>
             </div>
-          </motion.section>
+          {/*</motion.section>*/}
         </div>
       </div>
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
