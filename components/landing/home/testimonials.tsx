@@ -44,10 +44,9 @@ const Testimonials = () => {
       profileImageSrc: "/images/michelle.png",
       heading: "I actually understand the intuition now!",
       quote:
-        "I used to attempt the problems on Leetcode, but after getting stuck I would always just read the solution. " +
-        "However, I never actually had a solid understanding of the concepts since I would get stuck again on similar " +
-        "problems that I attempted. With CoderIntuition, I actually learned how to approach any problem and it really " +
-        "helped me ace my interview with Airbnb!!",
+        "I used to always read the solution when I got stuck, but I never actually understood " +
+        "the underlying intuition since I'd get stuck again on similar problems. With CoderIntuition, " +
+        "I learned how to approach problems without memorizing solutions and I aced my interview with Airbnb!",
       customerName: "Michelle L.",
       customerTitle: "Software Engineering Intern",
       companyImageSrc: "/images/airbnb.png",
@@ -56,11 +55,9 @@ const Testimonials = () => {
       profileImageSrc: "/images/rohan.png",
       heading: "Helped build my problem-solving skillset!",
       quote:
-        "CoderIntuition really helped me develop my problem-solving skill set for interview problems. " +
+        "CoderIntuition helped me develop my problem-solving skills for interview problems. " +
         "I found that other platforms only explain the solution without the intuition behind it. " +
-        "I really enjoyed the quizzes that CoderIntuition has that help build algorithmic intuition. " +
-        "CoderIntuition also saved me lots of time from watching 45-minute long solution " +
-        "videos. I'm now a Software Engineer at Google thanks to the help of CoderIntuition!",
+        "I'm now a Software Engineer at Google thanks to CoderIntuition!",
       customerName: "Rohan G.",
       customerTitle: "Software Engineer",
       companyImageSrc: "/images/google.png",
