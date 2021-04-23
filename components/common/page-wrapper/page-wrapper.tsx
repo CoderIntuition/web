@@ -1,9 +1,7 @@
 import React, { FC, PropsWithChildren } from "react";
-import dynamic from "next/dynamic";
-const Footer = dynamic(() => import("components/common/footer/footer"));
 import Navbar from "components/common/navbar/navbar";
 import HomeNavbar from "components/common/home-navbar/home-navbar";
-// import Footer from "components/common/footer/footer";
+import Footer from "components/common/footer/footer";
 import { FlexContainer, FlexContent } from "common/global-styles";
 
 interface PageWrapperProps extends PropsWithChildren<any> {

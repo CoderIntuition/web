@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { NextRouter, withRouter } from "next/router";
 import Link from "next/link";
-import Image from "next/image";
 import { Dropdown } from "semantic-ui-react";
 import { User } from "react-feather";
 import { isMod } from "common/auth-service";
