@@ -79,7 +79,7 @@ class Navbar extends Component<NavbarProps, {}> {
         <StyledMenuItem position="left">
           <Link href="/" passHref>
             <LogoLink>
-              <Image src="/images/logoname.svg" alt="CoderIntuition logo" width="200px" height="36px" />
+              <img src="/images/logoname.svg" alt="CoderIntuition logo" width="200px" height="36px" />
             </LogoLink>
           </Link>
         </StyledMenuItem>
@@ -148,7 +148,7 @@ class Navbar extends Component<NavbarProps, {}> {
         <StyledMenuItem position="left">
           <Link href="/" passHref>
             <a>
-              <Image src="/images/logoname.svg" alt="CoderIntuition logo" width="200px" height="36px" />
+              <img src="/images/logoname.svg" alt="CoderIntuition logo" width="200px" height="36px" />
             </a>
           </Link>
         </StyledMenuItem>

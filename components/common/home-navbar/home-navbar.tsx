@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { NextRouter, withRouter } from "next/router";
 import Link from "next/link";
-import Image from "next/image";
 import { Dropdown } from "semantic-ui-react";
 import { User } from "react-feather";
 import { isMod } from "common/auth-service";
@@ -80,7 +79,7 @@ class HomeNavbar extends Component<HomeNavbarProps, {}> {
         <StyledMenuItem position="left">
           <Link href="/" passHref>
             <LogoLink>
-              <Image src="/images/logoname-white.svg" alt="CoderIntuition logo" width="200px" height="36px" />
+              <img src="/images/logoname-white.svg" alt="CoderIntuition logo" width="200px" height="36px" />
             </LogoLink>
           </Link>
         </StyledMenuItem>
@@ -149,7 +148,7 @@ class HomeNavbar extends Component<HomeNavbarProps, {}> {
         <StyledMenuItem position="left">
           <Link href="/" passHref>
             <a>
-              <Image src="/images/logoname-white.svg" alt="CoderIntuition logo" width="200px" height="36px" />
+              <img src="/images/logoname-white.svg" alt="CoderIntuition logo" width="200px" height="36px" />
             </a>
           </Link>
         </StyledMenuItem>
