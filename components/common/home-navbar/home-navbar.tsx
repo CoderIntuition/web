@@ -230,11 +230,13 @@ class HomeNavbar extends Component<HomeNavbarProps, {}> {
       <>
         {!this.onProblemPage() && (
           <Banner>
-            🚧 CoderIntuition is still under construction. Feel free to try it out and&nbsp;
-            <Link href="/contact" passHref>
-              <a style={{ color: "white", textDecoration: "underline" }}>submit your feedback</a>
-            </Link>
-            ! 🚧
+            <span>
+              🚧 CoderIntuition is still under construction. Feel free to try it out and&nbsp;
+              <Link href="/contact" passHref>
+                <a style={{ color: "white", textDecoration: "underline" }}>submit your feedback</a>
+              </Link>
+              ! 🚧
+            </span>
           </Banner>
         )}
         <HomeNavbarMenu

@@ -6,7 +6,7 @@ export const Banner = styled.div`
   color: #ffffff;
   background-color: #ed2939;
   width: 100%;
-  padding-block: 10px;
+  padding: 10px;
   justify-content: center;
   align-items: center;
   text-align: center;
