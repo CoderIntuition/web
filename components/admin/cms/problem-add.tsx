@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { NextRouter, withRouter } from "next/router";
 import Link from "next/link";
-import { Client } from "@stomp/stompjs";
+import { Client, CompatClient } from "@stomp/stompjs";
 import axios from "axios";
 import Quiz from "react-quiz-component";
 import {
@@ -62,14 +62,8 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
     defaultCodeLanguage: "python",
     defaultCode: {
       python: "def placeholder(lst):\n\treturn 0",
-      java: "class Solution {\n" +
-        "\tint placeholder(List<String> lst) {\n" +
-        "\t\treturn 0;\n" +
-        "\t}\n" +
-        "}",
-      javascript: "function placeholder(lst) {\n" +
-        "\treturn 0;\n" +
-        "}",
+      java: "class Solution {\n" + "\tint placeholder(List<String> lst) {\n" + "\t\treturn 0;\n" + "\t}\n" + "}",
+      javascript: "function placeholder(lst) {\n" + "\treturn 0;\n" + "}",
     },
     returnType: {
       type: "STRING",
@@ -100,14 +94,8 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
         language: "python",
         code: {
           python: "def placeholder(lst):\n\treturn 0",
-          java: "class Solution {\n" +
-            "\tint placeholder(List<String> lst) {\n" +
-            "\t\treturn 0;\n" +
-            "\t}\n" +
-            "}",
-          javascript: "function placeholder(lst) {\n" +
-            "\treturn 0;\n" +
-            "}",
+          java: "class Solution {\n" + "\tint placeholder(List<String> lst) {\n" + "\t\treturn 0;\n" + "\t}\n" + "}",
+          javascript: "function placeholder(lst) {\n" + "\treturn 0;\n" + "}",
         },
       },
     ] as any[],
@@ -124,11 +112,9 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
     loading: false,
     submitStatus: "",
     message: {} as any,
-    produceOutputToken: "",
-    produceOutputIdx: -1,
   };
 
-  client;
+  client: Client | undefined;
 
   setupWebSocket() {
     if (!this.props.authenticated) {
@@ -137,36 +123,36 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
 
     this.client = new Client({
       brokerURL: constants.STOMP_BASE_URL,
-      reconnectDelay: 1000,
+      reconnectDelay: 10000,
       heartbeatOutgoing: 10000,
       heartbeatIncoming: 10000,
     });
 
     this.client.onConnect = (_frame) => {
       // listen for produce output
-      this.client.subscribe("/topic/produceoutput", (message) => {
-        // if token matches call api with auth to get produce output data
-        if (message.body === this.state.produceOutputToken) {
-          const url = constants.PRODUCE_OUTPUT_URL + "/" + this.state.produceOutputToken;
-          const config = {
-            headers: {
-              Authorization: `Bearer ${getCurrentUserToken()}`,
-            },
-          };
-          axios.get(url, config).then((res) => {
+      this.client?.subscribe(
+        "/secured/" + this.props.currentUser.id + "/produceoutput",
+        (message) => {
+          const body = JSON.parse(message.body);
+          console.log(body);
+
+          // if token matches call api with auth to get produce output data
+          if (body.problemId === parseInt(this.props.router.query.id as string)) {
             const testCaseRows = this.state.testCaseRows;
-            const idx = this.state.produceOutputIdx;
-            testCaseRows[idx].output = res.data.stderr || res.data.output;
+            const idx = body.testCaseNum;
+            testCaseRows[idx].output = body.stderr || body.output;
             testCaseRows[idx].produceOutputLoading = false;
-            showSuccessToast("Success", "Output produced.");
+
             this.setState({
               testCaseRows: testCaseRows,
-              produceOutputToken: "",
-              produceOutputIdx: -1,
             });
-          });
+            showSuccessToast("Success", "Output produced.");
+          }
+        },
+        {
+          Authorization: `Bearer ${getCurrentUserToken()}`,
         }
-      });
+      );
     };
 
     this.client.onStompError = (frame) => {
@@ -195,7 +181,7 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
         const data = res.data;
 
         const argumentRows = [] as any[];
-        data.arguments.forEach((item) => {
+        data.orderedArguments.forEach((item) => {
           argumentRows.push({
             type: item.type,
             underlyingType: item.underlyingType,
@@ -204,7 +190,7 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
         });
 
         const intuitionRows = [] as any[];
-        data.problemSteps.forEach((item) => {
+        data.orderedProblemSteps.forEach((item) => {
           intuitionRows.push({
             name: item.name,
             time: item.time,
@@ -214,7 +200,7 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
         });
 
         const solutionRows = [] as any[];
-        data.solutions.forEach((item) => {
+        data.orderedSolutions.forEach((item) => {
           solutionRows.push({
             name: item.name,
             isPrimary: item.isPrimary,
@@ -229,7 +215,7 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
         });
 
         const testCaseRows = [] as any[];
-        data.testCases.forEach((item) => {
+        data.orderedTestCases.forEach((item) => {
           testCaseRows.push({
             name: item.name,
             isDefault: item.isDefault,
@@ -341,13 +327,16 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
 
   handleProduceOutput(idx) {
     if (!this.props.router.query.id) {
-      // add
       showErrorToast("Produce output is only available for editing", "Save the problem first and then edit it");
       return;
     }
 
-    if (this.state.produceOutputToken !== "") {
-      showErrorToast("Produce output is already running", "Wait for it to finish before producing another output");
+    if (this.state.testCaseRows[idx].produceOutputLoading) {
+      showErrorToast("Produce output is already running", "Please wait for it to finish");
+      return;
+    }
+
+    if (!this.client) {
       return;
     }
 
@@ -355,57 +344,36 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
     testCaseRows[idx].produceOutputLoading = true;
     this.setState({
       testCaseRows: testCaseRows,
-      produceOutputIdx: idx,
     });
 
-    const url = constants.PRODUCE_OUTPUT_URL;
-    const token = getCurrentUserToken();
-    const config = {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-      timeout: 15000,
+    const destination = "/app/secured/" + this.props.currentUser.id + "/produceoutput";
+    const headers = {
+      Authorization: `Bearer ${getCurrentUserToken()}`,
     };
-    const request = {
+    const body = {
       problemId: this.state.problemId,
+      testCaseNum: idx,
       input: this.state.testCaseRows[idx].input,
       language: this.state.testCaseRows[idx].produceOutputLanguage,
       code: this.getPrimarySolution(this.state.testCaseRows[idx].produceOutputLanguage.toLowerCase()),
     };
 
-    axios
-      .post(url, request, config)
-      .then((res) => {
-        this.setState({
-          produceOutputToken: res.data.token,
-        });
-        setTimeout(() => {
-          if (this.state.produceOutputToken === res.data.token) {
-            showErrorToast("Submission Timeout", "Please try submitting your code again or report this issue.")
-            const testCaseRows = this.state.testCaseRows;
-            testCaseRows[idx].produceOutputLoading = false;
-            this.setState({
-              testCaseRows: testCaseRows,
-              produceOutputToken: "",
-              produceOutputIdx: -1,
-            });
-          }
-        }, 15000);
-      })
-      .catch((err) => {
-        if (err.message.includes("timeout")) {
-          showErrorToast("Timed Out", "Please try again or report this issue.");
-        } else {
-          showErrorToast(err.response.data.message, err.response.data.details[0]);
-        }
+    this.client.publish({
+      destination: destination,
+      headers: headers,
+      body: JSON.stringify(body)
+    });
+
+    setTimeout(() => {
+      if (this.state.testCaseRows[idx].produceOutputLoading) {
+        showErrorToast("Produce Output Timeout", "Please try submitting your code again or report this issue.");
         const testCaseRows = this.state.testCaseRows;
         testCaseRows[idx].produceOutputLoading = false;
         this.setState({
           testCaseRows: testCaseRows,
-          produceOutputToken: "",
-          produceOutputIdx: -1,
         });
-      });
+      }
+    }, 15000);
   }
 
   handleAddRow(section, idx) {
