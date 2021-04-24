@@ -180,7 +180,7 @@ class Problem extends Component<ProblemProps> {
             const body = JSON.parse(message.body);
 
             // use data only if problem id matches
-            if (body.problemId === this.state.problem.id) {
+            if (body.problemId === this.state.problem.id && this.state.submitting) {
               this.setState({
                 submitting: false,
                 testTab: "submission",
@@ -200,7 +200,7 @@ class Problem extends Component<ProblemProps> {
         const body = JSON.parse(message.body);
 
         // use data only if problem id matches
-        if (body.problemId === this.state.problem.id) {
+        if (body.problemId === this.state.problem.id && this.state.running) {
           this.setState({
             running: false,
             testTab: "testResult",
@@ -424,7 +424,7 @@ class Problem extends Component<ProblemProps> {
           running: false,
         });
       }
-    }, 15000);
+    }, 20000);
   }
 
   handleSubmitClick() {
@@ -463,7 +463,7 @@ class Problem extends Component<ProblemProps> {
           submitting: false,
         });
       }
-    }, 15000);
+    }, 20000);
   }
 
   handleTestInputChange = (newValue) => {
