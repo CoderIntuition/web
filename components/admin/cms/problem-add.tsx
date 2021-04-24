@@ -115,6 +115,7 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
   };
 
   client: Client | undefined;
+  produceOutputTimeout: ReturnType<typeof setTimeout> | undefined;
 
   setupWebSocket() {
     if (!this.props.authenticated) {
@@ -137,6 +138,8 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
 
           // use data only if problem id matches
           if (body.problemId === parseInt(this.props.router.query.id as string)) {
+            if (this.produceOutputTimeout) clearTimeout(this.produceOutputTimeout);
+
             const testCaseRows = this.state.testCaseRows;
             const idx = body.testCaseNum;
             testCaseRows[idx].output = body.stderr || body.output;
@@ -152,11 +155,6 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
           Authorization: `Bearer ${getCurrentUserToken()}`,
         }
       );
-    };
-
-    this.client.onStompError = (frame) => {
-      console.log("Broker reported error: " + frame.headers["message"]);
-      console.log("Additional details: " + frame.body);
     };
 
     this.client.activate();
@@ -358,7 +356,7 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
       body: JSON.stringify(body)
     });
 
-    setTimeout(() => {
+    this.produceOutputTimeout = setTimeout(() => {
       if (this.state.testCaseRows[idx].produceOutputLoading) {
         showErrorToast("Produce Output Timeout", "Please try producing output again or report this issue.");
         const testCaseRows = this.state.testCaseRows;
@@ -367,7 +365,7 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
           testCaseRows: testCaseRows,
         });
       }
-    }, 15000);
+    }, 20000);
   }
 
   handleAddRow(section, idx) {

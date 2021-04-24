@@ -184,6 +184,7 @@ class Problem extends Component<ProblemProps> {
             // use data only if problem id matches
             if (body.problemId === this.state.problem.id && this.state.submitting) {
               if (this.submissionTimeout) clearTimeout(this.submissionTimeout);
+
               this.setState({
                 submitting: false,
                 testTab: "submission",
@@ -205,6 +206,7 @@ class Problem extends Component<ProblemProps> {
         // use data only if problem id matches
         if (body.problemId === this.state.problem.id && this.state.running) {
           if (this.testRunTimeout) clearTimeout(this.testRunTimeout);
+
           this.setState({
             running: false,
             testTab: "testResult",
@@ -217,11 +219,6 @@ class Problem extends Component<ProblemProps> {
           this.getSubmissions(this.state.problem.id);
         }
       });
-    };
-
-    this.client.onStompError = (frame) => {
-      console.log("Broker reported error: " + frame.headers["message"]);
-      console.log("Additional details: " + frame.body);
     };
 
     this.client.activate();
