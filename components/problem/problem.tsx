@@ -64,7 +64,6 @@ import {
   StyledMoon,
   TestContentWrapper,
 } from "./problem-styles";
-import Timeout = NodeJS.Timeout;
 
 const ReactQuill = dynamic<any>(
   async () => {
@@ -145,8 +144,8 @@ class Problem extends Component<ProblemProps> {
   };
 
   client: Client | undefined;
-  testRunTimeout: Timeout | undefined;
-  submissionTimeout: Timeout | undefined;
+  testRunTimeout: ReturnType<typeof setTimeout> | undefined;
+  submissionTimeout: ReturnType<typeof setTimeout> | undefined;
 
   constructor(props) {
     super(props);
