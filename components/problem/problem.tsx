@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { NextRouter, withRouter } from "next/router";
 import Head from "next/head";
+import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
 import { Client } from "@stomp/stompjs";
 import _ from "lodash";
@@ -106,6 +107,7 @@ class Problem extends Component<ProblemProps> {
     verticalPaneSize: -1,
     horizontalPaneSize: -1,
     loading: true,
+    sessionId: uuidv4(),
     problem: {} as any,
     infoTab: "description",
     step: -1,
@@ -116,7 +118,8 @@ class Problem extends Component<ProblemProps> {
       javascript: "",
     },
     editorTab: "code",
-    docsValue: "Did you know that many companies including <b>Google</b> make you do " +
+    docsValue:
+      "Did you know that many companies including <b>Google</b> make you do " +
       "your coding interview on a <b>whiteboard</b> or a <b>Google Doc</b>? Try writing your " +
       "code here instead of in the editor so you don't get caught by surprise!" +
       "<br/><br/><u>My Notes</u><br/><br/><br/><br/><u>My Code</u><br/><br/>" +
@@ -124,7 +127,6 @@ class Problem extends Component<ProblemProps> {
     language: "PYTHON",
     testTab: "input",
     running: false,
-    testRunToken: "",
     testInput: "",
     testStatus: "",
     testStdout: "",
@@ -132,7 +134,6 @@ class Problem extends Component<ProblemProps> {
     testExpectedOutput: "",
     testStderr: "",
     submitting: false,
-    submissionToken: "",
     submission: {} as any,
     submissions: [] as any,
     signupModalOpen: false,
@@ -160,65 +161,64 @@ class Problem extends Component<ProblemProps> {
     window.removeEventListener("resize", this.resize);
   }
 
-  client;
+  client: Client | undefined;
 
   setupWebSocket() {
-    this.client = new Client();
-
     this.client = new Client({
       brokerURL: constants.STOMP_BASE_URL,
-      reconnectDelay: 1000,
+      reconnectDelay: 5000,
       heartbeatOutgoing: 10000,
       heartbeatIncoming: 10000,
     });
 
     this.client.onConnect = (_frame) => {
       // listen for submissions
-      this.client.subscribe("/topic/submission", (message) => {
-        // if token matches call api with auth to get submission data
-        if (message.body === this.state.submissionToken) {
-          const url = constants.SUBMISSION_URL + "/" + this.state.submissionToken;
-          const config = {
-            headers: {
-              Authorization: `Bearer ${getCurrentUserToken()}`,
-            },
-          };
-          axios.get(url, config).then((res) => {
-            this.setState({
-              submitting: false,
-              submissionToken: "",
-              testTab: "submission",
-              submission: res.data,
-            });
-            this.getSubmissions(this.state.problem.id);
-          });
-        }
-      });
+      if (this.props.authenticated) {
+        this.client?.subscribe(
+          "/secured/" + this.props.currentUser.id + "/submission",
+          (message) => {
+            const body = JSON.parse(message.body);
+
+            // use data only if problem id matches
+            if (body.problemId === this.state.problem.id) {
+              this.setState({
+                submitting: false,
+                testTab: "submission",
+                submission: body,
+              });
+              this.getSubmissions(this.state.problem.id);
+            }
+          },
+          {
+            Authorization: `Bearer ${getCurrentUserToken()}`,
+          }
+        );
+      }
 
       // listen for test runs
-      this.client.subscribe("/topic/testrun", (message) => {
-        console.log("Received message: " + message.body)
-        const testRunData = JSON.parse(message.body);
-        // if token matches set the test run data
-        if (testRunData.token === this.state.testRunToken) {
+      this.client?.subscribe("/global/" + this.state.sessionId + "/testrun", (message) => {
+        const body = JSON.parse(message.body);
+
+        // use data only if problem id matches
+        if (body.problemId === this.state.problem.id) {
           this.setState({
             running: false,
-            testRunToken: "",
             testTab: "testResult",
-            testStatus: testRunData.status,
-            testStderr: testRunData.stderr,
-            testStdout: testRunData.stdout,
-            testOutput: testRunData.output,
-            testExpectedOutput: testRunData.expectedOutput,
+            testStatus: body.status,
+            testStderr: body.stderr,
+            testStdout: body.stdout,
+            testOutput: body.output,
+            testExpectedOutput: body.expectedOutput,
           });
+          this.getSubmissions(this.state.problem.id);
         }
       });
-    }
+    };
 
     this.client.onStompError = (frame) => {
-      console.log('Broker reported error: ' + frame.headers['message']);
-      console.log('Additional details: ' + frame.body);
-    }
+      console.log("Broker reported error: " + frame.headers["message"]);
+      console.log("Additional details: " + frame.body);
+    };
 
     this.client.activate();
   }
@@ -397,28 +397,34 @@ class Problem extends Component<ProblemProps> {
   };
 
   handleTestRunClick() {
-    if (this.state.running) {
+    if (this.state.running || !this.client) {
       return;
     }
 
-    const request = {
+    this.setState({ running: true, testTab: "testResult" });
+
+    const destination = "/app/global/" + this.state.sessionId + "/testrun";
+    const body = {
+      sessionId: this.state.sessionId,
       problemId: this.state.problem.id,
       input: this.state.testInput,
       code: this.state.code[this.state.language.toLowerCase()],
       language: this.state.language,
     };
 
-    this.setState({ running: true, testTab: "testResult" });
-
-    axios.post(constants.TEST_RUN_URL, request).then((res) => {
-      this.setState({ testRunToken: res.data.token });
-      setTimeout(() => {
-        if (this.state.testRunToken === res.data.token) {
-          showErrorToast("Test Run Timeout", "Please try running your code again or report this issue.")
-          this.setState({ running: false, testRunToken: "" });
-        }
-      }, 15000);
+    this.client.publish({
+      destination: destination,
+      body: JSON.stringify(body),
     });
+
+    setTimeout(() => {
+      if (this.state.running) {
+        showErrorToast("Test Run Timeout", "Please try running your code again or report this issue.");
+        this.setState({
+          running: false,
+        });
+      }
+    }, 15000);
   }
 
   handleSubmitClick() {
@@ -427,33 +433,37 @@ class Problem extends Component<ProblemProps> {
       return;
     }
 
-    if (this.state.submitting) {
+    if (this.state.submitting || !this.client) {
       return;
     }
 
-    const config = {
-      headers: {
-        Authorization: `Bearer ${getCurrentUserToken()}`,
-      },
+    this.setState({ submitting: true, testTab: "submission" });
+
+    const destination = "/app/secured/" + this.props.currentUser.id + "/submission";
+    const headers = {
+      Authorization: `Bearer ${getCurrentUserToken()}`,
     };
-    const request = {
+    const body = {
       userId: this.props.currentUser.id,
       problemId: this.state.problem.id,
       code: this.state.code[this.state.language.toLowerCase()],
       language: this.state.language,
     };
 
-    this.setState({ submitting: true, testTab: "submission" });
-
-    axios.post(constants.SUBMISSION_URL, request, config).then((res) => {
-      this.setState({ submissionToken: res.data.token });
-      setTimeout(() => {
-        if (this.state.submissionToken === res.data.token) {
-          showErrorToast("Submission Timeout", "Please try submitting your code again or report this issue.")
-          this.setState({ running: false, testRunToken: "" });
-        }
-      }, 15000);
+    this.client.publish({
+      destination: destination,
+      headers: headers,
+      body: JSON.stringify(body),
     });
+
+    setTimeout(() => {
+      if (this.state.submitting) {
+        showErrorToast("Submission Timeout", "Please try submitting your code again or report this issue.");
+        this.setState({
+          submitting: false,
+        });
+      }
+    }, 15000);
   }
 
   handleTestInputChange = (newValue) => {

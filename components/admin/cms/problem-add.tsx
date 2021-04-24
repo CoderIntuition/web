@@ -123,7 +123,7 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
 
     this.client = new Client({
       brokerURL: constants.STOMP_BASE_URL,
-      reconnectDelay: 10000,
+      reconnectDelay: 5000,
       heartbeatOutgoing: 10000,
       heartbeatIncoming: 10000,
     });
@@ -134,9 +134,8 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
         "/secured/" + this.props.currentUser.id + "/produceoutput",
         (message) => {
           const body = JSON.parse(message.body);
-          console.log(body);
 
-          // if token matches call api with auth to get produce output data
+          // use data only if problem id matches
           if (body.problemId === parseInt(this.props.router.query.id as string)) {
             const testCaseRows = this.state.testCaseRows;
             const idx = body.testCaseNum;
@@ -331,12 +330,7 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
       return;
     }
 
-    if (this.state.testCaseRows[idx].produceOutputLoading) {
-      showErrorToast("Produce output is already running", "Please wait for it to finish");
-      return;
-    }
-
-    if (!this.client) {
+    if (this.state.testCaseRows[idx].produceOutputLoading || !this.client) {
       return;
     }
 
@@ -366,7 +360,7 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
 
     setTimeout(() => {
       if (this.state.testCaseRows[idx].produceOutputLoading) {
-        showErrorToast("Produce Output Timeout", "Please try submitting your code again or report this issue.");
+        showErrorToast("Produce Output Timeout", "Please try producing output again or report this issue.");
         const testCaseRows = this.state.testCaseRows;
         testCaseRows[idx].produceOutputLoading = false;
         this.setState({

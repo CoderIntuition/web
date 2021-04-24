@@ -46,7 +46,8 @@
     "semantic-ui-react": "^2.0.3",
     "slick-carousel": "^1.8.1",
     "styled-components": "^5.2.1",
-    "tailwindcss": "^2.0.3"
+    "tailwindcss": "^2.0.3",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^10.1.2",
