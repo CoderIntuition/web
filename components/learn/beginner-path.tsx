@@ -255,8 +255,8 @@ class BeginnerPath extends React.Component<BeginnerPathProps, BeginnerPathState>
     },
     {
       type: "problem",
-      urlName: "binary-search",
-      name: "Problem: Binary Search",
+      urlName: "find-an-element-in-an-array",
+      name: "Problem: Find an Element in an Array",
     },
     {
       type: "reading",
