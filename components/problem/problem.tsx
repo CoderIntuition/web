@@ -64,6 +64,7 @@ import {
   StyledMoon,
   TestContentWrapper,
 } from "./problem-styles";
+import Timeout = NodeJS.Timeout;
 
 const ReactQuill = dynamic<any>(
   async () => {
@@ -143,6 +144,10 @@ class Problem extends Component<ProblemProps> {
     issueFormDescription: "",
   };
 
+  client: Client | undefined;
+  testRunTimeout: Timeout | undefined;
+  submissionTimeout: Timeout | undefined;
+
   constructor(props) {
     super(props);
     this.onHorizontalChange = this.onHorizontalChange.bind(this);
@@ -160,8 +165,6 @@ class Problem extends Component<ProblemProps> {
   componentWillUnmount() {
     window.removeEventListener("resize", this.resize);
   }
-
-  client: Client | undefined;
 
   setupWebSocket() {
     this.client = new Client({
@@ -181,6 +184,7 @@ class Problem extends Component<ProblemProps> {
 
             // use data only if problem id matches
             if (body.problemId === this.state.problem.id && this.state.submitting) {
+              if (this.submissionTimeout) clearTimeout(this.submissionTimeout);
               this.setState({
                 submitting: false,
                 testTab: "submission",
@@ -201,6 +205,7 @@ class Problem extends Component<ProblemProps> {
 
         // use data only if problem id matches
         if (body.problemId === this.state.problem.id && this.state.running) {
+          if (this.testRunTimeout) clearTimeout(this.testRunTimeout);
           this.setState({
             running: false,
             testTab: "testResult",
@@ -417,7 +422,7 @@ class Problem extends Component<ProblemProps> {
       body: JSON.stringify(body),
     });
 
-    setTimeout(() => {
+    this.testRunTimeout = setTimeout(() => {
       if (this.state.running) {
         showErrorToast("Test Run Timeout", "Please try running your code again or report this issue.");
         this.setState({
@@ -456,7 +461,7 @@ class Problem extends Component<ProblemProps> {
       body: JSON.stringify(body),
     });
 
-    setTimeout(() => {
+    this.submissionTimeout = setTimeout(() => {
       if (this.state.submitting) {
         showErrorToast("Submission Timeout", "Please try submitting your code again or report this issue.");
         this.setState({
