@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://coderintuition.com
+
+# Sitemaps
+Sitemap: https://coderintuition.com/sitemap.xml

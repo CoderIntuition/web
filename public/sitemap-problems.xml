@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd"
+>
+  <url>
+    <loc>https://coderintuition.com/problem/fizz-buzz</loc>
+    <lastmod>2021-04-25T04:11:50.106Z</lastmod>
+  </url>
+  <url>
+    <loc>https://coderintuition.com/problem/sum-of-array</loc>
+    <lastmod>2021-04-25T04:11:50.106Z</lastmod>
+  </url>
+  <url>
+    <loc>https://coderintuition.com/problem/longest-common-prefix</loc>
+    <lastmod>2021-04-25T04:11:50.106Z</lastmod>
+  </url>
+  <url>
+    <loc>https://coderintuition.com/problem/reverse-an-array</loc>
+    <lastmod>2021-04-25T04:11:50.106Z</lastmod>
+  </url>
+  <url>
+    <loc>https://coderintuition.com/problem/valid-palindrome</loc>
+    <lastmod>2021-04-25T04:11:50.106Z</lastmod>
+  </url>
+  <url>
+    <loc>https://coderintuition.com/problem/find-an-element-in-an-array</loc>
+    <lastmod>2021-04-25T04:11:50.106Z</lastmod>
+  </url>
+  <url>
+    <loc>https://coderintuition.com/problem/insertion-sort</loc>
+    <lastmod>2021-04-25T04:11:50.106Z</lastmod>
+  </url>
+  <url>
+    <loc>https://coderintuition.com/problem/two-sum</loc>
+    <lastmod>2021-04-25T04:11:50.106Z</lastmod>
+  </url>
+  <url>
+    <loc
+      >https://coderintuition.com/problem/longest-substring-without-repeating-characters</loc
+    >
+    <lastmod>2021-04-25T04:11:50.106Z</lastmod>
+  </url>
+  <url>
+    <loc>https://coderintuition.com/problem/valid-parentheses</loc>
+    <lastmod>2021-04-25T04:11:50.106Z</lastmod>
+  </url>
+  <url>
+    <loc>https://coderintuition.com/problem/merge-two-sorted-lists</loc>
+    <lastmod>2021-04-25T04:11:50.106Z</lastmod>
+  </url>
+  <url>
+    <loc>https://coderintuition.com/problem/group-anagrams-together</loc>
+    <lastmod>2021-04-25T04:11:50.106Z</lastmod>
+  </url>
+  <url>
+    <loc
+      >https://coderintuition.com/problem/remove-duplicates-from-sorted-list</loc
+    >
+    <lastmod>2021-04-25T04:11:50.106Z</lastmod>
+  </url>
+</urlset>

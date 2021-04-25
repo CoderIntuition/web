@@ -40,7 +40,7 @@ class Overview extends React.Component<OverviewProps, OverviewState> {
   }
 
   componentDidMount() {
-    axios.get(constants.ALL_PROBLEMS_URL).then((res) => {
+    axios.get(constants.PROBLEMS_BY_CATEGORY).then((res) => {
       this.setState({
         loading: false,
         results: res.data,

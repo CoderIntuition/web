@@ -25,7 +25,7 @@ export const constants = {
   READING_URL: API_BASE_URL + "/reading/",
   READING_WEB_URL: WEB_BASE_URL + "/reading/",
   READINGS_URL: API_BASE_URL + "/readings",
-  ALL_PROBLEMS_URL: API_BASE_URL + "/allproblems",
+  PROBLEMS_BY_CATEGORY: API_BASE_URL + "/problems-by-category",
   PROBLEM_ID_URL: API_BASE_URL + "/problem/id/",
   READING_ID_URL: API_BASE_URL + "/reading/id/",
   TEST_RUN_URL: API_BASE_URL + "/testrun",
