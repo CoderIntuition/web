@@ -260,6 +260,21 @@ class BeginnerPath extends React.Component<BeginnerPathProps, BeginnerPathState>
     },
     {
       type: "reading",
+      urlName: "modifying-binary-search",
+      name: "Modifying Binary Search",
+    },
+    {
+      type: "problem",
+      urlName: "search-in-rotated-sorted-array",
+      name: "Modifying Binary Search",
+    },
+    {
+      type: "problem",
+      urlName: "calculate-square-root",
+      name: "Calculate Square Root",
+    },
+    {
+      type: "reading",
       urlName: "/reading/sorting-arrays",
       name: "Sorting Arrays",
     },
@@ -285,13 +300,8 @@ class BeginnerPath extends React.Component<BeginnerPathProps, BeginnerPathState>
     },
     {
       type: "reading",
-      urlName: "how-to-spot-an-array-problem",
-      name: "Interview Tip: How to Spot an Array Problem",
-    },
-    {
-      type: "reading",
-      urlName: "approaching-array-problems",
-      name: "Interview Tip: Approaching Array Problems",
+      urlName: "array-problems-plan-of-attack",
+      name: "Interview Tip: Array Problems Plan of Attack",
     },
   ];
 
