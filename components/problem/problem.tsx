@@ -39,7 +39,7 @@ import {
   showWarningToast,
   withGlobalContext,
 } from "common/utils";
-import { GrayButton } from "common/global-styles";
+import { GrayButton, YellowButton } from "common/global-styles";
 import {
   BottomBar,
   BottomLeftButton,
@@ -58,6 +58,7 @@ import {
   StyledDropdown,
   StyledDropdownItem,
   StyledDropdownMenu,
+  StyledEdit,
   StyledEditor,
   StyledMenu,
   StyledMenuItem,
@@ -664,6 +665,25 @@ class Problem extends Component<ProblemProps> {
               name="Submissions"
             />
             <MenuMenu position="right">
+              {this.props.authenticated && isMod(this.props.currentUser.roles) && (
+                <div style={{ margin: "auto", width: 35 }}>
+                  <Popup
+                    basic
+                    hoverable
+                    content="Edit This Problem"
+                    position="bottom left"
+                    trigger={
+                      <a href={constants.WEB_BASE_URL + "/admin/cms/problems/edit/" + this.state.problem.id} target="_blank" style={{color: "inherit"}}>
+                      <StyledEdit
+                        size={23}
+                        strokeWidth={1.5}
+                        dark={this.props.darkMode}
+                      />
+                      </a>
+                    }
+                  />
+                </div>
+              )}
               <div style={{ margin: "auto", width: 35 }}>
                 <Popup
                   basic

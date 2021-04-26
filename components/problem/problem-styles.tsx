@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Button, Dropdown, DropdownMenu, Menu, MenuMenu, Segment } from "semantic-ui-react";
-import { AlertTriangle, Moon } from "react-feather";
+import { AlertTriangle, Edit, Moon } from "react-feather";
 import { RedButton } from "common/global-styles";
 
 export const FlexDiv = styled.div`
@@ -70,6 +70,17 @@ export const StyledDropdownItem = styled(Dropdown.Item)`
 export const StyledDropdownMenu = styled(DropdownMenu)`
   &&&&& {
     background-color: ${(props) => (props.dark ? "#242529" : "")};
+  }
+`;
+
+export const StyledEdit = styled(Edit)`
+  &&& {
+    color: ${(props) => (props.dark ? "#e0e0e0" : "")};
+
+    &:hover {
+      color: #fbbd08;
+      cursor: pointer;
+    }
   }
 `;
 
