@@ -3,5 +3,7 @@
 *******************************/
 
 @fontWeight: 500;
-@circularPadding: 6px 8px 0 8px;
+
+@circularMinSize: 1.4em;
+@circularPadding: 5px 8px 5px 8px;
 @backgroundColor: @grey;
