@@ -121,7 +121,7 @@ const Privacy = () => {
                 <li className={TextLi}>Email address</li>
                 <li className={TextLi}>First name and last name</li>
                 <li className={TextLi}>Phone number</li>
-                <li className={TextLi}>Address, State, Province, ZIP/Postal code, City</li>
+                <li className={TextLi}>Address, State, Province, ZIP/Postal code, City, Country</li>
                 <li className={TextLi}>Usage Data</li>
               </ul>
 
