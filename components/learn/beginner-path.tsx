@@ -338,8 +338,8 @@ class BeginnerPath extends React.Component<BeginnerPathProps, BeginnerPathState>
     },
     {
       type: "problem",
-      urlName: "remove-duplicates-from-linked-list",
-      name: "Problem: Remove Duplicates from Linked List",
+      urlName: "remove-duplicates-from-sorted-linked-list",
+      name: "Problem: Remove Duplicates from Sorted Linked List",
     },
     {
       type: "reading",
