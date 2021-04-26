@@ -428,8 +428,11 @@ class BeginnerPath extends React.Component<BeginnerPathProps, BeginnerPathState>
                 <StyledCard raised fluid>
                   <Header size="medium">Overview</Header>
                   <p style={{ color: "#00000090", fontSize: 15 }}>
-                    In this learning path, you'll understand the prerequisites that you need before you start using
-                    CoderIntuition. You will also be introduced to Big O notation and simple algorithmic problems.
+                    In this learning path, you'll understand the <b style={{ fontWeight: 600 }}>prerequisites</b> for
+                    using CoderIntuition and get introduced to easier coding interview problems.
+                    <br />
+                    Most importantly, you'll learn the <b style={{ fontWeight: 600 }}>intuition</b> and{" "}
+                    <b style={{ fontWeight: 600 }}>repeatable patterns</b> behind these concepts.
                   </p>
                 </StyledCard>
 
