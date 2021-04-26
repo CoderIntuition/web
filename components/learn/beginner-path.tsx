@@ -300,8 +300,8 @@ class BeginnerPath extends React.Component<BeginnerPathProps, BeginnerPathState>
     },
     {
       type: "problem",
-      urlName: "buy-low-sell-high",
-      name: "Problem: Buy Low Sell High",
+      urlName: "detect-meeting-time-conflicts",
+      name: "Problem: Detect Meeting Time Conflicts",
     },
     {
       type: "problem",

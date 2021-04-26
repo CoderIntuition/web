@@ -408,6 +408,7 @@ class Problem extends Component<ProblemProps> {
     const body = {
       sessionId: this.state.sessionId,
       problemId: this.state.problem.id,
+      userId: this.props.authenticated ? this.props.currentUser.id : null,
       input: this.state.testInput,
       code: this.state.code[this.state.language.toLowerCase()],
       language: this.state.language,
