@@ -62,14 +62,15 @@ const Faq = () => {
       question: "What languages does CoderIntuition support?",
       answer:
         "CoderIntuition support Python, Java, and JavaScript in the online editor. Solutions are also available in " +
-        "Python, Java, and JavaScript. Note: Python is recommended for interviews since it is the quickest to write " +
-        "on a whiteboard.",
+        "Python, Java, and JavaScript. Note: Python is recommended for coding interviews since it's highly readable and " +
+        "quick to write on a whiteboard.",
     },
     {
       question: "Will CoderIntuition support any more languages in the future?",
       answer:
-        "CoderIntuition may support C++ and Ruby in the future if there is sufficient demand. If you are not familiar " +
-        "with any of our supported languages, we recommend you to learn Python.",
+        "CoderIntuition may support more languages in the future if there is sufficient demand. If you are not familiar " +
+        "with any of our supported languages, we recommend you to learn Python since it's highly readable and " +
+        "quick to write on a whiteboard.",
     },
   ];
 
