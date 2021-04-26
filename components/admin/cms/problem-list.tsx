@@ -32,7 +32,7 @@ interface ProblemListProps {
 class ProblemList extends Component<ProblemListProps> {
   state = {
     loading: true,
-    category: "ARRAYS",
+    category: "ALL",
     page: 1,
     problems: {} as any,
     totalPages: 0,
@@ -84,6 +84,7 @@ class ProblemList extends Component<ProblemListProps> {
   }
 
   categories = [
+    { value: "ALL", text: "All" },
     { value: "ARRAYS", text: "Arrays" },
     { value: "STRINGS", text: "Strings" },
     { value: "LINKED_LISTS", text: "Linked Lists" },
