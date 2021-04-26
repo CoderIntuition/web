@@ -249,14 +249,24 @@ class BeginnerPath extends React.Component<BeginnerPathProps, BeginnerPathState>
       name: "Problem: Valid Palindrome",
     },
     {
+      type: "problem",
+      urlName: "remove-duplicates-from-sorted-array",
+      name: "Problem: Remove Duplicates from Sorted Array",
+    },
+    {
+      type: "quiz",
+      urlName: "two-pointer-method-quiz",
+      name: "Quiz: Two-Pointer Method",
+    },
+    {
       type: "reading",
       urlName: "searching-arrays",
       name: "Searching Arrays",
     },
     {
       type: "problem",
-      urlName: "find-an-element-in-an-array",
-      name: "Problem: Find an Element in an Array",
+      urlName: "find-element-in-array",
+      name: "Problem: Find Element in Array",
     },
     {
       type: "reading",
@@ -265,28 +275,28 @@ class BeginnerPath extends React.Component<BeginnerPathProps, BeginnerPathState>
     },
     {
       type: "problem",
-      urlName: "search-in-rotated-sorted-array",
-      name: "Modifying Binary Search",
+      urlName: "find-element-in-rotated-sorted-array",
+      name: "Problem: Find Element in Rotated Sorted Array",
     },
     {
       type: "problem",
-      urlName: "calculate-square-root",
-      name: "Calculate Square Root",
+      urlName: "calculate-the-square-root",
+      name: "Problem: Calculate the Square Root",
+    },
+    {
+      type: "quiz",
+      urlName: "searching-arrays-quiz",
+      name: "Quiz: Searching Arrays",
     },
     {
       type: "reading",
-      urlName: "/reading/sorting-arrays",
+      urlName: "sorting-arrays",
       name: "Sorting Arrays",
     },
     {
       type: "problem",
       urlName: "insertion-sort",
-      name: "Problem: Insertion Sort",
-    },
-    {
-      type: "quiz",
-      urlName: "sorting-arrays",
-      name: "Quiz: Sorting Arrays",
+      name: "Problem: Practice Insertion Sort",
     },
     {
       type: "problem",
@@ -299,17 +309,47 @@ class BeginnerPath extends React.Component<BeginnerPathProps, BeginnerPathState>
       name: "Problem: Merge Two Sorted Arrays",
     },
     {
-      type: "reading",
-      urlName: "array-problems-plan-of-attack",
-      name: "Interview Tip: Array Problems Plan of Attack",
+      type: "quiz",
+      urlName: "sorting-arrays-quiz",
+      name: "Quiz: Sorting Arrays",
+    },
+    {
+      type: "tip",
+      urlName: "plan-of-attack-for-array-problems",
+      name: "Interview Tip: Plan of Attack for Array Problems",
     },
   ];
 
   linkedListsData = [
     {
-      type: "",
-      urlName: "",
-      name: "",
+      type: "reading",
+      urlName: "the-linked-list-data-structure",
+      name: "The Linked List Data Structure",
+    },
+    {
+      type: "problem",
+      urlName: "delete-node-from-linked-list",
+      name: "Problem: Delete Node from Linked List",
+    },
+    {
+      type: "problem",
+      urlName: "reverse-a-linked-list",
+      name: "Problem: Reverse a Linked List",
+    },
+    {
+      type: "problem",
+      urlName: "remove-duplicates-from-linked-list",
+      name: "Problem: Remove Duplicates from Linked List",
+    },
+    {
+      type: "reading",
+      urlName: "the-two-pointer-method-linked-list-edition",
+      name: "The Two Pointer Method: Linked List Edition",
+    },
+    {
+      type: "problem",
+      urlName: "detect-cycle-in-linked-list",
+      name: "Problem: Detect Cycle in Linked List",
     },
   ];
 
@@ -407,7 +447,7 @@ class BeginnerPath extends React.Component<BeginnerPathProps, BeginnerPathState>
                     <StyledListItem onClick={() => this.contentsRefs[2].current.scrollIntoView()}>
                       Basic Strings and Arrays
                     </StyledListItem>
-                    <StyledListItem>Basic Linked Lists</StyledListItem>
+                    <StyledListItem>Linked Lists</StyledListItem>
                   </List>
                 </StyledCard>
 
@@ -441,7 +481,7 @@ class BeginnerPath extends React.Component<BeginnerPathProps, BeginnerPathState>
                 <div ref={this.contentsRefs[3]} />
                 <StyledCard raised fluid>
                   <Header size="medium" style={{ marginBottom: 15 }}>
-                    5 - Basic Linked Lists
+                    5 - Linked Lists
                     {headerCheck(this.linkedListsData)}
                   </Header>
                   <CardGroup>{cardGroupContents(this.linkedListsData)}</CardGroup>
