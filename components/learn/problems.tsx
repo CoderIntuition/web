@@ -190,7 +190,7 @@ class Problems extends React.Component<ProblemsProps, ProblemsState> {
                 <FirstRow>
                   <Grid.Column floated="left" verticalAlign="middle" width={8}>
                     <span style={{ fontSize: 14, fontWeight: 500, color: "#595f6b" }}>
-                      You have <Label circular color="yellow">12</Label> problems to try!
+                      You have <Label circular color={this.state.problems.length > 0 ? "yellow" : "green"}>&nbsp;{this.state.problems.length}&nbsp;</Label> problems to try!
                     </span>
                   </Grid.Column>
                   <Grid.Column floated="right" width={8}>
