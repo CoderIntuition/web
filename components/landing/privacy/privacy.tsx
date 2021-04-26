@@ -63,7 +63,7 @@ const Privacy = () => {
                 </li>
                 <li className={TextLi}>
                   <strong>Company</strong> (referred to as either "the Company", "We", "Us" or "Our" in this Agreement)
-                  refers to Treact.
+                  refers to CoderIntuition.
                 </li>
                 <li className={TextLi}>
                   <strong>Affiliate</strong> means an entity that controls, is controlled by or is under common control
@@ -75,13 +75,13 @@ const Privacy = () => {
                   Service.
                 </li>
                 <li className={TextLi}>
-                  <strong>Website</strong> refers to Treact, accessible from https://treact.com
+                  <strong>Website</strong> refers to CoderIntuition, accessible from https://coderintuition.com
                 </li>{" "}
                 <li className={TextLi}>
                   <strong>Service</strong> refers to the Website.
                 </li>
                 <li className={TextLi}>
-                  <strong>Country</strong> refers to: Maharashtra, India
+                  <strong>Country</strong> refers to Canada.
                 </li>
                 <li className={TextLi}>
                   <strong>Service Provider</strong> means any natural or legal person who processes the data on behalf

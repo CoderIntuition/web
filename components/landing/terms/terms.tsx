@@ -55,10 +55,10 @@ const Terms = () => {
                 </li>
                 <li className={TextLi}>
                   <strong>Company</strong> (referred to as either "the Company", "We", "Us" or "Our" in this Agreement)
-                  refers to Treact Inc., Navi Mumbai.
+                  refers to CoderIntuition.
                 </li>
                 <li className={TextLi}>
-                  <strong>Country</strong> refers to: Maharashtra, India
+                  <strong>Country</strong> refers to Canada.
                 </li>
                 <li className={TextLi}>
                   <strong>Service</strong> refers to the Website.
@@ -73,7 +73,7 @@ const Terms = () => {
                   available by the Service.
                 </li>
                 <li className={TextLi}>
-                  <strong>Website</strong> refers to Treact, accessible from https://treact.com
+                  <strong>Website</strong> refers to CoderIntuition, accessible from https://coderintuition.com
                 </li>
                 <li className={TextLi}>
                   <strong>You</strong> means the individual accessing or using the Service, or the company, or other
@@ -97,8 +97,8 @@ const Terms = () => {
                 with any part of these Terms and Conditions then You may not access the Service.
               </p>
               <p className={TextP}>
-                You represent that you are over the age of 18. The Company does not permit those under 18 to use the
-                Service.
+                You represent that you are of age 18 or over. If you younger than 18 years of age, then you must have
+                parental consent to use the Service.
               </p>
               <p className={TextP}>
                 Your access to and use of the Service is also conditioned on Your acceptance of and compliance with the
@@ -136,7 +136,7 @@ const Terms = () => {
               <p className={TextP}>
                 Notwithstanding any damages that You might incur, the entire liability of the Company and any of its
                 suppliers under any provision of this Terms and Your exclusive remedy for all of the foregoing shall be
-                limited to the amount actually paid by You through the Service or 100 USD if You haven't purchased
+                limited to the amount actually paid by You through the Service or 50 USD if You haven't purchased
                 anything through the Service.
               </p>
               <p className={TextP}>
