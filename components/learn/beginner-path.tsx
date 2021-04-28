@@ -275,8 +275,8 @@ class BeginnerPath extends React.Component<BeginnerPathProps, BeginnerPathState>
     },
     {
       type: "problem",
-      urlName: "find-pivot-point-in-rotated-sorted-array",
-      name: "Problem: Find Pivot Point in Rotated Sorted Array",
+      urlName: "find-pivot-point-of-rotated-sorted-array",
+      name: "Problem: Find Pivot Point of Rotated Sorted Array",
     },
     {
       type: "problem",
