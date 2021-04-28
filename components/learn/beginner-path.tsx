@@ -261,7 +261,7 @@ class BeginnerPath extends React.Component<BeginnerPathProps, BeginnerPathState>
     {
       type: "reading",
       urlName: "searching-arrays",
-      name: "Searching Arrays",
+      name: "Introduction to Searching Arrays",
     },
     {
       type: "problem",
@@ -280,8 +280,8 @@ class BeginnerPath extends React.Component<BeginnerPathProps, BeginnerPathState>
     },
     {
       type: "problem",
-      urlName: "calculate-the-square-root",
-      name: "Problem: Calculate the Square Root",
+      urlName: "valid-perfect-square",
+      name: "Problem: Valid Perfect Square",
     },
     {
       type: "quiz",
@@ -291,7 +291,7 @@ class BeginnerPath extends React.Component<BeginnerPathProps, BeginnerPathState>
     {
       type: "reading",
       urlName: "sorting-arrays",
-      name: "Sorting Arrays",
+      name: "Introduction to Sorting Arrays",
     },
     {
       type: "problem",
