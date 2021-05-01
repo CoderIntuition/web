@@ -6,7 +6,19 @@ class MyDocument extends Document {
   render() {
     return (
       <Html lang="en">
-        <Head/>
+        <Head>
+          <script async src="https://www.googletagmanager.com/gtag/js?id=G-57RR5QYP5J" />
+
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '[Tracking ID]');`,
+            }}
+          />
+        </Head>
         <body>
           <Main />
           <NextScript />
