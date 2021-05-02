@@ -128,7 +128,7 @@ export const InfoContentWrapper = styled.div`
   &&& {
     max-height: 100%;
     height: 100%;
-    overflow: auto;
+    overflow: scroll;
     padding: 20px;
     background-color: ${(props) => (props.dark ? "#202125" : "")};
     color: ${(props) => (props.dark ? "#e0e0e0" : "")};
