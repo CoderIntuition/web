@@ -8,6 +8,7 @@ import _ from "lodash";
 import Timer from "react-compound-timer";
 import dynamic from "next/dynamic";
 import { SplitterLayoutProps } from "react-splitter-layout";
+import Confetti from "react-confetti";
 import {
   Button,
   Dropdown,
@@ -39,7 +40,7 @@ import {
   showWarningToast,
   withGlobalContext,
 } from "common/utils";
-import { GrayButton, YellowButton } from "common/global-styles";
+import { GrayButton } from "common/global-styles";
 import {
   BottomBar,
   BottomLeftButton,
@@ -137,6 +138,8 @@ class Problem extends Component<ProblemProps> {
     submitting: false,
     submission: {} as any,
     submissions: [] as any,
+    runConfetti: false,
+    recycleConfetti: false,
     signupModalOpen: false,
     issueModalOpen: false,
     issueFormEmail: this.props.authenticated ? this.props.currentUser.email : "",
@@ -144,9 +147,9 @@ class Problem extends Component<ProblemProps> {
     issueFormDescription: "",
   };
 
-  client: Client | undefined;
-  testRunTimeout: ReturnType<typeof setTimeout> | undefined;
-  submissionTimeout: ReturnType<typeof setTimeout> | undefined;
+  private client: Client | undefined;
+  private testRunTimeout: ReturnType<typeof setTimeout> | undefined;
+  private submissionTimeout: ReturnType<typeof setTimeout> | undefined;
 
   constructor(props) {
     super(props);
@@ -192,6 +195,13 @@ class Problem extends Component<ProblemProps> {
                 submission: body,
               });
               this.getSubmissions(this.state.problem.id);
+
+              if (body.status === "ACCEPTED") {
+                this.setState({ runConfetti: true, recycleConfetti: true });
+                setTimeout(() => {
+                  this.setState({ recycleConfetti: false });
+                }, 2000);
+              }
             }
           },
           {
@@ -499,6 +509,7 @@ class Problem extends Component<ProblemProps> {
       email: this.state.issueFormEmail,
       category: this.state.issueFormCategory,
       description: this.state.issueFormDescription,
+      code: this.state.code[this.state.language.toLowerCase()],
     };
     axios
       .post(constants.ISSUE_URL, request)
@@ -624,6 +635,16 @@ class Problem extends Component<ProblemProps> {
                   />
                 </GridColumn>
               </GridRow>
+              <GridRow>
+                <GridColumn>
+                  <Label>Code</Label>
+                  <TextArea
+                    value={this.state.code[this.state.language.toLowerCase()]}
+                    disabled
+                    fluid={1}
+                  />
+                </GridColumn>
+              </GridRow>
             </Grid>
           </Form>
         </Modal.Content>
@@ -673,12 +694,12 @@ class Problem extends Component<ProblemProps> {
                     content="Edit This Problem"
                     position="bottom left"
                     trigger={
-                      <a href={constants.WEB_BASE_URL + "/admin/cms/problems/edit/" + this.state.problem.id} target="_blank" style={{color: "inherit"}}>
-                      <StyledEdit
-                        size={23}
-                        strokeWidth={1.5}
-                        dark={this.props.darkMode}
-                      />
+                      <a
+                        href={constants.WEB_BASE_URL + "/admin/cms/problems/edit/" + this.state.problem.id}
+                        target="_blank"
+                        style={{ color: "inherit" }}
+                      >
+                        <StyledEdit size={23} strokeWidth={1.5} dark={this.props.darkMode} />
                       </a>
                     }
                   />
@@ -951,6 +972,12 @@ class Problem extends Component<ProblemProps> {
           <link rel="canonical" href={"https://www.coderintuition.com/problem/" + this.props.router.query.urlName} />
         </Head>
         <FlexDiv dark={this.props.darkMode}>
+          <Confetti
+            width={this.state.windowWidth}
+            height={this.state.windowHeight}
+            run={this.state.runConfetti}
+            recycle={this.state.recycleConfetti}
+          />
           <SplitterVerticalDiv dark={this.props.darkMode}>
             {/* ========== LEFT SIDE ========== */}
             <SplitterLayout

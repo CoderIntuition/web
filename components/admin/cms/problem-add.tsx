@@ -41,6 +41,7 @@ import {
   TemplateSpan,
 } from "./add-styles";
 import { DescriptionStyles } from "../../problem/info-content-styles";
+import RealisticConfetti from "../../common/confetti/RealisticConfetti";
 
 interface CmsProblemAddProps {
   router: NextRouter;
@@ -792,6 +793,7 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
               </StyledSegment>
             </GridRow>
             <GridRow centered>
+              <RealisticConfetti/>
               <SectionDivider />
             </GridRow>
             {/* ----- ARGUMENTS ----- */}
