@@ -43,6 +43,7 @@ export const constants = {
   RESET_PASSWORD_SAVE_URL: API_BASE_URL + "/auth/reset/save",
   ISSUE_URL: API_BASE_URL + "/issue",
   SUPPORT_URL: API_BASE_URL + "/support",
+  SAVE_URL: API_BASE_URL + "/save",
   ADMIN_WEB_URL: WEB_BASE_URL + "/admin/cms",
   // stripe stuff
   CHECKOUT_SESSION_URL: API_BASE_URL + "/stripe/checkout-session",

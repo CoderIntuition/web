@@ -242,6 +242,7 @@ class Problem extends Component<ProblemProps> {
     });
     window.addEventListener("resize", this.resize);
 
+    // get problem info
     axios
       .get(constants.PROBLEM_URL + this.props.router.query.urlName)
       .then((res) => {
@@ -251,7 +252,6 @@ class Problem extends Component<ProblemProps> {
         }
 
         this.setState({
-          loading: false,
           problem: res.data,
           code: localStorageCode
             ? JSON.parse(localStorageCode)
@@ -263,6 +263,41 @@ class Problem extends Component<ProblemProps> {
           testInput: res.data.defaultTestCase.input,
         });
 
+        // get saved code
+        if (this.props.authenticated) {
+          const config = {
+            headers: {
+              Authorization: `Bearer ${getCurrentUserToken()}`,
+            },
+          };
+          axios
+            .get(constants.SAVE_URL + "/" + res.data.id, config)
+            .then((res) => {
+              const code = {
+                python: res.data.pythonCode,
+                java: res.data.javaCode,
+                javascript: res.data.javascriptCode,
+              };
+              console.log(code);
+              this.setState({
+                loading: false,
+                code: code,
+              });
+            })
+            .catch((_err) => {
+              this.setState({ loading: false });
+            });
+        } else {
+          this.setState({ loading: false });
+        }
+
+        // start auto-save in 10 second intervals
+        if (this.props.authenticated) {
+          setInterval(() => {
+            this.saveCode();
+          }, 10000);
+        }
+
         this.setupWebSocket();
         this.getSubmissions(res.data.id);
       })
@@ -271,6 +306,27 @@ class Problem extends Component<ProblemProps> {
           loading: false,
         });
       });
+  }
+
+  saveCode() {
+    if (!this.client) return;
+
+    const destination = "/app/secured/" + this.props.currentUser.id + "/save";
+    const headers = {
+      Authorization: `Bearer ${getCurrentUserToken()}`,
+    };
+    const body = {
+      problemId: this.state.problem.id,
+      pythonCode: this.state.code["python"],
+      javaCode: this.state.code["java"],
+      javascriptCode: this.state.code["javascript"],
+    };
+
+    this.client.publish({
+      destination: destination,
+      headers: headers,
+      body: JSON.stringify(body),
+    });
   }
 
   onVerticalChange(verticalPaneSize) {
@@ -438,6 +494,8 @@ class Problem extends Component<ProblemProps> {
         });
       }
     }, 20000);
+
+    this.saveCode();
   }
 
   handleSubmitClick() {
@@ -477,6 +535,8 @@ class Problem extends Component<ProblemProps> {
         });
       }
     }, 20000);
+
+    this.saveCode();
   }
 
   handleTestInputChange = (newValue) => {
@@ -638,11 +698,7 @@ class Problem extends Component<ProblemProps> {
               <GridRow>
                 <GridColumn>
                   <Label>Code</Label>
-                  <TextArea
-                    value={this.state.code[this.state.language.toLowerCase()]}
-                    disabled
-                    fluid={1}
-                  />
+                  <TextArea value={this.state.code[this.state.language.toLowerCase()]} disabled fluid={1} />
                 </GridColumn>
               </GridRow>
             </Grid>
