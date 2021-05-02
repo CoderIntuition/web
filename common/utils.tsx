@@ -1,6 +1,7 @@
 import { store } from "react-notifications-component";
 import { GlobalContext } from "./global-context-provider";
 import React from "react";
+import { beginnerPathData } from "./constants";
 
 export function showErrorToast(message, details) {
   if (details === "") {
@@ -163,3 +164,14 @@ export const isJsonArray = (str) => {
     return false;
   }
 };
+
+export const getNextExercise = (urlName) => {
+  for (const exercises of Object.values(beginnerPathData)) {
+    for (let i = 0; i < exercises.length - 1; i++) {
+      if (exercises[i].urlName === urlName) {
+        return "/" + exercises[i + 1].type + "/" + exercises[i + 1].urlName;
+      }
+    }
+  }
+  return "/learning-path/beginner-path";
+}

@@ -92,3 +92,204 @@ export const QUIZ_TEMPLATE = JSON.stringify(
   null,
   1
 );
+
+export const beginnerPathData = {
+  introduction: [
+    {
+      type: "reading",
+      urlName: "who-is-the-beginner-path-meant-for",
+      name: "Who is the Beginner Path meant for?",
+    },
+    {
+      type: "reading",
+      urlName: "why-should-i-use-a-learning-path",
+      name: "Why should I use a Learning Path?",
+    },
+    {
+      type: "problem",
+      urlName: "fizz-buzz",
+      name: "Problem: Fizz Buzz",
+    },
+    {
+      type: "problem",
+      urlName: "sum-of-array",
+      name: "Problem: Sum of Array",
+    },
+    {
+      type: "quiz",
+      urlName: "prerequisites",
+      name: "Quiz: Prerequisites",
+    },
+  ],
+  bigONotation: [
+    {
+      type: "reading",
+      urlName: "why-do-i-need-to-know-big-o-notation",
+      name: "Why do I need to know Big O notation?",
+    },
+    {
+      type: "reading",
+      urlName: "big-o-notation",
+      name: "Big O Notation",
+    },
+    {
+      type: "reading",
+      urlName: "time-complexity",
+      name: "Time Complexity",
+    },
+    {
+      type: "quiz",
+      urlName: "time-complexity-quiz",
+      name: "Quiz: Time Complexity",
+    },
+    {
+      type: "reading",
+      urlName: "space-complexity",
+      name: "Space Complexity",
+    },
+    {
+      type: "quiz",
+      urlName: "space-complexity-quiz",
+      name: "Quiz: Space Complexity",
+    },
+    {
+      type: "tip",
+      urlName: "using-time-and-space-complexity",
+      name: "Interview Tip: Using Time and Space Complexity",
+    },
+  ],
+  stringsAndArrays: [
+    {
+      type: "reading",
+      urlName: "overview-of-basic-strings-and-arrays",
+      name: "Overview of Basic Strings and Arrays",
+    },
+    {
+      type: "reading",
+      urlName: "the-array-data-structure",
+      name: "The Array Data Structure",
+    },
+    {
+      type: "problem",
+      urlName: "longest-common-prefix",
+      name: "Problem: Longest Common Prefix",
+    },
+    {
+      type: "reading",
+      urlName: "the-two-pointer-method",
+      name: "The Two-Pointer Method",
+    },
+    {
+      type: "problem",
+      urlName: "reverse-an-array",
+      name: "Problem: Reverse an Array",
+    },
+    {
+      type: "problem",
+      urlName: "valid-palindrome",
+      name: "Problem: Valid Palindrome",
+    },
+    {
+      type: "problem",
+      urlName: "remove-duplicates-from-sorted-array",
+      name: "Problem: Remove Duplicates from Sorted Array",
+    },
+    {
+      type: "quiz",
+      urlName: "two-pointer-method-quiz",
+      name: "Quiz: Two-Pointer Method",
+    },
+    {
+      type: "reading",
+      urlName: "searching-arrays",
+      name: "Introduction to Searching Arrays",
+    },
+    {
+      type: "problem",
+      urlName: "find-element-in-array",
+      name: "Problem: Find Element in Array",
+    },
+    {
+      type: "reading",
+      urlName: "modifying-binary-search",
+      name: "Modifying Binary Search",
+    },
+    {
+      type: "problem",
+      urlName: "find-pivot-point-of-rotated-sorted-array",
+      name: "Problem: Find Pivot Point of Rotated Sorted Array",
+    },
+    {
+      type: "problem",
+      urlName: "valid-perfect-square",
+      name: "Problem: Valid Perfect Square",
+    },
+    {
+      type: "quiz",
+      urlName: "searching-arrays-quiz",
+      name: "Quiz: Searching Arrays",
+    },
+    {
+      type: "reading",
+      urlName: "sorting-arrays",
+      name: "Introduction to Sorting Arrays",
+    },
+    {
+      type: "problem",
+      urlName: "insertion-sort",
+      name: "Problem: Practice Insertion Sort",
+    },
+    {
+      type: "problem",
+      urlName: "detect-meeting-time-conflicts",
+      name: "Problem: Detect Meeting Time Conflicts",
+    },
+    {
+      type: "problem",
+      urlName: "merge-two-sorted-arrays",
+      name: "Problem: Merge Two Sorted Arrays",
+    },
+    {
+      type: "quiz",
+      urlName: "sorting-arrays-quiz",
+      name: "Quiz: Sorting Arrays",
+    },
+    {
+      type: "tip",
+      urlName: "plan-of-attack-for-array-problems",
+      name: "Interview Tip: Plan of Attack for Array Problems",
+    },
+  ],
+  linkedLists: [
+    {
+      type: "reading",
+      urlName: "the-linked-list-data-structure",
+      name: "The Linked List Data Structure",
+    },
+    {
+      type: "problem",
+      urlName: "delete-node-from-linked-list",
+      name: "Problem: Delete Node from Linked List",
+    },
+    {
+      type: "problem",
+      urlName: "reverse-a-linked-list",
+      name: "Problem: Reverse a Linked List",
+    },
+    {
+      type: "problem",
+      urlName: "remove-duplicates-from-sorted-linked-list",
+      name: "Problem: Remove Duplicates from Sorted Linked List",
+    },
+    {
+      type: "reading",
+      urlName: "the-two-pointer-method-linked-list-edition",
+      name: "The Two Pointer Method: Linked List Edition",
+    },
+    {
+      type: "problem",
+      urlName: "detect-cycle-in-linked-list",
+      name: "Problem: Detect Cycle in Linked List",
+    },
+  ],
+};

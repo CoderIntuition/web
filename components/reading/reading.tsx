@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import { NextRouter, withRouter } from "next/router";
 import axios from "axios";
 import Quiz from "react-quiz-component";
-import {Button, Grid, GridRow, Header, Icon, Loader, Message, Segment} from "semantic-ui-react";
+import { Button, Grid, GridRow, Header, Icon, Loader, Message, Segment } from "semantic-ui-react";
 import MarkdownRender from "components/common/markdown-render/markdown-render";
-import { withGlobalContext, wrapQuestions } from "common/utils";
+import { getNextExercise, withGlobalContext, wrapQuestions } from "common/utils";
 import { constants } from "common/constants";
 import { WhiteButton } from "common/global-styles";
 import { CenteredDiv, LeftDiv, ReadingStyles } from "./reading-styles";
@@ -27,6 +27,7 @@ interface Reading {
 interface ReadingState {
   loading: boolean;
   reading?: Reading;
+  next: string;
 }
 
 class Reading extends Component<ReadingProps, ReadingState> {
@@ -36,15 +37,17 @@ class Reading extends Component<ReadingProps, ReadingState> {
     this.state = {
       loading: true,
       reading: undefined,
+      next: "",
     };
   }
 
-  componentDidMount() {
+  loadReading() {
     axios
       .get(constants.READING_URL + this.props.router.query.urlName)
       .then((res) => {
         this.setState({
           reading: res.data,
+          next: getNextExercise(this.props.router.query.urlName),
           loading: false,
         });
         this.completeReading();
@@ -54,6 +57,19 @@ class Reading extends Component<ReadingProps, ReadingState> {
           loading: false,
         });
       });
+  }
+
+  componentDidMount() {
+    this.loadReading();
+  }
+
+  componentDidUpdate(prevProps) {
+    const { urlName } = this.props.router.query;
+
+    if (urlName !== prevProps.router.query.urlName) {
+      window.scrollTo(0, 0);
+      this.loadReading();
+    }
   }
 
   completeReading() {
@@ -73,9 +89,7 @@ class Reading extends Component<ReadingProps, ReadingState> {
 
     axios
       .post(url, request, config)
-      .then((_res) => {
-        console.log("Created activity");
-      })
+      .then((_res) => {})
       .catch((error) => {
         console.log(error);
       });
@@ -148,7 +162,19 @@ class Reading extends Component<ReadingProps, ReadingState> {
           </Segment>
           <Grid>
             <GridRow centered>
-              <Button primary onClick={() => {this.props.router.push("/reading/why-should-i-use-a-learning-path")}}>Next Excercise</Button>
+              <Button
+                primary
+                onClick={() => {
+                  this.props.router.push(this.state.next);
+                }}
+              >
+                Continue to Next{" "}
+                {this.state.next.startsWith("/quiz")
+                  ? "Quiz"
+                  : this.state.next.startsWith("/reading")
+                  ? "Reading"
+                  : "Problem"}
+              </Button>
             </GridRow>
           </Grid>
         </CenteredDiv>

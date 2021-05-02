@@ -5,7 +5,7 @@ import axios from "axios";
 import { CardGroup, GridRow, Header, List, Loader, Popup } from "semantic-ui-react";
 import ProblemsSidebar from "components/common/problems-sidebar/problems-sidebar";
 import { SimpleProblem } from "common/types";
-import { constants } from "common/constants";
+import { beginnerPathData, constants } from "common/constants";
 import { getCurrentUserToken } from "common/auth-service";
 import { withGlobalContext } from "common/utils";
 import { Heading, HeadingSection, Subheading } from "./overview-styles";
@@ -151,208 +151,6 @@ class BeginnerPath extends React.Component<BeginnerPathProps, BeginnerPathState>
     return color;
   }
 
-  introductionData = [
-    {
-      type: "reading",
-      urlName: "who-is-the-beginner-path-meant-for",
-      name: "Who is the Beginner Path meant for?",
-    },
-    {
-      type: "reading",
-      urlName: "why-should-i-use-a-learning-path",
-      name: "Why should I use a Learning Path?",
-    },
-    {
-      type: "problem",
-      urlName: "fizz-buzz",
-      name: "Problem: Fizz Buzz",
-    },
-    {
-      type: "problem",
-      urlName: "sum-of-array",
-      name: "Problem: Sum of Array",
-    },
-    {
-      type: "quiz",
-      urlName: "prerequisites",
-      name: "Quiz: Prerequisites",
-    },
-  ];
-
-  bigONotationData = [
-    {
-      type: "reading",
-      urlName: "why-do-i-need-to-know-big-o-notation",
-      name: "Why do I need to know Big O notation?",
-    },
-    {
-      type: "reading",
-      urlName: "big-o-notation",
-      name: "Big O Notation",
-    },
-    {
-      type: "reading",
-      urlName: "time-complexity",
-      name: "Time Complexity",
-    },
-    {
-      type: "quiz",
-      urlName: "time-complexity-quiz",
-      name: "Quiz: Time Complexity",
-    },
-    {
-      type: "reading",
-      urlName: "space-complexity",
-      name: "Space Complexity",
-    },
-    {
-      type: "quiz",
-      urlName: "space-complexity-quiz",
-      name: "Quiz: Space Complexity",
-    },
-    {
-      type: "tip",
-      urlName: "using-time-and-space-complexity",
-      name: "Interview Tip: Using Time and Space Complexity",
-    },
-  ];
-
-  stringsAndArraysData = [
-    {
-      type: "reading",
-      urlName: "overview-of-basic-strings-and-arrays",
-      name: "Overview of Basic Strings and Arrays",
-    },
-    {
-      type: "reading",
-      urlName: "the-array-data-structure",
-      name: "The Array Data Structure",
-    },
-    {
-      type: "problem",
-      urlName: "longest-common-prefix",
-      name: "Problem: Longest Common Prefix",
-    },
-    {
-      type: "reading",
-      urlName: "the-two-pointer-method",
-      name: "The Two-Pointer Method",
-    },
-    {
-      type: "problem",
-      urlName: "reverse-an-array",
-      name: "Problem: Reverse an Array",
-    },
-    {
-      type: "problem",
-      urlName: "valid-palindrome",
-      name: "Problem: Valid Palindrome",
-    },
-    {
-      type: "problem",
-      urlName: "remove-duplicates-from-sorted-array",
-      name: "Problem: Remove Duplicates from Sorted Array",
-    },
-    {
-      type: "quiz",
-      urlName: "two-pointer-method-quiz",
-      name: "Quiz: Two-Pointer Method",
-    },
-    {
-      type: "reading",
-      urlName: "searching-arrays",
-      name: "Introduction to Searching Arrays",
-    },
-    {
-      type: "problem",
-      urlName: "find-element-in-array",
-      name: "Problem: Find Element in Array",
-    },
-    {
-      type: "reading",
-      urlName: "modifying-binary-search",
-      name: "Modifying Binary Search",
-    },
-    {
-      type: "problem",
-      urlName: "find-pivot-point-of-rotated-sorted-array",
-      name: "Problem: Find Pivot Point of Rotated Sorted Array",
-    },
-    {
-      type: "problem",
-      urlName: "valid-perfect-square",
-      name: "Problem: Valid Perfect Square",
-    },
-    {
-      type: "quiz",
-      urlName: "searching-arrays-quiz",
-      name: "Quiz: Searching Arrays",
-    },
-    {
-      type: "reading",
-      urlName: "sorting-arrays",
-      name: "Introduction to Sorting Arrays",
-    },
-    {
-      type: "problem",
-      urlName: "insertion-sort",
-      name: "Problem: Practice Insertion Sort",
-    },
-    {
-      type: "problem",
-      urlName: "detect-meeting-time-conflicts",
-      name: "Problem: Detect Meeting Time Conflicts",
-    },
-    {
-      type: "problem",
-      urlName: "merge-two-sorted-arrays",
-      name: "Problem: Merge Two Sorted Arrays",
-    },
-    {
-      type: "quiz",
-      urlName: "sorting-arrays-quiz",
-      name: "Quiz: Sorting Arrays",
-    },
-    {
-      type: "tip",
-      urlName: "plan-of-attack-for-array-problems",
-      name: "Interview Tip: Plan of Attack for Array Problems",
-    },
-  ];
-
-  linkedListsData = [
-    {
-      type: "reading",
-      urlName: "the-linked-list-data-structure",
-      name: "The Linked List Data Structure",
-    },
-    {
-      type: "problem",
-      urlName: "delete-node-from-linked-list",
-      name: "Problem: Delete Node from Linked List",
-    },
-    {
-      type: "problem",
-      urlName: "reverse-a-linked-list",
-      name: "Problem: Reverse a Linked List",
-    },
-    {
-      type: "problem",
-      urlName: "remove-duplicates-from-sorted-linked-list",
-      name: "Problem: Remove Duplicates from Sorted Linked List",
-    },
-    {
-      type: "reading",
-      urlName: "the-two-pointer-method-linked-list-edition",
-      name: "The Two Pointer Method: Linked List Edition",
-    },
-    {
-      type: "problem",
-      urlName: "detect-cycle-in-linked-list",
-      name: "Problem: Detect Cycle in Linked List",
-    },
-  ];
-
   render() {
     const { router } = this.props;
 
@@ -458,36 +256,36 @@ class BeginnerPath extends React.Component<BeginnerPathProps, BeginnerPathState>
                 <StyledCard raised fluid>
                   <Header size="medium" style={{ marginBottom: 15 }}>
                     1 - Introduction
-                    {headerCheck(this.introductionData)}
+                    {headerCheck(beginnerPathData.introduction)}
                   </Header>
-                  <CardGroup>{cardGroupContents(this.introductionData)}</CardGroup>
+                  <CardGroup>{cardGroupContents(beginnerPathData.introduction)}</CardGroup>
                 </StyledCard>
 
                 <div ref={this.contentsRefs[1]} />
                 <StyledCard raised fluid>
                   <Header size="medium" style={{ marginBottom: 15 }}>
                     2 - Big O Notation
-                    {headerCheck(this.bigONotationData)}
+                    {headerCheck(beginnerPathData.bigONotation)}
                   </Header>
-                  <CardGroup>{cardGroupContents(this.bigONotationData)}</CardGroup>
+                  <CardGroup>{cardGroupContents(beginnerPathData.bigONotation)}</CardGroup>
                 </StyledCard>
 
                 <div ref={this.contentsRefs[2]} />
                 <StyledCard raised fluid>
                   <Header size="medium" style={{ marginBottom: 15 }}>
                     4 - Basic Strings and Arrays
-                    {headerCheck(this.stringsAndArraysData)}
+                    {headerCheck(beginnerPathData.stringsAndArrays)}
                   </Header>
-                  <CardGroup>{cardGroupContents(this.stringsAndArraysData)}</CardGroup>
+                  <CardGroup>{cardGroupContents(beginnerPathData.stringsAndArrays)}</CardGroup>
                 </StyledCard>
 
                 <div ref={this.contentsRefs[3]} />
                 <StyledCard raised fluid>
                   <Header size="medium" style={{ marginBottom: 15 }}>
                     5 - Linked Lists
-                    {headerCheck(this.linkedListsData)}
+                    {headerCheck(beginnerPathData.linkedLists)}
                   </Header>
-                  <CardGroup>{cardGroupContents(this.linkedListsData)}</CardGroup>
+                  <CardGroup>{cardGroupContents(beginnerPathData.linkedLists)}</CardGroup>
                 </StyledCard>
               </StyledCardGroup>
             </GridRow>
