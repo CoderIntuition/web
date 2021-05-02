@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { NextRouter, withRouter } from "next/router";
 import axios from "axios";
 import Quiz from "react-quiz-component";
-import { Button, Header, Icon, Loader, Message, Segment } from "semantic-ui-react";
+import {Button, Grid, GridRow, Header, Icon, Loader, Message, Segment} from "semantic-ui-react";
 import MarkdownRender from "components/common/markdown-render/markdown-render";
 import { withGlobalContext, wrapQuestions } from "common/utils";
 import { constants } from "common/constants";
@@ -146,6 +146,11 @@ class Reading extends Component<ReadingProps, ReadingState> {
               </>
             )}
           </Segment>
+          <Grid>
+            <GridRow centered>
+              <Button primary onClick={() => {this.props.router.push("/reading/why-should-i-use-a-learning-path")}}>Next Excercise</Button>
+            </GridRow>
+          </Grid>
         </CenteredDiv>
       </>
     );
