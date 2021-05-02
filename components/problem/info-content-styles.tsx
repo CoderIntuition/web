@@ -112,6 +112,7 @@ export const StyledTable = styled(Table)`
   &&&&& {
     background-color: ${(props) => (props.dark ? "#202125" : "")};
     color: ${(props) => (props.dark ? "#e0e0e0" : "")} !important;
+    margin-bottom: 50px;
   }
 `;
 
