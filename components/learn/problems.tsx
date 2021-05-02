@@ -59,8 +59,8 @@ class Problems extends React.Component<ProblemsProps, ProblemsState> {
     };
   }
 
-  fetchProblems(page, category) {
-    this.setState({ loading: true });
+  fetchProblems(page, category, doLoad) {
+    if (doLoad) this.setState({ loading: true });
     category = category.replace("-", "_");
 
     axios
@@ -72,16 +72,18 @@ class Problems extends React.Component<ProblemsProps, ProblemsState> {
       })
       .then((res) => {
         this.setState({
-          loading: false,
           problems: res.data.problems,
           totalPages: res.data.totalPages,
           searchedProblems: res.data.problems,
         });
+        if (doLoad) {
+          this.setState({loading: false});
+        }
       })
       .catch((_err) => {
-        this.setState({
-          loading: false,
-        });
+        if (doLoad) {
+          this.setState({loading: false});
+        }
       });
   }
 
@@ -99,7 +101,7 @@ class Problems extends React.Component<ProblemsProps, ProblemsState> {
           page: 1,
           totalPages: 0,
         });
-        this.fetchProblems(this.state.page, category);
+        this.fetchProblems(this.state.page, category, true);
       }
     }
   }
@@ -112,14 +114,14 @@ class Problems extends React.Component<ProblemsProps, ProblemsState> {
         notFound: true,
       });
     } else {
-      this.fetchProblems(this.state.page, category);
+      this.fetchProblems(this.state.page, category, true);
     }
   }
 
   handlePageChange = (e, props) => {
     const { category } = this.props.router.query;
 
-    this.fetchProblems(props.activePage, category);
+    this.fetchProblems(props.activePage, category, false);
     this.setState({
       page: props.activePage,
     });
