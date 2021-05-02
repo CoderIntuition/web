@@ -109,6 +109,7 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
         produceOutputLanguage: "PYTHON",
       },
     ] as any[],
+    produceAllOutputsLanguage: "PYTHON",
     loading: false,
     submitStatus: "",
     message: {} as any,
@@ -138,10 +139,9 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
 
           // use data only if problem id matches
           if (body.problemId === parseInt(this.props.router.query.id as string)) {
-            if (this.produceOutputTimeout) clearTimeout(this.produceOutputTimeout);
-
             const testCaseRows = this.state.testCaseRows;
             const idx = body.testCaseNum;
+            if (testCaseRows[idx].produceOutputTimeout) clearTimeout(testCaseRows[idx].produceOutputTimeout);
             testCaseRows[idx].output = body.stderr || body.output;
             testCaseRows[idx].produceOutputLoading = false;
 
@@ -322,6 +322,18 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
     return res[0].code[language];
   }
 
+  handleProduceAllOutputs() {
+    const testCaseRows = this.state.testCaseRows;
+    for (let i = 0; i < testCaseRows.length; i++) {
+      testCaseRows[i].produceOutputLanguage = this.state.produceAllOutputsLanguage;
+    }
+    this.setState({ testCaseRows: testCaseRows });
+
+    for (let i = 0; i < testCaseRows.length; i++) {
+      this.handleProduceOutput(i);
+    }
+  }
+
   handleProduceOutput(idx) {
     if (!this.props.router.query.id) {
       showErrorToast("Produce output is only available for editing", "Save the problem first and then edit it");
@@ -331,12 +343,6 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
     if (this.state.testCaseRows[idx].produceOutputLoading || !this.client) {
       return;
     }
-
-    const testCaseRows = this.state.testCaseRows;
-    testCaseRows[idx].produceOutputLoading = true;
-    this.setState({
-      testCaseRows: testCaseRows,
-    });
 
     const destination = "/app/secured/" + this.props.currentUser.id + "/produceoutput";
     const headers = {
@@ -356,7 +362,7 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
       body: JSON.stringify(body),
     });
 
-    this.produceOutputTimeout = setTimeout(() => {
+    const produceOutputTimeout = setTimeout(() => {
       if (this.state.testCaseRows[idx].produceOutputLoading) {
         showErrorToast("Produce Output Timeout", "Please try producing output again or report this issue.");
         const testCaseRows = this.state.testCaseRows;
@@ -366,6 +372,13 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
         });
       }
     }, 20000);
+
+    const testCaseRows = this.state.testCaseRows;
+    testCaseRows[idx].produceOutputLoading = true;
+    testCaseRows[idx].produceOutputTimeout = produceOutputTimeout;
+    this.setState({
+      testCaseRows: testCaseRows,
+    });
   }
 
   handleAddRow(section, idx) {
@@ -1182,6 +1195,23 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
             ))}
             <GridRow centered>
               <SectionDivider />
+            </GridRow>
+            <GridRow centered>
+              <Dropdown
+                value={this.state.produceAllOutputsLanguage}
+                options={this.languages}
+                onChange={(event, data) => {
+                  this.setState({ produceAllOutputsLanguage: data.value });
+                }}
+                selection
+              />
+              <GrayButton
+                type="button"
+                loading={this.state.testCaseRows.filter((row) => row.produceOutputLoading).length > 0}
+                onClick={() => this.handleProduceAllOutputs()}
+                content="Produce All Outputs"
+                style={{ marginLeft: 10 }}
+              />
             </GridRow>
             {/* ----- TEST CASES ----- */}
             {this.state.testCaseRows.map((item, idx) => (
