@@ -153,9 +153,7 @@ const Plus = (props) => {
                     </div>
                     <div className={PlanFeatures}>
                       {plan.features.map((feature, index) => (
-                        <PlanFeaturesSpan key={index}>
-                          {feature}
-                        </PlanFeaturesSpan>
+                        <PlanFeaturesSpan key={index}>{feature}</PlanFeaturesSpan>
                       ))}
                     </div>
                     <div className={PlanAction}>

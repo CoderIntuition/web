@@ -62,9 +62,13 @@ const Checkout = (props) => {
 
   return (
     <>
-      <StyledButton primary loading={loading} onClick={redirectToCheckout}>
-        {props.authenticated ? "Upgrade Now" : "Buy Now"}
+
+      <StyledButton primary disabled>
+        Coming Soon
       </StyledButton>
+      {/*<StyledButton primary loading={loading} onClick={redirectToCheckout}>*/}
+      {/*  {props.authenticated ? "Upgrade Now" : "Buy Now"}*/}
+      {/*</StyledButton>*/}
       <Modal closeOnEscape={true} size="tiny" open={signupModalOpen} onClose={() => setSignupModalOpen(false)}>
         <Modal.Header>Get Intuition+</Modal.Header>
         <Modal.Content>
