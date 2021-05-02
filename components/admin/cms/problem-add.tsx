@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { NextRouter, withRouter } from "next/router";
 import Link from "next/link";
-import { Client, CompatClient } from "@stomp/stompjs";
+import { Client } from "@stomp/stompjs";
 import axios from "axios";
 import Quiz from "react-quiz-component";
 import {
@@ -353,7 +353,7 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
     this.client.publish({
       destination: destination,
       headers: headers,
-      body: JSON.stringify(body)
+      body: JSON.stringify(body),
     });
 
     this.produceOutputTimeout = setTimeout(() => {
@@ -576,6 +576,7 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
     { value: "DICTIONARY", text: "Dictionary (Map)" },
     { value: "TREE", text: "Binary Tree" },
     { value: "LINKED_LIST", text: "Linked List" },
+    { value: "LINKED_LIST_WITH_CYCLE", text: "Linked List with Cycle" },
   ];
 
   underlyingTypes = [
