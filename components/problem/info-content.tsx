@@ -77,7 +77,7 @@ class InfoContent extends React.Component<InfoContentProps> {
       /* ========== DESCRIPTION TAB ========== */
       case "description":
         return (
-          <>
+          <div style={{ marginBottom: 50 }}>
             <VHeader dark={this.props.darkMode} style={{ marginBottom: 6 }}>
               {this.props.problem.name}
             </VHeader>
@@ -104,7 +104,7 @@ class InfoContent extends React.Component<InfoContentProps> {
                 <MarkdownRender source={this.props.problem.description} />
               )}
             </DescriptionStyles>
-          </>
+          </div>
         );
       /* ========== INTUITION TAB ========== */
       case "intuition":
