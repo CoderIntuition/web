@@ -1,5 +1,5 @@
 import React from "react";
-import { AccordionContent, AccordionTitle, Form, Grid, GridColumn, GridRow, Icon } from "semantic-ui-react";
+import { AccordionContent, AccordionTitle, Button, Form, Grid, GridColumn, GridRow, Icon } from "semantic-ui-react";
 import TestOutputLoader from "./test-output-loader";
 import Emoji from "components/common/emoji/emoji";
 import AceEditor from "components/common/ace-editor/ace-editor";
@@ -16,6 +16,8 @@ import {
   TopRow,
   XRight,
 } from "./test-content-styles";
+import { getNextExercise } from "../../common/utils";
+import { NextRouter } from "next/router";
 
 function TestContentWrapper(props) {
   return (
@@ -28,6 +30,7 @@ function TestContentWrapper(props) {
 }
 
 type PropTypes = {
+  router: NextRouter;
   problem: any;
   darkMode: number;
   testTab: string;
@@ -234,6 +237,33 @@ class TestContent extends React.Component<PropTypes> {
               );
             /* ========== SUBMISSION TAB -> PASSED OR FAILED ========== */
             case "ACCEPTED":
+              const urlName = getNextExercise(this.props.problem.urlName);
+              return (
+                <TestContentWrapper>
+                  <TopRow dark={this.props.darkMode}>
+                    <StatusText>
+                      <StyledCheckCircle size={28} />
+                      Submission Accepted
+                    </StatusText>
+                  </TopRow>
+                  <p></p>
+                  <Button
+                    primary
+                    icon
+                    labelPosition="right"
+                    style={{ marginTop: 10 }}
+                    onClick={() => this.props.router.push(urlName || "/problems")}
+                  >
+                    {!urlName ? "Try Another Problem" :
+                      urlName.startsWith("/quiz")
+                      ? "Next Quiz"
+                      : urlName.startsWith("/reading")
+                      ? "Next Reading"
+                      : "Next Problem"}
+                    <Icon name="chevron right" />
+                  </Button>
+                </TestContentWrapper>
+              );
             case "REJECTED":
               /* ========== SUBMISSION TAB -> PASSED OR FAILED -> SUBMISSION RESULT ITEMS ========== */
               const submissionResultItems = this.props.submission.testResults.map((run, index) => {
@@ -333,17 +363,10 @@ class TestContent extends React.Component<PropTypes> {
               return (
                 <TestContentWrapper>
                   <TopRow dark={this.props.darkMode}>
-                    {this.props.submission.status === "ACCEPTED" ? (
-                      <StatusText>
-                        <StyledCheckCircle size={28} />
-                        Submission Accepted
-                      </StatusText>
-                    ) : (
-                      <StatusText>
-                        <StyledXCircle size={28} />
-                        Some Tests Failed
-                      </StatusText>
-                    )}
+                    <StatusText>
+                      <StyledXCircle size={28} />
+                      Some Tests Failed
+                    </StatusText>
                   </TopRow>
                   {submissionResultItems}
                 </TestContentWrapper>

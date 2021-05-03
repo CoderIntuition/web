@@ -1,12 +1,12 @@
 const dev = process.env.NODE_ENV === "development";
 
-// const API_BASE_URL = dev ? "http://localhost:8080" : "https://api.coderintuition.com";
-// const WEB_BASE_URL = dev ? "http://localhost:3000" : "https://coderintuition.com";
-// const WEBSOCKET_BASE_URL = dev ? "ws://localhost:8080" : "wss://api.coderintuition.com";
+const API_BASE_URL = dev ? "http://localhost:8080" : "https://api.coderintuition.com";
+const WEB_BASE_URL = dev ? "http://localhost:3000" : "https://coderintuition.com";
+const WEBSOCKET_BASE_URL = dev ? "ws://localhost:8080" : "wss://api.coderintuition.com";
 // uncomment the three below and comment three above to force production
-const API_BASE_URL = "https://api.coderintuition.com";
-const WEB_BASE_URL = "https://coderintuition.com";
-const WEBSOCKET_BASE_URL = "wss://api.coderintuition.com";
+// const API_BASE_URL = "https://api.coderintuition.com";
+// const WEB_BASE_URL = "https://coderintuition.com";
+// const WEBSOCKET_BASE_URL = "wss://api.coderintuition.com";
 
 // publishable keys only identify a business so they can live in the code
 const STRIPE_PUBLISHABLE_KEY = true

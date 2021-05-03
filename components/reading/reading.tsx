@@ -27,7 +27,6 @@ interface Reading {
 interface ReadingState {
   loading: boolean;
   reading?: Reading;
-  next: string;
 }
 
 class Reading extends Component<ReadingProps, ReadingState> {
@@ -37,7 +36,6 @@ class Reading extends Component<ReadingProps, ReadingState> {
     this.state = {
       loading: true,
       reading: undefined,
-      next: "",
     };
   }
 
@@ -47,7 +45,6 @@ class Reading extends Component<ReadingProps, ReadingState> {
       .then((res) => {
         this.setState({
           reading: res.data,
-          next: getNextExercise(this.props.router.query.urlName),
           loading: false,
         });
         this.completeReading();
@@ -125,6 +122,7 @@ class Reading extends Component<ReadingProps, ReadingState> {
       );
     }
 
+    const urlName = getNextExercise(this.props.router.query.urlName);
     return (
       <>
         <Head>
@@ -165,13 +163,15 @@ class Reading extends Component<ReadingProps, ReadingState> {
               <Button
                 primary
                 onClick={() => {
-                  this.props.router.push(this.state.next);
+                  this.props.router.push(urlName || "/learning-path/beginner-path");
                 }}
               >
                 Continue to Next{" "}
-                {this.state.next.startsWith("/quiz")
+                {!urlName
+                  ? "Section"
+                  : urlName.startsWith("/quiz")
                   ? "Quiz"
-                  : this.state.next.startsWith("/reading")
+                  : urlName.startsWith("/reading")
                   ? "Reading"
                   : "Problem"}
               </Button>

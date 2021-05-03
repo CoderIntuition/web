@@ -997,6 +997,7 @@ class Problem extends Component<ProblemProps> {
           </StyledMenu>
           <TestContentWrapper dark={this.props.darkMode}>
             <TestContent
+              router={this.props.router}
               problem={this.state.problem}
               darkMode={this.props.darkMode}
               testTab={this.state.testTab}

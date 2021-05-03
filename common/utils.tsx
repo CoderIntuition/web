@@ -173,5 +173,5 @@ export const getNextExercise = (urlName) => {
       }
     }
   }
-  return "/learning-path/beginner-path";
+  return null;
 }
