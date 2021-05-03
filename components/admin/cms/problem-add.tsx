@@ -58,7 +58,13 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
     plusOnly: false,
     category: "ARRAYS",
     difficulty: "EASY",
-    description: "",
+    description:
+      "### Description\n\n\n\n" +
+      "### Examples\n\n" +
+      "| Example 1 |  |\n" +
+      "| --- | --- |\n" +
+      "| **Input** | `` |\n" +
+      "| **Output** | `` |",
     defaultCodeLanguage: "python",
     defaultCode: {
       python: "def placeholder(lst):\n\treturn 0",
