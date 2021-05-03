@@ -2,7 +2,18 @@ import React from "react";
 import Image from "next/image";
 import moment from "moment/moment";
 import Quiz from "react-quiz-component";
-import { Grid, GridColumn, GridRow, Label, Modal, Table, TableHeader } from "semantic-ui-react";
+import {
+  AccordionContent,
+  AccordionTitle,
+  Grid,
+  GridColumn,
+  GridRow,
+  Icon,
+  Label,
+  Modal,
+  Table,
+  TableHeader,
+} from "semantic-ui-react";
 import MarkdownRender from "components/common/markdown-render/markdown-render";
 import AceEditor from "components/common/ace-editor/ace-editor";
 import Emoji from "components/common/emoji/emoji";
@@ -25,6 +36,7 @@ import {
 } from "./info-content-styles";
 import MarkdownRenderDark from "../common/markdown-render/markdown-render-dark";
 import { Briefcase, CheckCircle, Heart, Upload } from "react-feather";
+import { StyledAccordion } from "./test-content-styles";
 
 interface InfoContentProps {
   authenticated: boolean;
@@ -209,44 +221,57 @@ class InfoContent extends React.Component<InfoContentProps> {
               {this.props.problem.solutions.map((solution, idx) => {
                 return (
                   <div key={idx}>
-                    <VHeaderWithBorder dark={this.props.darkMode} as="h3">
-                      Approach {solution.solutionNum}: {solution.name}
-                    </VHeaderWithBorder>
-                    <DescriptionStyles>
-                      {this.props.darkMode ? (
-                        <MarkdownRenderDark source={solution.description} />
-                      ) : (
-                        <MarkdownRender source={solution.description} />
-                      )}
-                    </DescriptionStyles>
-                    <VHeader
+                    <StyledAccordion
+                      fluid
+                      styled
                       dark={this.props.darkMode}
-                      style={{ fontSize: 14, fontWeight: 600, marginTop: 20, marginBottom: 8 }}
+                      onClick={() => this.handleAccordionClick(idx)}
                     >
-                      Code
-                    </VHeader>
-                    <AceEditor
-                      width={this.props.windowWidth - this.props.verticalPaneSize - 65 + "px"}
-                      mode={this.props.language.toLowerCase()}
-                      theme={this.props.darkMode ? "monokai" : "xcode"}
-                      value={this.getSolutionCode(solution, this.props.language)}
-                      editorProps={{
-                        $blockScrolling: true,
-                        $blockSelectEnabled: true,
-                      }}
-                      setOptions={{
-                        showLineNumbers: true,
-                        tabSize: 4,
-                        maxLines: 50,
-                        readOnly: true,
-                        useWorker: false,
-                      }}
-                    />
-                    <br />
+                      <AccordionTitle active={this.state["active" + idx]}>
+                        <Icon name="dropdown" color={this.props.darkMode ? "grey" : "black"} />
+                        <VHeader dark={this.props.darkMode} style={{ display: "inline", fontSize: 16 }}>
+                          Approach {solution.solutionNum}: {solution.name}
+                        </VHeader>
+                      </AccordionTitle>
+                      <AccordionContent active={this.state["active" + idx]}>
+                        <DescriptionStyles>
+                          {this.props.darkMode ? (
+                            <MarkdownRenderDark source={solution.description} />
+                          ) : (
+                            <MarkdownRender source={solution.description} />
+                          )}
+                        </DescriptionStyles>
+                        <VHeader
+                          dark={this.props.darkMode}
+                          style={{ fontSize: 14, fontWeight: 600, marginTop: 20, marginBottom: 8 }}
+                        >
+                          Code
+                        </VHeader>
+                        <AceEditor
+                          width={this.props.windowWidth - this.props.verticalPaneSize - 100 + "px"}
+                          mode={this.props.language.toLowerCase()}
+                          theme={this.props.darkMode ? "monokai" : "xcode"}
+                          value={this.getSolutionCode(solution, this.props.language)}
+                          editorProps={{
+                            $blockScrolling: true,
+                            $blockSelectEnabled: true,
+                          }}
+                          setOptions={{
+                            showLineNumbers: true,
+                            tabSize: 4,
+                            maxLines: 50,
+                            readOnly: true,
+                            useWorker: false,
+                          }}
+                        />
+                      </AccordionContent>
+                    </StyledAccordion>
                     <br />
                   </div>
                 );
               })}
+              <br />
+              <br />
             </div>
           );
         }
