@@ -105,14 +105,14 @@ class Overview extends React.Component<OverviewProps, OverviewState> {
             <StyledGrid>
               <Grid.Row>
                 <CardGroup stackable>
-                  <Card raised onClick={() => this.props.router.push("/problems/arrays")}>
+                  <Card raised onClick={() => this.props.router.push("/learning-path/beginner-path")}>
                     <Image src="/images/array.svg" width="200px" height="200px" />
                     <Card.Content>
                       <Card.Header style={{fontWeight: 500}}>Beginner Path</Card.Header>
                       <Card.Description>Introduction to beginner topics in algorithms and data structures</Card.Description>
                     </Card.Content>
                   </Card>
-                  <Card raised onClick={() => this.props.router.push("/problems/strings")}>
+                  <Card raised onClick={() => this.props.router.push("/learning-path/plus-path")}>
                     <Image src="/images/string.svg" width="200px" height="200px" />
                     <Card.Content>
                       <Card.Header>Intuition+ Path</Card.Header>
