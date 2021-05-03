@@ -28,7 +28,7 @@ const Features = () => {
     },
     {
       imageSrc: Info,
-      title: "Quizzes",
+      title: "Intuition Steps",
       description: "Our intuition steps and quizzes build your intuition while you get your hands dirty.",
     },
     {

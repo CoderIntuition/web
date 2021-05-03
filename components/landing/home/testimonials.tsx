@@ -42,11 +42,11 @@ const Testimonials = () => {
   const testimonials = [
     {
       profileImageSrc: "/images/michelle.png",
-      heading: "I actually understand the intuition now!",
+      heading: "Completely changed my thought process!",
       quote:
         "I used to always read the solution when I got stuck, but I never actually understood " +
         "the underlying intuition since I'd get stuck again on similar problems. With CoderIntuition, " +
-        "I learned how to approach problems without memorizing solutions and I aced my interview with Airbnb!",
+        "I learned how to approach problems without memorizing solutions.",
       customerName: "Michelle L.",
       customerTitle: "Software Engineering Intern",
       companyImageSrc: "/images/airbnb.png",
@@ -56,8 +56,7 @@ const Testimonials = () => {
       heading: "Helped build my problem-solving skillset!",
       quote:
         "CoderIntuition helped me develop my problem-solving skills for interview problems. " +
-        "I found that other platforms only explain the solution without the intuition behind it. " +
-        "I'm now a Software Engineer at Google thanks to CoderIntuition!",
+        "I found that other platforms only explain the solution without the intuition behind it. ",
       customerName: "Rohan G.",
       customerTitle: "Software Engineer",
       companyImageSrc: "/images/google.png",
