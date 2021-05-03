@@ -2,6 +2,14 @@ import styled from "styled-components";
 import { Card, CardGroup, Grid, Header, ListItem } from "semantic-ui-react";
 import { CheckCircle } from "react-feather";
 
+export const StyledHeader = styled(Header)`
+  &&& {
+    font-weight: 500;
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+`;
+
 export const StyledGrid = styled(Grid)`
   &&& {
     margin: 10px;

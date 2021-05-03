@@ -5,6 +5,7 @@
 @raisedShadow: 0px 0px 10px rgba(0, 0, 0, 0.08) !important;
 @contentPadding: 20px !important;
 @headerColor: #1a202c !important;
+@headerFontWeight: 500;
 @descriptionColor: rgba(0, 0, 0, 0.5) !important;
 @groupCardMargin: 10px;
 @imageBackground: #fcfcfc;

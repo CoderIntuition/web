@@ -99,7 +99,30 @@ class Overview extends React.Component<OverviewProps, OverviewState> {
         <ProblemsSidebar active="overview">
           <>
             <HeadingSection>
-              <Subheading>GENERAL</Subheading>
+              <Subheading>OVERVIEW</Subheading>
+              <Heading>Learning Paths</Heading>
+            </HeadingSection>
+            <StyledGrid>
+              <Grid.Row>
+                <CardGroup stackable>
+                  <Card raised onClick={() => this.props.router.push("/problems/arrays")}>
+                    <Image src="/images/array.svg" width="200px" height="200px" />
+                    <Card.Content>
+                      <Card.Header style={{fontWeight: 500}}>Beginner Path</Card.Header>
+                      <Card.Description>Introduction to beginner topics in algorithms and data structures</Card.Description>
+                    </Card.Content>
+                  </Card>
+                  <Card raised onClick={() => this.props.router.push("/problems/strings")}>
+                    <Image src="/images/string.svg" width="200px" height="200px" />
+                    <Card.Content>
+                      <Card.Header>Intuition+ Path</Card.Header>
+                      <Card.Description>Full algorithms and data structures coverage to prepare you for coding interviews</Card.Description>
+                    </Card.Content>
+                  </Card>
+                </CardGroup>
+              </Grid.Row>
+            </StyledGrid>
+            <HeadingSection>
               <Heading>Problems</Heading>
             </HeadingSection>
             <StyledGrid>
@@ -142,15 +165,22 @@ class Overview extends React.Component<OverviewProps, OverviewState> {
                   <Card raised onClick={() => this.props.router.push("/problems/stacks")}>
                     <Image src="/images/stack.svg" width="200px" height="200px" />
                     <Card.Content>
+                      <Card.Header>Hash Tables</Card.Header>
+                      <Card.Description>Problems that use hash tables to solve problems</Card.Description>
+                    </Card.Content>
+                  </Card>
+                  <Card raised onClick={() => this.props.router.push("/problems/stacks")}>
+                    <Image src="/images/stack.svg" width="200px" height="200px" />
+                    <Card.Content>
                       <Card.Header>Stacks</Card.Header>
-                      <Card.Description>Problems related to using stacks to solve problems</Card.Description>
+                      <Card.Description>Problems that use stacks to solve problems</Card.Description>
                     </Card.Content>
                   </Card>
                   <Card raised onClick={() => this.props.router.push("/problems/queues")}>
                     <Image src="/images/queue.svg" width="200px" height="200px" />
                     <Card.Content>
                       <Card.Header>Queues</Card.Header>
-                      <Card.Description>Problems related to using queues to solve problems</Card.Description>
+                      <Card.Description>Problems that use queues to solve problems</Card.Description>
                     </Card.Content>
                   </Card>
                   <Card raised onClick={() => this.props.router.push("/problems/trees")}>
@@ -178,14 +208,14 @@ class Overview extends React.Component<OverviewProps, OverviewState> {
                     raised
                     onClick={() => this.props.router.push("/problems/greedy")}
                     header="Greedy"
-                    description="Problems that are solved using a greedy approach"
+                    description="Problems that can be solved using a greedy approach"
                   />
                   <Card raised onClick={() => this.props.router.push("/problems/dynamic-programming")}>
                     <Image src="/images/dp.svg" width="200px" height="200px" />
                     <Card.Content>
                       <Card.Header>Dynamic Programming</Card.Header>
                       <Card.Description>
-                        Problems that are can be optimized using a dynamic programming approach
+                        Problems that can be optimized using a dynamic programming approach
                       </Card.Description>
                     </Card.Content>
                   </Card>

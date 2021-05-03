@@ -77,12 +77,12 @@ class Problems extends React.Component<ProblemsProps, ProblemsState> {
           searchedProblems: res.data.problems,
         });
         if (doLoad) {
-          this.setState({loading: false});
+          this.setState({ loading: false });
         }
       })
       .catch((_err) => {
         if (doLoad) {
-          this.setState({loading: false});
+          this.setState({ loading: false });
         }
       });
   }

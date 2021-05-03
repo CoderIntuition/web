@@ -15,8 +15,8 @@ import {
   ItemHeader,
   StyledCard,
   StyledCardGroup,
-  StyledGrid,
-  StyledListItem,
+  StyledGrid, StyledHeader,
+  StyledListItem
 } from "./beginner-path-styles";
 
 interface BeginnerPathProps {
@@ -224,7 +224,7 @@ class BeginnerPath extends React.Component<BeginnerPathProps, BeginnerPathState>
             <GridRow>
               <StyledCardGroup>
                 <StyledCard raised fluid>
-                  <Header size="medium">Overview</Header>
+                  <StyledHeader size="medium" style={{marginBottom: 10}}>Overview</StyledHeader>
                   <p style={{ color: "#00000090", fontSize: 15 }}>
                     In this learning path, you'll understand the <b style={{ fontWeight: 600 }}>prerequisites</b> for
                     using CoderIntuition and get introduced to easier coding interview problems.
@@ -235,9 +235,9 @@ class BeginnerPath extends React.Component<BeginnerPathProps, BeginnerPathState>
                 </StyledCard>
 
                 <StyledCard raised fluid>
-                  <Header size="medium" style={{ marginBottom: 0 }}>
+                  <StyledHeader size="medium" style={{ marginBottom: 0 }}>
                     Contents
-                  </Header>
+                  </StyledHeader>
                   <List ordered>
                     <StyledListItem onClick={() => this.contentsRefs[0].current.scrollIntoView()}>
                       Introduction
@@ -254,37 +254,37 @@ class BeginnerPath extends React.Component<BeginnerPathProps, BeginnerPathState>
 
                 <div ref={this.contentsRefs[0]} />
                 <StyledCard raised fluid>
-                  <Header size="medium" style={{ marginBottom: 15 }}>
+                  <StyledHeader size="medium">
                     1 - Introduction
                     {headerCheck(beginnerPathData.introduction)}
-                  </Header>
+                  </StyledHeader>
                   <CardGroup>{cardGroupContents(beginnerPathData.introduction)}</CardGroup>
                 </StyledCard>
 
                 <div ref={this.contentsRefs[1]} />
                 <StyledCard raised fluid>
-                  <Header size="medium" style={{ marginBottom: 15 }}>
+                  <StyledHeader size="medium">
                     2 - Big O Notation
                     {headerCheck(beginnerPathData.bigONotation)}
-                  </Header>
+                  </StyledHeader>
                   <CardGroup>{cardGroupContents(beginnerPathData.bigONotation)}</CardGroup>
                 </StyledCard>
 
                 <div ref={this.contentsRefs[2]} />
                 <StyledCard raised fluid>
-                  <Header size="medium" style={{ marginBottom: 15 }}>
+                  <StyledHeader size="medium">
                     4 - Basic Strings and Arrays
                     {headerCheck(beginnerPathData.stringsAndArrays)}
-                  </Header>
+                  </StyledHeader>
                   <CardGroup>{cardGroupContents(beginnerPathData.stringsAndArrays)}</CardGroup>
                 </StyledCard>
 
                 <div ref={this.contentsRefs[3]} />
                 <StyledCard raised fluid>
-                  <Header size="medium" style={{ marginBottom: 15 }}>
+                  <StyledHeader size="medium">
                     5 - Linked Lists
                     {headerCheck(beginnerPathData.linkedLists)}
-                  </Header>
+                  </StyledHeader>
                   <CardGroup>{cardGroupContents(beginnerPathData.linkedLists)}</CardGroup>
                 </StyledCard>
               </StyledCardGroup>
