@@ -257,7 +257,7 @@ export const beginnerPathData = {
     },
     {
       type: "problem",
-      urlName: "insertion-sort",
+      urlName: "practice-insertion-sort",
       name: "Problem: Practice Insertion Sort",
     },
     {
