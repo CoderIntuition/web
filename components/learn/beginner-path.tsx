@@ -75,9 +75,7 @@ class BeginnerPath extends React.Component<BeginnerPathProps, BeginnerPathState>
         });
       });
     } else {
-      this.setState({
-        loading: false,
-      });
+      this.setState({ loading: false });
     }
   }
 
@@ -188,7 +186,7 @@ class BeginnerPath extends React.Component<BeginnerPathProps, BeginnerPathState>
       <>
         {data.map((introduction, idx) => {
           if (introduction.type === "break") {
-            return <br/>
+            return <br />
           }
 
           let completedList;
@@ -228,7 +226,7 @@ class BeginnerPath extends React.Component<BeginnerPathProps, BeginnerPathState>
             <GridRow>
               <StyledCardGroup>
                 <StyledCard raised fluid>
-                  <StyledHeader size="medium" style={{marginBottom: 10}}>Overview</StyledHeader>
+                  <StyledHeader size="medium" style={{ marginBottom: 10 }}>Overview</StyledHeader>
                   <p style={{ color: "#00000090", fontSize: 15 }}>
                     In this learning path, you'll understand the <b style={{ fontWeight: 600 }}>prerequisites</b> for
                     using CoderIntuition and get introduced to easier coding interview problems.
