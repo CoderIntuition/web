@@ -202,12 +202,17 @@ export const beginnerPathData = {
     {
       type: "reading",
       urlName: "searching-arrays",
-      name: "Introduction to Searching Arrays",
+      name: "Introduction to Searching Arrays (Binary Search)",
     },
     {
       type: "problem",
       urlName: "find-element-in-array",
       name: "Problem: Find Element in Array",
+    },
+    {
+      type: "problem",
+      urlName: "valid-perfect-square",
+      name: "Problem: Valid Perfect Square",
     },
     {
       type: "reading",
@@ -218,11 +223,6 @@ export const beginnerPathData = {
       type: "problem",
       urlName: "find-pivot-point-of-rotated-sorted-array",
       name: "Problem: Find Pivot Point of Rotated Sorted Array",
-    },
-    {
-      type: "problem",
-      urlName: "valid-perfect-square",
-      name: "Problem: Valid Perfect Square",
     },
     {
       type: "quiz",
@@ -246,8 +246,8 @@ export const beginnerPathData = {
     },
     {
       type: "problem",
-      urlName: "merge-two-sorted-arrays",
-      name: "Problem: Merge Two Sorted Arrays",
+      urlName: "merge-overlapping-intervals",
+      name: "Problem: Merge Overlapping Intervals",
     },
     {
       type: "quiz",
