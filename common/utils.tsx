@@ -168,8 +168,10 @@ export const isJsonArray = (str) => {
 export const getNextExercise = (urlName) => {
   for (const exercises of Object.values(beginnerPathData)) {
     for (let i = 0; i < exercises.length - 1; i++) {
-      if (exercises[i].urlName === urlName) {
-        return "/" + exercises[i + 1].type + "/" + exercises[i + 1].urlName;
+      const cur = exercises[i];
+      if (cur.type !== "break" && cur.urlName === urlName) {
+        const next = exercises[i + 1].type === "break" ? exercises[i + 2] : exercises[i + 1];
+        return "/" + next.type + "/" + next.urlName;
       }
     }
   }

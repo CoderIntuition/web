@@ -133,6 +133,9 @@ export const beginnerPathData = {
       name: "Big O Notation",
     },
     {
+      type: "break"
+    },
+    {
       type: "reading",
       urlName: "time-complexity",
       name: "Time Complexity",
@@ -143,6 +146,9 @@ export const beginnerPathData = {
       name: "Quiz: Time Complexity",
     },
     {
+      type: "break"
+    },
+    {
       type: "reading",
       urlName: "space-complexity",
       name: "Space Complexity",
@@ -151,6 +157,9 @@ export const beginnerPathData = {
       type: "quiz",
       urlName: "space-complexity-quiz",
       name: "Quiz: Space Complexity",
+    },
+    {
+      type: "break"
     },
     {
       type: "tip",
@@ -173,6 +182,9 @@ export const beginnerPathData = {
       type: "problem",
       urlName: "longest-common-prefix",
       name: "Problem: Longest Common Prefix",
+    },
+    {
+      type: "break"
     },
     {
       type: "reading",
@@ -200,6 +212,9 @@ export const beginnerPathData = {
       name: "Quiz: Two-Pointer Method",
     },
     {
+      type: "break"
+    },
+    {
       type: "reading",
       urlName: "searching-arrays",
       name: "Introduction to Searching Arrays (Binary Search)",
@@ -215,6 +230,9 @@ export const beginnerPathData = {
       name: "Problem: Valid Perfect Square",
     },
     {
+      type: "break"
+    },
+    {
       type: "reading",
       urlName: "modifying-binary-search",
       name: "Modifying Binary Search",
@@ -228,6 +246,9 @@ export const beginnerPathData = {
       type: "quiz",
       urlName: "searching-arrays-quiz",
       name: "Quiz: Searching Arrays",
+    },
+    {
+      type: "break"
     },
     {
       type: "reading",
@@ -255,6 +276,9 @@ export const beginnerPathData = {
       name: "Quiz: Sorting Arrays",
     },
     {
+      type: "break"
+    },
+    {
       type: "tip",
       urlName: "plan-of-attack-for-array-problems",
       name: "Interview Tip: Plan of Attack for Array Problems",
@@ -265,6 +289,11 @@ export const beginnerPathData = {
       type: "reading",
       urlName: "the-linked-list-data-structure",
       name: "The Linked List Data Structure",
+    },
+    {
+      type: "quiz",
+      urlName: "linked-list-quiz",
+      name: "Quiz: Linked Lists",
     },
     {
       type: "problem",
@@ -282,6 +311,9 @@ export const beginnerPathData = {
       name: "Problem: Remove Duplicates from Sorted Linked List",
     },
     {
+      type: "break"
+    },
+    {
       type: "reading",
       urlName: "the-two-pointer-method-linked-list-edition",
       name: "The Two Pointer Method: Linked List Edition",
@@ -290,6 +322,14 @@ export const beginnerPathData = {
       type: "problem",
       urlName: "detect-cycle-in-linked-list",
       name: "Problem: Detect Cycle in Linked List",
+    },
+    {
+      type: "break"
+    },
+    {
+      type: "tip",
+      urlName: "plan-of-attack-for-linked-list-problems",
+      name: "Interview Tip: Plan of Attack for Linked List Problems",
     },
   ],
 };
