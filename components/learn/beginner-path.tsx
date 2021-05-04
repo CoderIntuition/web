@@ -187,6 +187,10 @@ class BeginnerPath extends React.Component<BeginnerPathProps, BeginnerPathState>
     const cardGroupContents = (data) => (
       <>
         {data.map((introduction, idx) => {
+          if (introduction.type === "break") {
+            return <br/>
+          }
+
           let completedList;
           if (introduction.type === "problem") {
             completedList = this.state.completedProblems;
@@ -273,7 +277,7 @@ class BeginnerPath extends React.Component<BeginnerPathProps, BeginnerPathState>
                 <div ref={this.contentsRefs[2]} />
                 <StyledCard raised fluid>
                   <StyledHeader size="medium">
-                    4 - Basic Strings and Arrays
+                    3 - Basic Strings and Arrays
                     {headerCheck(beginnerPathData.stringsAndArrays)}
                   </StyledHeader>
                   <CardGroup>{cardGroupContents(beginnerPathData.stringsAndArrays)}</CardGroup>
@@ -282,7 +286,7 @@ class BeginnerPath extends React.Component<BeginnerPathProps, BeginnerPathState>
                 <div ref={this.contentsRefs[3]} />
                 <StyledCard raised fluid>
                   <StyledHeader size="medium">
-                    5 - Linked Lists
+                    4 - Linked Lists
                     {headerCheck(beginnerPathData.linkedLists)}
                   </StyledHeader>
                   <CardGroup>{cardGroupContents(beginnerPathData.linkedLists)}</CardGroup>
