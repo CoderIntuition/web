@@ -1,8 +1,14 @@
-import React, { Component } from "react";
-import { NextRouter, withRouter } from "next/router";
-import Link from "next/link";
 import { Client } from "@stomp/stompjs";
 import axios from "axios";
+import { getCurrentUserToken, isMod } from "common/auth-service";
+import { constants, QUIZ_TEMPLATE } from "common/constants";
+import { GrayButton, GreenButton, RedButton } from "common/global-styles";
+import { isJsonArray, showErrorToast, showSuccessToast, withGlobalContext, wrapQuestions } from "common/utils";
+import AceEditor from "components/common/ace-editor/ace-editor";
+import MarkdownRender from "components/common/markdown-render/markdown-render";
+import Link from "next/link";
+import { NextRouter, withRouter } from "next/router";
+import React, { Component } from "react";
 import Quiz from "react-quiz-component";
 import {
   Button,
@@ -19,14 +25,9 @@ import {
   Message,
   Radio,
   Segment,
-  TextArea,
+  TextArea
 } from "semantic-ui-react";
-import { getCurrentUserToken, isMod } from "common/auth-service";
-import { constants, QUIZ_TEMPLATE } from "common/constants";
-import { isJsonArray, showErrorToast, showSuccessToast, withGlobalContext, wrapQuestions } from "common/utils";
-import { GrayButton, GreenButton, RedButton } from "common/global-styles";
-import MarkdownRender from "components/common/markdown-render/markdown-render";
-import AceEditor from "components/common/ace-editor/ace-editor";
+import { DescriptionStyles } from "../../problem/info-content-styles";
 import {
   Divider,
   FloatingSaveButton,
@@ -38,9 +39,8 @@ import {
   SegmentHeader,
   StyledGrid,
   StyledSegment,
-  TemplateSpan,
+  TemplateSpan
 } from "./add-styles";
-import { DescriptionStyles } from "../../problem/info-content-styles";
 
 interface CmsProblemAddProps {
   router: NextRouter;
@@ -67,9 +67,9 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
       "| **Output** | `` |",
     defaultCodeLanguage: "python",
     defaultCode: {
-      python: "def placeholder(lst):\n\treturn 0",
-      java: "class Solution {\n" + "\tint placeholder(List<String> lst) {\n" + "\t\treturn 0;\n" + "\t}\n" + "}",
-      javascript: "function placeholder(lst) {\n" + "\treturn 0;\n" + "}",
+      python: "def ():\n\treturn ",
+      java: "class Solution {\n" + "\t () {\n" + "\t\treturn ;\n" + "\t}\n" + "}",
+      javascript: "function () {\n" + "\treturn ;\n" + "}",
     },
     returnType: {
       type: "STRING",
@@ -86,22 +86,22 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
     ] as any[],
     intuitionRows: [
       {
-        name: "",
-        time: 0,
+        name: "Natural Thinking",
+        time: 5,
         isQuiz: false,
-        content: "",
+        content: "A great **first step** to approaching any coding interview problem is to **describe** how you solved the examples **in your own head**. If you can **translate** that to code that a computer would understand, then you have at least a working brute force solution!\n\nRun through the examples and try to describe what **your brain** is doing step-by-step.\n\nClick **continue** once you have an idea of how your brain solves these examples.",
       },
     ] as any[],
     solutionRows: [
       {
         name: "",
         isPrimary: true,
-        description: "",
+        description: "### Note\nYou don't need to memorize this solution! Click **Learn the Intuition** below to learn the intuition behind coming up with a solution like this.\n\n### Explanation\n\n\n### Time Complexity\n\n\n### Space Complexity",
         language: "python",
         code: {
-          python: "def placeholder(lst):\n\treturn 0",
-          java: "class Solution {\n" + "\tint placeholder(List<String> lst) {\n" + "\t\treturn 0;\n" + "\t}\n" + "}",
-          javascript: "function placeholder(lst) {\n" + "\treturn 0;\n" + "}",
+          python: "def ():\n\treturn ",
+          java: "class Solution {\n" + "\t () {\n" + "\t\treturn ;\n" + "\t}\n" + "}",
+          javascript: "function () {\n" + "\treturn ;\n" + "}",
         },
       },
     ] as any[],
@@ -411,13 +411,13 @@ class ProblemAdd extends Component<CmsProblemAddProps> {
       case "solution":
         item = {
           name: "",
-          isPrimary: false,
-          description: "",
+          isPrimary: true,
+          description: "### Note\nYou don't need to memorize this solution! Click **Learn the Intuition** below to learn the intuition behind coming up with a solution like this.\n\n### Explanation\n\n\n### Time Complexity\n\n\n### Space Complexity",
           language: "python",
           code: {
-            python: "",
-            java: "",
-            javascript: "",
+            python: "def ():\n\treturn ",
+            java: "class Solution {\n" + "\t () {\n" + "\t\treturn ;\n" + "\t}\n" + "}",
+            javascript: "function () {\n" + "\treturn ;\n" + "}",
           },
         };
         break;
