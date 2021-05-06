@@ -38,6 +38,7 @@ export const constants = {
   CHANGE_PASSWORD_URL: API_BASE_URL + "/user/me/changepassword",
   USER_SUBMISSIONS_URL: API_BASE_URL + "/user/me/submissions/",
   VERIFY_EMAIL_URL: API_BASE_URL + "/user/verify",
+  UNSUBSCRIBE_URL: API_BASE_URL + "/email-unsubscribe/",
   RESET_PASSWORD_REQUEST_URL: API_BASE_URL + "/auth/reset/request",
   RESET_PASSWORD_VALIDATE_URL: API_BASE_URL + "/auth/reset/validate/",
   RESET_PASSWORD_SAVE_URL: API_BASE_URL + "/auth/reset/save",
