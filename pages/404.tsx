@@ -37,7 +37,7 @@ const NotFoundPage: FC<NotFoundPageProps> = (props) => {
             marginTop: 70,
           }}
         >
-          <Image src="/images/notfound.png" alt="404 not found graphic" size="large" />
+          <Image src="/images/404.svg" alt="404 not found graphic" size="large" />
           <Header as="h1" style={{ fontSize: "36px", fontWeight: 500 }}>
             Oops! Page Not Found
           </Header>
