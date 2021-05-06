@@ -366,18 +366,18 @@ export const User: FC<UserProps> = (props) => {
         <link rel="canonical" href={"https://www.coderintuition.com/user/" + user.name} />
       </Head>
       <StyledGrid relaxed>
-        <GridColumn textAlign="center" mobile={16} tablet={16} computer={4}>
+        <GridColumn textAlign="center" mobile={16} tablet={16} computer={5}>
           <MarginRow>{ProfileSection}</MarginRow>
           <MarginRow>{StatsSection}</MarginRow>
           <GridRow>{SocialMediaSection}</GridRow>
         </GridColumn>
-        <GridColumn mobile={16} tablet={16} computer={8}>
+        <GridColumn mobile={16} tablet={16} computer={11}>
           <GridRow>{ActivitySection}</GridRow>
         </GridColumn>
-        <GridColumn mobile={16} tablet={16} computer={4}>
+        {/* <GridColumn mobile={16} tablet={16} computer={4}>
           <MarginRow>{LevelSection}</MarginRow>
           <GridRow>{BadgeSection}</GridRow>
-        </GridColumn>
+        </GridColumn> */}
       </StyledGrid>
     </>
   );
