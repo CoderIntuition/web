@@ -1,7 +1,7 @@
-import React, { useState } from "react";
 import Image from "next/image";
-import "slick-carousel/slick/slick.css";
+import React, { useState } from "react";
 import { ArrowLeft, ArrowRight } from "react-feather";
+import "slick-carousel/slick/slick.css";
 import { Container, ContentWithPaddingXl, HighlightedText } from "../landing-styles";
 import {
   CompanyImage,
@@ -91,13 +91,7 @@ const Testimonials = () => {
                       <div className={CustomerTextInfo}>
                         <span className={CustomerName}>{testimonial.customerName}</span>
                         <p className={CustomerTitle}>{testimonial.customerTitle}</p>
-                        <Image
-                          className={CompanyImage}
-                          src={testimonial.companyImageSrc}
-                          alt={"Company logo"}
-                          width="100px"
-                          height="30px"
-                        />
+                        <img className={CompanyImage} src={testimonial.companyImageSrc} alt="Company logo" />
                       </div>
                     </div>
                     <div className={Controls}>
