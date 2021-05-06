@@ -275,9 +275,8 @@ class TestContent extends React.Component<PropTypes> {
                           fluid
                           styled
                           dark={this.props.darkMode}
-                          onClick={() => this.handleAccordionClick(index)}
                         >
-                          <AccordionTitle active={this.state["active" + index]}>
+                          <AccordionTitle active={this.state["active" + index]} onClick={() => this.handleAccordionClick(index)}>
                             <Icon name="dropdown" color={this.props.darkMode ? "grey" : "black"} />
                             <AccordionTitleSpan dark={this.props.darkMode}>Test {index + 1}</AccordionTitleSpan>
                             <CheckRight />
@@ -301,9 +300,8 @@ class TestContent extends React.Component<PropTypes> {
                           fluid
                           styled
                           dark={this.props.darkMode}
-                          onClick={() => this.handleAccordionClick(index)}
                         >
-                          <AccordionTitle active={this.state["active" + index]}>
+                          <AccordionTitle active={this.state["active" + index]} onClick={() => this.handleAccordionClick(index)}>
                             <Icon name="dropdown" color={this.props.darkMode ? "grey" : "black"} />
                             <AccordionTitleSpan dark={this.props.darkMode}>Test {index + 1}</AccordionTitleSpan>
                             <XRight />

@@ -1,6 +1,12 @@
-import React from "react";
-import Image from "next/image";
+import { GrayButton, VHeader } from "common/global-styles";
+import { capitalize, getDifficultyColor, wrapQuestions } from "common/utils";
+import AceEditor from "components/common/ace-editor/ace-editor";
+import Emoji from "components/common/emoji/emoji";
+import MarkdownRender from "components/common/markdown-render/markdown-render";
 import moment from "moment/moment";
+import Image from "next/image";
+import React from "react";
+import { Briefcase, CheckCircle, Heart, Upload } from "react-feather";
 import Quiz from "react-quiz-component";
 import {
   AccordionContent,
@@ -12,13 +18,9 @@ import {
   Label,
   Modal,
   Table,
-  TableHeader,
+  TableHeader
 } from "semantic-ui-react";
-import MarkdownRender from "components/common/markdown-render/markdown-render";
-import AceEditor from "components/common/ace-editor/ace-editor";
-import Emoji from "components/common/emoji/emoji";
-import { capitalize, getDifficultyColor, wrapQuestions } from "common/utils";
-import { GrayButton, VHeader } from "common/global-styles";
+import MarkdownRenderDark from "../common/markdown-render/markdown-render-dark";
 import {
   ActionText,
   BlurredDiv,
@@ -32,10 +34,8 @@ import {
   StyledTableHeaderCell,
   StyledTableRow,
   TestResultText,
-  VHeaderWithBorder,
+  VHeaderWithBorder
 } from "./info-content-styles";
-import MarkdownRenderDark from "../common/markdown-render/markdown-render-dark";
-import { Briefcase, CheckCircle, Heart, Upload } from "react-feather";
 import { StyledAccordion } from "./test-content-styles";
 
 interface InfoContentProps {
@@ -225,9 +225,8 @@ class InfoContent extends React.Component<InfoContentProps> {
                       fluid
                       styled
                       dark={this.props.darkMode}
-                      onClick={() => this.handleAccordionClick(idx)}
                     >
-                      <AccordionTitle active={this.state["active" + idx]}>
+                      <AccordionTitle active={this.state["active" + idx]} onClick={() => this.handleAccordionClick(idx)}>
                         <Icon name="dropdown" color={this.props.darkMode ? "grey" : "black"} />
                         <VHeader dark={this.props.darkMode} style={{ display: "inline", fontSize: 16 }}>
                           Approach {solution.solutionNum}: {solution.name}
