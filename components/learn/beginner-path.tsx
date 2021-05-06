@@ -1,23 +1,24 @@
-import React, { RefObject } from "react";
-import { NextRouter, withRouter } from "next/router";
-import Link from "next/link";
 import axios from "axios";
-import { CardGroup, GridRow, Header, List, Loader, Popup } from "semantic-ui-react";
-import ProblemsSidebar from "components/common/problems-sidebar/problems-sidebar";
-import { SimpleProblem } from "common/types";
-import { beginnerPathData, constants } from "common/constants";
 import { getCurrentUserToken } from "common/auth-service";
+import { beginnerPathData, constants } from "common/constants";
+import { SimpleProblem } from "common/types";
 import { withGlobalContext } from "common/utils";
-import { Heading, HeadingSection, Subheading } from "./overview-styles";
+import ProblemsSidebar from "components/common/problems-sidebar/problems-sidebar";
+import Link from "next/link";
+import { NextRouter, withRouter } from "next/router";
+import React, { RefObject } from "react";
+import { CardGroup, GridRow, List, Loader, Popup } from "semantic-ui-react";
 import {
   Check,
   ItemCard,
   ItemHeader,
   StyledCard,
   StyledCardGroup,
-  StyledGrid, StyledHeader,
+  StyledGrid,
+  StyledHeader,
   StyledListItem
 } from "./beginner-path-styles";
+import { Heading, HeadingSection, Subheading } from "./overview-styles";
 
 interface BeginnerPathProps {
   router: NextRouter;
@@ -186,7 +187,7 @@ class BeginnerPath extends React.Component<BeginnerPathProps, BeginnerPathState>
       <>
         {data.map((introduction, idx) => {
           if (introduction.type === "break") {
-            return <br />
+            return <br />;
           }
 
           let completedList;
@@ -226,7 +227,9 @@ class BeginnerPath extends React.Component<BeginnerPathProps, BeginnerPathState>
             <GridRow>
               <StyledCardGroup>
                 <StyledCard raised fluid>
-                  <StyledHeader size="medium" style={{ marginBottom: 10 }}>Overview</StyledHeader>
+                  <StyledHeader size="medium" style={{ marginBottom: 10 }}>
+                    Overview
+                  </StyledHeader>
                   <p style={{ color: "#00000090", fontSize: 15 }}>
                     In this learning path, you'll understand the <b style={{ fontWeight: 600 }}>prerequisites</b> for
                     using CoderIntuition and get introduced to easier coding interview problems.

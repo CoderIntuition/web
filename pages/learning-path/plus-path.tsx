@@ -1,19 +1,19 @@
 import React, { FC } from "react";
 import Head from "next/head";
 import PageWrapper from "components/common/page-wrapper/page-wrapper";
-import BeginnerPath from "../../components/learn/beginner-path";
+import PlusPath from "components/learn/plus-path";
 
 const BeginnerPathPage: FC = () => {
   const head = () => {
     return (
       <Head>
-        <title>FAQ</title>
+        <title>Intuition+ Path</title>
         <meta
           charSet="utf-8"
           name="description"
-          content="Beginner Learning Path"
+          content="CoderIntuition Intuition+ learning path"
         />
-        <link rel="canonical" href="https://www.coderintuition.com/faq" />
+        <link rel="canonical" href="https://www.coderintuition.com/learning-path/plus-path" />
       </Head>
     );
   };
@@ -22,7 +22,7 @@ const BeginnerPathPage: FC = () => {
     <>
       {head()}
       <PageWrapper>
-        <BeginnerPath />
+        <PlusPath />
       </PageWrapper>
     </>
   );

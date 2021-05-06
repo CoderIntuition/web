@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import Head from "next/head";
 import PageWrapper from "components/common/page-wrapper/page-wrapper";
-import BeginnerPath from "../../components/learn/beginner-path";
+import BeginnerPath from "components/learn/beginner-path";
 
 const BeginnerPathPage: FC = () => {
   const head = () => {
@@ -11,9 +11,9 @@ const BeginnerPathPage: FC = () => {
         <meta
           charSet="utf-8"
           name="description"
-          content="CoderIntuition's beginner path"
+          content="CoderIntuition beginner learning path"
         />
-        <link rel="canonical" href="https://www.coderintuition.com/beginner-path" />
+        <link rel="canonical" href="https://www.coderintuition.com/learning-path/beginner-path" />
       </Head>
     );
   };
