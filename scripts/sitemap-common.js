@@ -23,6 +23,7 @@ const formatted = (sitemap) => prettier.format(sitemap, { parser: "html" });
     "!../pages/settings/**",
     "!../pages/user/**",
     "!../pages/verify/**",
+    "!../pages/unsubscribe/**",
     "!../pages/checkout-success.tsx",
   ]);
 
