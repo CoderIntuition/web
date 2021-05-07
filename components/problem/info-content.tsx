@@ -98,11 +98,11 @@ class InfoContent extends React.Component<InfoContentProps> {
                 {capitalize(this.props.problem.difficulty)}
               </Label>
               <Briefcase style={{ display: "inline", width: 16, marginLeft: 20 }} />
-              <HeaderText>2</HeaderText>
+              <HeaderText>1</HeaderText>
               <Upload style={{ display: "inline", width: 16, marginLeft: 20 }} />
-              <HeaderText>87</HeaderText>
-              <Heart style={{ display: "inline", width: 16, marginLeft: 20 }} />
-              <HeaderText>87</HeaderText>
+              <HeaderText>{this.props.problem.numSubmissions}</HeaderText>
+              {/* <Heart style={{ display: "inline", width: 16, marginLeft: 20 }} />
+              <HeaderText>87</HeaderText> */}
               <CheckCircle
                 color={this.hasPassedSubmission() ? "#20bf6b" : this.props.darkMode ? "#555555" : "#00000030"}
                 style={{ display: "inline", width: 16, marginLeft: 20 }}
