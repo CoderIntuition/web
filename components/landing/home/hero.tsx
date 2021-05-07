@@ -38,7 +38,7 @@ const Hero = () => {
                   Learn Algorithmic <span style={{ color: "#fbc30d" }}>Intuition</span>
                 </h1>
                 <p className={Paragraph} style={{ fontWeight: 300 }}>
-                  <b>Don't keep memorizing solutions! </b>
+                  <b>Stop memorizing solutions! </b>
                   <p style={{marginTop: 10}}>
                     CoderIntuition teaches you <span style={{ color: "#fbc30d" }}>repeatable</span> algorithmic
                     intuition so that you can <span style={{ color: "#fbc30d" }}>ace</span> your coding interviews.

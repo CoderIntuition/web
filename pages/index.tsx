@@ -7,11 +7,11 @@ const HomePage: FC = () => {
   const head = () => {
     return (
       <Head>
-        <title>CoderIntuition | Learn Algorithmic Intuition</title>
+        <title>CoderIntuition | Learn Algorithmic Intuition For Coding Interviews</title>
         <meta
           charSet="utf-8"
           name="description"
-          content="Don't keep memorizing solutions! CoderIntuition teaches you repeatable algorithmic intuition via an interactive platform with built-in quizzes so that you can ace your coding interviews."
+          content="Stop memorizing solutions! CoderIntuition offers coding interview practice and teaches you repeatable algorithmic intuition via an interactive platform with built-in quizzes so that you can ace your coding interviews."
         />
         <link rel="canonical" href="https://www.coderintuition.com" />
       </Head>
