@@ -24,7 +24,7 @@
     "framer-motion": "^3.5.2",
     "github-markdown-css": "^4.0.0",
     "loadash": "^1.0.0",
-    "moment": "^2.29.1",
+    "moment": "^2.29.4",
     "next": "^10.0.8",
     "postcss-flexbugs-fixes": "^5.0.2",
     "postcss-preset-env": "^6.7.0",
